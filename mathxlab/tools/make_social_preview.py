@@ -109,8 +109,16 @@ def make_social_preview(out_path: Path) -> Path:
         ha="left",
     )
 
-    fig.savefig(out_path, dpi=dpi, facecolor=fig.get_facecolor(), bbox_inches=None, pad_inches=0.0)
-    plt.close(fig)
+    try:
+        fig.savefig(
+            out_path,
+            dpi=dpi,
+            facecolor=fig.get_facecolor(),
+            bbox_inches=None,
+            pad_inches=0.0,
+        )
+    finally:
+        plt.close(fig)
     return out_path
 
 
