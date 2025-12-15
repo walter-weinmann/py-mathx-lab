@@ -70,7 +70,7 @@ mypy mathxlab
 ## License
 
 * **Code**: MIT License (see `LICENSE`)
-* **Documentation & media** (Markdown, images, figures): CC BY 4.0 (see `LICENSE-docs`)
+* **Documentation & media** (Markdown, images, figures): CC BY 4.0 (see `LICENSE-CC-BY-4.0`)
 
 ## Citation
 
