@@ -1,8 +1,8 @@
 # py-mathx-lab
 
-Reproducible mathematical experiments in Python — with a focus on **analysis** and **number theory**.
+A gallery of numerical experiments: conjectures, counterexamples, and code.
 
-This repo is a curated **gallery**: each experiment is runnable in one command and produces a short report + figures.
+This repo is a curated **gallery**: each experiment is runnable in one command and produces a short report and figures.
 
 ## Quickstart
 

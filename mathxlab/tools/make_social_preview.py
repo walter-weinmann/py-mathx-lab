@@ -32,7 +32,7 @@ def make_social_preview(out_path: Path) -> Path:
     fig_h_in: float = height_px / dpi
 
     fig = plt.figure(figsize=(fig_w_in, fig_h_in), dpi=dpi)
-    ax = fig.add_axes([0, 0, 1, 1])
+    ax = fig.add_axes((0.0, 0.0, 1.0, 1.0))
     ax.set_axis_off()
 
     # Background
@@ -44,14 +44,30 @@ def make_social_preview(out_path: Path) -> Path:
     grid_alpha: float = 0.08
     grid_color: str = "#ffffff"
     for x in np.linspace(0.05, 0.95, 16):
-        ax.plot([x, x], [0.08, 0.92], lw=1.0, color=grid_color, alpha=grid_alpha, transform=ax.transAxes)
+        ax.plot(
+            [x, x],
+            [0.08, 0.92],
+            lw=1.0,
+            color=grid_color,
+            alpha=grid_alpha,
+            transform=ax.transAxes,
+        )
     for y in np.linspace(0.08, 0.92, 9):
-        ax.plot([0.05, 0.95], [y, y], lw=1.0, color=grid_color, alpha=grid_alpha, transform=ax.transAxes)
+        ax.plot(
+            [0.05, 0.95],
+            [y, y],
+            lw=1.0,
+            color=grid_color,
+            alpha=grid_alpha,
+            transform=ax.transAxes,
+        )
 
     # Title / tagline (Fix 2: top-aligned + left-column width via wrapping)
     title = "py-mathx-lab"
-    tagline = "Reproducible mathematical experiments in Python."
-    tagline_wrapped = textwrap.fill(tagline, width=34)
+    tagline = (
+        "A gallery of numerical experiments: conjectures, counterexamples, and code."
+    )
+    tagline_wrapped = textwrap.fill(tagline, width=45)
 
     ax.text(
         0.08,
@@ -92,8 +108,8 @@ def make_social_preview(out_path: Path) -> Path:
     )
 
     # Map into axes coordinates box on the right
-    x0, x1 = 0.70, 0.94
-    y0, y1 = 0.20, 0.80
+    _x0, _x1 = 0.70, 0.94
+    _y0, _y1 = 0.20, 0.80
 
     # Accent badge
     ax.text(
