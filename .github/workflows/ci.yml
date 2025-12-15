@@ -1,0 +1,46 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [dev, prod]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Make runners executable
+        run: |
+          chmod +x do.sh
+          chmod +x scripts/do_python.sh
+
+      - name: Install (dev)
+        if: matrix.mode == 'dev'
+        run: |
+          ./do.sh install-dev
+
+      - name: Quality gates (dev)
+        if: matrix.mode == 'dev'
+        run: |
+          ./do.sh dev
+
+      - name: Install (prod)
+        if: matrix.mode == 'prod'
+        run: |
+          ./do.sh install
+
+      - name: Smoke test (prod)
+        if: matrix.mode == 'prod'
+        run: |
+          python -c "import mathxlab; print('mathxlab import OK')"
+          ./do.sh run e001_taylor_error_landscapes --out out/e001 --seed 1

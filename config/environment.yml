@@ -1,0 +1,10 @@
+name: py-mathx-lab
+channels:
+  - conda-forge
+dependencies:
+  - python=3.14
+  - matplotlib
+  - numpy
+  - pip
+  - scipy
+  - sympy

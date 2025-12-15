@@ -1,0 +1,16 @@
+name: py-mathx-lab-dev
+channels:
+  - conda-forge
+dependencies:
+  - python=3.14
+  - matplotlib
+  - numpy
+  - pip
+  - scipy
+  - sympy
+  - pip:
+      - build>=1.2
+      - ipython
+      - mypy>=1.10
+      - pytest>=8.0
+      - ruff>=0.6
