@@ -32,7 +32,7 @@ def make_social_preview(out_path: Path) -> Path:
     fig_h_in: float = height_px / dpi
 
     fig = plt.figure(figsize=(fig_w_in, fig_h_in), dpi=dpi)
-    ax = fig.add_axes([0, 0, 1, 1])
+    ax = fig.add_axes((0.0, 0.0, 1.0, 1.0))
     ax.set_axis_off()
 
     # Background
