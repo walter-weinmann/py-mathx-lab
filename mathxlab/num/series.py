@@ -35,10 +35,7 @@ def taylor_sin(x: np.ndarray, x0: float, degree: int) -> np.ndarray:
 
     for n in range(0, degree + 1):
         # Update power = dx^n incrementally
-        if n == 0:
-            power = np.ones_like(x, dtype=float)
-        else:
-            power = power * dx
+        power = np.ones_like(x, dtype=float) if n == 0 else power * dx
 
         # Update factorial = n!
         if n <= 1:

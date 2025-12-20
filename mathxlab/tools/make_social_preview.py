@@ -1,10 +1,10 @@
 from __future__ import annotations
 
+import textwrap
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
-import textwrap
 
 
 # ------------------------------------------------------------------------------
@@ -64,9 +64,7 @@ def make_social_preview(out_path: Path) -> Path:
 
     # Title / tagline (Fix 2: top-aligned + left-column width via wrapping)
     title = "py-mathx-lab"
-    tagline = (
-        "A gallery of numerical experiments: conjectures, counterexamples, and code."
-    )
+    tagline = "A gallery of numerical experiments: conjectures, counterexamples, and code."
     tagline_wrapped = textwrap.fill(tagline, width=45)
 
     ax.text(
@@ -120,7 +118,7 @@ def make_social_preview(out_path: Path) -> Path:
         fontsize=14,
         fontweight="bold",
         color=bg,
-        bbox=dict(boxstyle="round,pad=0.35", facecolor="#fbbf24", edgecolor="none"),
+        bbox={"boxstyle": "round,pad=0.35", "facecolor": "#fbbf24", "edgecolor": "none"},
         va="center",
         ha="left",
     )
