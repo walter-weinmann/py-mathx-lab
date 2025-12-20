@@ -1,0 +1,17 @@
+# Normalize text files to LF in the repository and in checkouts.
+# This avoids CRLF/LF churn between Windows, WSL, CI and collaborators.
+* text=auto eol=lf
+
+# Windows scripts keep CRLF if you have any .bat/.cmd
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Optional: shell scripts should always be LF
+*.sh  text eol=lf
+
+# Optional: documentation/config always LF
+*.md  text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.toml text eol=lf
+*.py  text eol=lf

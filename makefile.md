@@ -1,11 +1,19 @@
 # Developer Guide: Using the Makefile (uv-only) in `py-mathx-lab`
 
-This repository uses a **uv-based** workflow on Windows (GNU Make 3.81 / mingw32) to manage the Python virtual environment, install dependencies, run quality checks, execute tests, and run experiments.
+This repository uses a **uv-based** workflow to manage:
 
-The Makefile is intentionally small and predictable:
-- no conda support
-- no shell activation required
-- all developer actions go through `make <target>`
+- virtual environment creation (`.venv/`)
+- dependency installation (editable + extras)
+- formatting, linting, typing, tests
+- Sphinx documentation build
+- running experiments
+
+Supported platforms:
+
+- **Windows** (GNU Make, `cmd.exe` recipes for Windows parts)
+- **Linux/macOS** (POSIX shell recipes)
+
+No shell activation is required: everything is executed via `uv run ...`.
 
 ---
 
@@ -15,46 +23,23 @@ The Makefile is intentionally small and predictable:
 
 You need:
 
-1. **GNU Make** (Windows build, e.g. `i386-pc-mingw32`)
+1. **GNU Make**
+   - Windows: install GNU Make (e.g. via Chocolatey or Git for Windows tooling)
+   - Linux/macOS: typically already available (or install via package manager)
 2. **uv** on your `PATH`
-3. A working **Python interpreter** installed on the machine (uv will choose one)
+3. **Python 3.13** installed on the machine (uv will select an interpreter)
 
-Verify:
+### Verify your setup
+
+Run from the repo root:
 
 ```bat
 make uv-check
 make python-check
+make python-info
 ````
 
-Expected output resembles:
-
-```text
-uv 0.9.18 (...)
-```
-
-If `uv` is missing, `make uv-check` will fail with a clear message.
-
----
-
-## Project standards (Python 3.13 + strict typing)
-
-This repo targets **Python 3.13**. The configuration is centralized in `pyproject.toml`:
-
-- **Ruff**
-  - `target-version = "py313"`
-  - `line-length = 100`
-  - `ruff format` is the canonical formatter
-  - `ruff check` provides linting and import sorting rules
-- **mypy**
-  - `strict = true`
-  - `python_version = "3.13"`
-  - checks the entire repository (configured in pyproject.toml)
-
-Practical implications:
-
-- Run `make format` before committing (keeps diffs small and consistent).
-- Expect mypy to be opinionated; add annotations early and prefer explicit types at module boundaries.
-- If a third‑party dependency lacks type info, mypy is configured to silence missing-import noise while staying strict for your own code.
+Expected output includes your `uv` version, and `python-check` must confirm **Python 3.13**.
 
 ---
 
@@ -62,14 +47,14 @@ Practical implications:
 
 ### What uv does here
 
-* `uv venv` creates a virtual environment in `.venv/`
-* `uv pip install ...` installs packages into that `.venv`
-* `uv run <command>` runs a command using the `.venv` environment **without activating it**
+* `uv venv` creates the virtual environment in `.venv/`
+* `uv pip install ...` installs packages into `.venv/`
+* `uv run <command>` runs a command inside `.venv/` **without activating it**
 
-This means:
+So you do **not** need:
 
-* you do **not** need `.\.venv\Scripts\activate`
-* all commands run reproducibly as long as you use `make`
+* `.\.venv\Scripts\activate`
+* `source .venv/bin/activate`
 
 ---
 
@@ -81,25 +66,26 @@ From the repository root:
 make uv-check
 make venv
 make install-dev
+make install-docs
 ```
 
-What this does:
-
-* `uv-check`: confirms `uv` is available
-* `venv`: creates `.venv` (or updates it)
-* `install-dev`: installs the project in editable mode plus developer dependencies
-
-After that, you can run the full developer pipeline:
+Then run the full pipeline:
 
 ```bat
 make dev
 ```
+
+Notes:
+
+* `install-dev` installs the project in editable mode plus dev tools (ruff/mypy/pytest).
+* `install-docs` installs the Sphinx toolchain (so `sphinx-build` exists).
+* `dev` runs **format + lint + mypy + pytest + docs** (see below).
 
 ---
 
 ## The development loop
 
-A typical edit → check → test cycle:
+Typical edit → check → test flow:
 
 ```bat
 make format
@@ -108,106 +94,75 @@ make mypy
 make pytest
 ```
 
-Or, run them all at once:
+Or run everything (including docs build) in one go:
 
 ```bat
 make dev
 ```
 
-### Target details
+### CI behavior for formatting
 
-#### `make format`
+In CI (GitHub Actions sets `CI=1` automatically):
 
-Formats the codebase:
+* `make format` runs `ruff format --check .`
+* locally, `make format` runs `ruff format .` (in-place formatting)
 
-```bat
-make format
-```
+This means CI fails if formatting is not already correct.
 
-Equivalent to:
+---
 
-```text
-uv run ruff format .
-```
+## Documentation (Sphinx)
 
-Use this before committing.
+### Install docs dependencies
 
-#### `make lint`
-
-Runs lint checks:
+You must install the docs toolchain once:
 
 ```bat
-make lint
+make install-docs
 ```
 
-Equivalent to:
-
-```text
-uv run ruff check .
-```
-
-Use this to catch style and correctness issues.
-
-#### `make mypy`
-
-Runs static type checks (configured as **strict**) against the default module (configurable):
+### Build docs
 
 ```bat
-make mypy
+make docs
 ```
 
-Equivalent to:
+Output directory:
 
-```text
-uv run mypy
-```
+* `docs/_build/html`
 
-You can override the module to type-check:
+### Clean docs build output
 
 ```bat
-make mypy MODULE=some_package
-```
-
-#### `make pytest`
-
-Runs tests:
-
-```bat
-make pytest
-```
-
-Equivalent to:
-
-```text
-uv run pytest -q
+make docs-clean
 ```
 
 ---
 
 ## Running experiments
 
-Experiments are run via a Python module invocation:
+Experiments are run via module execution:
 
 ```bat
 make run EXP=<experiment_module> ARGS="<arguments>"
 ```
 
-### Example
+Example:
 
 ```bat
 make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1"
 ```
 
-This translates to:
+This runs:
 
 ```text
 uv run python -m experiments.e001_taylor_error_landscapes --out out/e001 --seed 1
 ```
 
-### Notes / conventions
+Rules:
 
-* `EXP` should be the module name under the `experiments/` package (without `.py`)
-* `ARGS` is optional and passed verbatim to the module
+* `EXP` is required and must be the module name under `experiments/` (without `.py`)
+* `ARGS` is optional and passed verbatim
 
 If `EXP` is missing, the Makefile fails early with an example invocation.
 
@@ -217,13 +172,7 @@ If `EXP` is missing, the Makefile fails early with an example invocation.
 
 ### `make clean`
 
-Removes typical cache and build directories (but **keeps** `.venv`):
-
-```bat
-make clean
-```
-
-Removes (if present):
+Removes typical caches and build outputs (keeps `.venv`):
 
 * `.mypy_cache`
 * `.pytest_cache`
@@ -232,27 +181,26 @@ Removes (if present):
 * `dist`
 * `*.egg-info` directories
 
+```bat
+make clean
+```
+
 ### `make clean-venv`
 
-Removes the `.venv` directory:
+Removes `.venv`:
 
 ```bat
 make clean-venv
 ```
 
-Use this if:
-
-* your environment got corrupted
-* you want to force a clean reinstalling
-* you changed Python versions and wanted a fresh venv
-
-Recommended rebuild sequence:
+Recommended “full reset” sequence:
 
 ```bat
 make clean
 make clean-venv
 make venv
 make install-dev
+make install-docs
 ```
 
 ---
@@ -278,10 +226,11 @@ make dev
 make uv-check
 make venv
 make install-dev
+make install-docs
 make dev
 ```
 
-### 4) Run one experiment repeatedly while iterating
+### 4) Iterate on one experiment
 
 ```bat
 make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1"
@@ -298,56 +247,58 @@ make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 2"
 
 ## Troubleshooting
 
-### `Error: uv is required but not on PATH.`
+### `error: Failed to spawn: sphinx-build` / `program not found`
 
-* Confirm `uv` is installed and accessible:
-
-  ```bat
-  where uv
-  uv --version
-  ```
-* Open a new terminal after installing (PATH updates often require it).
-
-### `make venv` prompts to replace `.venv`
-
-uv may prompt if `.venv` already exists, and it decides it needs replacement.
-
-If you want fully non-interactive behavior, adjust the `venv` target in the Makefile:
-
-* keep existing venv and avoid prompt:
-
-  * only create if missing
-
-### `mypy`, `ruff`, or `pytest` not found
-
-This usually means dependencies were not installed.
+Cause: Sphinx is not installed into the environment used by `uv run`.
 
 Fix:
 
 ```bat
-make install-dev
+make install-docs
+make docs
 ```
 
-### Python version changes
+### `Error: uv is required but not on PATH.`
 
-The Makefile enforces Python **3.13**. If `make python-check` fails, ensure Python 3.13 is installed and that uv is selecting it.
+Windows:
 
-If uv keeps selecting a different interpreter, remove and recreate the environment:
+```bat
+where uv
+uv --version
+```
+
+Linux/macOS:
+
+```sh
+command -v uv
+uv --version
+```
+
+Open a new terminal after installing uv (PATH changes may require it).
+
+### `make python-check` fails (wrong Python version)
+
+The Makefile enforces **Python 3.13**. If it fails:
+
+1. Install Python 3.13.
+2. Recreate the environment:
 
 ```bat
 make clean-venv
 make venv
 make install-dev
+make install-docs
 ```
 
+### `make` not found on Windows
 
-If you installed a new Python version and want uv to rebuild the environment:
+Install GNU Make, e.g. with Chocolatey:
 
 ```bat
-make clean-venv
-make venv
-make install-dev
+choco install make -y
 ```
+
+Then open a new terminal and retry.
 
 ---
 
@@ -363,36 +314,32 @@ Targets:
 
 * `clean` – remove caches and build artifacts (keep `.venv`)
 * `clean-venv` – remove `.venv`
-* `dev` – format + lint + mypy + pytest
-* `format` – code formatting
-* `help` – show help
-* `install` – install package editable
-* `install-dev` – install editable + dev extras
-* `lint` – lint checks
-* `mypy` – type checking
-* `pytest` – test runner
-* `run` – run an experiment module
+* `dev` – format + lint + mypy + pytest + docs
+* `format` – ruff format (CI uses `--check`)
+* `lint` – ruff check
+* `mypy` – mypy (scope configured in `pyproject.toml`)
+* `pytest` – pytest -q
+* `docs` – build Sphinx HTML docs to `docs/_build/html`
+* `docs-clean` – remove `docs/_build`
+* `install` – `uv pip install -e .`
+* `install-dev` – `uv pip install -e ".[dev]"`
+* `install-docs` – `uv pip install -e ".[docs]"`
+* `python-check` – enforce Python 3.13 via uv
+* `python-info` – print interpreter details uv is using
+* `run` – run an experiment module (`EXP=...`, optional `ARGS=...`)
 * `uv-check` – verify uv availability
-* `venv` – create/update `.venv`
+* `venv` – create/update `.venv` using uv
 
 ---
 
-## Recommendations for contributors
+## Contributor recommendations
 
 * Always use `make` targets instead of calling tools directly.
 * Prefer `make dev` before committing.
-* Use `make clean` periodically to keep your working tree tidy.
+* Use `make clean` periodically to keep the working tree tidy.
 * Use `make clean-venv` only when you need a fully fresh environment.
 
----
-
-
-## Inspecting the interpreter uv is using
-
-Run:
-
-```bat
-make python-info
 ```
 
-This prints the Python version, the executable path (`sys.executable`), and the environment prefix.
+If you also want, I can provide a matching **`docs/` Sphinx scaffold** (`docs/conf.py`, `docs/index.md`, theme config) so `make docs` works immediately after `make install-docs`.
+```

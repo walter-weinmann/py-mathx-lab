@@ -1,0 +1,75 @@
+name: Docs (build + deploy)
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "docs/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - "Makefile"
+      - ".github/workflows/docs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  docs:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest", "windows-latest"]
+
+    runs-on: ${{ matrix.os }}
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install GNU Make (Windows)
+        if: runner.os == 'Windows'
+        run: choco install make -y
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies (docs)
+        run: |
+          uv sync --frozen --extra docs
+
+      - name: Build docs
+        run: |
+          make docs
+
+      - name: Configure Pages (Linux only)
+        if: runner.os == 'Linux'
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact (Linux only)
+        if: runner.os == 'Linux'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/_build/html
+
+      - name: Deploy to GitHub Pages (Linux only)
+        if: runner.os == 'Linux'
+        id: deployment
+        uses: actions/deploy-pages@v4

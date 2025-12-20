@@ -1,46 +1,44 @@
-name: ci
+name: CI (make dev)
 
 on:
-  push:
   pull_request:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  dev-chain:
     strategy:
       fail-fast: false
       matrix:
-        mode: [dev, prod]
+        os: ["ubuntu-latest", "windows-latest"]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Install GNU Make (Windows)
+        if: runner.os == 'Windows'
+        run: choco install make -y
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
 
-      - name: Make runners executable
-        run: |
-          chmod +x do.sh
-          chmod +x scripts/do_python.sh
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
 
-      - name: Install (dev)
-        if: matrix.mode == 'dev'
+      - name: Install dependencies (dev)
         run: |
-          ./do.sh install-dev
+          uv sync --frozen --extra dev
 
-      - name: Quality gates (dev)
-        if: matrix.mode == 'dev'
+      - name: Run dev chain
         run: |
-          ./do.sh dev
-
-      - name: Install (prod)
-        if: matrix.mode == 'prod'
-        run: |
-          ./do.sh install
-
-      - name: Smoke test (prod)
-        if: matrix.mode == 'prod'
-        run: |
-          python -c "import mathxlab; print('mathxlab import OK')"
-          ./do.sh run e001_taylor_error_landscapes --out out/e001 --seed 1
+          make dev
