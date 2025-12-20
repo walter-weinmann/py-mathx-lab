@@ -1,5 +1,6 @@
 /.idea/
 /__ARCHIVE__/
+/docs/_build/html/
 /makefile.pdf
 /mathxlab.egg-info/
 /out/
