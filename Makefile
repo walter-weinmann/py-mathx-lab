@@ -1,148 +1,116 @@
-# Makefile — task runner for the py-mathx-lab repository
+# Makefile — py-mathx-lab (Windows cmd.exe + GNU Make 3.81) using uv (uv-only)
 #
 # Usage examples:
 #   make help
-#   make conda-dev
-#   make conda
+#   make uv-check
+#   make venv
 #   make install-dev
 #   make dev
 #   make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1"
-#
-# Notes:
-# - Make cannot "activate" conda in your current shell; it will print next steps.
-# - You can override variables, e.g.: make mypy MODULE=my_package
+#   make clean
+#   make clean-venv
 
-SHELL := /usr/bin/env bash
-.ONESHELL:
-.SHELLFLAGS := -euo pipefail -c
-
-# ------------------------------------------------------------------------------
-# Repo configuration (adjust if needed)
-# ------------------------------------------------------------------------------
 REPO_NAME := py-mathx-lab
-
-# Your do.sh wrapper fixes MODULE=mathxlab; keep that as default. :contentReference[oaicite:2]{index=2}
 MODULE ?= mathxlab
 
-CFG_DIR := config
-ENV_NAME_DEV := py-mathx-lab-dev
-ENV_NAME_PROD := py-mathx-lab
-ENV_FILE_DEV := $(CFG_DIR)/environment_dev.yml
-ENV_FILE_PROD := $(CFG_DIR)/environment.yml
-
-# For "run"
+# Experiment runner variables
 EXP ?=
 ARGS ?=
 
-# ------------------------------------------------------------------------------
-# Helpers
-# ------------------------------------------------------------------------------
-define require_tool
-command -v "$(1)" >/dev/null 2>&1 || { echo "Error: '$(1)' is required but not installed / not on PATH." >&2; exit 1; }
-endef
+.PHONY: \
+	clean \
+	clean-venv \
+	dev \
+	format \
+	help \
+	install \
+	install-dev \
+	lint \
+	mypy \
+	pytest \
+	python-check \
+	python-info \
+	run \
+	uv-check \
+	venv
 
-# ------------------------------------------------------------------------------
-# Targets
-# ------------------------------------------------------------------------------
-.PHONY: help conda-dev conda install-dev install format lint mypy pytest dev run
 
 .DEFAULT_GOAL := help
 
-help:
-	@echo "===================================================================="
-	@echo "$(REPO_NAME) — task runner"
-	@echo "--------------------------------------------------------------------"
-	@echo "help           Show this help."
-	@echo "conda-dev      Create/update the dev conda env ($(ENV_NAME_DEV))."
-	@echo "conda          Create/update the minimal conda env ($(ENV_NAME_PROD))."
-	@echo "install-dev    pip install -e \".[dev]\""
-	@echo "install        pip install -e ."
-	@echo "format         ruff format ."
-	@echo "lint           ruff check ."
-	@echo "mypy           mypy $(MODULE)"
-	@echo "pytest         pytest -q"
-	@echo "dev            format + lint + mypy + pytest"
-	@echo "run            Run an experiment: make run EXP=e001_... ARGS=\"--out out/e001 --seed 1\""
-	@echo "--------------------------------------------------------------------"
-	@echo "Variables you can override:"
-	@echo "  MODULE=<pkg>   (default: $(MODULE))"
-	@echo "  EXP=<module>   experiment module under experiments/"
-	@echo "  ARGS=\"...\"   extra CLI args passed to the experiment"
-	@echo "===================================================================="
+clean:
+	@echo Removing caches and build artifacts...
+	@if exist ".mypy_cache" rmdir /s /q ".mypy_cache"
+	@if exist ".pytest_cache" rmdir /s /q ".pytest_cache"
+	@if exist ".ruff_cache" rmdir /s /q ".ruff_cache"
+	@if exist "build" rmdir /s /q "build"
+	@if exist "dist" rmdir /s /q "dist"
+	@for /d %%D in (*.egg-info) do @rmdir /s /q "%%D"
+	@echo Done.
 
-conda-dev:
-	@$(call require_tool,conda)
-	@if [[ ! -f "$(ENV_FILE_DEV)" ]]; then \
-		echo "Error: $(ENV_FILE_DEV) not found." >&2; \
-		exit 1; \
-	fi
-	conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main || true
-	conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r || true
-	conda config --set always_yes true
-	conda deactivate || true
-	conda env create -f "$(ENV_FILE_DEV)" || conda env update --prune -f "$(ENV_FILE_DEV)"
-	echo "--------------------------------------------------------------------"
-	conda info --envs
-	echo "===================================================================="
-	echo "Next:"
-	echo "  conda activate $(ENV_NAME_DEV)"
-	echo "  make install-dev"
-	echo "===================================================================="
-
-conda:
-	@$(call require_tool,conda)
-	@if [[ ! -f "$(ENV_FILE_PROD)" ]]; then \
-		echo "Error: $(ENV_FILE_PROD) not found." >&2; \
-		exit 1; \
-	fi
-	conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main || true
-	conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r || true
-	conda config --set always_yes true
-	conda deactivate || true
-	conda env create -f "$(ENV_FILE_PROD)" || conda env update --prune -f "$(ENV_FILE_PROD)"
-	echo "--------------------------------------------------------------------"
-	conda info --envs
-	echo "===================================================================="
-	echo "Next:"
-	echo "  conda activate $(ENV_NAME_PROD)"
-	echo "  make install"
-	echo "===================================================================="
-
-install-dev:
-	@$(call require_tool,python)
-	@$(call require_tool,pip)
-	pip install -U pip
-	pip install -e ".[dev]"
-
-install:
-	@$(call require_tool,python)
-	@$(call require_tool,pip)
-	pip install -U pip
-	pip install -e .
-
-format:
-	@$(call require_tool,ruff)
-	ruff format .
-
-lint:
-	@$(call require_tool,ruff)
-	ruff check .
-
-mypy:
-	@$(call require_tool,mypy)
-	mypy "$(MODULE)"
-
-pytest:
-	@$(call require_tool,pytest)
-	pytest -q
+clean-venv:
+	@if exist ".venv" rmdir /s /q ".venv"
+	@echo Removed .venv (if it existed).
 
 dev: format lint mypy pytest
 
-run:
-	@if [[ -z "$(EXP)" ]]; then \
-		echo "Error: EXP is required."; \
-		echo "Example: make run EXP=e001_taylor_error_landscapes ARGS=\"--out out/e001 --seed 1\""; \
-		exit 1; \
-	fi
-	@$(call require_tool,python)
-	python -m "experiments.$(EXP)" $(ARGS)
+format: python-check
+	@uv run ruff format .
+
+help:
+	@$(info ====================================================================)
+	@$(info $(REPO_NAME) - task runner (uv-only))
+	@$(info --------------------------------------------------------------------)
+	@$(info clean          Remove caches/build artifacts (keeps .venv).)
+	@$(info clean-venv     Remove the .venv directory.)
+	@$(info dev            format + lint + mypy + pytest.)
+	@$(info format         uv run ruff format .)
+	@$(info help           Show this help.)
+	@$(info install        uv pip install -e .)
+	@$(info install-dev    uv pip install -e ".[dev]")
+	@$(info lint           uv run ruff check .)
+	@$(info mypy           uv run mypy (whole repo; configured in pyproject.toml))
+	@$(info pytest         uv run pytest -q)
+	@$(info python-check   Enforce Python 3.13 via uv.)
+	@$(info run            Run experiment: make run EXP=e001_... ARGS="--out out/e001 --seed 1")
+	@$(info uv-check       Verify uv is on PATH.)
+	@$(info venv           Create/update .venv using uv.)
+	@$(info --------------------------------------------------------------------)
+	@$(info Variables you can customize:)
+	@$(info   Python is enforced to 3.13 via python-check.)
+	@$(info   MODULE=<pkg>   (default: $(MODULE)))
+	@$(info   EXP=<module>   experiment module under experiments/)
+	@$(info   ARGS="..."     extra CLI args passed to the experiment)
+	@$(info ====================================================================)
+
+install: python-check
+	@uv pip install -e .
+
+install-dev: python-check
+	@uv pip install -e ".[dev]"
+
+lint: python-check
+	@uv run ruff check .
+
+mypy: python-check
+	@uv run mypy
+
+pytest: python-check
+	@uv run pytest -q
+
+run: python-check
+	@if "$(EXP)"=="" (echo Error: EXP is required. & echo Example: make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1" & exit /b 1)
+	@uv run python -m experiments.$(EXP) $(ARGS)
+
+
+python-info: uv-check
+	@uv run python -c "import sys, platform; print('Python:', platform.python_version()); print('Executable:', sys.executable); print('Prefix:', sys.prefix)"
+
+python-check: uv-check
+	@uv run python -c "import sys; assert sys.version_info[:2]==(3,13), f'Expected Python 3.13, got {sys.version_info[0]}.{sys.version_info[1]}'"
+
+uv-check:
+	@where uv >NUL 2>&1 || (echo Error: uv is required but not on PATH. & exit /b 1)
+	@uv --version
+
+venv: python-check
+	@if not exist ".venv" uv venv

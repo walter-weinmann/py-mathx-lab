@@ -62,6 +62,4 @@ def write_json(path: Path, payload: dict[str, Any]) -> None:
         path: Output path.
         payload: JSON-serializable payload.
     """
-    path.write_text(
-        json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-    )
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")

@@ -7,15 +7,15 @@ This repo is a curated **gallery**: each experiment is runnable in one command a
 ## Quickstart
 
 ```bash
-python -m venv .venv
-# Windows: .venv\Scripts\activate
-# Linux/macOS: source .venv/bin/activate
+# Install uv if you don't have it
+# pip install uv
 
-pip install -U pip
-pip install -e ".[dev]"
+make venv
+make install
 
-python -m experiments.e001_taylor_error_landscapes --out out/e001 --seed 1
-````
+# Run an experiment
+make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1"
+```
 
 Outputs will appear in `out/e001/` (report + figures + parameters).
 
@@ -62,9 +62,7 @@ Each run must be:
 ## Development
 
 ```bash
-ruff check .
-pytest -q
-mypy mathxlab
+make dev
 ```
 
 ## License
