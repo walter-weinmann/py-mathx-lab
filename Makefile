@@ -75,7 +75,7 @@ else
 	@echo "Removed .venv (if it existed)."
 endif
 
-dev: format lint mypy pytest
+dev: format lint mypy pytest docs
 
 final: format lint mypy pytest docs
 
