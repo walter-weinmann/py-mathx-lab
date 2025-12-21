@@ -28,6 +28,7 @@ make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1"
 
 ---
 
+```{toctree}
 :hidden:
 :maxdepth: 2
 
@@ -35,3 +36,4 @@ getting-started
 experiments
 development
 references
+```
