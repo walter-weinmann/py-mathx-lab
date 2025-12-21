@@ -30,8 +30,8 @@ def _get_package_version(dist_name: str) -> str:
 # -- Project information -----------------------------------------------------
 
 project = "py-mathx-lab"
-author = "io-swiss"
-copyright = "2025, io-swiss"
+author = "Walter Weinmann"
+copyright = "2025, Walter Weinmann"
 
 # If your distribution name differs, adjust this.
 # For many repos, it matches [project].name in pyproject.toml.
@@ -81,3 +81,19 @@ bibtex_bibfiles = ["refs.bib"]
 
 html_theme = "furo"
 html_static_path = ["_static"]
+
+# Optional: nicer browser title
+html_title = "py-mathx-lab documentation"
+
+# Optional: Edit-on-GitHub links (recommended for contributors)
+html_context = {
+    "display_github": True,
+    "github_user": "walter-weinmann",
+    "github_repo": "py-mathx-lab",
+    "github_version": "main",
+    "conf_py_path": "/docs/",
+}
+
+html_theme_options = {
+    "sidebar_hide_name": False,
+}

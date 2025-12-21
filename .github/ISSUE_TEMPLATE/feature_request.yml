@@ -1,0 +1,50 @@
+name: Feature request
+description: Propose a change or improvement (tooling, docs, CI, experiments).
+title: "proposal: "
+labels: ["feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the proposal. Please keep it focused and justify value and scope.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What problem does this solve? Who benefits?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the change. Keep it concrete.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and risks
+      description: What's in/out of scope? Any compatibility or reproducibility risks?
+      placeholder: |
+        In scope:
+        Out of scope:
+        Risks:
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - tooling (uv/Makefile/packaging)
+        - documentation
+        - CI / GitHub Actions
+        - experiments
+        - other
+    validations:
+      required: true

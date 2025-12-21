@@ -1,0 +1,88 @@
+name: Bug report
+description: Report a reproducible bug (runtime error, incorrect output, CI failure, docs build issues).
+title: "bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. This project values reproducibility.
+        Please provide minimal steps to reproduce and include environment details.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened and what did you expect?
+      placeholder: "Example: E001 fails on Windows with FileNotFoundError when writing output."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Provide exact commands and inputs. Minimal repro is best.
+      placeholder: |
+        1. git clone ...
+        2. make venv
+        3. make install-dev
+        4. make run EXP=... ARGS="..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed output / error
+      description: Paste the error/traceback or logs.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should have happened instead?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - experiments (runtime)
+        - experiments (results/logic)
+        - documentation (Sphinx/MyST)
+        - CI / GitHub Actions
+        - tooling (uv/Makefile/packaging)
+        - other
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Provide OS + Python + uv + relevant tool versions.
+      placeholder: |
+        OS: Windows 11 / Ubuntu 22.04 (WSL) / macOS
+        Python: 3.13.x
+        uv: 0.x.x
+        make: GNU Make x.x
+        ruff: x.x.x (if relevant)
+        mypy: x.x.x (if relevant)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: flags
+    attributes:
+      label: Flags
+      options:
+        - label: This affects reproducibility (same inputs produce different outputs)
+          required: false
+        - label: This affects CI / GitHub Actions
+          required: false

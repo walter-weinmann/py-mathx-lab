@@ -1,36 +1,37 @@
 # py-mathx-lab
 
-Welcome to **py-mathx-lab** — a repository for small, reproducible math experiments
-implemented in Python.
+Small, reproducible math experiments implemented in Python.
 
-```{toctree}
-:maxdepth: 2
-:caption: Contents
+- **Audience:** curious engineers, students, and researchers
+- **Idea:** each experiment is a self-contained runnable module with a short write-up
+- **Goal:** a growing, searchable “lab notebook” of experiments
 
-getting-started
-experiments
-development
-references
+## Start here
 
----
+- {doc}`getting-started` — install, setup, and run your first experiment
+- {doc}`experiments` — experiment gallery (IDs, tags, how to run)
+- {doc}`development` — Makefile workflow, CI, coding conventions
+- {doc}`references` — bibliography and reading list
 
-## 3) `docs/getting-started.md`
-
-Create `docs/getting-started.md`:
-
-```markdown
-# Getting started
-
-## Prerequisites
-
-- Python **3.13**
-- `uv`
-- GNU `make`
-
-## Setup
+## Run one experiment
 
 ```bash
 make uv-check
 make venv
 make install-dev
-make install-docs
+make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1"
+````
+
+## Latest
+
+* **E001** — {ref}`e001-taylor-error-landscapes`
+
+---
+
+:hidden:
+:maxdepth: 2
+
+getting-started
+experiments
+development
+references
