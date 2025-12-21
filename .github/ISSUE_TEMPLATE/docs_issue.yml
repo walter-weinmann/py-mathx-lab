@@ -1,0 +1,32 @@
+name: Documentation issue
+description: Report or propose a change to the docs site (Sphinx/MyST, pages, structure).
+title: "docs: "
+labels: ["docs"]
+body:
+  - type: textarea
+    id: issue
+    attributes:
+      label: What needs improvement?
+      description: Describe the docs issue or proposed change.
+    validations:
+      required: true
+
+  - type: textarea
+    id: location
+    attributes:
+      label: Location
+      description: Which page/file/section?
+      placeholder: |
+        - Page URL (GitHub Pages) or
+        - File path under docs/ (e.g., docs/experiments.md)
+    validations:
+      required: true
+
+  - type: textarea
+    id: build
+    attributes:
+      label: Build output (if relevant)
+      description: Paste `make docs` output if it fails.
+      render: text
+    validations:
+      required: false

@@ -1,0 +1,77 @@
+name: Experiment request
+description: Propose a new experiment with goals, method, outputs, and references.
+title: "experiment: "
+labels: ["experiment-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to propose a new experiment.
+        Focus on: a clear mathematical goal, reproducible execution, and expected outputs.
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What question does the experiment answer?
+    validations:
+      required: true
+
+  - type: textarea
+    id: method
+    attributes:
+      label: Method / outline
+      description: How would the experiment work? Keep it high-level but precise.
+      placeholder: |
+        - Input parameters
+        - Computation steps
+        - Plots/metrics to compute
+    validations:
+      required: true
+
+  - type: textarea
+    id: cli
+    attributes:
+      label: Suggested CLI
+      description: Suggest arguments like --out, --seed, --n, --samples, etc.
+      placeholder: |
+        make run EXP=e0xx_name ARGS="--out out/e0xx --seed 1 --n 100000"
+    validations:
+      required: true
+
+  - type: textarea
+    id: outputs
+    attributes:
+      label: Expected outputs
+      description: What should be produced under --out?
+      placeholder: |
+        - report.md
+        - figures/*.png
+        - params.json
+        - manifest.json
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Papers/books/web pages (DOI/URL).
+    validations:
+      required: false
+
+  - type: dropdown
+    id: primary_tag
+    attributes:
+      label: Primary tag
+      options:
+        - analysis
+        - number-theory
+        - probability
+        - geometry
+        - numerics
+        - optimization
+        - visualization
+        - other
+    validations:
+      required: true
