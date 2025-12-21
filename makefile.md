@@ -1,345 +1,269 @@
-# Developer Guide: Using the Makefile (uv-only) in `py-mathx-lab`
+# Makefile usage (Windows + Ubuntu)
 
-This repository uses a **uv-based** workflow to manage:
+This repository uses a small `Makefile` as a thin wrapper around:
 
-- virtual environment creation (`.venv/`)
-- dependency installation (editable + extras)
-- formatting, linting, typing, tests
-- Sphinx documentation build
-- running experiments
+- **Python** (requires `>= 3.13`)
+- **uv** (virtual environment + dependency management via `uv.lock`)
+- **ruff / mypy / pytest** (dev toolchain)
+- **Sphinx** (docs build)
 
-Supported platforms:
+The goals are:
 
-- **Windows** (GNU Make, `cmd.exe` recipes for Windows parts)
-- **Linux/macOS** (POSIX shell recipes)
-
-No shell activation is required: everything is executed via `uv run ...`.
+- one consistent command set for Windows and Ubuntu
+- reproducible installs via `uv.lock`
+- simple CI entrypoints (`make final`)
 
 ---
 
 ## Prerequisites
 
-### Required tools
+### Required on both Windows and Ubuntu
 
-You need:
+- **Python 3.13+** available on `PATH` (used by `make python-check`)
+- **uv** installed and available on `PATH`
+- **GNU Make**
+  - Ubuntu: `sudo apt-get install make`
+  - Windows: install a `make` compatible with GNU Make (e.g., via Git for Windows / MSYS2 / Chocolatey)
 
-1. **GNU Make**
-   - Windows: install GNU Make (e.g. via Chocolatey or Git for Windows tooling)
-   - Linux/macOS: typically already available (or install via package manager)
-2. **uv** on your `PATH`
-3. **Python 3.13** installed on the machine (uv will select an interpreter)
+### Notes for Windows
 
-### Verify your setup
+- Run `make` from **PowerShell** or **cmd.exe**.
+- The Makefile supports Windows command shell behavior.
+- The warning `CRLF will be replaced by LF` is normal and controlled by `.gitattributes`.
 
-Run from the repo root:
+---
 
-```bat
+## System Python vs `.venv` Python (important)
+
+This repo intentionally uses **two “Python contexts”**:
+
+1) **System Python (or whatever `python` on PATH points to)**  
+   Used only for `make python-check` to verify you *can* run Python 3.13+ at all.
+
+2) **Project virtual environment `.venv` managed by uv**  
+   Used for *all tooling and project commands* via `uv run ...`.
+
+### What this means in practice
+
+- You **do not need to activate** `.venv` to run Make targets.
+- Targets like `format`, `lint`, `mypy`, `pytest`, `docs`, and `run` execute inside `.venv` because they call `uv run ...`.
+- If you have multiple Python installs on Windows, `python-check` can succeed (or fail) based on what `python` resolves to.  
+  The actual `.venv` interpreter is selected by:
+
+```bash
+make venv
+```
+
+which runs:
+
+```bash
+uv venv --python <PYTHON_MIN>
+```
+
+So: **`python-check` validates PATH**, while **`venv` selects the interpreter for `.venv`**.
+
+### Quick sanity checks
+
+* Show which Python is used for the *system check*:
+
+```bash
+python --version
+where python   # Windows
+which python   # Ubuntu
+```
+
+* Show which Python is used inside the project environment:
+
+```bash
+uv run python --version
+```
+
+---
+
+## Dependency groups (pyproject.toml)
+
+Your `pyproject.toml` defines dependency sets:
+
+* Base runtime dependencies: `project.dependencies`
+* Dev tools: `project.optional-dependencies.dev` (e.g. `ruff`, `mypy`, `pytest`)
+* Docs tools: `project.optional-dependencies.docs` (e.g. `sphinx`, `sphinxcontrib-bibtex`)
+
+The Makefile maps to these groups like this:
+
+* `make install-all` → `uv sync` (base set from `uv.lock`)
+* `make install-dev` → `uv sync --extra dev`
+* `make install-docs` → `uv sync --extra docs`
+* `make install` → `uv pip install -e .` (editable install)
+
+> Recommendation: keep `uv.lock` committed. It is the reproducibility anchor for `uv sync`.
+
+---
+
+## Common workflows
+
+### First-time setup (dev machine)
+
+```bash
 make uv-check
 make python-check
-make python-info
-````
-
-Expected output includes your `uv` version, and `python-check` must confirm **Python 3.13**.
-
----
-
-## Conceptual model
-
-### What uv does here
-
-* `uv venv` creates the virtual environment in `.venv/`
-* `uv pip install ...` installs packages into `.venv/`
-* `uv run <command>` runs a command inside `.venv/` **without activating it**
-
-So you do **not** need:
-
-* `.\.venv\Scripts\activate`
-* `source .venv/bin/activate`
-
----
-
-## Quick start (first-time setup)
-
-From the repository root:
-
-```bat
-make uv-check
 make venv
 make install-dev
-make install-docs
 ```
 
-Then run the full pipeline:
+### Run checks locally (like CI)
 
-```bat
-make dev
+```bash
+make final
 ```
 
-Notes:
+### Build docs only
 
-* `install-dev` installs the project in editable mode plus dev tools (ruff/mypy/pytest).
-* `install-docs` installs the Sphinx toolchain (so `sphinx-build` exists).
-* `dev` runs **format + lint + mypy + pytest + docs** (see below).
-
----
-
-## The development loop
-
-Typical edit → check → test flow:
-
-```bat
-make format
-make lint
-make mypy
-make pytest
-```
-
-Or run everything (including docs build) in one go:
-
-```bat
-make dev
-```
-
-### CI behavior for formatting
-
-In CI (GitHub Actions sets `CI=1` automatically):
-
-* `make format` runs `ruff format --check .`
-* locally, `make format` runs `ruff format .` (in-place formatting)
-
-This means CI fails if formatting is not already correct.
-
----
-
-## Documentation (Sphinx)
-
-### Install docs dependencies
-
-You must install the docs toolchain once:
-
-```bat
-make install-docs
-```
-
-### Build docs
-
-```bat
+```bash
 make docs
 ```
 
-Output directory:
+### Run an experiment
 
-* `docs/_build/html`
-
-### Clean docs build output
-
-```bat
-make docs-clean
+```bash
+make run EXP=e001
 ```
 
 ---
 
-## Running experiments
+## Target overview (what each target does)
 
-Experiments are run via module execution:
+### Environment and installs
 
-```bat
-make run EXP=<experiment_module> ARGS="<arguments>"
-```
+* `uv-check`
+  Verifies that `uv` is installed.
 
-Example:
+* `python-check`
+  Verifies that your current `python` is at least the configured minimum version.
 
-```bat
-make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1"
-```
+* `venv`
+  Creates/updates `.venv` using uv (`uv venv --python <PYTHON_MIN>`).
 
-This runs:
+* `install-all`
+  Installs base dependencies from `uv.lock` (`uv sync`).
 
-```text
-uv run python -m experiments.e001_taylor_error_landscapes --out out/e001 --seed 1
-```
+* `install-dev`
+  Installs base + dev tools (`uv sync --extra dev`).
 
-Rules:
+* `install-docs`
+  Installs base + docs tools (`uv sync --extra docs`).
 
-* `EXP` is required and must be the module name under `experiments/` (without `.py`)
-* `ARGS` is optional and passed verbatim
+* `install`
+  Editable install of the package (`uv pip install -e .`).
 
-If `EXP` is missing, the Makefile fails early with an example invocation.
+### Quality / verification
 
----
+* `format`
+  Runs `ruff format` (in CI mode `CI=1`, runs `ruff format --check`).
 
-## Cleaning build artifacts and caches
+* `lint`
+  Runs `ruff check`.
 
-### `make clean`
+* `mypy`
+  Runs `mypy .`.
 
-Removes typical caches and build outputs (keeps `.venv`):
+* `pytest`
+  Runs tests (`pytest -q`).
 
-* `.mypy_cache`
-* `.pytest_cache`
-* `.ruff_cache`
-* `build`
-* `dist`
-* `*.egg-info` directories
+### Documentation
 
-```bat
-make clean
-```
+* `docs`
+  Builds HTML docs with Sphinx into `docs/_build/html`.
 
-### `make clean-venv`
+* `docs-clean`
+  Removes `docs/_build`.
 
-Removes `.venv`:
+### Cleanup
 
-```bat
-make clean-venv
-```
+* `clean`
+  Removes caches/build artifacts (`.mypy_cache`, `.pytest_cache`, `.ruff_cache`, `dist`, `build`, `docs/_build`, etc.).
 
-Recommended “full reset” sequence:
+* `clean-venv`
+  Removes `.venv`.
 
-```bat
-make clean
-make clean-venv
-make venv
-make install-dev
-make install-docs
-```
+### Aggregation
 
----
+* `final`
+  Runs: `format + lint + mypy + pytest + docs`.
 
-## Typical workflows
-
-### 1) Day-to-day development
-
-```bat
-make dev
-```
-
-### 2) Before creating a PR / merging change
-
-```bat
-make clean
-make dev
-```
-
-### 3) Fresh checkout setup
-
-```bat
-make uv-check
-make venv
-make install-dev
-make install-docs
-make dev
-```
-
-### 4) Iterate on one experiment
-
-```bat
-make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1"
-```
-
-Then after changes:
-
-```bat
-make format
-make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 2"
-```
+> Note: `format/lint/mypy/pytest` depend on dev tools; `docs` depends on docs tools.
+> The Makefile ensures this by making those targets run after `install-dev` / `install-docs`.
 
 ---
 
 ## Troubleshooting
 
-### `error: Failed to spawn: sphinx-build` / `program not found`
+### 1) `Need Python >= 3.13.0, got 3.13`
 
-Cause: Sphinx is not installed into the environment used by `uv run`.
+This happens if the check compares incompatible types (e.g. a float like `3.13` vs `(3, 13)`).
+The correct approach is to parse the version string into integer `(major, minor)` and compare that.
 
-Fix:
+The Makefile uses this correct pattern in `python-check`:
 
-```bat
-make install-docs
-make docs
+```make
+@python -c "import sys; req='$(PYTHON_MIN)'.split('.'); req=(int(req[0]), int(req[1])); v=sys.version_info; assert v[:2] >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"
 ```
 
-### `Error: uv is required but not on PATH.`
+### 2) `error: Failed to spawn: ruff (program not found)`
 
-Windows:
+`ruff` is a **dev extra**. Fix:
 
-```bat
-where uv
-uv --version
-```
-
-Linux/macOS:
-
-```sh
-command -v uv
-uv --version
-```
-
-Open a new terminal after installing uv (PATH changes may require it).
-
-### `make python-check` fails (wrong Python version)
-
-The Makefile enforces **Python 3.13**. If it fails:
-
-1. Install Python 3.13.
-2. Recreate the environment:
-
-```bat
-make clean-venv
-make venv
+```bash
 make install-dev
-make install-docs
 ```
 
-### `make` not found on Windows
+Then rerun:
 
-Install GNU Make, e.g. with Chocolatey:
+```bash
+make format
+# or
+make final
+```
+
+### 3) `Failed to hardlink files; falling back to full copy`
+
+This is a performance warning from uv (common on Windows when cache and target are on different filesystems).
+You can silence it by forcing copy mode:
+
+* PowerShell:
+
+```powershell
+$env:UV_LINK_MODE="copy"
+```
+
+* cmd.exe:
 
 ```bat
-choco install make -y
+set UV_LINK_MODE=copy
 ```
 
-Then open a new terminal and retry.
+(Optionally, the Makefile can export `UV_LINK_MODE=copy` by default.)
+
+### 4) CRLF/LF warnings on Windows
+
+Example:
+
+```
+warning: CRLF will be replaced by LF ...
+```
+
+This is expected when `.gitattributes` enforces LF for consistency.
 
 ---
 
-## Reference: available targets
+## CI notes
 
-Run:
+* In CI, use:
 
-```bat
-make help
+```bash
+CI=1 make final
 ```
 
-Targets:
+This makes `format` run in check mode.
 
-* `clean` – remove caches and build artifacts (keep `.venv`)
-* `clean-venv` – remove `.venv`
-* `dev` – format + lint + mypy + pytest + docs
-* `format` – ruff format (CI uses `--check`)
-* `lint` – ruff check
-* `mypy` – mypy (scope configured in `pyproject.toml`)
-* `pytest` – pytest -q
-* `docs` – build Sphinx HTML docs to `docs/_build/html`
-* `docs-clean` – remove `docs/_build`
-* `install` – `uv pip install -e .`
-* `install-dev` – `uv pip install -e ".[dev]"`
-* `install-docs` – `uv pip install -e ".[docs]"`
-* `python-check` – enforce Python 3.13 via uv
-* `python-info` – print interpreter details uv is using
-* `run` – run an experiment module (`EXP=...`, optional `ARGS=...`)
-* `uv-check` – verify uv availability
-* `venv` – create/update `.venv` using uv
-
----
-
-## Contributor recommendations
-
-* Always use `make` targets instead of calling tools directly.
-* Prefer `make dev` before committing.
-* Use `make clean` periodically to keep the working tree tidy.
-* Use `make clean-venv` only when you need a fully fresh environment.
-
-```
-
-If you also want, I can provide a matching **`docs/` Sphinx scaffold** (`docs/conf.py`, `docs/index.md`, theme config) so `make docs` works immediately after `make install-docs`.
-```
+* Ensure CI installs Python 3.13+ and has `uv` available.
+* Keep `uv.lock` committed so `uv sync` is deterministic.

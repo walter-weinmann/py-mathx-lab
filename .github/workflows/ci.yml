@@ -1,4 +1,4 @@
-name: CI (make dev)
+name: CI (make final)
 
 on:
   pull_request:
@@ -39,6 +39,6 @@ jobs:
         run: |
           uv sync --frozen --extra dev
 
-      - name: Run dev chain
+      - name: Run final chain
         run: |
-          make dev
+          make final
