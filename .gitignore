@@ -1,6 +1,16 @@
+*$py.class
+*.egg-info/
+*.py[cod]
+.coverage
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
 /.idea/
 /__ARCHIVE__/
 /docs/_build/html/
 /makefile.pdf
-/mathxlab.egg-info/
 /out/
+__pycache__/
+build/
+dist/
+htmlcov/
