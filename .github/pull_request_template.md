@@ -18,8 +18,8 @@ Explain what changed and why. Include links to issues/discussions if relevant.
 
 Commands you ran:
 
-- [ ] `make dev`
-- [ ] `make docs` (if docs changed)
+- [ ] `make final`
+- [ ] `make docs` (if only docs changed)
 - [ ] `make run EXP=... ARGS="..."` (if experiment changed/added)
 
 Notes / outputs:

@@ -1,6 +1,6 @@
 # Getting started
 
-This project uses an **uv-only** workflow and a small Makefile wrapper to run everything in a consistent way.
+This project uses an **uv-only** workflow and a small Makefile wrapper to run everything consistently.
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ You need:
 
 ### Windows notes
 
-- Install GNU Make (e.g. via Chocolatey).
+- Install GNU Make (e.g., via Chocolatey).
 - You can run everything from `cmd.exe`, PowerShell, or from WSL.
 
 ## Verify tools
@@ -38,17 +38,18 @@ make install-docs
 ## Run the full development chain
 
 ```bash
-make dev
+make final
 ```
 
-`make dev` runs:
+`make final` runs:
 
 * formatting (Ruff)
 * linting (Ruff)
 * type checking (mypy)
 * tests (pytest)
+* documentation (sphinx)
 
-Documentation is built separately via:
+Documentation can be built separately via:
 
 ```bash
 make docs
