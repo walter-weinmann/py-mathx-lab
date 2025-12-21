@@ -14,8 +14,8 @@ This page is the public “gallery” of experiments.
 
 ## Index
 
+(e001-taylor-error-landscapes)=
 ### E001: Taylor Error Landscapes
-<a id="e001-taylor-error-landscapes"></a>
 
 **Tags:** analysis, numerics, visualization
 
