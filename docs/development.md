@@ -9,10 +9,10 @@ Use the Makefile targets for everything. They wrap `uv run ...` so you do not ne
 Typical day-to-day:
 
 ```bash
-make dev
+make final
 ````
 
-Documentation build:
+Documentation-only build:
 
 ```bash
 make docs
@@ -40,8 +40,8 @@ make help
 
 Common targets:
 
-* `make dev` — format + lint + mypy + pytest
-* `make docs` — build Sphinx docs (`docs/_build/html`)
+* `make final` — format + lint + mypy + pytest + docs
+* `make docs` — build Sphinx docs only (`docs/_build/html`)
 * `make run EXP=... ARGS="..."` — run one experiment module
 * `make install-dev` — install `.[dev]`
 * `make install-docs` — install `.[docs]`

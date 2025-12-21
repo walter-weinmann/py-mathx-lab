@@ -33,7 +33,7 @@ make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1"
 **Notes**
 
 * Keep domains sane (`log(1+x)` needs `x > -1`).
-* Compare absolute vs relative error depending on the function.
+* Compare absolute vs. relative error depending on the function.
 * Document which norm/metric you plot for the “landscape”.
 
 ---
