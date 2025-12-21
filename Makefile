@@ -44,6 +44,8 @@ endif
 	python-check \
 	python-info \
 	run \
+	test \
+	type \
 	uv-check \
 	venv
 
@@ -75,9 +77,18 @@ else
 	@echo "Removed .venv (if it existed)."
 endif
 
-dev: format lint mypy pytest docs
+dev: install-all format lint type test docs
 
-final: format lint mypy pytest docs
+docs: install-docs
+	@echo Building docs ...
+	@uv run sphinx-build -b html docs docs/_build/html
+
+docs-clean:
+ifeq ($(IS_WINDOWS),1)
+	@if exist "docs\_build" rmdir /s /q "docs\_build"
+else
+	@rm -rf docs/_build
+endif
 
 format: python-check
 ifdef CI
@@ -95,16 +106,6 @@ mypy: python-check
 pytest: python-check
 	@uv run pytest -q
 
-docs: python-check
-	@uv run sphinx-build -b html docs docs/_build/html
-
-docs-clean:
-ifeq ($(IS_WINDOWS),1)
-	@if exist "docs\_build" rmdir /s /q "docs\_build"
-else
-	@rm -rf docs/_build
-endif
-
 run: python-check
 ifeq ($(IS_WINDOWS),1)
 	@if "$(EXP)"=="" (echo Error: EXP is required. & echo Example: make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1" & exit /b 1)
@@ -113,13 +114,16 @@ else
 endif
 	@uv run python -m experiments.$(EXP) $(ARGS)
 
-install: python-check
+install: venv
 	@uv pip install -e .
 
-install-dev: python-check
+install-all: venv
+	@uv pip install -e ".[dev,docs]"
+
+install-dev: venv
 	@uv pip install -e ".[dev]"
 
-install-docs: python-check
+install-docs: venv
 	@uv pip install -e ".[docs]"
 
 python-info: uv-check
@@ -127,6 +131,10 @@ python-info: uv-check
 
 python-check: uv-check
 	@uv run python -c "import sys; assert sys.version_info[:2]==(3,13), f'Required Python 3.13, got {sys.version_info[0]}.{sys.version_info[1]}'"
+
+test: pytest
+
+type: mypy
 
 uv-check:
 ifeq ($(IS_WINDOWS),1)
