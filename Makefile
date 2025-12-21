@@ -44,6 +44,7 @@ endif
 	python-check \
 	python-info \
 	run \
+	type \
 	uv-check \
 	venv
 
@@ -129,6 +130,8 @@ python-info: uv-check
 
 python-check: uv-check
 	@uv run python -c "import sys; assert sys.version_info[:2]==(3,13), f'Required Python 3.13, got {sys.version_info[0]}.{sys.version_info[1]}'"
+
+type: mypy
 
 uv-check:
 ifeq ($(IS_WINDOWS),1)
