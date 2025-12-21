@@ -23,7 +23,7 @@ The goal is:
 - **uv** installed and available on `PATH`
 - **GNU Make**
   - Ubuntu: `sudo apt-get install make`
-  - Windows: install a `make` compatible with GNU Make (e.g. via Git for Windows / MSYS2 / Chocolatey)
+  - Windows: install a `make` compatible with GNU Make (e.g., via Git for Windows / MSYS2 / Chocolatey)
 
 ### Notes for Windows
 
@@ -43,7 +43,7 @@ Your `pyproject.toml` defines extras:
 
 The Makefile targets map to these groups:
 
-- `make install` → editable install of the package (runtime deps only)
+- `make install` → editable installation of the package (runtime deps only)
 - `make install-dev` → installs runtime + **dev** tools
 - `make install-docs` → installs runtime + **docs** tools
 - `make install-all` → installs from `uv.lock` (reproducible base; extras are handled by the dedicated targets)
@@ -69,7 +69,7 @@ make install-dev
 make final
 ```
 
-### Build docs
+### Build docs only
 
 ```bash
 make docs

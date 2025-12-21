@@ -1,4 +1,4 @@
-name: CI (make dev)
+name: CI (make final)
 
 on:
   pull_request:
