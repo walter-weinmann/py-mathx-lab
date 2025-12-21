@@ -1,7 +1,6 @@
 # Minimal Makefile (Windows + Linux/macOS), same functionality
 
 .DEFAULT_GOAL := help
-
 .PHONY: clean \
         clean-venv \
         docs \
@@ -25,8 +24,14 @@ PYTHON_MIN := 3.13
 CLEAN_DIRS := .mypy_cache .pytest_cache .ruff_cache build dist docs/_build
 VENV_DIR   := .venv
 
-UV     := uv
-UV_RUN := $(UV) run
+UV      ?= uv
+UV_RUN   = $(UV) run
+UV_RUN_DEV  = $(UV) run --extra dev
+UV_RUN_DOCS = $(UV) run --extra docs
+
+# Optional: silence uv "Failed to hardlink files" warning on multi-drive setups (common on Windows).
+# You can also set this globally via environment instead of here.
+export UV_LINK_MODE ?= copy
 
 # --- OS detection ------------------------------------------------------------
 ifeq ($(OS),Windows_NT)
@@ -85,7 +90,7 @@ clean-venv:
 	$(call rm_venv)
 
 docs: install-docs
-	$(UV_RUN) python -m sphinx -b html docs docs/_build/html
+	$(UV_RUN_DOCS) python -m sphinx -b html docs docs/_build/html
 
 docs-clean:
 	$(call rmdir_if_exists,docs/_build)
@@ -94,9 +99,9 @@ final: format lint mypy pytest docs
 
 format: install-dev
 ifdef CI
-	$(UV_RUN) ruff format --check .
+	$(UV_RUN_DEV) ruff format --check .
 else
-	$(UV_RUN) ruff format .
+	$(UV_RUN_DEV) ruff format .
 endif
 
 help:
@@ -105,24 +110,23 @@ help:
 	@echo   make clean-venv    - remove .venv
 	@echo   make docs          - build Sphinx HTML docs
 	@echo   make docs-clean    - remove docs/_build
-	@echo   make final         - run format, lint, mypy, pytest, docs
+	@echo   make final         - run format + lint + mypy + pytest + docs
 	@echo   make format        - format with ruff
 	@echo   make install       - install package editable
-	@echo   make install-all   - install dev + docs tools
-	@echo   make install-dev   - install dev tools
-	@echo   make install-docs  - install docs tools
+	@echo   make install-all   - sync default deps
+	@echo   make install-dev   - sync default + dev deps
+	@echo   make install-docs  - sync default + docs deps
 	@echo   make lint          - ruff lint
 	@echo   make mypy          - check typing
 	@echo   make pytest        - run tests
 	@echo   make run EXP=e001  - run an experiment by id
 	@echo   make venv          - create/update virtual environment
 
-install: uv-check python-check venv
+install: venv
 	$(UV) pip install -e .
 
-# "all" means dev+docs (matches your help text)
 install-all: uv-check python-check venv
-	$(UV) sync --extra dev --extra docs
+	$(UV) sync
 
 install-dev: uv-check python-check venv
 	$(UV) sync --extra dev
@@ -131,18 +135,18 @@ install-docs: uv-check python-check venv
 	$(UV) sync --extra docs
 
 lint: install-dev
-	$(UV_RUN) ruff check .
+	$(UV_RUN_DEV) ruff check .
 
 mypy: install-dev
-	$(UV_RUN) mypy .
+	$(UV_RUN_DEV) mypy .
 
 pytest: install-dev
-	$(UV_RUN) pytest -q
+	$(UV_RUN_DEV) pytest -q
 
 python-check:
-	@python -c "import sys; s='$(PYTHON_MIN)'; parts=s.split('.'); major=int(parts[0]); minor=int(parts[1]); v=sys.version_info; assert (v.major, v.minor) >= (major, minor), f'Need Python >= {major}.{minor}, got {v.major}.{v.minor}'"
+	@python -c "import sys; req='$(PYTHON_MIN)'.split('.'); req=(int(req[0]), int(req[1])); v=sys.version_info; assert v[:2] >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"
 
-run: python-check uv-check
+run:
 ifeq ($(IS_WINDOWS),1)
 	@if "$(EXP)"=="" (echo ERROR: Please provide EXP, e.g. make run EXP=e001 & exit /b 1)
 else
@@ -154,4 +158,7 @@ uv-check:
 	$(call assert_uv)
 
 venv: python-check uv-check
+	$(UV) venv --python $(PYTHON_MIN)
+
+venv-recreate: clean-venv
 	$(UV) venv --python $(PYTHON_MIN) --clear
