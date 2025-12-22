@@ -90,6 +90,12 @@ jobs:
           mkdir -p docs/_build/html/_static/pdf
           cp -f "${PDF_PATH}" "docs/_build/html/_static/pdf/py-mathx-lab.pdf"
 
+      - name: Verify PDF present in site (Ubuntu only)
+        if: runner.os == 'Linux'
+        run: |
+          test -f docs/_build/html/_static/pdf/py-mathx-lab.pdf
+          ls -lah docs/_build/html/_static/pdf
+
       - name: Upload HTML artifact (all OS)
         uses: actions/upload-artifact@v4
         with:
