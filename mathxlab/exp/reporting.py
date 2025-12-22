@@ -32,7 +32,7 @@ def prepare_out_dir(out_dir: Path) -> RunArtifacts:
         out_dir: Output directory.
 
     Returns:
-        RunArtifacts with paths for report and params.
+        RunArtifacts with paths for a report and params.
     """
     out_dir.mkdir(parents=True, exist_ok=True)
     return RunArtifacts(

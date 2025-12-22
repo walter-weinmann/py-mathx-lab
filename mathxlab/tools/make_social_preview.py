@@ -12,9 +12,9 @@ def make_social_preview(out_path: Path) -> Path:
     """Create a GitHub social preview PNG (1280x640) for the repository.
 
     The design is intentionally minimal, nerdy, and colorful:
-    - subtle grid background
-    - repo title + tagline
-    - simple curve + points
+    - Subtle grid background
+    - Repo title and tagline
+    - Simple curve and points
 
     Args:
         out_path: Output path for the PNG file.

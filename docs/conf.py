@@ -47,6 +47,7 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
+    "sphinx.ext.mathjax",
 ]
 
 templates_path = ["_templates"]
@@ -58,7 +59,7 @@ source_suffix = {
     ".rst": "restructuredtext",
 }
 
-# Autosummary (optional, but useful once you add API pages)
+# Autosummary (optional but useful once you add API pages)
 autosummary_generate = True
 
 # Napoleon for Google-style docstrings
@@ -71,6 +72,8 @@ myst_enable_extensions = [
     "deflist",
     "fieldlist",
     "substitution",
+    "dollarmath",
+    "amsmath",
 ]
 myst_heading_anchors = 3
 
@@ -96,4 +99,29 @@ html_context = {
 
 html_theme_options = {
     "sidebar_hide_name": False,
+}
+
+# MyST math configuration
+myst_dmath_double_inline = True
+
+# -- Options for LaTeX / PDF output -----------------------------------------
+
+# Produce a stable PDF filename when running the LaTeX builder.
+latex_engine = "pdflatex"
+
+latex_documents = [
+    (
+        "index",  # start doc
+        "py-mathx-lab.tex",  # target .tex name
+        "py-mathx-lab Documentation",
+        author,
+        "manual",
+    ),
+]
+
+# Keep the PDF readable and avoid excessive wide tables.
+latex_elements = {
+    "papersize": "a4paper",
+    "pointsize": "10pt",
+    "fontpkg": r"\usepackage{lmodern}",
 }

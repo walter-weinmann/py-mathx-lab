@@ -152,7 +152,7 @@ ifeq ($(IS_WINDOWS),1)
 else
 	@test -n "$(EXP)" || (echo "ERROR: Please provide EXP, e.g. make run EXP=e001" && exit 1)
 endif
-	$(UV_RUN) python -m experiments.$(EXP)
+	$(UV_RUN) python -m experiments.$(EXP) $(ARGS)
 
 uv-check:
 	$(call assert_uv)

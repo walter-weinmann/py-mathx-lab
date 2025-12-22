@@ -28,10 +28,10 @@ def taylor_sin(x: np.ndarray, x0: float, degree: int) -> np.ndarray:
     y = np.zeros_like(x, dtype=float)
 
     # Build terms up to the requested degree.
-    # Only odd powers contribute for sin.
+    # Only odd powers contribute to sin.
     factorial = 1.0
     power = np.ones_like(x, dtype=float)
-    sign = 1.0
+    _sign = 1.0
 
     for n in range(0, degree + 1):
         # Update power = dx^n incrementally
