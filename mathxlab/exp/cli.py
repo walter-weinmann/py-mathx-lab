@@ -20,17 +20,28 @@ class ExperimentArgs:
 
 
 # ------------------------------------------------------------------------------
-def parse_experiment_args(argv: list[str] | None = None) -> ExperimentArgs:
+def parse_experiment_args(
+    *,
+    experiment_id: str | None = None,
+    description: str | None = None,
+    argv: list[str] | None = None,
+) -> ExperimentArgs:
     """Parse standard experiment CLI arguments.
 
     Args:
-        argv: Optional argv list (without program name). If None, argparse
+        experiment_id: Optional program name for help.
+        description: Optional description for help.
+        argv: Optional argv list (without a program name). If None, argparse
             reads from sys.argv.
 
     Returns:
         Parsed ExperimentArgs.
     """
-    parser = argparse.ArgumentParser(add_help=True)
+    parser = argparse.ArgumentParser(
+        prog=experiment_id,
+        description=description,
+        add_help=True,
+    )
     parser.add_argument(
         "--out",
         dest="out_dir",

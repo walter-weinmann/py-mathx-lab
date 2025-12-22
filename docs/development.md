@@ -71,7 +71,7 @@ When adding a new experiment:
    * `python -m experiments.e002_...`
 4. Update the docs:
 
-   * add a short entry to {doc}`experiments`
+   * add a short entry to {doc}`experiments/experiments_gallery`
    * optionally add a dedicated page under `docs/experiments/` later
 
 ## Documentation
