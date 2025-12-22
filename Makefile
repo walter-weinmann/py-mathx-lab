@@ -1,166 +1,164 @@
-# Makefile — py-mathx-lab (Windows + Linux/macOS) using uv (uv-only)
-#
-# Usage examples:
-#   make help
-#   make uv-check
-#   make venv
-#   make install-dev
-#   make install-docs
-#   make dev
-#   make docs
-#   make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1"
-#   make clean
-#   make clean-venv
-
-REPO_NAME := py-mathx-lab
-MODULE ?= mathxlab
-
-# Experiment runner variables
-EXP ?=
-ARGS ?=
-
-# Detect OS
-IS_WINDOWS := 0
-ifeq ($(OS),Windows_NT)
-IS_WINDOWS := 1
-SHELL := cmd.exe
-.SHELLFLAGS := /C
-endif
-
-.PHONY: \
-	clean \
-	clean-venv \
-	dev \
-	format \
-	help \
-	install \
-	install-dev \
-	install-docs \
-	lint \
-	mypy \
-	pytest \
-	docs \
-	docs-clean \
-	python-check \
-	python-info \
-	run \
-	uv-check \
-	venv
+# Minimal Makefile (Windows + Linux/macOS), same functionality
 
 .DEFAULT_GOAL := help
+.PHONY: clean \
+        clean-venv \
+        docs \
+        docs-clean \
+        final \
+        format \
+        help \
+        install \
+        install-all \
+        install-dev \
+        install-docs \
+        lint \
+        mypy \
+        pytest \
+        python-check \
+        run \
+        uv-check \
+        venv
 
-clean:
-ifeq ($(IS_WINDOWS),1)
-	@echo Removing caches and build artifacts...
-	@if exist ".mypy_cache" rmdir /s /q ".mypy_cache"
-	@if exist ".pytest_cache" rmdir /s /q ".pytest_cache"
-	@if exist ".ruff_cache" rmdir /s /q ".ruff_cache"
-	@if exist "build" rmdir /s /q "build"
-	@if exist "dist" rmdir /s /q "dist"
-	@for /d %%D in (*.egg-info) do @rmdir /s /q "%%D"
-	@echo Done.
+PYTHON_MIN := 3.13
+CLEAN_DIRS := .mypy_cache .pytest_cache .ruff_cache build dist docs/_build
+VENV_DIR   := .venv
+
+UV      ?= uv
+UV_RUN   = $(UV) run
+UV_RUN_DEV  = $(UV) run --extra dev
+UV_RUN_DOCS = $(UV) run --extra docs
+
+# Optional: silence uv "Failed to hardlink files" warning on multi-drive setups (common on Windows).
+# You can also set this globally via environment instead of here.
+export UV_LINK_MODE ?= copy
+
+# --- OS detection ------------------------------------------------------------
+ifeq ($(OS),Windows_NT)
+  IS_WINDOWS := 1
+  SHELL := cmd.exe
+  .SHELLFLAGS := /C
 else
-	@echo "Removing caches and build artifacts..."
-	@rm -rf .mypy_cache .pytest_cache .ruff_cache build dist *.egg-info
-	@find . -maxdepth 1 -name "*.egg-info" -exec rm -rf {} +
-	@echo "Done."
+  IS_WINDOWS := 0
 endif
+
+# --- small helpers -----------------------------------------------------------
+ifeq ($(IS_WINDOWS),1)
+
+define assert_uv
+@where uv >NUL 2>&1 || (echo ERROR: uv is not installed. & exit /b 1)
+endef
+
+define rmdir_if_exists
+@if exist "$(1)" rmdir /s /q "$(1)"
+endef
+
+define rm_venv
+@if exist "$(VENV_DIR)" rmdir /s /q "$(VENV_DIR)"
+endef
+
+define clean_artifacts
+@for %%D in ($(CLEAN_DIRS)) do @if exist "%%D" rmdir /s /q "%%D"
+@for /d %%D in (*.egg-info) do @rmdir /s /q "%%D"
+endef
+
+else  # POSIX
+
+define assert_uv
+@command -v uv >/dev/null 2>&1 || (echo "ERROR: uv is not installed." && exit 1)
+endef
+
+define rmdir_if_exists
+@rm -rf "$(1)"
+endef
+
+define rm_venv
+@rm -rf "$(VENV_DIR)"
+endef
+
+define clean_artifacts
+@rm -rf $(CLEAN_DIRS) *.egg-info
+endef
+
+endif
+
+# --- targets -----------------------------------------------------------------
+clean:
+	$(call clean_artifacts)
 
 clean-venv:
-ifeq ($(IS_WINDOWS),1)
-	@if exist ".venv" rmdir /s /q ".venv"
-	@echo Removed .venv (if it existed).
-else
-	@rm -rf .venv
-	@echo "Removed .venv (if it existed)."
-endif
+	$(call rm_venv)
 
-dev: format lint mypy pytest docs
+docs: install-docs
+	$(UV_RUN_DOCS) python -m sphinx -b html docs docs/_build/html
+
+docs-clean:
+	$(call rmdir_if_exists,docs/_build)
 
 final: format lint mypy pytest docs
 
-format: python-check
+format: install-dev
 ifdef CI
-	@uv run ruff format --check .
+	$(UV_RUN_DEV) ruff format --check .
 else
-	@uv run ruff format .
-endif
-
-lint: python-check
-	@uv run ruff check .
-
-mypy: python-check
-	@uv run mypy
-
-pytest: python-check
-	@uv run pytest -q
-
-docs: python-check
-	@uv run sphinx-build -b html docs docs/_build/html
-
-docs-clean:
-ifeq ($(IS_WINDOWS),1)
-	@if exist "docs\_build" rmdir /s /q "docs\_build"
-else
-	@rm -rf docs/_build
-endif
-
-run: python-check
-ifeq ($(IS_WINDOWS),1)
-	@if "$(EXP)"=="" (echo Error: EXP is required. & echo Example: make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1" & exit /b 1)
-else
-	@test -n "$(EXP)" || (echo "Error: EXP is required."; echo 'Example: make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1"'; exit 1)
-endif
-	@uv run python -m experiments.$(EXP) $(ARGS)
-
-install: python-check
-	@uv pip install -e .
-
-install-dev: python-check
-	@uv pip install -e ".[dev]"
-
-install-docs: python-check
-	@uv pip install -e ".[docs]"
-
-python-info: uv-check
-	@uv run python -c "import sys, platform; print('Python:', platform.python_version()); print('Executable:', sys.executable); print('Prefix:', sys.prefix)"
-
-python-check: uv-check
-	@uv run python -c "import sys; assert sys.version_info[:2]==(3,13), f'Required Python 3.13, got {sys.version_info[0]}.{sys.version_info[1]}'"
-
-uv-check:
-ifeq ($(IS_WINDOWS),1)
-	@where uv >NUL 2>&1 || (echo Error: uv is required but not on PATH. & exit /b 1)
-else
-	@command -v uv >/dev/null 2>&1 || (echo "Error: uv is required but not on PATH."; exit 1)
-endif
-	@uv --version
-
-venv: python-check
-ifeq ($(IS_WINDOWS),1)
-	@if not exist ".venv" uv venv
-else
-	@test -d ".venv" || uv venv
+	$(UV_RUN_DEV) ruff format .
 endif
 
 help:
-	@$(info ====================================================================)
-	@$(info $(REPO_NAME) - task runner (uv-only))
-	@$(info --------------------------------------------------------------------)
-	@$(info clean          Remove caches/build artifacts (keeps .venv).)
-	@$(info clean-venv     Remove the .venv directory.)
-	@$(info dev            format + lint + mypy + pytest + docs.)
-	@$(info format         ruff format (CI uses --check).)
-	@$(info lint           ruff check .)
-	@$(info mypy           mypy (whole repo; configured in pyproject.toml).)
-	@$(info pytest         pytest -q)
-	@$(info docs           Build Sphinx HTML docs to docs/_build/html.)
-	@$(info docs-clean     Remove docs/_build.)
-	@$(info install        uv pip install -e .)
-	@$(info install-dev    uv pip install -e ".[dev]")
-	@$(info install-docs   uv pip install -e ".[docs]")
-	@$(info python-check   Enforce Python 3.13 via uv.)
-	@$(info run            Run experiment: make run EXP=e001_... ARGS="--out out/e001 --seed 1")
-	@$(info uv-check       Verify uv is on PATH.)
-	@$(info venv           Create/update .venv using uv.)
-	@$(info ====================================================================)
+	@echo Targets:
+	@echo   make clean         - remove caches/build artifacts
+	@echo   make clean-venv    - remove .venv
+	@echo   make docs          - build Sphinx HTML docs
+	@echo   make docs-clean    - remove docs/_build
+	@echo   make final         - run format + lint + mypy + pytest + docs
+	@echo   make format        - format with ruff
+	@echo   make install       - install package editable
+	@echo   make install-all   - sync default deps
+	@echo   make install-dev   - sync default + dev deps
+	@echo   make install-docs  - sync default + docs deps
+	@echo   make lint          - ruff lint
+	@echo   make mypy          - check typing
+	@echo   make pytest        - run tests
+	@echo   make run EXP=e001  - run an experiment by id
+	@echo   make venv          - create/update virtual environment
+
+install: venv
+	$(UV) pip install -e .
+
+install-all: uv-check python-check venv
+	$(UV) sync
+
+install-dev: uv-check python-check venv
+	$(UV) sync --extra dev
+
+install-docs: uv-check python-check venv
+	$(UV) sync --extra docs
+
+lint: install-dev
+	$(UV_RUN_DEV) ruff check .
+
+mypy: install-dev
+	$(UV_RUN_DEV) mypy .
+
+pytest: install-dev
+	$(UV_RUN_DEV) pytest -q
+
+python-check:
+	@python -c "import sys; req='$(PYTHON_MIN)'.split('.'); req=(int(req[0]), int(req[1])); v=sys.version_info; assert v[:2] >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"
+
+run:
+ifeq ($(IS_WINDOWS),1)
+	@if "$(EXP)"=="" (echo ERROR: Please provide EXP, e.g. make run EXP=e001 & exit /b 1)
+else
+	@test -n "$(EXP)" || (echo "ERROR: Please provide EXP, e.g. make run EXP=e001" && exit 1)
+endif
+	$(UV_RUN) python -m experiments.$(EXP)
+
+uv-check:
+	$(call assert_uv)
+
+venv: python-check uv-check
+	$(UV) venv --python $(PYTHON_MIN)
+
+venv-recreate: clean-venv
+	$(UV) venv --python $(PYTHON_MIN) --clear

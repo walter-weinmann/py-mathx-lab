@@ -33,13 +33,13 @@ make venv
 make install-dev
 ````
 
-### Run the development chain (format + lint + typing + tests)
+### Run the development chain (format + lint + typing + tests + documentation)
 
 ```bash
-make dev
+make final
 ```
 
-### Build documentation (Sphinx)
+### Build documentation only (Sphinx)
 
 ```bash
 make install-docs
@@ -109,5 +109,5 @@ Highlights:
 If you reference this work, please cite:
 
 * the repository link
-* the experiment ID (e.g. E001)
+* the experiment ID (e.g., E001)
 * ideally a commit hash or tag for reproducibility

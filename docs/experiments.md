@@ -2,6 +2,9 @@
 
 This page is the public “gallery” of experiments.
 
+If you are new to the idea of *mathematical experimentation*, start with {doc}`mathematical-experimentation`.
+
+
 **Conventions**
 - Experiments are identified by stable IDs: **E001, E002, …**
 - Each experiment should document:
@@ -14,8 +17,8 @@ This page is the public “gallery” of experiments.
 
 ## Index
 
+(e001-taylor-error-landscapes)=
 ### E001: Taylor Error Landscapes
-<a id="e001-taylor-error-landscapes"></a>
 
 **Tags:** analysis, numerics, visualization
 
@@ -33,7 +36,7 @@ make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1"
 **Notes**
 
 * Keep domains sane (`log(1+x)` needs `x > -1`).
-* Compare absolute vs relative error depending on the function.
+* Compare absolute vs. relative error depending on the function.
 * Document which norm/metric you plot for the “landscape”.
 
 ---

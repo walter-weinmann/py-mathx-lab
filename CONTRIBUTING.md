@@ -17,7 +17,7 @@ Please read this document before opening an issue or pull request.
 - [Documentation standards](#documentation-standards)
 - [Bibliography and citations](#bibliography-and-citations)
 - [Experiments: adding or changing experiments](#experiments-adding-or-changing-experiments)
-- [Dependencies and lockfiles](#dependencies-and-lockfiles)
+- [Dependencies and lockfile](#dependencies-and-lockfile)
 - [Git workflow and pull requests](#git-workflow-and-pull-requests)
 - [Review and merge policy](#review-and-merge-policy)
 - [Labels (triage)](#labels-triage)
@@ -29,7 +29,7 @@ Please read this document before opening an issue or pull request.
 ## Ground rules
 
 - **Be constructive and precise.** If something is unclear, propose wording or a concrete change.
-- **Keep changes small.** Prefer narrowly-scoped PRs that are easy to review and easy to revert.
+- **Keep changes small.** Prefer narrowly scoped PRs that are easy to review and straightforward to revert.
 - **Reproducibility first.** If a change affects results, document it and keep outputs deterministic where possible.
 - **No direct pushes to `main`.** All changes go through pull requests.
 
@@ -41,7 +41,7 @@ You can contribute by:
 
 - fixing bugs (especially reproducibility and portability issues)
 - improving documentation (clarity, structure, examples)
-- adding experiments (new experiment modules + write-up)
+- adding experiments (new experiment modules and write-up)
 - adding tests (unit tests, regression tests, reproducibility checks)
 - improving CI/workflows (while keeping them minimal and stable)
 
@@ -104,10 +104,10 @@ make help
 Typical local checks:
 
 ```bash
-make dev
+make final
 ```
 
-Build documentation:
+Build documentation only:
 
 ```bash
 make docs
@@ -135,11 +135,12 @@ make clean
 * Linting: **Ruff**
 * Typing: **mypy**
 * Tests: **pytest**
+* Documentation: **Sphinx + MyST**
 
 Run locally:
 
 ```bash
-make dev
+make final
 ```
 
 ### General rules
@@ -160,7 +161,7 @@ make dev
 
 Docs are built with **Sphinx + MyST**.
 
-* Documentation changes should build locally:
+* Documentation changes should be built locally:
 
 ```bash
 make docs
@@ -228,12 +229,12 @@ Write outputs into the `--out` folder only, for example:
 
 Every experiment PR must include:
 
-* an entry in `docs/experiments.md` (index entry: goal + how to run)
+* an entry in `docs/experiments.md` (index entry: goal and how to run)
 * optionally a dedicated page under `docs/experiments/e###.md` for longer write-ups
 
 ---
 
-## Dependencies and lockfiles
+## Dependencies and lockfile
 
 ### Adding dependencies
 
@@ -310,8 +311,8 @@ Your PR should:
 
 * [ ] state the purpose and scope (1–5 sentences)
 * [ ] include reproducible steps (commands, expected output) if relevant
-* [ ] pass `make dev`
-* [ ] build docs (`make docs`) if docs changed
+* [ ] pass `make final`
+* [ ] build docs (`make docs`) if only docs changed
 * [ ] update `docs/experiments.md` if you add/change an experiment
 * [ ] include tests when fixing a bug or adding non-trivial logic
 
@@ -358,7 +359,7 @@ This repository uses a small label set to keep triage simple and consistent.
   Local developer workflow: uv, Makefile targets, packaging, test/lint/type tooling.
 
 - **reproducibility**  
-  Anything that affects determinism, seeds, outputs, or “same results on CI”.
+  Anything that affects determinism, seeds, outputs, or “same results on CI.”
 
 - **breaking-change**  
   Changes that affect users’ workflows, CLI/API behavior, output formats, or documented conventions.
