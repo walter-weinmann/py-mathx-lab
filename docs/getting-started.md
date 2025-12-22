@@ -63,7 +63,7 @@ Example (E001):
 make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1"
 ```
 
-See the experiment overview here: {doc}`experiments`.
+See the experiment overview here: {doc}`experiments/experiments_gallery`.
 
 ## Build documentation locally
 
