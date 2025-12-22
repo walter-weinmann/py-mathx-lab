@@ -71,7 +71,8 @@ jobs:
             texlive-latex-recommended \
             texlive-latex-extra \
             texlive-fonts-recommended \
-            texlive-fonts-extra
+            texlive-fonts-extra \
+            lmodern
           latexmk -v
 
       - name: Build PDF docs (Ubuntu only)
