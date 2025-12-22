@@ -2,6 +2,9 @@
 
 This page is the public “gallery” of experiments.
 
+If you are new to the idea of *mathematical experimentation*, start with {doc}`mathematical-experimentation`.
+
+
 **Conventions**
 - Experiments are identified by stable IDs: **E001, E002, …**
 - Each experiment should document:
