@@ -19,6 +19,7 @@ Notes:
 
 from __future__ import annotations
 
+import logging
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
@@ -28,11 +29,16 @@ import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json
+from mathxlab.exp.logging import get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
 from mathxlab.num.series import taylor_sin
 from mathxlab.plots.helpers import finalize_figure
 
+# ------------------------------------------------------------------------------
+logger = get_logger(__name__)
 
+
+# ------------------------------------------------------------------------------
 @dataclass(frozen=True, slots=True)
 class Params:
     """Experiment parameters.
@@ -52,6 +58,7 @@ class Params:
     centers: tuple[float, ...]
 
 
+# ------------------------------------------------------------------------------
 def _linspace(params: Params) -> np.ndarray:
     """Create the evaluation grid.
 
@@ -65,6 +72,7 @@ def _linspace(params: Params) -> np.ndarray:
     return np.linspace(params.x_min, params.x_max, params.num_points, dtype=np.float64)
 
 
+# ------------------------------------------------------------------------------
 def _write_report(*, report_path: Path, params: Params, seed: int) -> None:
     """Write a short Markdown report.
 
@@ -108,6 +116,7 @@ make run EXP=e001_taylor_error_landscapes
     report_path.write_text(report_md, encoding="utf-8")
 
 
+# ------------------------------------------------------------------------------
 def _plot_overlay(
     *, x: np.ndarray, y_true: np.ndarray, params: Params, center: float
 ) -> fig.Figure:
@@ -138,6 +147,7 @@ def _plot_overlay(
     return fig_obj
 
 
+# ------------------------------------------------------------------------------
 def _plot_error_landscape(
     *, x: np.ndarray, y_true: np.ndarray, params: Params, center: float
 ) -> fig.Figure:
@@ -169,6 +179,7 @@ def _plot_error_landscape(
     return fig_obj
 
 
+# ------------------------------------------------------------------------------
 def main() -> int:
     """Run the experiment.
 
@@ -180,6 +191,12 @@ def main() -> int:
         experiment_id="e001",
         description="Taylor error landscapes for sin(x)",
     )
+
+    setup_logging(
+        level=logging.DEBUG if args.verbose else logging.INFO,
+    )
+
+    logger.info("Starting experiment E001: Taylor error landscapes")
 
     set_global_seed(args.seed)
 
@@ -193,11 +210,13 @@ def main() -> int:
 
     out_paths = prepare_out_dir(out_dir=args.out_dir)
 
+    logger.debug("Creating grid with %d points", params.num_points)
     x = _linspace(params)
     y_true = np.sin(x)
 
     # 1) Overlay plot for the first center (a readable “anchor” figure).
     overlay_center = params.centers[0]
+    logger.info("Generating overlay plot for center x0=%g", overlay_center)
     fig_obj = _plot_overlay(x=x, y_true=y_true, params=params, center=overlay_center)
     save_figure(
         out_dir=out_paths.figures_dir,
@@ -207,6 +226,7 @@ def main() -> int:
 
     # 2) Error landscapes for all centers.
     for center in params.centers:
+        logger.info("Generating error landscape for center x0=%g", center)
         fig_obj = _plot_error_landscape(x=x, y_true=y_true, params=params, center=center)
         save_figure(
             out_dir=out_paths.figures_dir,
@@ -217,8 +237,11 @@ def main() -> int:
     write_json(out_paths.params_path, data=asdict(params))
     _write_report(report_path=out_paths.report_path, params=params, seed=args.seed)
 
+    logger.info("Experiment E001 completed successfully. Artifacts saved to: %s", args.out_dir)
+
     return 0
 
 
+# ------------------------------------------------------------------------------
 if __name__ == "__main__":
     raise SystemExit(main())

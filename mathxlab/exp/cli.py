@@ -13,10 +13,12 @@ class ExperimentArgs:
     Attributes:
         out_dir: Output directory where all artifacts will be written.
         seed: Deterministic seed for randomness.
+        verbose: Enable verbose logging.
     """
 
     out_dir: Path
     seed: int
+    verbose: bool
 
 
 # ------------------------------------------------------------------------------
@@ -56,5 +58,11 @@ def parse_experiment_args(
         default=1,
         help="Deterministic seed for reproducibility.",
     )
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action="store_true",
+        help="Enable verbose logging.",
+    )
     ns = parser.parse_args(argv)
-    return ExperimentArgs(out_dir=ns.out_dir, seed=ns.seed)
+    return ExperimentArgs(out_dir=ns.out_dir, seed=ns.seed, verbose=ns.verbose)

@@ -51,7 +51,13 @@ extensions = [
 ]
 
 templates_path = ["_templates"]
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+exclude_patterns = [
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+    "background/background_page_template.md",
+    "experiments/experiment_page_template.md",
+]
 
 # Prefer Markdown as the primary source format.
 source_suffix = {
