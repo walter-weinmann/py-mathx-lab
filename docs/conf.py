@@ -35,7 +35,7 @@ copyright = "2025, Walter Weinmann"
 
 # If your distribution name differs, adjust this.
 # For many repos, it matches [project].name in pyproject.toml.
-release = _get_package_version("py-mathx-lab")
+release = _get_package_version("mathxlab")
 version = release
 
 # -- General configuration ---------------------------------------------------

@@ -1,15 +1,15 @@
 [project]
-name = "mathxlab"
-version = "0.1.0"
-description = "A gallery of numerical experiments: conjectures, counterexamples, and code."
-readme = "README.md"
-requires-python = ">=3.13"
 dependencies = [
   "matplotlib>=3.8",
   "numpy>=2.0",
   "scipy>=1.13",
   "sympy>=1.12",
 ]
+description = "A gallery of numerical experiments: conjectures, counterexamples, and code."
+dynamic = ["version"]
+name = "mathxlab"
+readme = "README.md"
+requires-python = ">=3.13"
 
 [project.optional-dependencies]
 dev = [
@@ -28,11 +28,8 @@ docs = [
 ]
 
 [build-system]
-requires = ["setuptools>=69"]
+requires = ["setuptools>=69", "setuptools-scm>=8"]
 build-backend = "setuptools.build_meta"
-
-[tool.setuptools]
-packages = ["mathxlab", "experiments"]
 
 [tool.mypy]
 python_version = "3.13"
@@ -81,3 +78,10 @@ ignore = ["E501"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["mathxlab", "experiments"]
+
+[tool.setuptools]
+packages = ["mathxlab", "experiments"]
+
+[tool.setuptools_scm]
+version_scheme = "release-branch-semver"
+local_scheme = "node-and-date"
