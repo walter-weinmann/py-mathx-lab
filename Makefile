@@ -18,7 +18,8 @@
         python-check \
         run \
         uv-check \
-        venv
+        venv \
+        venv-recreate
 
 PYTHON_MIN := 3.13
 CLEAN_DIRS := .mypy_cache .pytest_cache .ruff_cache build dist docs/_build
@@ -135,7 +136,11 @@ install-docs: uv-check python-check venv
 	$(UV) sync --extra docs
 
 lint: install-dev
+ifdef CI
 	$(UV_RUN_DEV) ruff check .
+else
+	$(UV_RUN_DEV) ruff check --fix .
+endif
 
 mypy: install-dev
 	$(UV_RUN_DEV) mypy .
@@ -146,19 +151,23 @@ pytest: install-dev
 python-check:
 	@python -c "import sys; req='$(PYTHON_MIN)'.split('.'); req=(int(req[0]), int(req[1])); v=sys.version_info; assert v[:2] >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"
 
-run:
+run: install-dev
 ifeq ($(IS_WINDOWS),1)
 	@if "$(EXP)"=="" (echo ERROR: Please provide EXP, e.g. make run EXP=e001 & exit /b 1)
 else
 	@test -n "$(EXP)" || (echo "ERROR: Please provide EXP, e.g. make run EXP=e001" && exit 1)
 endif
-	$(UV_RUN) python -m experiments.$(EXP) $(ARGS)
+	$(UV_RUN_DEV) python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS)
 
 uv-check:
 	$(call assert_uv)
 
 venv: python-check uv-check
-	$(UV) venv --python $(PYTHON_MIN)
+ifeq ($(IS_WINDOWS),1)
+	@if exist "$(VENV_DIR)\Scripts\python.exe" (echo Using existing venv at $(VENV_DIR)) else ($(UV) venv --python $(PYTHON_MIN))
+else
+	@test -d "$(VENV_DIR)" || $(UV) venv --python $(PYTHON_MIN)
+endif
 
 venv-recreate: clean-venv
 	$(UV) venv --python $(PYTHON_MIN) --clear

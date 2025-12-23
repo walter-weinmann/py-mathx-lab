@@ -1,11 +1,14 @@
 from __future__ import annotations
 
 import json
+import logging
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 import matplotlib.figure
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True)
@@ -27,6 +30,7 @@ def prepare_out_dir(*, out_dir: Path) -> RunPaths:
     Returns:
         A RunPaths object containing the paths to standard artifacts.
     """
+    logger.info("Preparing output directory: %s", out_dir)
     figures_dir = out_dir / "figures"
     figures_dir.mkdir(parents=True, exist_ok=True)
 
@@ -52,6 +56,7 @@ def save_figure(*, out_dir: Path, name: str, fig: matplotlib.figure.Figure, dpi:
     """
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / f"{name}.png"
+    logger.info("Saving figure to: %s", path)
     fig.savefig(path, dpi=dpi, bbox_inches="tight")
     return path
 
@@ -63,4 +68,5 @@ def write_json(path: Path, data: dict[str, Any]) -> None:
         path: Path to the JSON file.
         data: Dictionary to write.
     """
+    logger.info("Writing JSON to: %s", path)
     path.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8")

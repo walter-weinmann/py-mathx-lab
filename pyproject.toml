@@ -46,12 +46,13 @@ pretty = true
 ignore_missing_imports = true
 follow_imports = "silent"
 
-# Restrict what mypy checks (fast, predictable).
+# Restrict what mypy checks (fast, predictability).
 files = [
   ".",
 ]
 exclude = [
   ".venv",
+  "build",
 ]
 
 [tool.ruff]
