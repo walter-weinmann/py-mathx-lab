@@ -14,6 +14,7 @@ Usage (repository convention):
 
 from __future__ import annotations
 
+import logging
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
@@ -23,10 +24,15 @@ import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json
+from mathxlab.exp.logging import get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
 from mathxlab.plots.helpers import finalize_figure
 
+# ------------------------------------------------------------------------------
+logger = get_logger(__name__)
 
+
+# ------------------------------------------------------------------------------
 @dataclass(frozen=True, slots=True)
 class Params:
     """Experiment parameters.
@@ -46,6 +52,7 @@ class Params:
     num_points: int
 
 
+# ------------------------------------------------------------------------------
 def _write_report(*, report_path: Path, params: Params) -> None:
     """Write a short Markdown report.
 
@@ -84,6 +91,7 @@ make run EXP=exxx_<module_name> ARGS="--out out/exxx --seed {params.seed}"
     report_path.write_text(report_md, encoding="utf-8")
 
 
+# ------------------------------------------------------------------------------
 def _make_grid(params: Params) -> np.ndarray:
     """Create a stable evaluation grid.
 
@@ -97,6 +105,7 @@ def _make_grid(params: Params) -> np.ndarray:
     return np.linspace(params.x_min, params.x_max, params.num_points, dtype=np.float64)
 
 
+# ------------------------------------------------------------------------------
 def _plot_example(*, x: np.ndarray) -> fig.Figure:
     """Create a simple figure (template).
 
@@ -117,6 +126,7 @@ def _plot_example(*, x: np.ndarray) -> fig.Figure:
     return fig_obj
 
 
+# ------------------------------------------------------------------------------
 def main() -> int:
     """Run the experiment.
 
@@ -128,6 +138,12 @@ def main() -> int:
         experiment_id="exxx",
         description="<Experiment title>",
     )
+
+    setup_logging(
+        level=logging.DEBUG if args.verbose else logging.INFO,
+    )
+
+    logger.info("Starting experiment EXXX")
 
     params = Params(
         seed=args.seed,
@@ -141,16 +157,21 @@ def main() -> int:
 
     out_paths = prepare_out_dir(out_dir=args.out_dir)
 
+    logger.debug("Creating grid with %d points", params.num_points)
     x = _make_grid(params)
 
+    logger.debug("Generating example plot")
     fig_obj = _plot_example(x=x)
     save_figure(out_dir=out_paths.figures_dir, name="fig_01_template", fig=fig_obj)
 
     write_json(out_paths.params_path, data=asdict(params))
     _write_report(report_path=out_paths.report_path, params=params)
 
+    logger.info("Experiment EXXX completed successfully. Artifacts saved to: %s", args.out_dir)
+
     return 0
 
 
+# ------------------------------------------------------------------------------
 if __name__ == "__main__":
     raise SystemExit(main())
