@@ -1,78 +1,4 @@
-# Makefile usage (Windows + Ubuntu)
-
-This repository uses a small `Makefile` as a thin wrapper around:
-
-- **Python** (requires `>= 3.13`)
-- **uv** (virtual environment + dependency management via `uv.lock`)
-- **ruff / mypy / pytest** (dev toolchain)
-- **Sphinx** (docs build)
-
-The goals are:
-
-- one consistent command set for Windows and Ubuntu
-- reproducible installs via `uv.lock`
-- simple CI entrypoints (`make final`)
-
----
-
-## Prerequisites
-
-### Required on both Windows and Ubuntu
-
-- **Python 3.13+** available on `PATH` (used by `make python-check`)
-- **uv** installed and available on `PATH`
-- **GNU Make**
-  - Ubuntu: `sudo apt-get install make`
-  - Windows: install a `make` compatible with GNU Make (e.g., via Git for Windows / MSYS2 / Chocolatey)
-
-### Notes for Windows
-
-- Run `make` from **PowerShell** or **cmd.exe**.
-- The Makefile supports Windows command shell behavior.
-- The warning `CRLF will be replaced by LF` is normal and controlled by `.gitattributes`.
-
----
-
-## System Python vs `.venv` Python (important)
-
-This repo intentionally uses **two “Python contexts”**:
-
-1) **System Python (or whatever `python` on PATH points to)**  
-   Used only for `make python-check` to verify you *can* run Python 3.13+ at all.
-
-2) **Project virtual environment `.venv` managed by uv**  
-   Used for *all tooling and project commands* via `uv run ...`.
-
-### What this means in practice
-
-- You **do not need to activate** `.venv` to run Make targets.
-- Targets like `format`, `lint`, `mypy`, `pytest`, `docs`, and `run` execute inside `.venv` because they call `uv run ...`.
-- If you have multiple Python installs on Windows, `python-check` can succeed (or fail) based on what `python` resolves to.  
-  The actual `.venv` interpreter is selected by:
-
-```bash
-make venv
-```
-
-which runs:
-
-```bash
-uv venv --python <PYTHON_MIN>
-```
-
-So: **`python-check` validates PATH**, while **`venv` selects the interpreter for `.venv`**.
-
-### Quick sanity checks
-
-* Show which Python is used for the *system check*:
-
-```bash
-python --version
-where python   # Windows
-which python   # Ubuntu
-```
-
-* Show which Python is used inside the project environment:
+# Makefile handling
 
 ```bash
 uv run python --version
@@ -98,6 +24,25 @@ The Makefile maps to these groups like this:
 > Recommendation: keep `uv.lock` committed. It is the reproducibility anchor for `uv sync`.
 
 ---
+
+## Run logs and experiment runner
+
+The `run` target writes a per-run log file under:
+
+- `out/<exp>/logs/run_<exp>_YYYYMMDD_HHMMSS.log`
+
+On Windows, the Makefile calls a small PowerShell helper script (`scripts/run_experiment.ps1`) so that:
+
+- the Makefile stays readable,
+- logs are written as UTF-8,
+- both the dependency sync (`uv sync --extra dev`) and the experiment output end up in the same log.
+
+To enable DEBUG output **only** from this repository’s code (`mathxlab.*`), run with `V=1`:
+
+```bash
+make run EXP=e001 ARGS="--seed 1" V=1
+```
+
 
 ## Common workflows
 
@@ -125,7 +70,13 @@ make docs
 ### Run an experiment
 
 ```bash
-make run EXP=e001
+make run EXP=e001 ARGS="--seed 1"
+```
+
+Use `V=1` to enable DEBUG logs from `mathxlab.*` only:
+
+```bash
+make run EXP=e001 ARGS="--seed 1" V=1
 ```
 
 ---

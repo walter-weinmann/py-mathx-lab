@@ -157,7 +157,18 @@ ifeq ($(IS_WINDOWS),1)
 else
 	@test -n "$(EXP)" || (echo "ERROR: Please provide EXP, e.g. make run EXP=e001" && exit 1)
 endif
-	$(UV_RUN_DEV) python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS)
+ifeq ($(IS_WINDOWS),1)
+	@powershell -NoProfile -ExecutionPolicy Bypass -Command "$$exp='$(EXP)'; $$out='out/$(EXP)'; $$logDir=Join-Path $$out 'logs'; New-Item -ItemType Directory -Force -Path $$logDir | Out-Null; $$ts=Get-Date -Format 'yyyyMMdd_HHmmss'; $$log=Join-Path $$logDir ('run_'+$$exp+'_'+$$ts+'.log'); $$cmd='$(UV_RUN_DEV) python -m mathxlab.experiments.'+$$exp+' --out '+$$out+' -v $(ARGS)'; 'COMMAND: ' + $$cmd | Out-File -FilePath $$log -Encoding utf8; 'START: ' + (Get-Date -Format o) | Out-File -FilePath $$log -Append -Encoding utf8; Write-Host ('Logging to: ' + $$log); & $(UV) run --extra dev python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS) 2>&1 | Tee-Object -FilePath $$log -Append; exit $$LASTEXITCODE"
+else
+	@bash -lc 'set -euo pipefail; \
+		mkdir -p "out/$(EXP)/logs"; \
+		ts="$$(date +%Y%m%d_%H%M%S)"; \
+		log="out/$(EXP)/logs/run_$(EXP)_$${ts}.log"; \
+		echo "COMMAND: $(UV_RUN_DEV) python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS)" | tee "$${log}"; \
+		echo "START: $$(date -Iseconds)" | tee -a "$${log}"; \
+		echo "Logging to: $${log}"; \
+		$(UV_RUN_DEV) python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS) 2>&1 | tee -a "$${log}"'
+endif
 
 uv-check:
 	$(call assert_uv)

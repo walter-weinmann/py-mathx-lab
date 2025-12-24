@@ -10,7 +10,7 @@ Typical day-to-day:
 
 ```bash
 make final
-````
+```
 
 Documentation-only build:
 
@@ -29,22 +29,40 @@ Remove the virtual environment (full reset):
 ```bash
 make clean-venv
 ```
+## Makefile workflow
 
-## Make targets
+The Makefile is the **single entry point** for development tasks (env setup, quality checks, docs builds, and running experiments).
 
-Show all targets:
+- Prefer `make final` before pushing.
+- Prefer `make docs` to validate documentation changes.
+- Use `make run EXP=<id>` to execute an experiment and write artifacts to `out/<id>/`.
 
-```bash
-make help
+### Dependency groups
+
+This summary is included from the Makefile documentation:
+
+```{include} makefile.md
+:start-after: "## Dependency groups (pyproject.toml)"
+:end-before: "## Run logs and experiment runner"
 ```
 
-Common targets:
+### Run logs
 
-* `make final` — format + lint + mypy + pytest + docs
-* `make docs` — build Sphinx docs only (`docs/_build/html`)
-* `make run EXP=... ARGS="..."` — run one experiment module
-* `make install-dev` — install `.[dev]`
-* `make install-docs` — install `.[docs]`
+```{include} makefile.md
+:start-after: "## Run logs and experiment runner"
+:end-before: "## Common workflows"
+```
+
+### Common workflows
+
+```{include} makefile.md
+:start-after: "## Common workflows"
+:end-before: "## Target overview (what each target does)"
+```
+
+### Full reference
+
+For the complete target-by-target reference and troubleshooting, see {doc}`makefile`.
 
 ## Formatting, linting, typing, tests
 
@@ -61,14 +79,14 @@ In CI, formatting runs in check mode (`ruff format --check`). Locally it formats
 
 When adding a new experiment:
 
-1. Add a new module under `experiments/`, e.g. `e002_...py`.
+1. Add a new module under `mathxlab/experiments/`, e.g. `e002_...py`.
 2. Prefer deterministic outputs:
 
    * `--seed` argument if randomness is involved
    * write results to a single `--out` directory
 3. Keep the experiment runnable as a module:
 
-   * `python -m experiments.e002_...`
+   * `python -m mathxlab.experiments.e002`
 4. Update the docs:
 
    * add a short entry to {doc}`experiments/experiments_gallery`

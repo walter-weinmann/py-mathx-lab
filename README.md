@@ -55,7 +55,15 @@ Docs output is written to:
 Example (E001):
 
 ```bash
-make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1"
+make run EXP=e001 ARGS="--seed 1"
+```
+
+Outputs will appear in `out/e001/` (report, figures, parameters).
+
+Logs are written to `out/e001/logs/` for each run. Use `V=1` to enable DEBUG logs from `mathxlab.*` only:
+
+```bash
+make run EXP=e001 ARGS="--seed 1" V=1
 ```
 
 Outputs will appear in `out/e001/` (report, figures, parameters).
@@ -83,7 +91,7 @@ Each experiment should be:
 * runnable as a module (recommended), e.g.:
 
 ```bash
-uv run python -m experiments.e001_taylor_error_landscapes --out out/e001 --seed 1
+uv run python -m mathxlab.experiments.e001_taylor_error_landscapes --out out/e001 --seed 1
 ```
 
 ## Contributing

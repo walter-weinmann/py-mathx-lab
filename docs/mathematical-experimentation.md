@@ -5,7 +5,7 @@ to generate conjectures, find counterexamples, estimate quantities, and build in
 formal arguments.
 
 It is *not* “proof by computer output”. Instead, experiments are a disciplined way to ask better questions and to
-stress-test ideas—especially now that modern computers make it easy to explore large search spaces, high precision
+stress-test ideas-especially now that modern computers make it easy to explore large search spaces, high-precision 
 numerics, and rich visualizations.
 
 This repository, **py-mathx-lab**, is a small “lab notebook” of such experiments: compact, reproducible, and readable.
@@ -20,7 +20,7 @@ An experiment is a finite procedure that produces evidence about a mathematical 
 - **Model checking**: validate (or invalidate) approximations and heuristics.
 - **Visualization**: reveal structure that is hard to see symbolically.
 
-The modern viewpoint—where computation is a genuine part of mathematical discovery—is widely discussed under the name
+The modern viewpoint-where computation is a genuine part of mathematical discovery-is widely discussed under the name
 *experimental mathematics* ({cite:p}`BaileyBorweinCrandall2004TenProblems,BaileyBorwein2005ExperimentalMathematics,Borwein2005ExperimentalMathematician`).
 Some authors emphasize “plausible reasoning” supported by computation, paired with careful verification and eventual proof
 ({cite:p}`BorweinBailey2008MathematicsByExperiment,Borwein2009Crucible`).
@@ -29,9 +29,9 @@ or present computation as a tool to formulate concrete research problems ({cite:
 
 ## Why computers change the game
 
-Computers do not replace mathematical thinking—but they expand what is feasible to *inspect*:
+Computers do not replace mathematical thinking-but they expand what is feasible to *inspect*:
 
-- **Scale**: enumerate millions of cases (to find the first failure, or build confidence).
+- **Scale**: enumerate millions of cases (to find the first failure or build confidence).
 - **Precision**: compute with high-precision floats or exact rationals/integers to avoid roundoff illusions.
 - **Multiple lenses**: combine numerics, exact arithmetic, symbolic manipulation, and plotting.
 - **Search**: automate discovery (parameter sweeps, optimization, random sampling, heuristics).
@@ -116,4 +116,4 @@ convergents, partial quotient statistics, and periodicity phenomena ({cite:p}`bo
 
 ---
 
-**Next steps:** start with {doc}`getting-started`, then browse the {doc}`experiments/experiments_gallery` gallery and use the tags to find topics.
+**Next steps:** start with {doc}`getting-started`, then browse the {doc}`experiments/experiments_gallery` gallery, and use the tags to find topics.

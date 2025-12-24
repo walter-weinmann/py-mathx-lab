@@ -19,7 +19,6 @@ Notes:
 
 from __future__ import annotations
 
-import logging
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
@@ -29,7 +28,7 @@ import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json
-from mathxlab.exp.logging import get_logger, setup_logging
+from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
 from mathxlab.num.series import taylor_sin
 from mathxlab.plots.helpers import finalize_figure
@@ -192,9 +191,7 @@ def main() -> int:
         description="Taylor error landscapes for sin(x)",
     )
 
-    setup_logging(
-        level=logging.DEBUG if args.verbose else logging.INFO,
-    )
+    setup_logging(config=LoggingConfig(verbose=args.verbose))
 
     logger.info("Starting experiment E001: Taylor error landscapes")
 

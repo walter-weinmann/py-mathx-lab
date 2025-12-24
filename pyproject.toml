@@ -1,15 +1,15 @@
 [project]
-name = "mathxlab"
-version = "0.1.0"
-description = "A gallery of numerical experiments: conjectures, counterexamples, and code."
-readme = "README.md"
-requires-python = ">=3.13"
 dependencies = [
   "matplotlib>=3.8",
   "numpy>=2.0",
   "scipy>=1.13",
   "sympy>=1.12",
 ]
+description = "A gallery of numerical experiments: conjectures, counterexamples, and code."
+dynamic = ["version"]
+name = "mathxlab"
+readme = "README.md"
+requires-python = ">=3.13"
 
 [project.optional-dependencies]
 dev = [
@@ -21,18 +21,19 @@ dev = [
 ]
 
 docs = [
-  "sphinx>=8.0",
-  "myst-parser>=3.0",
-  "sphinxcontrib-bibtex>=2.6",
-  "furo>=2024.0.0",
+  "furo>=2025.12.19",
+  "myst-parser>=4.0.1",
+  "sphinx-design>=0.6.1",
+  "sphinx>=8.2.3",
+  "sphinxcontrib-bibtex>=2.6.5",
 ]
 
 [build-system]
-requires = ["setuptools>=69"]
+requires = [
+  "setuptools>=69",
+  "setuptools-scm>=8",
+]
 build-backend = "setuptools.build_meta"
-
-[tool.setuptools]
-packages = ["mathxlab", "experiments"]
 
 [tool.mypy]
 python_version = "3.13"
@@ -75,9 +76,26 @@ exclude = [
 
 [tool.ruff.lint]
 # A solid, modern baseline: pycodestyle/pyflakes + import sorting + common bugbear rules + upgrades.
-select = ["E", "F", "W", "I", "B", "UP", "SIM", "C4", "RUF"]
+select = [
+  "B",
+  "C4",
+  "E",
+  "F",
+  "I",
+  "RUF",
+  "SIM",
+  "UP",
+  "W",
+]
 # Ruff's formatter handles code layout; ignore line-length violations (especially in docstrings/comments).
 ignore = ["E501"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["mathxlab", "experiments"]
+
+[tool.setuptools]
+packages = ["mathxlab", "experiments"]
+
+[tool.setuptools_scm]
+version_scheme = "release-branch-semver"
+local_scheme = "node-and-date"

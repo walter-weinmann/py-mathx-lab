@@ -14,7 +14,6 @@ Usage (repository convention):
 
 from __future__ import annotations
 
-import logging
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
@@ -24,7 +23,7 @@ import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json
-from mathxlab.exp.logging import get_logger, setup_logging
+from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
 from mathxlab.plots.helpers import finalize_figure
 
@@ -139,9 +138,7 @@ def main() -> int:
         description="<Experiment title>",
     )
 
-    setup_logging(
-        level=logging.DEBUG if args.verbose else logging.INFO,
-    )
+    setup_logging(config=LoggingConfig(verbose=args.verbose))
 
     logger.info("Starting experiment EXXX")
 
