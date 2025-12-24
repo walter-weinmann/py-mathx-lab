@@ -1,9 +1,10 @@
-\
 # <Topic> refresher
 
 This page is a **lightweight** background for one or more experiments in `py-mathx-lab`.
 
 Keep it short (1–2 pages):
+
+**Beginner level:** assume only first-year calculus. Prefer intuition and simple examples; avoid heavy analysis jargon unless it is essential.
 
 - the core definition(s),
 - one key theorem/formula (as needed),

@@ -60,7 +60,7 @@ make docs
 Example (E001):
 
 ```bash
-make run EXP=e001_taylor_error_landscapes ARGS="--out out/e001 --seed 1"
+make run EXP=e001 ARGS="--seed 1"
 ```
 
 See the experiment overview here: {doc}`experiments/experiments_gallery`.

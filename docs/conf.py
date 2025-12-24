@@ -35,26 +35,27 @@ copyright = "2025, Walter Weinmann"
 
 # If your distribution name differs, adjust this.
 # For many repos, it matches [project].name in pyproject.toml.
-release = _get_package_version("py-mathx-lab")
+release = _get_package_version("mathxlab")
 version = release
 
 # -- General configuration ---------------------------------------------------
 
 extensions = [
     "myst_parser",
-    "sphinxcontrib.bibtex",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
+    "sphinx.ext.mathjax",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
-    "sphinx.ext.mathjax",
+    "sphinx_design",
+    "sphinxcontrib.bibtex",
 ]
 
 templates_path = ["_templates"]
 exclude_patterns = [
-    "_build",
-    "Thumbs.db",
     ".DS_Store",
+    "Thumbs.db",
+    "_build",
     "background/background_page_template.md",
     "experiments/experiment_page_template.md",
 ]
@@ -74,12 +75,12 @@ napoleon_numpy_docstring = False
 
 # MyST settings
 myst_enable_extensions = [
+    "amsmath",
     "colon_fence",
     "deflist",
+    "dollarmath",
     "fieldlist",
     "substitution",
-    "dollarmath",
-    "amsmath",
 ]
 myst_heading_anchors = 3
 
@@ -96,11 +97,11 @@ html_title = "py-mathx-lab documentation"
 
 # Optional: Edit-on-GitHub links (recommended for contributors)
 html_context = {
-    "display_github": True,
-    "github_user": "walter-weinmann",
-    "github_repo": "py-mathx-lab",
-    "github_version": "main",
     "conf_py_path": "/docs/",
+    "display_github": True,
+    "github_repo": "py-mathx-lab",
+    "github_user": "walter-weinmann",
+    "github_version": "main",
 }
 
 html_theme_options = {
