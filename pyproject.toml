@@ -21,14 +21,18 @@ dev = [
 ]
 
 docs = [
-  "sphinx>=8.0",
-  "myst-parser>=3.0",
-  "sphinxcontrib-bibtex>=2.6",
-  "furo>=2024.0.0",
+  "furo>=2025.12.19",
+  "myst-parser>=4.0.1",
+  "sphinx-design>=0.6.1",
+  "sphinx>=8.2.3",
+  "sphinxcontrib-bibtex>=2.6.5",
 ]
 
 [build-system]
-requires = ["setuptools>=69", "setuptools-scm>=8"]
+requires = [
+  "setuptools>=69",
+  "setuptools-scm>=8",
+]
 build-backend = "setuptools.build_meta"
 
 [tool.mypy]
@@ -72,7 +76,17 @@ exclude = [
 
 [tool.ruff.lint]
 # A solid, modern baseline: pycodestyle/pyflakes + import sorting + common bugbear rules + upgrades.
-select = ["E", "F", "W", "I", "B", "UP", "SIM", "C4", "RUF"]
+select = [
+  "B",
+  "C4",
+  "E",
+  "F",
+  "I",
+  "RUF",
+  "SIM",
+  "UP",
+  "W",
+]
 # Ruff's formatter handles code layout; ignore line-length violations (especially in docstrings/comments).
 ignore = ["E501"]
 

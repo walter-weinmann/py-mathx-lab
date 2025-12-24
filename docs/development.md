@@ -40,11 +40,11 @@ make help
 
 Common targets:
 
-* `make final` — format + lint + mypy + pytest + docs
-* `make docs` — build Sphinx docs only (`docs/_build/html`)
-* `make run EXP=... ARGS="..."` — run one experiment module
-* `make install-dev` — install `.[dev]`
-* `make install-docs` — install `.[docs]`
+* `make final` - format + lint + mypy + pytest + docs
+* `make docs` - build Sphinx docs only (`docs/_build/html`)
+* `make run EXP=... ARGS="..."` - run one experiment module
+* `make install-dev` - install `.[dev]`
+* `make install-docs` - install `.[docs]`
 
 ## Formatting, linting, typing, tests
 

@@ -72,7 +72,7 @@ Keep it concrete and specific to this experiment.
 Repository convention:
 
 ```bash
-make run EXP=exxx_<module_name> ARGS="--out out/exxx --seed 1"
+make run EXP=exxx ARGS="--out out/exxx --seed 1"
 ```
 
 The experiment should write into `out/exxx/`:
