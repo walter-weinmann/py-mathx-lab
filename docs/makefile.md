@@ -1,4 +1,4 @@
-# Minimal Makefile (Windows + Linux/macOS), same functionality
+# Makefile handling
 
 ```bash
 uv run python --version

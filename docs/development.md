@@ -10,7 +10,7 @@ Typical day-to-day:
 
 ```bash
 make final
-````
+```
 
 Documentation-only build:
 
@@ -30,21 +30,13 @@ Remove the virtual environment (full reset):
 make clean-venv
 ```
 
-## Make targets
+## Makefile
 
-Show all targets:
+This page includes the full Makefile documentation (targets, workflows, and troubleshooting).
 
-```bash
-make help
+```{include} makefile.md
+:relative-images:
 ```
-
-Common targets:
-
-* `make final` - format + lint + mypy + pytest + docs
-* `make docs` - build Sphinx docs only (`docs/_build/html`)
-* `make run EXP=... ARGS="..."` - run one experiment module (writes logs to `out/<exp>/logs/`; set `V=1` for DEBUG from `mathxlab.*` only)
-* `make install-dev` - install `.[dev]`
-* `make install-docs` - install `.[docs]`
 
 ## Formatting, linting, typing, tests
 
