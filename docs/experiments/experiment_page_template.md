@@ -1,4 +1,3 @@
-\
 # EXXX: <Experiment title>
 
 ```{figure} ../_static/experiments/exxx_hero.png
@@ -25,6 +24,15 @@ Keep background pages short and practical: one definition/theorem, one key formu
 
 ## Research question
 
+State the **single** main question your experiment tries to answer.
+
+- What object or model do you study?
+- What is varied (parameters)?
+- What is observed/measured?
+- What would count as an interesting outcome (pattern, conjecture, counterexample)?
+
+### Examples
+
 Write 1–3 questions that can be answered by running code and inspecting output.
 
 Examples:
@@ -32,6 +40,21 @@ Examples:
 - How does \(X\) change as parameter \(\alpha\) varies?
 - Does property \(P\) appear to hold for all \(n \le N\)? Where does it fail?
 - What is the empirical distribution of \(Y\) and how does it compare to a theoretical prediction?
+
+## Why this qualifies as a mathematical experiment
+
+Briefly justify why this page is an *experiment* (not just an exposition or a proof sketch).
+
+Use 4–7 bullets. Touch at least three of:
+
+- **Finite procedure:** what computation / enumeration / visualization is run?
+- **Observable(s):** what quantity is measured, estimated, compared, or plotted?
+- **Parameter space:** what is varied (and over what ranges)?
+- **Outcome:** what kind of evidence is produced (patterns, conjectures, counterexamples, estimates)?
+- **Reproducibility:** where are parameters/seeds recorded and which artifacts are written?
+- **Failure modes:** what could mislead (precision, bias, insufficient bounds)?
+
+Keep it concrete and specific to this experiment.
 
 ## Experiment design
 
