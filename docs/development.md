@@ -42,7 +42,7 @@ Common targets:
 
 * `make final` - format + lint + mypy + pytest + docs
 * `make docs` - build Sphinx docs only (`docs/_build/html`)
-* `make run EXP=... ARGS="..."` - run one experiment module
+* `make run EXP=... ARGS="..."` - run one experiment module (writes logs to `out/<exp>/logs/`; set `V=1` for DEBUG from `mathxlab.*` only)
 * `make install-dev` - install `.[dev]`
 * `make install-docs` - install `.[docs]`
 
