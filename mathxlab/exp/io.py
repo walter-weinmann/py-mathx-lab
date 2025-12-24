@@ -11,6 +11,9 @@ import matplotlib.figure
 logger = logging.getLogger(__name__)
 
 
+type JsonDict = dict[str, Any]
+
+
 @dataclass(frozen=True)
 class RunPaths:
     """Standard output paths for an experiment run."""
@@ -61,7 +64,7 @@ def save_figure(*, out_dir: Path, name: str, fig: matplotlib.figure.Figure, dpi:
     return path
 
 
-def write_json(path: Path, data: dict[str, Any]) -> None:
+def write_json(path: Path, data: JsonDict) -> None:
     """Write a dictionary to a JSON file with stable formatting.
 
     Args:

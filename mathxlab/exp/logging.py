@@ -4,6 +4,7 @@ import logging
 import sys
 from dataclasses import dataclass
 from pathlib import Path
+from typing import override
 
 
 @dataclass(frozen=True, slots=True)
@@ -29,6 +30,7 @@ class _PrefixAndExactLevelFilter(logging.Filter):
         self._prefix = prefix
         self._levelno = levelno
 
+    @override
     def filter(self, record: logging.LogRecord) -> bool:
         """Return True if the record should be logged."""
         return record.name.startswith(self._prefix) and record.levelno == self._levelno

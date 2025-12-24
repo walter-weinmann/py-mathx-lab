@@ -21,7 +21,7 @@
         venv \
         venv-recreate
 
-PYTHON_MIN := 3.13
+PYTHON_MIN := 3.14
 CLEAN_DIRS := .mypy_cache .pytest_cache .ruff_cache build dist docs/_build
 VENV_DIR   := .venv
 

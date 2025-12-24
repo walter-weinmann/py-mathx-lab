@@ -148,9 +148,9 @@ make run EXP=e001 ARGS="--seed 1" V=1
 
 ## Troubleshooting
 
-### 1) `Need Python >= 3.13.0, got 3.13`
+### 1) `Need Python >= 3.14.0, got 3.14`
 
-This happens if the check compares incompatible types (e.g. a float like `3.13` vs `(3, 13)`).
+This happens if the check compares incompatible types (e.g. a float like `3.14` vs `(3, 14)`).
 The correct approach is to parse the version string into integer `(major, minor)` and compare that.
 
 The Makefile uses this correct pattern in `python-check`:
@@ -216,5 +216,5 @@ CI=1 make final
 
 This makes `format` run in check mode.
 
-* Ensure CI installs Python 3.13+ and has `uv` available.
+* Ensure CI installs Python 3.14+ and has `uv` available.
 * Keep `uv.lock` committed so `uv sync` is deterministic.
