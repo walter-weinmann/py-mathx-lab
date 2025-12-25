@@ -89,6 +89,7 @@ select = [
 ]
 # Ruff's formatter handles code layout; ignore line-length violations (especially in docstrings/comments).
 ignore = ["E501"]
+allowed-confusables = ["σ"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["mathxlab", "experiments"]
