@@ -132,10 +132,10 @@ def sigma_from_factorization(n: int, primes: list[int]) -> int:
 
 
 # ------------------------------------------------------------------------------
-def _median_time(fn: Any) -> float:
+def _median_time(fn: Any, trials: int) -> float:
     """Measure median runtime over multiple trials."""
     times: list[float] = []
-    for _ in range(fn.trials):
+    for _ in range(trials):
         t0 = perf_counter()
         fn()
         t1 = perf_counter()
@@ -250,7 +250,7 @@ def main() -> int:
         def run_sieve(N_int: int = N_int) -> None:
             _ = sigma_sieve(N_int)
 
-        t_sieve[i] = _median_time(type("T", (), {"trials": params.trials, "__call__": run_sieve})())
+        t_sieve[i] = _median_time(run_sieve, trials=params.trials)
 
         if N_int > params.max_n_factor:
             t_fact[i] = float("nan")
@@ -262,7 +262,7 @@ def main() -> int:
             for n in range(1, N_int + 1):
                 _ = sigma_from_factorization(n, primes)
 
-        t_fact[i] = _median_time(type("T", (), {"trials": params.trials, "__call__": run_fact})())
+        t_fact[i] = _median_time(run_fact, trials=params.trials)
 
     fig1 = _plot_runtime(n_vals=n_vals, t_sieve=t_sieve, t_fact=t_fact)
     save_figure(out_dir=out_paths.figures_dir, name="fig_01_runtime_vs_n", fig=fig1)
