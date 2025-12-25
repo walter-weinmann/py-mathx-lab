@@ -57,6 +57,7 @@ make run EXP=e001 ARGS="--seed 1"
 - References used across experiments: {doc}`../references`
 
 ---
+---
 
 (e002-even-perfect-numbers-generator-growth-gallery)=
 ### {doc}`E002: Even Perfect Numbers — Generator and Growth <e002>`
