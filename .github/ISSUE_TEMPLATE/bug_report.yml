@@ -69,7 +69,7 @@ body:
       description: Provide OS + Python + uv + relevant tool versions.
       placeholder: |
         OS: Windows 11 / Ubuntu 22.04 (WSL) / macOS
-        Python: 3.13.x
+        Python: 3.14.x
         uv: 0.x.x
         make: GNU Make x.x
         ruff: x.x.x (if relevant)

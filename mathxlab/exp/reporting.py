@@ -7,6 +7,8 @@ from typing import Any
 
 import matplotlib.pyplot as plt
 
+type JsonPayload = dict[str, Any]
+
 
 # ------------------------------------------------------------------------------
 @dataclass(frozen=True)
@@ -55,7 +57,7 @@ def save_figure(path: Path) -> None:
 
 
 # ------------------------------------------------------------------------------
-def write_json(path: Path, payload: dict[str, Any]) -> None:
+def write_json(path: Path, payload: JsonPayload) -> None:
     """Write a JSON file with stable formatting.
 
     Args:

@@ -12,6 +12,7 @@ from importlib.metadata import PackageNotFoundError
 from importlib.metadata import version as get_version
 
 
+# ------------------------------------------------------------------------------
 def _get_package_version(dist_name: str) -> str:
     """Get the installed package version for the given distribution name.
 
@@ -33,9 +34,10 @@ project = "py-mathx-lab"
 author = "Walter Weinmann"
 copyright = "2025, Walter Weinmann"
 
-# If your distribution name differs, adjust this.
-# For many repos, it matches [project].name in pyproject.toml.
-release = _get_package_version("mathxlab")
+raw_release = _get_package_version("mathxlab")
+
+# Keep the base version (hide "+g<hash>" etc. on the title page)
+release = raw_release.split("+", 1)[0]
 version = release
 
 # -- General configuration ---------------------------------------------------
