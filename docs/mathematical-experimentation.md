@@ -1,6 +1,6 @@
 # Mathematical experimentation
 
-Mathematical experimentation is the practice of **using examples, computation, and visualization to discover structure**:
+Mathematical experimentation is the practice of using examples, computation, and visualization to discover structure, 
 to generate conjectures, find counterexamples, estimate quantities, and build intuition that later supports (or refutes)
 formal arguments.
 

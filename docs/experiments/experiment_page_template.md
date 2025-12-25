@@ -37,9 +37,9 @@ Write 1–3 questions that can be answered by running code and inspecting output
 
 Examples:
 
-- How does \(X\) change as parameter \(\alpha\) varies?
-- Does property \(P\) appear to hold for all \(n \le N\)? Where does it fail?
-- What is the empirical distribution of \(Y\) and how does it compare to a theoretical prediction?
+- How does $X$ change as parameter $\alpha$ varies?
+- Does property $P$ appear to hold for all $n \le N$? Where does it fail?
+- What is the empirical distribution of $Y$ and how does it compare to a theoretical prediction?
 
 ## Why this qualifies as a mathematical experiment
 
@@ -94,7 +94,7 @@ Call out what can invalidate the results:
 - precision limits, floating-point issues, cancellation, overflows
 - selection bias / insufficient search bounds
 - algorithmic complexity / timeouts
-- “looks true” for small \(n\) but false later
+- “looks true” for small $n$ but false later
 
 Be explicit about what is evidence vs. what would require a proof.
 

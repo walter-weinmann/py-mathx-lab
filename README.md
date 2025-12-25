@@ -13,14 +13,14 @@ Documentation (GitHub Pages):
 
 - https://walter-weinmann.github.io/py-mathx-lab/
 
-The docs include: **Getting started**, **Experiments**, **Development**, **References**.  
+The docs include: **Experiments**, **Getting started**, **Development**, **References**.  
 As the project grows, experiment write-ups can scale under `docs/experiments/`.
 
 ## Quickstart
 
 ### Prerequisites
 
-- Python **3.13**
+- Python **3.14**
 - `uv`
 - GNU `make`
 

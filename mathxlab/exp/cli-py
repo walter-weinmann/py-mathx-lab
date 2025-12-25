@@ -1,9 +1,0 @@
-"""Deprecated stub: this file has been replaced by 'mathxlab/exp/cli.py'.
-
-It remains in the repository only for historical reasons and should not be used.
-If imported accidentally, fail fast with a clear message.
-"""
-
-raise ImportError(
-    "mathxlab.exp.cli-py is deprecated. Use 'from mathxlab.exp.cli import parse_experiment_args'."
-)

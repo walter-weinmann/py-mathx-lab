@@ -56,7 +56,7 @@ If you're unsure whether a change fits the scope, open an issue first with:
 
 ### Requirements
 
-- Python **3.13**
+- Python **3.14**
 - `uv` on PATH
 - GNU `make`
 

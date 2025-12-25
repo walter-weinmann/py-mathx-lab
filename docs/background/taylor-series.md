@@ -17,6 +17,7 @@ For $f(x)=\sin(x)$, the derivatives cycle, and around $x_0=0$ this becomes
 $$
 \sin(x) \approx x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots .
 $$
+
 ## Truncation error and the remainder
 
 The approximation error is the remainder
@@ -58,6 +59,7 @@ A common “extension” experiment is to repeat the same plots using higher pre
 
 If you want a longer, *beginner-friendly* treatment (beyond this refresher), these are good starting points:
 
+- A quick overview / definitions and examples: {cite:p}`WikipediaContributors2025TaylorSeries`.
 - A rigorous calculus textbook with a clean presentation of Taylor’s theorem and remainders: {cite:p}`Apostol1991CalculusVolume1`.
 - A proof-oriented classic (slower, deeper): {cite:p}`Spivak2008Calculus`.
 - For the numerical viewpoint (truncation vs. rounding error): {cite:p}`BurdenFaires2015NumericalAnalysis`.
@@ -66,4 +68,4 @@ If you want a longer, *beginner-friendly* treatment (beyond this refresher), the
 
 See {doc}`../references`.
 
-{cite:p}`Apostol1991CalculusVolume1,Spivak2008Calculus,BurdenFaires2015NumericalAnalysis`
+{cite:p}`WikipediaContributors2025TaylorSeries,Apostol1991CalculusVolume1,Spivak2008Calculus,BurdenFaires2015NumericalAnalysis`

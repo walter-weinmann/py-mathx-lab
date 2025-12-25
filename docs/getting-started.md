@@ -6,7 +6,7 @@ This project uses an **uv-only** workflow and a small Makefile wrapper to run ev
 
 You need:
 
-- **Python 3.13**
+- **Python 3.14**
 - **uv** on your PATH
 - **GNU Make**
 
@@ -90,7 +90,7 @@ make docs
 
 ### `make python-check` fails
 
-The repo enforces Python **3.13**. Install Python 3.13, then recreate the environment:
+The repo enforces Python **3.14**. Install Python 3.14, then recreate the environment:
 
 ```bash
 make clean-venv
