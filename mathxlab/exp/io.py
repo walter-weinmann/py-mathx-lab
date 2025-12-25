@@ -8,7 +8,6 @@ from typing import Any
 
 import matplotlib.figure
 
-
 # ------------------------------------------------------------------------------
 logger = logging.getLogger(__name__)
 

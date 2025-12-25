@@ -27,7 +27,6 @@ from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
 from mathxlab.plots.helpers import finalize_figure
 
-
 # ------------------------------------------------------------------------------
 logger = get_logger(__name__)
 
