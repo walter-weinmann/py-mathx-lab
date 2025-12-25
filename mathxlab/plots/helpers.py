@@ -3,6 +3,7 @@ from __future__ import annotations
 import matplotlib.figure
 
 
+# ------------------------------------------------------------------------------
 def finalize_figure(fig: matplotlib.figure.Figure) -> None:
     """Apply standard styling and layout to a figure.
 

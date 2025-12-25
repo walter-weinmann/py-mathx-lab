@@ -33,6 +33,7 @@ from mathxlab.exp.random import set_global_seed
 from mathxlab.num.series import taylor_sin
 from mathxlab.plots.helpers import finalize_figure
 
+
 # ------------------------------------------------------------------------------
 logger = get_logger(__name__)
 

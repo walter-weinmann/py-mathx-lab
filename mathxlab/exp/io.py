@@ -8,12 +8,15 @@ from typing import Any
 
 import matplotlib.figure
 
+
+# ------------------------------------------------------------------------------
 logger = logging.getLogger(__name__)
 
 
 type JsonDict = dict[str, Any]
 
 
+# ------------------------------------------------------------------------------
 @dataclass(frozen=True)
 class RunPaths:
     """Standard output paths for an experiment run."""
@@ -24,6 +27,7 @@ class RunPaths:
     params_path: Path
 
 
+# ------------------------------------------------------------------------------
 def prepare_out_dir(*, out_dir: Path) -> RunPaths:
     """Prepare the output directory structure.
 
@@ -45,6 +49,7 @@ def prepare_out_dir(*, out_dir: Path) -> RunPaths:
     )
 
 
+# ------------------------------------------------------------------------------
 def save_figure(*, out_dir: Path, name: str, fig: matplotlib.figure.Figure, dpi: int = 160) -> Path:
     """Save a Matplotlib figure to disk.
 
@@ -64,6 +69,7 @@ def save_figure(*, out_dir: Path, name: str, fig: matplotlib.figure.Figure, dpi:
     return path
 
 
+# ------------------------------------------------------------------------------
 def write_json(path: Path, data: JsonDict) -> None:
     """Write a dictionary to a JSON file with stable formatting.
 

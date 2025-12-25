@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import override
 
 
+# ------------------------------------------------------------------------------
 @dataclass(frozen=True, slots=True)
 class LoggingConfig:
     """Configuration for experiment logging.
@@ -22,6 +23,7 @@ class LoggingConfig:
     log_file: Path | None = None
 
 
+# ------------------------------------------------------------------------------
 class _PrefixAndExactLevelFilter(logging.Filter):
     """Allow records only if the logger name matches a prefix and level matches exactly."""
 
@@ -36,6 +38,7 @@ class _PrefixAndExactLevelFilter(logging.Filter):
         return record.name.startswith(self._prefix) and record.levelno == self._levelno
 
 
+# ------------------------------------------------------------------------------
 def setup_logging(*, config: LoggingConfig | None = None) -> None:
     """Set up logging for experiment runs.
 
@@ -101,6 +104,7 @@ def setup_logging(*, config: LoggingConfig | None = None) -> None:
         logging.getLogger(noisy).setLevel(logging.WARNING)
 
 
+# ------------------------------------------------------------------------------
 def get_logger(name: str) -> logging.Logger:
     """Get a logger for a specific module.
 

@@ -5,6 +5,7 @@ from pathlib import Path
 from mathxlab.exp.logging import LoggingConfig, setup_logging
 
 
+# ------------------------------------------------------------------------------
 def configure_logging(*, verbose: bool, log_file: Path | None = None) -> None:
     """Backward-compatible wrapper around :func:`mathxlab.exp.logging.setup_logging`.
 

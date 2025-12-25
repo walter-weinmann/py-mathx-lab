@@ -8,7 +8,10 @@ from __future__ import annotations
 
 from mathxlab.experiments.e001_taylor_error_landscapes import main
 
+
+# ------------------------------------------------------------------------------
 __all__ = ["main"]
+
 
 # ------------------------------------------------------------------------------
 if __name__ == "__main__":
