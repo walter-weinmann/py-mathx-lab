@@ -1,144 +1,105 @@
 # Experiments Gallery
 
-A compact, image-first overview of the experiments in **py-mathx-lab**.
-
 :::{only} html
 
-::::{grid} 1 2 3 3
-:gutter: 2
+::::{grid} 1 1 2 3
 :class-container: mx-gallery-grid
+:gutter: 2
 
-:::{grid-item-card} E001 — Taylor error landscapes
-:link: e001
+:::{grid-item-card}
+:class-card: mx-gallery-card
 :img-top: ../_static/experiments/e001_hero.png
+:link: e001
+:link-type: doc
 
-Truncation error, convergence behavior, and error landscapes for Taylor approximations.
+**E001 — Taylor error landscapes**
 
 {bdg-primary}`analysis` {bdg-secondary}`taylor`
+
+Truncation error, convergence behavior, and error landscapes for Taylor approximations.
 :::
 
-:::{grid-item-card} E002 — Perfect numbers
-:link: e002
+:::{grid-item-card}
+:class-card: mx-gallery-card
 :img-top: ../_static/experiments/e002_hero.png
+:link: e002
+:link-type: doc
 
-Explore perfect numbers via the sum-of-divisors function and the Euclid–Euler characterization.
+**E002 — Perfect numbers**
 
 {bdg-primary}`number theory` {bdg-secondary}`perfect`
+
+Explore perfect numbers via the sum-of-divisors function and the Euclid–Euler characterization.
 :::
 
-:::{grid-item-card} E003 — Abundancy index
-:link: e003
+:::{grid-item-card}
+:class-card: mx-gallery-card
 :img-top: ../_static/experiments/e003_hero.png
+:link: e003
+:link-type: doc
 
-Study the abundancy index (σ(n)/n) and how it separates number classes.
+**E003 — Abundancy index**
 
 {bdg-primary}`number theory` {bdg-secondary}`classification`
+
+Study the abundancy index $\sigma(n)/n$ and how it separates number classes.
 :::
 
-:::{grid-item-card} E004 — Sum-of-divisors (sigma)
-:link: e004
+:::{grid-item-card}
+:class-card: mx-gallery-card
 :img-top: ../_static/experiments/e004_hero.png
+:link: e004
+:link-type: doc
 
-Compute σ(n), test multiplicativity, and explore divisor-sum structure.
+**E004 — Sum-of-divisors (sigma)**
 
 {bdg-primary}`number theory` {bdg-secondary}`sigma`
+
+Compute $\sigma(n)$, test multiplicativity, and explore divisor-sum structure.
 :::
 
-:::{grid-item-card} E005 — Odd perfect numbers
-:link: e005
+:::{grid-item-card}
+:class-card: mx-gallery-card
 :img-top: ../_static/experiments/e005_hero.png
+:link: e005
+:link-type: doc
 
-Constraints, known results, and computational checks related to odd perfect numbers.
+**E005 — Odd perfect numbers**
 
 {bdg-primary}`number theory` {bdg-secondary}`open problems`
+
+Constraints, known results, and computational checks related to odd perfect numbers.
 :::
 
-:::{grid-item-card} E006 — Near-perfect numbers
-:link: e006
+:::{grid-item-card}
+:class-card: mx-gallery-card
 :img-top: ../_static/experiments/e006_hero.png
+:link: e006
+:link-type: doc
 
-Definitions, examples, and experiments around near-perfect (and related) integers.
+**E006 — Near-perfect numbers**
 
 {bdg-primary}`number theory` {bdg-secondary}`exploration`
+
+Definitions, examples, and experiments around near-perfect (and related) integers.
 :::
 
 ::::
 
-:::{list-table} Index
-:header-rows: 1
-:widths: 10 30 20 40
-
-* - ID
-  - Title
-  - Tags
-  - Summary
-* - {doc}`E001 <e001>`
-  - Taylor error landscapes
-  - analysis, taylor
-  - Truncation error, convergence behavior, and error landscapes for Taylor approximations.
-* - {doc}`E002 <e002>`
-  - Perfect numbers
-  - number theory, perfect
-  - Explore perfect numbers via the sum-of-divisors function and the Euclid–Euler characterization.
-* - {doc}`E003 <e003>`
-  - Abundancy index
-  - number theory, classification
-  - Study the abundancy index (σ(n)/n) and how it separates number classes.
-* - {doc}`E004 <e004>`
-  - Sum-of-divisors (sigma)
-  - number theory, sigma
-  - Compute σ(n), test multiplicativity, and explore divisor-sum structure.
-* - {doc}`E005 <e005>`
-  - Odd perfect numbers
-  - number theory, open problems
-  - Constraints, known results, and computational checks related to odd perfect numbers.
-* - {doc}`E006 <e006>`
-  - Near-perfect numbers
-  - number theory, exploration
-  - Definitions, examples, and experiments around near-perfect (and related) integers.
 :::
+
+:::{only} not html
+
+* {doc}`E001 — Taylor error landscapes <e001>`
+* {doc}`E002 — Perfect numbers <e002>`
+* {doc}`E003 — Abundancy index <e003>`
+* {doc}`E004 — Sum-of-divisors (sigma) <e004>`
+* {doc}`E005 — Odd perfect numbers <e005>`
+* {doc}`E006 — Near-perfect numbers <e006>`
 
 :::
 
-:::{only} latex
-
-:::{list-table} Experiments (overview)
-:header-rows: 1
-:widths: 10 30 20 40
-
-* - ID
-  - Title
-  - Tags
-  - Summary
-* - E001
-  - Taylor error landscapes
-  - analysis, taylor
-  - Truncation error, convergence behavior, and error landscapes for Taylor approximations.
-* - E002
-  - Perfect numbers
-  - number theory, perfect
-  - Explore perfect numbers via the sum-of-divisors function and the Euclid–Euler characterization.
-* - E003
-  - Abundancy index
-  - number theory, classification
-  - Study the abundancy index (σ(n)/n) and how it separates number classes.
-* - E004
-  - Sum-of-divisors (sigma)
-  - number theory, sigma
-  - Compute σ(n), test multiplicativity, and explore divisor-sum structure.
-* - E005
-  - Odd perfect numbers
-  - number theory, open problems
-  - Constraints, known results, and computational checks related to odd perfect numbers.
-* - E006
-  - Near-perfect numbers
-  - number theory, exploration
-  - Definitions, examples, and experiments around near-perfect (and related) integers.
-:::
-
-:::
-
-```{toctree}
+:::{toctree}
 :maxdepth: 1
 :hidden:
 
@@ -148,3 +109,4 @@ e003
 e004
 e005
 e006
+:::

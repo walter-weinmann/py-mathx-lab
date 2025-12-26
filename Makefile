@@ -109,11 +109,11 @@ docs-deps:
 
 docs-html: docs-deps
 	@echo Building HTML docs...
-	@$(UV_RUN_DOCS) python -m sphinx -b html -q $(DOCS_DIR) $(DOCS_HTML_DIR)
+	@$(UV_RUN_DOCS) python -m sphinx -q -b html $(DOCS_DIR) $(DOCS_HTML_DIR)
 
 docs-pdf: docs-deps
 	@echo Building PDF docs (optional; requires LaTeX toolchain + latexmk)...
-	@$(UV_RUN_DOCS) python -m mathxlab.tools.docs_pdf --docs-dir "$(DOCS_DIR)" --build-dir "$(DOCS_BUILD_DIR)" --quiet
+	@$(UV_RUN_DOCS) python -m mathxlab.tools.docs_pdf --quiet
 
 # CI should be strict and never "fix" silently; keep final check-only.
 final: format lint mypy pytest docs

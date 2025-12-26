@@ -1,3 +1,13 @@
+"""
+Build Sphinx LaTeX/PDF documentation and copy the PDF into docs/_static.
+
+This script is designed to be executed as a module:
+
+    python -m mathxlab.tools.docs_pdf
+
+It runs Sphinx in LaTeX mode and then compiles via latexmk.
+"""
+
 from __future__ import annotations
 
 import argparse
@@ -6,205 +16,187 @@ import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Sequence
 
 
 # ------------------------------------------------------------------------------
 @dataclass(frozen=True)
 class DocsPdfPaths:
-    """Resolved paths for Sphinx docs PDF build and copy.
+    """Paths used by the PDF build.
 
     Args:
-        docs_dir: Root Sphinx docs directory (contains conf.py).
-        build_dir: Sphinx build directory (e.g. docs/_build).
+        repo_root: Repository root directory.
+        docs_dir: Sphinx docs source directory.
+        build_dir: Sphinx build directory (contains latex/).
+        latex_dir: Output directory for LaTeX files.
+        static_dir: Directory where static files live (HTML also serves from here).
     """
 
+    repo_root: Path
     docs_dir: Path
     build_dir: Path
-
-    @property
-    def latex_dir(self) -> Path:
-        """Directory where Sphinx writes LaTeX output."""
-        return self.build_dir / "latex"
-
-    @property
-    def html_pdf_dir(self) -> Path:
-        """Directory where the PDF is copied for linking in HTML output."""
-        return self.build_dir / "html" / "_static" / "pdf"
+    latex_dir: Path
+    static_dir: Path
 
 
 # ------------------------------------------------------------------------------
-def _run(
-    cmd: Sequence[str],
-    *,
-    cwd: Path | None = None,
-    verbose: bool = False,
-) -> None:
-    """Run a command, raising SystemExit on failure.
+def _run(cmd: list[str], cwd: Path, quiet: bool) -> None:
+    """Run a command and raise on failure.
 
     Args:
-        cmd: Command and arguments.
-        cwd: Optional working directory.
-        verbose: If True, stream output. If False, capture and print only on error.
-
-    Raises:
-        SystemExit: If the command fails.
+        cmd: Command arguments.
+        cwd: Working directory.
+        quiet: If True, suppress stdout/stderr unless the command fails.
     """
-    if verbose:
-        try:
-            subprocess.run(cmd, cwd=str(cwd) if cwd else None, check=True)
-        except subprocess.CalledProcessError as exc:
-            raise SystemExit(exc.returncode) from exc
+    if quiet:
+        proc = subprocess.run(
+            cmd,
+            cwd=str(cwd),
+            text=True,
+            capture_output=True,
+        )
+        if proc.returncode != 0:
+            sys.stderr.write(proc.stdout)
+            sys.stderr.write(proc.stderr)
+            raise subprocess.CalledProcessError(proc.returncode, cmd)
         return
 
-    proc = subprocess.run(
-        cmd,
-        cwd=str(cwd) if cwd else None,
-        text=True,
-        capture_output=True,
-    )
-    if proc.returncode != 0:
-        if proc.stdout:
-            print(proc.stdout, end="")
-        if proc.stderr:
-            print(proc.stderr, end="", file=sys.stderr)
-        raise SystemExit(proc.returncode)
+    subprocess.run(cmd, cwd=str(cwd), check=True)
 
 
 # ------------------------------------------------------------------------------
-def _build_latex_sources(paths: DocsPdfPaths, *, verbose: bool) -> None:
-    """Build LaTeX sources via Sphinx.
-
-    Args:
-        paths: Resolved docs paths.
-        verbose: Verbosity flag.
-    """
-    paths.latex_dir.mkdir(parents=True, exist_ok=True)
-    _run(
-        [sys.executable, "-m", "sphinx", "-b", "latex", "-q", str(paths.docs_dir), str(paths.latex_dir)],
-        cwd=None,
-        verbose=verbose,
-    )
-
-
-# ------------------------------------------------------------------------------
-def _pick_main_tex_file(latex_dir: Path) -> Path | None:
-    """Pick the main Sphinx-generated .tex file.
-
-    Args:
-        latex_dir: Directory containing LaTeX output.
+def _detect_repo_root() -> Path:
+    """Detect repository root as the parent of the 'docs' directory.
 
     Returns:
-        Path to the selected .tex file, or None if not found.
+        Repository root directory.
+
+    Raises:
+        FileNotFoundError: If no 'docs' directory can be found.
     """
-    candidates = [p for p in latex_dir.glob("*.tex") if not p.name.lower().startswith("sphinx")]
-    if not candidates:
-        return None
-    return max(candidates, key=lambda p: p.stat().st_size)
+    here = Path(__file__).resolve()
+    for parent in [here.parent, *here.parents]:
+        if (parent / "docs").is_dir():
+            return parent
+    raise FileNotFoundError("Could not find repo root (missing 'docs/' directory).")
 
 
 # ------------------------------------------------------------------------------
-def _latexmk_available() -> bool:
-    """Check whether latexmk is available on PATH."""
-    return shutil.which("latexmk") is not None
-
-
-# ------------------------------------------------------------------------------
-def _run_latexmk(latex_dir: Path, main_tex: Path, *, verbose: bool, engine: str) -> None:
-    """Run latexmk to produce a PDF from the main .tex file.
+def _build_latex(paths: DocsPdfPaths, quiet: bool) -> None:
+    """Build LaTeX files using Sphinx.
 
     Args:
-        latex_dir: Directory where LaTeX sources live.
-        main_tex: The main .tex file to compile.
-        verbose: Verbosity flag.
-        engine: LaTeX engine ("xelatex" or "pdflatex").
+        paths: Paths configuration.
+        quiet: If True, reduce Sphinx verbosity.
     """
-    # Use xelatex by default to handle Unicode (e.g. σ) reliably on Windows.
-    # latexmk supports: -xelatex / -pdf (pdflatex)
-    engine_flag = "-xelatex" if engine.lower() == "xelatex" else "-pdf"
-
     cmd = [
+        sys.executable,
+        "-m",
+        "sphinx",
+        "-b",
+        "latex",
+    ]
+    if quiet:
+        cmd.append("-q")
+    cmd += [str(paths.docs_dir), str(paths.latex_dir)]
+    _run(cmd=cmd, cwd=paths.repo_root, quiet=quiet)
+
+
+# ------------------------------------------------------------------------------
+def _compile_pdf(paths: DocsPdfPaths, tex_name: str, quiet: bool) -> Path:
+    """Compile the produced LaTeX into a PDF via latexmk.
+
+    Args:
+        paths: Paths configuration.
+        tex_name: Main .tex file name (e.g. 'py-mathx-lab.tex').
+        quiet: If True, reduce latexmk output.
+
+    Returns:
+        Path to the generated PDF.
+
+    Raises:
+        FileNotFoundError: If the expected PDF is not produced.
+    """
+    latexmk_cmd = [
         "latexmk",
         "-xelatex",
-        "-quiet",
-        "-interaction=nonstopmode",
         "-halt-on-error",
-        "py-mathx-lab.tex",
+        "-file-line-error",
+        "-interaction=nonstopmode",
     ]
+    latexmk_cmd.append("-quiet" if quiet else "-verbose")
+    latexmk_cmd.append(tex_name)
 
-    cmd.append(main_tex.name)
+    _run(cmd=latexmk_cmd, cwd=paths.latex_dir, quiet=quiet)
 
-    _run(cmd, cwd=latex_dir, verbose=verbose)
+    pdf_path = paths.latex_dir / Path(tex_name).with_suffix(".pdf").name
+    if not pdf_path.exists():
+        raise FileNotFoundError(f"PDF not generated: {pdf_path}")
+    return pdf_path
 
 
 # ------------------------------------------------------------------------------
-def _copy_pdfs_to_html(paths: DocsPdfPaths) -> list[Path]:
-    """Copy generated PDFs into the HTML static folder.
+def _copy_pdf_to_static(pdf_path: Path, static_dir: Path) -> Path:
+    """Copy the PDF to docs/_static so HTML can link to it.
 
     Args:
-        paths: Resolved docs paths.
+        pdf_path: Source PDF path.
+        static_dir: Destination directory.
 
     Returns:
-        List of copied PDF paths in the destination folder.
+        Destination PDF path.
     """
-    pdfs = sorted(paths.latex_dir.glob("*.pdf"))
-    paths.html_pdf_dir.mkdir(parents=True, exist_ok=True)
-
-    copied: list[Path] = []
-    for pdf in pdfs:
-        dest = paths.html_pdf_dir / pdf.name
-        dest.write_bytes(pdf.read_bytes())
-        copied.append(dest)
-
-    return copied
+    static_dir.mkdir(parents=True, exist_ok=True)
+    dst = static_dir / pdf_path.name
+    shutil.copy2(pdf_path, dst)
+    return dst
 
 
 # ------------------------------------------------------------------------------
-def _parse_args(argv: Sequence[str]) -> argparse.Namespace:
-    """Parse CLI args."""
-    parser = argparse.ArgumentParser(description="Build Sphinx PDF (optional) and copy into HTML output.")
-    parser.add_argument("--docs-dir", required=True, help="Sphinx docs root directory (contains conf.py).")
-    parser.add_argument("--build-dir", required=True, help="Sphinx build directory (e.g. docs/_build).")
-    parser.add_argument("--engine", choices=["xelatex", "pdflatex"], default="xelatex", help="LaTeX engine.")
-    parser.add_argument("--verbose", action="store_true", help="Stream full tool output.")
-    parser.add_argument("--quiet", action="store_true", help="Alias for non-verbose mode (default).")
-    return parser.parse_args(list(argv))
-
-
-# ------------------------------------------------------------------------------
-def main(argv: Sequence[str]) -> int:
-    """CLI entry point.
+def main() -> int:
+    """CLI entrypoint.
 
     Returns:
         Process exit code.
     """
-    args = _parse_args(argv)
-    verbose = bool(args.verbose)
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--tex",
+        default="py-mathx-lab.tex",
+        help="Main LaTeX file name produced by Sphinx (default: py-mathx-lab.tex).",
+    )
+    parser.add_argument(
+        "--quiet",
+        action="store_true",
+        help="Reduce Sphinx/latexmk output.",
+    )
+    args = parser.parse_args()
 
-    paths = DocsPdfPaths(docs_dir=Path(args.docs_dir), build_dir=Path(args.build_dir))
-    _build_latex_sources(paths, verbose=verbose)
+    repo_root = _detect_repo_root()
+    docs_dir = repo_root / "docs"
+    build_dir = docs_dir / "_build"
+    latex_dir = build_dir / "latex"
+    static_dir = docs_dir / "_static"
 
-    main_tex = _pick_main_tex_file(paths.latex_dir)
-    if main_tex is None:
-        print("Skipping PDF build: no main .tex file found in LaTeX output.", file=sys.stderr)
-        return 0
+    paths = DocsPdfPaths(
+        repo_root=repo_root,
+        docs_dir=docs_dir,
+        build_dir=build_dir,
+        latex_dir=latex_dir,
+        static_dir=static_dir,
+    )
 
-    if not _latexmk_available():
-        print("Skipping PDF build: latexmk not found on PATH.", file=sys.stderr)
-        return 0
+    latex_dir.mkdir(parents=True, exist_ok=True)
 
-    _run_latexmk(paths.latex_dir, main_tex, verbose=verbose, engine=args.engine)
+    _build_latex(paths=paths, quiet=args.quiet)
+    pdf_path = _compile_pdf(paths=paths, tex_name=args.tex, quiet=args.quiet)
+    dst = _copy_pdf_to_static(pdf_path=pdf_path, static_dir=paths.static_dir)
 
-    copied = _copy_pdfs_to_html(paths)
-    if copied:
-        names = ", ".join(p.name for p in copied)
-        print(f"Copied PDF(s) to HTML static folder: {names}")
-    else:
-        print("No PDFs produced (latexmk ran but no *.pdf found).", file=sys.stderr)
+    if not args.quiet:
+        print(f"PDF copied to: {dst}")
 
     return 0
 
 
 # ------------------------------------------------------------------------------
 if __name__ == "__main__":
-    raise SystemExit(main(sys.argv[1:]))
+    raise SystemExit(main())

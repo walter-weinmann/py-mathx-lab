@@ -16,6 +16,23 @@
   transform: translateY(-3px);
 }
 
+/* Keep Sphinx-Design gallery cards from exploding due to large hero images. */
+.sd-card-img-top,
+.sd-card-img-top img,
+img.sd-card-img-top {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Optional: enforce consistent tile height (crop nicely). */
+.sd-card-img-top img,
+img.sd-card-img-top {
+  height: 180px;
+  object-fit: cover;
+}
+
 /* Image area (top) */
 .mx-gallery-grid .sd-card-img-top {
   padding: 0;
