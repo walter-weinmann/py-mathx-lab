@@ -112,7 +112,7 @@ docs-html: docs-deps
 	@$(UV_RUN_DOCS) python -m sphinx -q -b html $(DOCS_DIR) $(DOCS_HTML_DIR)
 
 docs-pdf: docs-deps
-	@echo Building PDF docs (optional; requires LaTeX toolchain + latexmk)...
+	@echo "Building PDF docs (optional; requires LaTeX toolchain + latexmk)..."
 	@$(UV_RUN_DOCS) python -m mathxlab.tools.docs_pdf --quiet
 
 # CI should be strict and never "fix" silently; keep final check-only.
