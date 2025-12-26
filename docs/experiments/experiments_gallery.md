@@ -4,185 +4,97 @@ This page is the public gallery of *mathematical experiments* in this repository
 
 If you are new to the idea of experimental mathematics, start here: {doc}`../mathematical-experimentation`.
 
-
-## How to read this gallery
-
-Each experiment is identified by a stable ID (**E001**, **E002**, …) and has its own page with:
-
-- **Goal**
-- **Research question**
-- **Why this qualifies as a mathematical experiment**
-- **Experiment design**
-- **How to run**
-- **Results**
-- **Notes / pitfalls**
-- **References**
-
-The gallery below is intentionally compact: it shows a preview and the “entry points”
-(link to the page and a copy‑paste run command). For details, open the experiment page.
-
-
-## Hero images
-
-Experiments may optionally provide a small “hero image” stored under:
-
-- `docs/_static/experiments/<experiment_id>_hero.png`
-
-This keeps documentation builds stable (no dependency on generated `out/` artifacts) while still allowing
-experiments to generate rich figures during execution.
-
-
 ## Gallery
 
-(e001-taylor-error-landscapes-gallery)=
-### {doc}`E001: Taylor Error Landscapes <e001>`
+::::{grid} 1 2 3 3
+:gutter: 2
+:class-container: sd-pb-2
 
-```{figure} ../_static/experiments/e001_hero.png
-:width: 70%
-:alt: Preview figure for E001
-```
+:::{grid-item-card} **E001** — Taylor Error Landscapes
+:img-top: ../_static/experiments/e001_hero.png
+:link: e001
+:link-type: doc
+:class-card: sd-shadow-sm
 
-**Tags:** analysis, numerics, visualization
+{bdg-primary}`analysis` {bdg-secondary}`numerics` {bdg-info}`visualization`
 
-**One‑liner**  
 Visualize where Taylor polynomials approximate $\sin(x)$ well (and where they don’t) by plotting error landscapes over $(n, x_0, x)$.
 
-**Run**
-```bash
-make run EXP=e001 ARGS="--seed 1"
-```
++++
+**Run:** `make run EXP=e001 ARGS="--seed 1"`
+:::
 
-**Open**
-- Read the full experiment page: {doc}`e001`
-- References used across experiments: {doc}`../references`
+:::{grid-item-card} **E002** — Even Perfect Numbers
+:img-top: ../_static/experiments/e002_hero.png
+:link: e002
+:link-type: doc
+:class-card: sd-shadow-sm
 
----
+{bdg-primary}`number-theory` {bdg-info}`visualization` {bdg-secondary}`numerics`
 
-(e002-even-perfect-numbers-generator-growth-gallery)=
-### {doc}`E002: Even Perfect Numbers — Generator and Growth <e002>`
-
-```{figure} ../_static/experiments/e002_hero.png
-:width: 70%
-:alt: Preview figure for E002
-```
-
-**Tags:** number-theory, numerics, visualization
-
-**One‑liner**  
 Generate even perfect numbers from Mersenne exponents and visualize how digit count and bit length explode with $p$.
 
-**Run**
-```bash
-make run EXP=e002 ARGS="--seed 1"
-```
++++
+**Run:** `make run EXP=e002 ARGS="--seed 1"`
+:::
 
-**Open**
-- Read the full experiment page: {doc}`e002`
+:::{grid-item-card} **E003** — Abundancy Landscape
+:img-top: ../_static/experiments/e003_hero.png
+:link: e003
+:link-type: doc
+:class-card: sd-shadow-sm
 
----
+{bdg-primary}`number-theory` {bdg-secondary}`numerics` {bdg-info}`visualization`
 
-(e003-abundancy-index-landscape-gallery)=
-### {doc}`E003: Abundancy Index Landscape <e003>`
-
-```{figure} ../_static/experiments/e003_hero.png
-:width: 70%
-:alt: Preview figure for E003
-```
-
-**Tags:** number-theory, numerics, visualization
-
-**One‑liner**  
 Compute $\sigma(1..N)$ with a divisor-sum sieve and map the landscape of $I(n)=\sigma(n)/n$, highlighting $I(n)=2$.
 
-**Run**
-```bash
-make run EXP=e003 ARGS="--seed 1"
-```
++++
+**Run:** `make run EXP=e003 ARGS="--seed 1"`
+:::
 
-**Open**
-- Read the full experiment page: {doc}`e003`
+:::{grid-item-card} **E004** — σ(n) Benchmark
+:img-top: ../_static/experiments/e004_hero.png
+:link: e004
+:link-type: doc
+:class-card: sd-shadow-sm
 
----
+{bdg-primary}`number-theory` {bdg-secondary}`optimization` {bdg-info}`numerics`
 
-(e004-sigma-benchmark-sieve-vs-factorization-gallery)=
-### {doc}`E004: Computing σ(n) at Scale — Sieve vs. Factorization <e004>`
+Benchmark two mathematically equivalent ways to compute $\sigma(n)$ and measure the crossover where each wins.
 
-```{figure} ../_static/experiments/e004_hero.png
-:width: 70%
-:alt: Preview figure for E004
-```
++++
+**Run:** `make run EXP=e004 ARGS="--seed 1"`
+:::
 
-**Tags:** number-theory, numerics, optimization
+:::{grid-item-card} **E005** — Odd Perfect Number Filters
+:img-top: ../_static/experiments/e005_hero.png
+:link: e005
+:link-type: doc
+:class-card: sd-shadow-sm
 
-**One‑liner**  
-Benchmark two mathematically equivalent ways to compute σ(n) and measure the crossover where each wins.
+{bdg-primary}`number-theory` {bdg-secondary}`search` {bdg-info}`visualization`
 
-**Run**
-```bash
-make run EXP=e004 ARGS="--seed 1"
-```
-
-**Open**
-- Read the full experiment page: {doc}`e004`
-
----
-
-(e005-odd-perfect-constraints-filter-pipeline-gallery)=
-### {doc}`E005: Odd Perfect Numbers — Constraint Filter Pipeline <e005>`
-
-```{figure} ../_static/experiments/e005_hero.png
-:width: 70%
-:alt: Preview figure for E005
-```
-
-**Tags:** number-theory, search, visualization
-
-**One‑liner**  
 Apply necessary constraints for odd perfect numbers as staged filters and plot how fast the candidate pool collapses.
 
-**Run**
-```bash
-make run EXP=e005 ARGS="--seed 1"
-```
++++
+**Run:** `make run EXP=e005 ARGS="--seed 1"`
+:::
 
-**Open**
-- Read the full experiment page: {doc}`e005`
+:::{grid-item-card} **E006** — Near-Miss σ(n)≈2n
+:img-top: ../_static/experiments/e006_hero.png
+:link: e006
+:link-type: doc
+:class-card: sd-shadow-sm
 
----
+{bdg-primary}`number-theory` {bdg-secondary}`numerics` {bdg-info}`visualization`
 
-(e006-near-misses-to-perfection-gallery)=
-### {doc}`E006: Near Misses to Perfection <e006>`
+Search for integers whose $\sigma(n)$ is unusually close to $2n$ and visualize the best “near misses”.
 
-```{figure} ../_static/experiments/e006_hero.png
-:width: 70%
-:alt: Preview figure for E006
-```
++++
+**Run:** `make run EXP=e006 ARGS="--seed 1"`
+:::
 
-**Tags:** number-theory, numerics, visualization
-
-**One‑liner**  
-Search for integers whose σ(n) is unusually close to $2n$ and visualize the best “near misses”.
-
-**Run**
-```bash
-make run EXP=e006 ARGS="--seed 1"
-```
-
-**Open**
-- Read the full experiment page: {doc}`e006`
-
----
-
-## Recommended tags (use consistent spelling)
-
-- analysis
-- number-theory
-- probability
-- geometry
-- numerics
-- optimization
-- visualization
-
+::::
 
 ```{toctree}
 :hidden:
@@ -194,4 +106,3 @@ e003
 e004
 e005
 e006
-```
