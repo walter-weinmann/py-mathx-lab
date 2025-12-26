@@ -131,7 +131,12 @@ def _compile_pdf(paths: DocsPdfPaths, tex_name: str, quiet: bool) -> Path | None
     latexmk_cmd.append("-quiet" if quiet else "-verbose")
     latexmk_cmd.append(tex_name)
 
-    _run(cmd=latexmk_cmd, cwd=paths.latex_dir, quiet=quiet)
+    try:
+        _run(cmd=latexmk_cmd, cwd=paths.latex_dir, quiet=quiet)
+    except (subprocess.CalledProcessError, OSError) as e:
+        if not quiet:
+            print(f"Warning: PDF compilation failed: {e}")
+        return None
 
     pdf_path = paths.latex_dir / Path(tex_name).with_suffix(".pdf").name
     if not pdf_path.exists():
