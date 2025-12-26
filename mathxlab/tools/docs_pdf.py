@@ -102,7 +102,7 @@ def _build_latex(paths: DocsPdfPaths, quiet: bool) -> None:
 
 
 # ------------------------------------------------------------------------------
-def _compile_pdf(paths: DocsPdfPaths, tex_name: str, quiet: bool) -> Path:
+def _compile_pdf(paths: DocsPdfPaths, tex_name: str, quiet: bool) -> Path | None:
     """Compile the produced LaTeX into a PDF via latexmk.
 
     Args:
@@ -111,11 +111,16 @@ def _compile_pdf(paths: DocsPdfPaths, tex_name: str, quiet: bool) -> Path:
         quiet: If True, reduce latexmk output.
 
     Returns:
-        Path to the generated PDF.
+        Path to the generated PDF, or None if latexmk is missing.
 
     Raises:
         FileNotFoundError: If the expected PDF is not produced.
     """
+    if shutil.which("latexmk") is None:
+        if not quiet:
+            print("Warning: 'latexmk' not found. Skipping PDF compilation.")
+        return None
+
     latexmk_cmd = [
         "latexmk",
         "-xelatex",
@@ -189,10 +194,11 @@ def main() -> int:
 
     _build_latex(paths=paths, quiet=args.quiet)
     pdf_path = _compile_pdf(paths=paths, tex_name=args.tex, quiet=args.quiet)
-    dst = _copy_pdf_to_static(pdf_path=pdf_path, static_dir=paths.static_dir)
 
-    if not args.quiet:
-        print(f"PDF copied to: {dst}")
+    if pdf_path:
+        dst = _copy_pdf_to_static(pdf_path=pdf_path, static_dir=paths.static_dir)
+        if not args.quiet:
+            print(f"PDF copied to: {dst}")
 
     return 0
 
