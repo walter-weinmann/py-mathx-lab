@@ -1,220 +1,275 @@
-# Makefile handling
+# Makefile
 
-```bash
-uv run python --version
-```
+This repository ships a small, cross-platform `Makefile` that standardizes the common developer and CI workflows:
 
----
+- create/manage a local virtual environment via **uv**
+- install dependencies via **uv sync**
+- format/lint/typecheck/test
+- build Sphinx docs (HTML + optional PDF)
 
-## Dependency groups (pyproject.toml)
-
-Your `pyproject.toml` defines dependency sets:
-
-* Base runtime dependencies: `project.dependencies`
-* Dev tools: `project.optional-dependencies.dev` (e.g. `ruff`, `mypy`, `pytest`)
-* Docs tools: `project.optional-dependencies.docs` (e.g. `sphinx`, `sphinxcontrib-bibtex`)
-
-The Makefile maps to these groups like this:
-
-* `make install-all` → `uv sync` (base set from `uv.lock`)
-* `make install-dev` → `uv sync --extra dev`
-* `make install-docs` → `uv sync --extra docs`
-* `make install` → `uv pip install -e .` (editable install)
-
-> Recommendation: keep `uv.lock` committed. It is the reproducibility anchor for `uv sync`.
+The Makefile is designed to work on **Windows** (via `cmd.exe` + PowerShell for logging) and **POSIX** shells (Linux/macOS).
 
 ---
 
-## Run logs and experiment runner
+## Prerequisites
 
-The `run` target writes a per-run log file under:
+- **Python ≥ 3.14** (see `PYTHON_MIN` in the Makefile)
+- **uv** installed and on `PATH`
+- **GNU make** available (`make`)
 
-- `out/<exp>/logs/run_<exp>_YYYYMMDD_HHMMSS.log`
+Notes:
 
-On Windows, the Makefile calls a small PowerShell helper script (`scripts/run_experiment.ps1`) so that:
+- The virtual environment is created in `.venv/`.
+- On Windows with multi-drive setups, the Makefile exports `UV_LINK_MODE=copy` to avoid uv hardlink warnings.
 
-- the Makefile stays readable,
-- logs are written as UTF-8,
-- both the dependency sync (`uv sync --extra dev`) and the experiment output end up in the same log.
+---
 
-To enable DEBUG output **only** from this repository’s code (`mathxlab.*`), run with `V=1`:
+## Quick start
 
-```bash
-make run EXP=e001 ARGS="--seed 1" V=1
-```
-
-
-## Common workflows
-
-### First-time setup (dev machine)
+Create the venv and install dev dependencies:
 
 ```bash
-make uv-check
-make python-check
-make venv
 make install-dev
-```
+````
 
-### Run checks locally (like CI)
+Run all CI-style checks locally:
 
 ```bash
 make final
 ```
 
-### Build docs only
+Build docs:
 
 ```bash
 make docs
 ```
 
-### Run an experiment
-
-```bash
-make run EXP=e001 ARGS="--seed 1"
-```
-
-Use `V=1` to enable DEBUG logs from `mathxlab.*` only:
-
-```bash
-make run EXP=e001 ARGS="--seed 1" V=1
-```
-
 ---
 
-## Target overview (what each target does)
+## Common workflows
 
-### Environment and installs
+### 1) Create/update the virtual environment
 
-* `uv-check`
-  Verifies that `uv` is installed.
-
-* `python-check`
-  Verifies that your current `python` is at least the configured minimum version.
-
-* `venv`
-  Creates/updates `.venv` using uv (`uv venv --python <PYTHON_MIN>`).
-
-* `install-all`
-  Installs base dependencies from `uv.lock` (`uv sync`).
-
-* `install-dev`
-  Installs base + dev tools (`uv sync --extra dev`).
-
-* `install-docs`
-  Installs base + docs tools (`uv sync --extra docs`).
-
-* `install`
-  Editable install of the package (`uv pip install -e .`).
-
-### Quality / verification
-
-* `format`
-  Runs `ruff format` (in CI mode `CI=1`, runs `ruff format --check`).
-
-* `lint`
-  Runs `ruff check`.
-
-* `mypy`
-  Runs `mypy .`.
-
-* `pytest`
-  Runs tests (`pytest -q`).
-
-### Documentation
-
-* `docs`
-  Builds HTML docs with Sphinx into `docs/_build/html`.
-
-* `docs-clean`
-  Removes `docs/_build`.
-
-### Cleanup
-
-* `clean`
-  Removes caches/build artifacts (`.mypy_cache`, `.pytest_cache`, `.ruff_cache`, `dist`, `build`, `docs/_build`, etc.).
-
-* `clean-venv`
-  Removes `.venv`.
-
-### Aggregation
-
-* `final`
-  Runs: `format + lint + mypy + pytest + docs`.
-
-> Note: `format/lint/mypy/pytest` depend on dev tools; `docs` depends on docs tools.
-> The Makefile ensures this by making those targets run after `install-dev` / `install-docs`.
-
----
-
-## Troubleshooting
-
-### 1) `Need Python >= 3.14.0, got 3.14`
-
-This happens if the check compares incompatible types (e.g. a float like `3.14` vs `(3, 14)`).
-The correct approach is to parse the version string into integer `(major, minor)` and compare that.
-
-The Makefile uses this correct pattern in `python-check`:
-
-```make
-@python -c "import sys; req='$(PYTHON_MIN)'.split('.'); req=(int(req[0]), int(req[1])); v=sys.version_info; assert v[:2] >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"
+```bash
+make venv
 ```
 
-### 2) `error: Failed to spawn: ruff (program not found)`
+Recreate it from scratch:
 
-`ruff` is a **dev extra**. Fix:
+```bash
+make venv-recreate
+```
+
+Remove it:
+
+```bash
+make clean-venv
+```
+
+### 2) Install dependencies
+
+Editable install of the package:
+
+```bash
+make install
+```
+
+Sync default dependencies:
+
+```bash
+make install-all
+```
+
+Sync default + dev extras:
 
 ```bash
 make install-dev
 ```
 
-Then rerun:
+Sync default + docs extras:
+
+```bash
+make install-docs
+```
+
+### 3) Quality gates
+
+Apply autofixes and format (local dev helper):
+
+```bash
+make fmt
+```
+
+Check formatting only (CI-style):
 
 ```bash
 make format
-# or
+```
+
+Lint only (CI-style):
+
+```bash
+make lint
+```
+
+Typecheck:
+
+```bash
+make mypy
+```
+
+Run tests:
+
+```bash
+make pytest
+```
+
+Run *everything* (what CI should run):
+
+```bash
 make final
 ```
 
-### 3) `Failed to hardlink files; falling back to full copy`
+### 4) Run an experiment
 
-This is a performance warning from uv (common on Windows when cache and target are on different filesystems).
-You can silence it by forcing copy mode:
+Run experiment `e001` and write output into `out/e001/`:
 
-* PowerShell:
-
-```powershell
-$env:UV_LINK_MODE="copy"
+```bash
+make run EXP=e001
 ```
 
-* cmd.exe:
+Pass extra CLI args to the experiment via `ARGS`:
 
-```bat
-set UV_LINK_MODE=copy
+```bash
+make run EXP=e001 ARGS="--seed 123 --max-n 20000"
 ```
 
-(Optionally, the Makefile can export `UV_LINK_MODE=copy` by default.)
+Logging:
 
-### 4) CRLF/LF warnings on Windows
+* logs are written to `out/<EXP>/logs/run_<EXP>_<timestamp>.log`
+* Windows uses PowerShell `Tee-Object`, POSIX uses `tee`
 
-Example:
+### 5) Documentation
 
+Build HTML + PDF:
+
+```bash
+make docs
 ```
-warning: CRLF will be replaced by LF ...
+
+Build only HTML:
+
+```bash
+make docs-html
 ```
 
-This is expected when `.gitattributes` enforces LF for consistency.
+Build only PDF:
+
+```bash
+make docs-pdf
+```
+
+Clean docs output:
+
+```bash
+make docs-clean
+```
+
+Outputs:
+
+* HTML: `docs/_build/html/`
+* LaTeX build dir: `docs/_build/latex/`
+* PDF generation is handled by `mathxlab/tools/docs_pdf.py`
 
 ---
 
-## CI notes
+## Targets reference
 
-* In CI, use:
+| Target          | What it does                                   |
+| --------------- | ---------------------------------------------- |
+| `help`          | Print a short help text                        |
+| `venv`          | Create or reuse `.venv` (checks Python and uv) |
+| `venv-recreate` | Remove and recreate `.venv`                    |
+| `clean-venv`    | Remove `.venv`                                 |
+| `install`       | `uv pip install -e .`                          |
+| `install-all`   | `uv sync` (default deps)                       |
+| `install-dev`   | `uv sync --extra dev`                          |
+| `install-docs`  | `uv sync --extra docs`                         |
+| `fmt`           | Apply `ruff check --fix` + `ruff format`       |
+| `format`        | Check formatting (`ruff format --check`)       |
+| `lint`          | Check lint (`ruff check`)                      |
+| `mypy`          | Run `mypy .`                                   |
+| `pytest`        | Run tests (`pytest -q`)                        |
+| `run`           | Run an experiment (`EXP=e001`) with logging    |
+| `docs-deps`     | Ensure docs dependencies are installed         |
+| `docs-html`     | Build Sphinx HTML docs                         |
+| `docs-pdf`      | Build PDF via `mathxlab/tools/docs_pdf.py`     |
+| `docs-clean`    | Remove `docs/_build/`                          |
+| `docs`          | `docs-html` + `docs-pdf`                       |
+| `clean`         | Remove caches/build artifacts                  |
+| `final`         | `format` + `lint` + `mypy` + `pytest` + `docs` |
+
+---
+
+## Variables you’ll likely use
+
+* `EXP` (required for `make run`)
+  Example: `make run EXP=e003`
+
+* `ARGS` (optional extra CLI args passed to the experiment)
+  Example: `make run EXP=e003 ARGS="--out out/e003 --max-n 100000"`
+
+---
+
+## Implementation notes
+
+### Why `final` is check-only
+
+`final` is meant to mimic CI behavior: it must never silently modify code. That’s why:
+
+* `format` uses `ruff format --check`
+* `lint` uses `ruff check` (no `--fix`)
+
+Use `fmt` locally to apply fixes.
+
+### Docs runner extras
+
+The Makefile defines:
+
+* `UV_RUN_DEV  = uv run --extra dev`
+* `UV_RUN_DOCS = uv run --extra docs`
+
+`docs-deps` installs the `docs` extra via `uv sync --extra docs`.
+
+If you ever notice docs builds pulling in/removing unexpected packages, the most stable pattern is:
+
+* run Sphinx via `$(UV_RUN_DOCS)` (docs extra), not via the dev extra
+
+(Your Makefile can enforce that by using `$(UV_RUN_DOCS)` in `docs-html` as well.)
+
+---
+
+## Troubleshooting
+
+### “uv is not installed”
+
+Run:
 
 ```bash
-CI=1 make final
+make uv-check
 ```
 
-This makes `format` run in check mode.
+and install uv if needed.
 
-* Ensure CI installs Python 3.14+ and has `uv` available.
-* Keep `uv.lock` committed so `uv sync` is deterministic.
+### “Need Python >= …”
+
+Update your Python installation or lower `PYTHON_MIN` in the Makefile (only if the project supports it).
+
+### Docs look outdated
+
+Clean and rebuild:
+
+```bash
+make docs-clean
+make docs
+```
