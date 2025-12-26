@@ -1,104 +1,146 @@
-# Experiments
+# Experiments Gallery
 
-This page is the public gallery of *mathematical experiments* in this repository.
+A compact, image-first overview of the experiments in **py-mathx-lab**.
 
-If you are new to the idea of experimental mathematics, start here: {doc}`../mathematical-experimentation`.
-
-## Gallery
+:::{only} html
 
 ::::{grid} 1 2 3 3
 :gutter: 2
-:class-container: sd-pb-2
+:class-container: mx-gallery-grid
 
-:::{grid-item-card} **E001** — Taylor Error Landscapes
-:img-top: ../_static/experiments/e001_hero.png
+:::{grid-item-card} E001 — Taylor error landscapes
 :link: e001
-:link-type: doc
-:class-card: sd-shadow-sm
+:img-top: ../_static/experiments/e001_hero.png
 
-{bdg-primary}`analysis` {bdg-secondary}`numerics` {bdg-info}`visualization`
+Truncation error, convergence behavior, and error landscapes for Taylor approximations.
 
-Visualize where Taylor polynomials approximate $\sin(x)$ well (and where they don’t) by plotting error landscapes over $(n, x_0, x)$.
-
-+++
-**Run:** `make run EXP=e001 ARGS="--seed 1"`
+{bdg-primary}`analysis` {bdg-secondary}`taylor`
 :::
 
-:::{grid-item-card} **E002** — Even Perfect Numbers
-:img-top: ../_static/experiments/e002_hero.png
+:::{grid-item-card} E002 — Perfect numbers
 :link: e002
-:link-type: doc
-:class-card: sd-shadow-sm
+:img-top: ../_static/experiments/e002_hero.png
 
-{bdg-primary}`number-theory` {bdg-info}`visualization` {bdg-secondary}`numerics`
+Explore perfect numbers via the sum-of-divisors function and the Euclid–Euler characterization.
 
-Generate even perfect numbers from Mersenne exponents and visualize how digit count and bit length explode with $p$.
-
-+++
-**Run:** `make run EXP=e002 ARGS="--seed 1"`
+{bdg-primary}`number theory` {bdg-secondary}`perfect`
 :::
 
-:::{grid-item-card} **E003** — Abundancy Landscape
-:img-top: ../_static/experiments/e003_hero.png
+:::{grid-item-card} E003 — Abundancy index
 :link: e003
-:link-type: doc
-:class-card: sd-shadow-sm
+:img-top: ../_static/experiments/e003_hero.png
 
-{bdg-primary}`number-theory` {bdg-secondary}`numerics` {bdg-info}`visualization`
+Study the abundancy index (σ(n)/n) and how it separates number classes.
 
-Compute $\sigma(1..N)$ with a divisor-sum sieve and map the landscape of $I(n)=\sigma(n)/n$, highlighting $I(n)=2$.
-
-+++
-**Run:** `make run EXP=e003 ARGS="--seed 1"`
+{bdg-primary}`number theory` {bdg-secondary}`classification`
 :::
 
-:::{grid-item-card} **E004** — σ(n) Benchmark
-:img-top: ../_static/experiments/e004_hero.png
+:::{grid-item-card} E004 — Sum-of-divisors (sigma)
 :link: e004
-:link-type: doc
-:class-card: sd-shadow-sm
+:img-top: ../_static/experiments/e004_hero.png
 
-{bdg-primary}`number-theory` {bdg-secondary}`optimization` {bdg-info}`numerics`
+Compute σ(n), test multiplicativity, and explore divisor-sum structure.
 
-Benchmark two mathematically equivalent ways to compute $\sigma(n)$ and measure the crossover where each wins.
-
-+++
-**Run:** `make run EXP=e004 ARGS="--seed 1"`
+{bdg-primary}`number theory` {bdg-secondary}`sigma`
 :::
 
-:::{grid-item-card} **E005** — Odd Perfect Number Filters
-:img-top: ../_static/experiments/e005_hero.png
+:::{grid-item-card} E005 — Odd perfect numbers
 :link: e005
-:link-type: doc
-:class-card: sd-shadow-sm
+:img-top: ../_static/experiments/e005_hero.png
 
-{bdg-primary}`number-theory` {bdg-secondary}`search` {bdg-info}`visualization`
+Constraints, known results, and computational checks related to odd perfect numbers.
 
-Apply necessary constraints for odd perfect numbers as staged filters and plot how fast the candidate pool collapses.
-
-+++
-**Run:** `make run EXP=e005 ARGS="--seed 1"`
+{bdg-primary}`number theory` {bdg-secondary}`open problems`
 :::
 
-:::{grid-item-card} **E006** — Near-Miss σ(n)≈2n
-:img-top: ../_static/experiments/e006_hero.png
+:::{grid-item-card} E006 — Near-perfect numbers
 :link: e006
-:link-type: doc
-:class-card: sd-shadow-sm
+:img-top: ../_static/experiments/e006_hero.png
 
-{bdg-primary}`number-theory` {bdg-secondary}`numerics` {bdg-info}`visualization`
+Definitions, examples, and experiments around near-perfect (and related) integers.
 
-Search for integers whose $\sigma(n)$ is unusually close to $2n$ and visualize the best “near misses”.
-
-+++
-**Run:** `make run EXP=e006 ARGS="--seed 1"`
+{bdg-primary}`number theory` {bdg-secondary}`exploration`
 :::
 
 ::::
 
+:::{list-table} Index
+:header-rows: 1
+:widths: 10 30 20 40
+
+* - ID
+  - Title
+  - Tags
+  - Summary
+* - {doc}`E001 <e001>`
+  - Taylor error landscapes
+  - analysis, taylor
+  - Truncation error, convergence behavior, and error landscapes for Taylor approximations.
+* - {doc}`E002 <e002>`
+  - Perfect numbers
+  - number theory, perfect
+  - Explore perfect numbers via the sum-of-divisors function and the Euclid–Euler characterization.
+* - {doc}`E003 <e003>`
+  - Abundancy index
+  - number theory, classification
+  - Study the abundancy index (σ(n)/n) and how it separates number classes.
+* - {doc}`E004 <e004>`
+  - Sum-of-divisors (sigma)
+  - number theory, sigma
+  - Compute σ(n), test multiplicativity, and explore divisor-sum structure.
+* - {doc}`E005 <e005>`
+  - Odd perfect numbers
+  - number theory, open problems
+  - Constraints, known results, and computational checks related to odd perfect numbers.
+* - {doc}`E006 <e006>`
+  - Near-perfect numbers
+  - number theory, exploration
+  - Definitions, examples, and experiments around near-perfect (and related) integers.
+:::
+
+:::
+
+:::{only} latex
+
+:::{list-table} Experiments (overview)
+:header-rows: 1
+:widths: 10 30 20 40
+
+* - ID
+  - Title
+  - Tags
+  - Summary
+* - E001
+  - Taylor error landscapes
+  - analysis, taylor
+  - Truncation error, convergence behavior, and error landscapes for Taylor approximations.
+* - E002
+  - Perfect numbers
+  - number theory, perfect
+  - Explore perfect numbers via the sum-of-divisors function and the Euclid–Euler characterization.
+* - E003
+  - Abundancy index
+  - number theory, classification
+  - Study the abundancy index (σ(n)/n) and how it separates number classes.
+* - E004
+  - Sum-of-divisors (sigma)
+  - number theory, sigma
+  - Compute σ(n), test multiplicativity, and explore divisor-sum structure.
+* - E005
+  - Odd perfect numbers
+  - number theory, open problems
+  - Constraints, known results, and computational checks related to odd perfect numbers.
+* - E006
+  - Near-perfect numbers
+  - number theory, exploration
+  - Definitions, examples, and experiments around near-perfect (and related) integers.
+:::
+
+:::
+
 ```{toctree}
-:hidden:
 :maxdepth: 1
+:hidden:
 
 e001
 e002

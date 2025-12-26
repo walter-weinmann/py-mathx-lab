@@ -91,8 +91,13 @@ bibtex_bibfiles = ["refs.bib"]
 
 # -- Options for HTML output -------------------------------------------------
 
-html_theme = "furo"
+html_css_files = [
+    "gallery.css",
+]
+
 html_static_path = ["_static"]
+
+html_theme = "furo"
 
 # Optional: nicer browser title
 html_title = "py-mathx-lab documentation"
@@ -116,7 +121,7 @@ myst_dmath_double_inline = True
 # -- Options for LaTeX / PDF output -----------------------------------------
 
 # Produce a stable PDF filename when running the LaTeX builder.
-latex_engine = "pdflatex"
+latex_engine = "xelatex"
 
 latex_documents = [
     (
@@ -132,5 +137,10 @@ latex_documents = [
 latex_elements = {
     "papersize": "a4paper",
     "pointsize": "10pt",
-    "fontpkg": r"\usepackage{lmodern}",
+    "fontpkg": r"""
+    \usepackage{fontspec}
+    \setmainfont{Latin Modern Roman}
+    \setsansfont{Latin Modern Sans}
+    \setmonofont{Latin Modern Mono}
+    """,
 }

@@ -1,0 +1,64 @@
+/* Experiments gallery: compact, image-first, consistent cards */
+
+.mx-gallery-grid {
+  margin-top: 1rem;
+}
+
+/* Card container */
+.mx-gallery-grid .sd-card {
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+
+/* Hover effect */
+.mx-gallery-grid .sd-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Image area (top) */
+.mx-gallery-grid .sd-card-img-top {
+  padding: 0;
+}
+
+.mx-gallery-grid .sd-card-img-top img {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+/* Title + body typography */
+.mx-gallery-grid .sd-card-header {
+  padding: 0.85rem 1rem 0.25rem 1rem;
+}
+
+.mx-gallery-grid .sd-card-header p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+/* Body: keep it compact */
+.mx-gallery-grid .sd-card-body {
+  padding: 0.25rem 1rem 0.75rem 1rem;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+/* Footer badges: align + spacing */
+.mx-gallery-grid .sd-card-footer {
+  padding: 0.5rem 1rem 0.9rem 1rem;
+}
+
+.mx-gallery-grid .sd-card-footer .sd-badge {
+  margin-right: 0.35rem;
+  margin-bottom: 0.25rem;
+}
+
+/* On very narrow screens: slightly shorter images */
+@media (max-width: 600px) {
+  .mx-gallery-grid .sd-card-img-top img {
+    height: 160px;
+  }
+}
