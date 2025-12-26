@@ -10,6 +10,7 @@ Small, reproducible math experiments implemented in Python.
 
 - {doc}`mathematical-experimentation` - what “experiments” in mathematics mean and how to read this repo
 - {doc}`experiments/experiments_gallery` - experiment gallery (IDs, tags, how to run)
+- {doc}`tags` - central directory of valid tags for experiments
 - {doc}`background` - mathematical background for experiments
 - {doc}`getting-started` - install, setup, and run your first experiment
 - {doc}`development` - Makefile workflow, CI, coding conventions
@@ -27,7 +28,7 @@ make run EXP=e001 ARGS="--out out/e001 --seed 1"
 
 ## Latest
 
-* **E001** - {ref}`e001-taylor-error-landscapes-gallery`
+* * **E006** - {doc}`experiments/e006`
 
 ---
 
@@ -36,6 +37,7 @@ make run EXP=e001 ARGS="--out out/e001 --seed 1"
 :maxdepth: 2
 
 mathematical-experimentation
+tags
 experiments/experiments_gallery
 background
 getting-started

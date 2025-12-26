@@ -8,7 +8,7 @@
 /.idea/
 /.pytest_tmp/
 /__ARCHIVE__/
-/docs/_build/html/
+/docs/_build/
 /makefile.pdf
 /out/
 __pycache__/
