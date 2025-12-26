@@ -116,4 +116,4 @@ convergents, partial quotient statistics, and periodicity phenomena ({cite:p}`bo
 
 ---
 
-**Next steps:** start with {doc}`getting-started`, then browse the {doc}`experiments/experiments_gallery` gallery, and use the tags to find topics.
+**Next steps:** start with {doc}`getting-started`, browse the {doc}`tags` directory, and then browse the {doc}`experiments/experiments_gallery` gallery.
