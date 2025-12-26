@@ -1,81 +1,107 @@
-/* Experiments gallery: compact, image-first, consistent cards */
-
-.mx-gallery-grid {
-  margin-top: 1rem;
+/* Gallery grid layout */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
 }
 
-/* Card container */
-.mx-gallery-grid .sd-card {
-  border-radius: 16px;
+/* Card styling */
+.gallery-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-background-primary, #fff);
+  border: 1px solid var(--color-background-border, #e0e0e0);
+  border-radius: 12px;
   overflow: hidden;
-  transition: transform 140ms ease, box-shadow 140ms ease;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 150ms ease, box-shadow 150ms ease;
 }
 
-/* Hover effect */
-.mx-gallery-grid .sd-card:hover {
-  transform: translateY(-3px);
+.gallery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
 }
 
-/* Keep Sphinx-Design gallery cards from exploding due to large hero images. */
-.sd-card-img-top,
-.sd-card-img-top img,
-img.sd-card-img-top {
+/* Card image */
+.gallery-card img {
   width: 100%;
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Optional: enforce consistent tile height (crop nicely). */
-.sd-card-img-top img,
-img.sd-card-img-top {
-  height: 180px;
+  height: 160px;
   object-fit: cover;
+  background: var(--color-background-secondary, #f5f5f5);
 }
 
-/* Image area (top) */
-.mx-gallery-grid .sd-card-img-top {
-  padding: 0;
+/* Card body */
+.gallery-card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1rem;
 }
 
-.mx-gallery-grid .sd-card-img-top img {
-  display: block;
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
+.gallery-card-body h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-foreground-primary, #333);
 }
 
-/* Title + body typography */
-.mx-gallery-grid .sd-card-header {
-  padding: 0.85rem 1rem 0.25rem 1rem;
-}
-
-.mx-gallery-grid .sd-card-header p {
+.gallery-card-body p {
   margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.2;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-foreground-secondary, #666);
+  flex-grow: 1;
 }
 
-/* Body: keep it compact */
-.mx-gallery-grid .sd-card-body {
-  padding: 0.25rem 1rem 0.75rem 1rem;
-  font-size: 0.95rem;
-  line-height: 1.35;
+/* Tags */
+.gallery-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
 }
 
-/* Footer badges: align + spacing */
-.mx-gallery-grid .sd-card-footer {
-  padding: 0.5rem 1rem 0.9rem 1rem;
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 4px;
 }
 
-.mx-gallery-grid .sd-card-footer .sd-badge {
-  margin-right: 0.35rem;
-  margin-bottom: 0.25rem;
+.tag-primary {
+  background: #0d6efd;
+  color: #fff;
 }
 
-/* On very narrow screens: slightly shorter images */
+.tag-secondary {
+  background: #6c757d;
+  color: #fff;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .gallery-card {
+    background: var(--color-background-primary, #1a1a1a);
+    border-color: var(--color-background-border, #333);
+  }
+
+  .gallery-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Responsive adjustments */
 @media (max-width: 600px) {
-  .mx-gallery-grid .sd-card-img-top img {
-    height: 160px;
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-card img {
+    height: 140px;
   }
 }

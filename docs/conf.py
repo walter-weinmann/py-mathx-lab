@@ -89,6 +89,9 @@ myst_heading_anchors = 3
 # BibTeX settings
 bibtex_bibfiles = ["refs.bib"]
 
+# Suppress known sphinx-design warnings that don't affect rendering
+suppress_warnings = ["design.grid"]
+
 # -- Options for HTML output -------------------------------------------------
 
 html_css_files = [
