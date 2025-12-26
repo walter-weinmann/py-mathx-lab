@@ -1,69 +1,36 @@
-name: Docs (HTML + PDF, deploy Pages)
+name: Docs
 
 on:
   push:
     branches: ["main"]
-    paths:
-      - "docs/**"
-      - "pyproject.toml"
-      - "uv.lock"
-      - "Makefile"
-      - ".github/workflows/docs.yml"
-  pull_request:
-    branches: ["main"]
-    paths:
-      - "docs/**"
-      - "pyproject.toml"
-      - "uv.lock"
-      - "Makefile"
-      - ".github/workflows/docs.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
 
 concurrency:
-  group: pages
+  group: "pages"
   cancel-in-progress: true
 
 jobs:
-  build-docs:
-    name: Build docs (HTML + PDF)
-    strategy:
-      fail-fast: false
-      matrix:
-        os: ["ubuntu-latest", "windows-latest"]
-    runs-on: ${{ matrix.os }}
+  build:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install GNU Make (Windows)
-        if: runner.os == 'Windows'
-        run: choco install make -y
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.14"
+          python-version: "3.13"
 
-      - name: Set up uv
-        uses: astral-sh/setup-uv@v5
-        with:
-          enable-cache: true
-
-      - name: Install dependencies (docs)
-        run: |
-          uv sync --frozen --extra docs
-
-      - name: Build HTML docs
-        run: |
-          make docs
-
-      # PDF build is Linux-only (requires TeX toolchain).
-      - name: Install TeX toolchain (Ubuntu only)
-        if: runner.os == 'Linux'
+      - name: Install LaTeX toolchain (for PDF)
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
@@ -71,69 +38,26 @@ jobs:
             texlive-latex-recommended \
             texlive-latex-extra \
             texlive-fonts-recommended \
-            texlive-fonts-extra \
-            lmodern
+            texlive-fonts-extra
           latexmk -v
 
-      - name: Build PDF docs (Ubuntu only)
-        if: runner.os == 'Linux'
+      - name: Build docs (HTML + PDF)
         run: |
-          # Build LaTeX + PDF via Sphinx.
-          uv run sphinx-build -M latexpdf docs docs/_build
+          make docs
 
-      - name: Copy PDF into HTML site (Ubuntu only)
-        if: runner.os == 'Linux'
-        run: |
-          # Sphinx decides the PDF filename based on latex_documents. Be robust and pick the first PDF.
-          PDF_PATH="$(ls -1 docs/_build/latex/*.pdf | head -n 1)"
-          echo "Found PDF: ${PDF_PATH}"
-          mkdir -p docs/_build/html/_static/pdf
-          cp -f "${PDF_PATH}" "docs/_build/html/_static/pdf/py-mathx-lab.pdf"
-
-      - name: Verify PDF present in site (Ubuntu only)
-        if: runner.os == 'Linux'
-        run: |
-          test -f docs/_build/html/_static/pdf/py-mathx-lab.pdf
-          ls -lah docs/_build/html/_static/pdf
-
-      - name: Upload HTML artifact (all OS)
-        uses: actions/upload-artifact@v4
-        with:
-          name: docs-html-${{ matrix.os }}
-          path: docs/_build/html
-
-      - name: Upload PDF artifact (Ubuntu only)
-        if: runner.os == 'Linux'
-        uses: actions/upload-artifact@v4
-        with:
-          name: docs-pdf
-          path: docs/_build/html/_static/pdf/py-mathx-lab.pdf
-
-      - name: Upload Pages artifact (Ubuntu only)
-        if: runner.os == 'Linux'
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs/_build/html
 
-  deploy-pages:
-    name: Deploy to GitHub Pages
-    needs: build-docs
+  deploy:
+    needs: build
     runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-
-    permissions:
-      pages: write
-      id-token: write
-      contents: read
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

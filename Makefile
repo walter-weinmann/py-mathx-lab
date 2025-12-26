@@ -5,6 +5,9 @@
         clean-venv \
         docs \
         docs-clean \
+        docs-deps \
+        docs-html \
+        docs-pdf \
         final \
         fmt \
         format \
@@ -25,6 +28,10 @@
 PYTHON_MIN := 3.14
 CLEAN_DIRS := .mypy_cache .pytest_cache .ruff_cache build dist docs/_build
 VENV_DIR   := .venv
+
+DOCS_DIR        := docs
+DOCS_BUILD_DIR  := $(DOCS_DIR)/_build
+DOCS_HTML_DIR   := $(DOCS_BUILD_DIR)/html
 
 UV      ?= uv
 UV_RUN   = $(UV) run
@@ -91,11 +98,22 @@ clean:
 clean-venv:
 	$(call rm_venv)
 
-docs: install-docs
-	$(UV_RUN_DOCS) python -m sphinx -b html docs docs/_build/html
+docs: docs-html docs-pdf
 
 docs-clean:
-	$(call rmdir_if_exists,docs/_build)
+	$(call rmdir_if_exists,$(DOCS_BUILD_DIR))
+
+docs-deps:
+	@echo Syncing docs dependencies...
+	@uv sync --all-extras
+
+docs-html: docs-deps
+	@echo Building HTML docs...
+	@$(UV_RUN_DOCS) python -m sphinx -b html -q $(DOCS_DIR) $(DOCS_HTML_DIR)
+
+docs-pdf: docs-deps
+	@echo Building PDF docs (optional; requires LaTeX toolchain + latexmk)...
+	@$(UV_RUN_DOCS) python -m mathxlab.tools.docs_pdf --docs-dir "$(DOCS_DIR)" --build-dir "$(DOCS_BUILD_DIR)" --quiet
 
 # CI should be strict and never "fix" silently; keep final check-only.
 final: format lint mypy pytest docs
