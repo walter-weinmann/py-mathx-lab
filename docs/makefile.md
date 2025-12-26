@@ -97,6 +97,18 @@ gallery and documentation can remain consistent.
 
 ---
 
+## Common workflows
+
+| Task                   | Command                     |
+| ---------------------- | --------------------------- |
+| Complete quality check | `make final`                |
+| Build HTML docs        | `make docs-html`            |
+| Run tests              | `make test`                 |
+| Clean all artifacts    | `make clean`                |
+| Reset environment      | `make clean && make venv`   |
+
+---
+
 ## Target overview (what each target does)
 
 > The exact set of targets is defined in the repository `Makefile`.
