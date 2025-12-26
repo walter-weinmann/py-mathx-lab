@@ -5,7 +5,7 @@
 :alt: Preview figure for EXXX
 ```
 
-**Tags:** <tag1>, <tag2>, <tag3>
+**Tags:** <tag1>, <tag2>, <tag3> (see {doc}`../tags` for valid tags)
 
 ## Goal
 
