@@ -27,7 +27,7 @@ make run EXP=e001 ARGS="--out out/e001 --seed 1"
 
 ## Latest
 
-* **E001** - {ref}`e001-taylor-error-landscapes-gallery`
+* * **E001** - {doc}`experiments/e001`
 
 ---
 
