@@ -148,3 +148,10 @@ latex_elements = {
     "pointsize": "10pt",
     "preamble": r"\usepackage{xurl}",
 }
+
+mathjax3_config = {
+    "tex": {
+        "inlineMath": [["$", "$"], ["\\(", "\\)"]],
+        "displayMath": [["$$", "$$"], ["\\[", "\\]"]],
+    }
+}

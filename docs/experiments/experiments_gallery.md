@@ -91,7 +91,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     <img src="../_static/experiments/e007_hero.png" alt="E007 preview">
     <div class="gallery-card-body">
       <h3>E007 — Mersenne growth</h3>
-      <p>Bits and digits of $M_n = 2^n - 1$: fast size estimates for planning feasible bounds.</p>
+      <p>Bits and digits of M<sub>n</sub> = 2<sup>n</sup> − 1: fast size estimates for planning feasible bounds.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
         <span class="tag tag-primary">quantitative-exploration</span>
@@ -119,7 +119,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     <img src="../_static/experiments/e009_hero.png" alt="E009 preview">
     <div class="gallery-card-body">
       <h3>E009 — Small-factor scan</h3>
-      <p>Pre-sieve $M_p$ candidates by finding small structured factors before expensive primality tests.</p>
+      <p>Pre-sieve M<sub>p</sub> candidates by finding small structured factors before expensive primality tests.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
         <span class="tag tag-primary">quantitative-exploration</span>
