@@ -104,6 +104,12 @@ docs-clean:
 	$(call rmdir_if_exists,$(DOCS_BUILD_DIR))
 
 docs-deps:
+ifeq ($(IS_WINDOWS),1)
+	@if exist "$(VENV_DIR)\lib64" ( \
+		echo Detected stale lib64 symlink, cleaning to avoid Access Denied... & \
+		rmdir /s /q "$(VENV_DIR)\lib64" \
+	)
+endif
 	@echo Syncing docs dependencies...
 	@uv sync --all-extras
 
