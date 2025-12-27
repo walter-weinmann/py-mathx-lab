@@ -1,4 +1,3 @@
-
 # Experiments Gallery
 
 A compact, image-first overview of the experiments in **py-mathx-lab**.
@@ -88,6 +87,76 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
+  <a href="e007.html" class="gallery-card">
+    <img src="../_static/experiments/e007_hero.png" alt="E007 preview">
+    <div class="gallery-card-body">
+      <h3>E007 — Mersenne growth</h3>
+      <p>Bits and digits of $M_n = 2^n - 1$: fast size estimates for planning feasible bounds.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">mersenne</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="e008.html" class="gallery-card">
+    <img src="../_static/experiments/e008_hero.png" alt="E008 preview">
+    <div class="gallery-card-body">
+      <h3>E008 — Lucas–Lehmer scan</h3>
+      <p>Scan prime exponents with the Lucas–Lehmer test and visualize scaling and outcomes.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">lucas-lehmer</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="e009.html" class="gallery-card">
+    <img src="../_static/experiments/e009_hero.png" alt="E009 preview">
+    <div class="gallery-card-body">
+      <h3>E009 — Small-factor scan</h3>
+      <p>Pre-sieve $M_p$ candidates by finding small structured factors before expensive primality tests.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">sieving</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="e010.html" class="gallery-card">
+    <img src="../_static/experiments/e010_hero.png" alt="E010 preview">
+    <div class="gallery-card-body">
+      <h3>E010 — Perfect numbers from Mersenne primes</h3>
+      <p>Generate even perfect numbers via Euclid–Euler and visualize growth and validation checks.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">perfect</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="e011.html" class="gallery-card">
+    <img src="../_static/experiments/e011_hero.png" alt="E011 preview">
+    <div class="gallery-card-body">
+      <h3>E011 — Heuristic rarity</h3>
+      <p>Compare observed Mersenne-prime counts to a simple heuristic expectation curve.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">heuristics</span>
+      </div>
+    </div>
+  </a>
+
 </div>
 
 :::{toctree}
@@ -100,4 +169,9 @@ e003
 e004
 e005
 e006
+e007
+e008
+e009
+e010
+e011
 :::
