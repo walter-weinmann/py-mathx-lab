@@ -138,12 +138,13 @@ latex_documents = [
 
 # Keep the PDF readable and avoid excessive wide tables.
 latex_elements = {
-    "papersize": "a4paper",
-    "pointsize": "10pt",
     "fontpkg": r"""
     \usepackage{fontspec}
     \setmainfont{Latin Modern Roman}
     \setsansfont{Latin Modern Sans}
     \setmonofont{Latin Modern Mono}
     """,
+    "papersize": "a4paper",
+    "pointsize": "10pt",
+    "preamble": r"\usepackage{xurl}",
 }
