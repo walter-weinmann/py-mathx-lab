@@ -15,9 +15,9 @@ Keep it short (1–2 pages):
 
 Provide the essential definitions with LaTeX:
 
-\[
+$$
 \text{definition here}
-\]
+$$
 
 ## Key formula / theorem (optional)
 
