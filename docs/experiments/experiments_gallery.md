@@ -10,7 +10,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
   <div class="gallery-meta">
     <span id="gallery-count" class="gallery-count">Showing …</span>
   </div>
+  <details class="gallery-tags" id="gallery-tags">
+  <summary id="gallery-tags-summary" class="gallery-tags-summary">Tags</summary>
   <div id="gallery-tag-cloud" class="gallery-tag-cloud" aria-label="Tag filters"></div>
+</details>
 </div>
 
 <noscript>
@@ -51,11 +54,11 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e003.html" class="gallery-card" data-title="E003 — Abundancy index" data-desc="Study the abundancy index σ(n)/n and how it separates number classes." data-tags="number-theory,quantitative-exploration,visualization,classification">
+  <a href="e003.html" class="gallery-card" data-title="E003 — Abundancy index" data-desc="Study the abundancy index $\sigma(n)/n$ and how it separates number classes." data-tags="number-theory,quantitative-exploration,visualization,classification">
     <img src="../_static/experiments/e003_hero.png" alt="E003 preview">
     <div class="gallery-card-body">
       <h3>E003 — Abundancy index</h3>
-      <p>Study the abundancy index σ(n)/n and how it separates number classes.</p>
+      <p>Study the abundancy index $\sigma(n)/n$ and how it separates number classes.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
         <span class="tag tag-primary">quantitative-exploration</span>
@@ -65,11 +68,11 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e004.html" class="gallery-card" data-title="E004 — Sum-of-divisors (sigma)" data-desc="Compute σ(n), test multiplicativity, and explore divisor-sum structure." data-tags="number-theory,quantitative-exploration,sigma">
+  <a href="e004.html" class="gallery-card" data-title="E004 — Sum-of-divisors (sigma)" data-desc="Compute $\sigma(n)$, test multiplicativity, and explore divisor-sum structure." data-tags="number-theory,quantitative-exploration,sigma">
     <img src="../_static/experiments/e004_hero.png" alt="E004 preview">
     <div class="gallery-card-body">
       <h3>E004 — Sum-of-divisors (sigma)</h3>
-      <p>Compute σ(n), test multiplicativity, and explore divisor-sum structure.</p>
+      <p>Compute $\sigma(n)$, test multiplicativity, and explore divisor-sum structure.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
         <span class="tag tag-primary">quantitative-exploration</span>
@@ -232,7 +235,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e016.html" class="gallery-card" data-title="E016 — Trial division vs Miller–Rabin scaling" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,miller–rabin">
+  <a href="e016.html" class="gallery-card" data-title="E016 — Trial division vs Miller–Rabin scaling" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,miller-rabin">
     <img src="../_static/experiments/e016_hero.png" alt="E016 preview">
     <div class="gallery-card-body">
       <h3>E016 — Trial division vs Miller–Rabin scaling</h3>
@@ -241,7 +244,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
         <span class="tag tag-primary">number-theory</span>
 <span class="tag tag-primary">quantitative-exploration</span>
 <span class="tag tag-primary">visualization</span>
-<span class="tag tag-secondary">miller–rabin</span>
+<span class="tag tag-secondary">miller-rabin</span>
       </div>
     </div>
   </a>
@@ -260,7 +263,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e018.html" class="gallery-card" data-title="E018 — Miller–Rabin base choice counterexamples" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,counterexample-search,visualization,miller–rabin">
+  <a href="e018.html" class="gallery-card" data-title="E018 — Miller–Rabin base choice counterexamples" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,counterexample-search,visualization,miller-rabin">
     <img src="../_static/experiments/e018_hero.png" alt="E018 preview">
     <div class="gallery-card-body">
       <h3>E018 — Miller–Rabin base choice counterexamples</h3>
@@ -269,35 +272,35 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
         <span class="tag tag-primary">number-theory</span>
 <span class="tag tag-primary">counterexample-search</span>
 <span class="tag tag-primary">visualization</span>
-<span class="tag tag-secondary">miller–rabin</span>
+<span class="tag tag-secondary">miller-rabin</span>
       </div>
     </div>
   </a>
 
-  <a href="e019.html" class="gallery-card" data-title="E019 — Prime density and PNT visualization" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,PNT">
+  <a href="e019.html" class="gallery-card" data-title="E019 — Prime density and pnt visualization" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,pnt">
     <img src="../_static/experiments/e019_hero.png" alt="E019 preview">
     <div class="gallery-card-body">
-      <h3>E019 — Prime density and PNT visualization</h3>
+      <h3>E019 — Prime density and pnt visualization</h3>
       <p>This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
 <span class="tag tag-primary">quantitative-exploration</span>
 <span class="tag tag-primary">visualization</span>
-<span class="tag tag-secondary">PNT</span>
+<span class="tag tag-secondary">pnt</span>
       </div>
     </div>
   </a>
 
-  <a href="e020.html" class="gallery-card" data-title="E020 — Compare pi(x) to li(x) numerically" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,li(x)">
+  <a href="e020.html" class="gallery-card" data-title="E020 — Compare pi(x) to li-x numerically" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,li-x">
     <img src="../_static/experiments/e020_hero.png" alt="E020 preview">
     <div class="gallery-card-body">
-      <h3>E020 — Compare pi(x) to li(x) numerically</h3>
+      <h3>E020 — Compare pi(x) to li-x numerically</h3>
       <p>This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
 <span class="tag tag-primary">quantitative-exploration</span>
 <span class="tag tag-primary">visualization</span>
-<span class="tag tag-secondary">li(x)</span>
+<span class="tag tag-secondary">li-x</span>
       </div>
     </div>
   </a>
@@ -498,7 +501,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e035.html" class="gallery-card" data-title="E035 — Primes in arithmetic progressions mod q" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,APs">
+  <a href="e035.html" class="gallery-card" data-title="E035 — Primes in arithmetic progressions mod q" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,aps">
     <img src="../_static/experiments/e035_hero.png" alt="E035 preview">
     <div class="gallery-card-body">
       <h3>E035 — Primes in arithmetic progressions mod q</h3>
@@ -507,12 +510,12 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
         <span class="tag tag-primary">number-theory</span>
 <span class="tag tag-primary">quantitative-exploration</span>
 <span class="tag tag-primary">visualization</span>
-<span class="tag tag-secondary">APs</span>
+<span class="tag tag-secondary">aps</span>
       </div>
     </div>
   </a>
 
-  <a href="e036.html" class="gallery-card" data-title="E036 — Prime arithmetic progressions (small search)" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,APs">
+  <a href="e036.html" class="gallery-card" data-title="E036 — Prime arithmetic progressions (small search)" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,aps">
     <img src="../_static/experiments/e036_hero.png" alt="E036 preview">
     <div class="gallery-card-body">
       <h3>E036 — Prime arithmetic progressions (small search)</h3>
@@ -521,7 +524,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
         <span class="tag tag-primary">number-theory</span>
 <span class="tag tag-primary">quantitative-exploration</span>
 <span class="tag tag-primary">visualization</span>
-<span class="tag tag-secondary">APs</span>
+<span class="tag tag-secondary">aps</span>
       </div>
     </div>
   </a>
@@ -624,7 +627,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e044.html" class="gallery-card" data-title="E044 — Solovay–Strassen vs Miller–Rabin (liars)" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,miller–rabin">
+  <a href="e044.html" class="gallery-card" data-title="E044 — Solovay–Strassen vs Miller–Rabin (liars)" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,miller-rabin">
     <img src="../_static/experiments/e044_hero.png" alt="E044 preview">
     <div class="gallery-card-body">
       <h3>E044 — Solovay–Strassen vs Miller–Rabin (liars)</h3>
@@ -633,7 +636,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
         <span class="tag tag-primary">number-theory</span>
 <span class="tag tag-primary">quantitative-exploration</span>
 <span class="tag tag-primary">visualization</span>
-<span class="tag tag-secondary">miller–rabin</span>
+<span class="tag tag-secondary">miller-rabin</span>
       </div>
     </div>
   </a>
@@ -741,13 +744,206 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
+<a href="e052.html" class="gallery-card" data-title="E052 — Totient ratio landscape" data-desc="Visual structure in \varphi(n)/n and primorial effects" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,totient,multiplicative">
+  <img src="../_static/experiments/e052_hero.png" alt="E052 preview">
+  <div class="gallery-card-body">
+    <h3>E052 — Totient ratio landscape</h3>
+    <p>Visual structure in \varphi(n)/n and primorial effects</p>
+    <div class="gallery-tags">
+      <span class="tag tag-primary">number-theory</span>
+  <span class="tag tag-primary">quantitative-exploration</span>
+  <span class="tag tag-primary">visualization</span>
+  <span class="tag tag-secondary">arithmetic-functions</span>
+  <span class="tag tag-secondary">totient</span>
+  <span class="tag tag-secondary">multiplicative</span>
+    </div>
+  </div>
+</a>
 
+<a href="e053.html" class="gallery-card" data-title="E053 — Inverse totient multiplicities" data-desc="How often does a value occur as \varphi(n)?" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,totient,search">
+  <img src="../_static/experiments/e053_hero.png" alt="E053 preview">
+  <div class="gallery-card-body">
+    <h3>E053 — Inverse totient multiplicities</h3>
+    <p>How often does a value occur as \varphi(n)?</p>
+    <div class="gallery-tags">
+      <span class="tag tag-primary">number-theory</span>
+  <span class="tag tag-primary">quantitative-exploration</span>
+  <span class="tag tag-primary">visualization</span>
+  <span class="tag tag-secondary">arithmetic-functions</span>
+  <span class="tag tag-secondary">totient</span>
+  <span class="tag tag-secondary">search</span>
+    </div>
+  </div>
+</a>
 
+<a href="e054.html" class="gallery-card" data-title="E054 — Squarefree density via Möbius" data-desc="Estimate the squarefree density using \mu(n)^2" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,mobius,summatory">
+  <img src="../_static/experiments/e054_hero.png" alt="E054 preview">
+  <div class="gallery-card-body">
+    <h3>E054 — Squarefree density via Möbius</h3>
+    <p>Estimate the squarefree density using \mu(n)^2</p>
+    <div class="gallery-tags">
+      <span class="tag tag-primary">number-theory</span>
+  <span class="tag tag-primary">quantitative-exploration</span>
+  <span class="tag tag-primary">visualization</span>
+  <span class="tag tag-secondary">arithmetic-functions</span>
+  <span class="tag tag-secondary">mobius</span>
+  <span class="tag tag-secondary">summatory</span>
+    </div>
+  </div>
+</a>
+
+<a href="e055.html" class="gallery-card" data-title="E055 — Mertens function walk" data-desc="Summatory Möbius M(x)=\sum_{n\le x}\mu(n) as a random-walk-like object" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,mobius,summatory,model-checking">
+  <img src="../_static/experiments/e055_hero.png" alt="E055 preview">
+  <div class="gallery-card-body">
+    <h3>E055 — Mertens function walk</h3>
+    <p>Summatory Möbius M(x)=\sum_{n\le x}\mu(n) as a random-walk-like object</p>
+    <div class="gallery-tags">
+      <span class="tag tag-primary">number-theory</span>
+  <span class="tag tag-primary">quantitative-exploration</span>
+  <span class="tag tag-primary">visualization</span>
+  <span class="tag tag-secondary">arithmetic-functions</span>
+  <span class="tag tag-secondary">mobius</span>
+  <span class="tag tag-secondary">summatory</span>
+  <span class="tag tag-secondary">model-checking</span>
+    </div>
+  </div>
+</a>
+
+<a href="e056.html" class="gallery-card" data-title="E056 — Liouville vs Möbius walks" data-desc="Compare summatory \lambda(n) and \mu(n)" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,summatory,liouville,mobius">
+  <img src="../_static/experiments/e056_hero.png" alt="E056 preview">
+  <div class="gallery-card-body">
+    <h3>E056 — Liouville vs Möbius walks</h3>
+    <p>Compare summatory \lambda(n) and \mu(n)</p>
+    <div class="gallery-tags">
+      <span class="tag tag-primary">number-theory</span>
+  <span class="tag tag-primary">quantitative-exploration</span>
+  <span class="tag tag-primary">visualization</span>
+  <span class="tag tag-secondary">arithmetic-functions</span>
+  <span class="tag tag-secondary">summatory</span>
+  <span class="tag tag-secondary">liouville</span>
+  <span class="tag tag-secondary">mobius</span>
+    </div>
+  </div>
+</a>
+
+<a href="e057.html" class="gallery-card" data-title="E057 — Erdős–Kac in practice" data-desc="Histogram of \Omega(n) and normal approximation" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,omega,heuristics">
+  <img src="../_static/experiments/e057_hero.png" alt="E057 preview">
+  <div class="gallery-card-body">
+    <h3>E057 — Erdős–Kac in practice</h3>
+    <p>Histogram of \Omega(n) and normal approximation</p>
+    <div class="gallery-tags">
+      <span class="tag tag-primary">number-theory</span>
+  <span class="tag tag-primary">quantitative-exploration</span>
+  <span class="tag tag-primary">visualization</span>
+  <span class="tag tag-secondary">arithmetic-functions</span>
+  <span class="tag tag-secondary">omega</span>
+  <span class="tag tag-secondary">heuristics</span>
+    </div>
+  </div>
+</a>
+
+<a href="e058.html" class="gallery-card" data-title="E058 — Divisor-count record highs" data-desc="Record values of \tau(n) and highly composite behavior" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,divisor-function,bounds">
+  <img src="../_static/experiments/e058_hero.png" alt="E058 preview">
+  <div class="gallery-card-body">
+    <h3>E058 — Divisor-count record highs</h3>
+    <p>Record values of \tau(n) and highly composite behavior</p>
+    <div class="gallery-tags">
+      <span class="tag tag-primary">number-theory</span>
+  <span class="tag tag-primary">quantitative-exploration</span>
+  <span class="tag tag-primary">visualization</span>
+  <span class="tag tag-secondary">arithmetic-functions</span>
+  <span class="tag tag-secondary">divisor-function</span>
+  <span class="tag tag-secondary">bounds</span>
+    </div>
+  </div>
+</a>
+
+<a href="e059.html" class="gallery-card" data-title="E059 — Abundancy index landscape" data-desc="Plot \sigma(n)/n and connect to perfect / abundant numbers" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,sigma,divisor-function,perfect">
+  <img src="../_static/experiments/e059_hero.png" alt="E059 preview">
+  <div class="gallery-card-body">
+    <h3>E059 — Abundancy index landscape</h3>
+    <p>Plot \sigma(n)/n and connect to perfect / abundant numbers</p>
+    <div class="gallery-tags">
+      <span class="tag tag-primary">number-theory</span>
+  <span class="tag tag-primary">quantitative-exploration</span>
+  <span class="tag tag-primary">visualization</span>
+  <span class="tag tag-secondary">arithmetic-functions</span>
+  <span class="tag tag-secondary">sigma</span>
+  <span class="tag tag-secondary">divisor-function</span>
+  <span class="tag tag-secondary">perfect</span>
+    </div>
+  </div>
+</a>
+
+<a href="e060.html" class="gallery-card" data-title="E060 — Jordan totients" data-desc="Normalize J_k(n) by n^k for small k" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,totient,multiplicative">
+  <img src="../_static/experiments/e060_hero.png" alt="E060 preview">
+  <div class="gallery-card-body">
+    <h3>E060 — Jordan totients</h3>
+    <p>Normalize J_k(n) by n^k for small k</p>
+    <div class="gallery-tags">
+      <span class="tag tag-primary">number-theory</span>
+  <span class="tag tag-primary">quantitative-exploration</span>
+  <span class="tag tag-primary">visualization</span>
+  <span class="tag tag-secondary">arithmetic-functions</span>
+  <span class="tag tag-secondary">totient</span>
+  <span class="tag tag-secondary">multiplicative</span>
+    </div>
+  </div>
+</a>
+
+<a href="e061.html" class="gallery-card" data-title="E061 — Chebyshev ψ(x) and prime powers" data-desc="Compute \psi(x)=\sum_{n\le x}\Lambda(n) and compare to x" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,mangoldt,pnt,summatory">
+  <img src="../_static/experiments/e061_hero.png" alt="E061 preview">
+  <div class="gallery-card-body">
+    <h3>E061 — Chebyshev ψ(x) and prime powers</h3>
+    <p>Compute \psi(x)=\sum_{n\le x}\Lambda(n) and compare to x</p>
+    <div class="gallery-tags">
+      <span class="tag tag-primary">number-theory</span>
+  <span class="tag tag-primary">quantitative-exploration</span>
+  <span class="tag tag-primary">visualization</span>
+  <span class="tag tag-secondary">arithmetic-functions</span>
+  <span class="tag tag-secondary">mangoldt</span>
+  <span class="tag tag-secondary">pnt</span>
+  <span class="tag tag-secondary">summatory</span>
+    </div>
+  </div>
+</a>
+
+<a href="e062.html" class="gallery-card" data-title="E062 — Carmichael λ(n) vs φ(n)" data-desc="Compare λ(n) and φ(n) via ratios and distributions" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,carmichael-lambda,totient">
+  <img src="../_static/experiments/e062_hero.png" alt="E062 preview">
+  <div class="gallery-card-body">
+    <h3>E062 — Carmichael λ(n) vs φ(n)</h3>
+    <p>Compare λ(n) and φ(n) via ratios and distributions</p>
+    <div class="gallery-tags">
+      <span class="tag tag-primary">number-theory</span>
+  <span class="tag tag-primary">quantitative-exploration</span>
+  <span class="tag tag-primary">visualization</span>
+  <span class="tag tag-secondary">arithmetic-functions</span>
+  <span class="tag tag-secondary">carmichael-lambda</span>
+  <span class="tag tag-secondary">totient</span>
+    </div>
+  </div>
+</a>
+
+<a href="e063.html" class="gallery-card" data-title="E063 — Dirichlet convolution playground" data-desc="Validate classic identities like \mu*1=\varepsilon and \mu*\mathrm{id}=\varphi" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,dirichlet-convolution,model-checking">
+  <img src="../_static/experiments/e063_hero.png" alt="E063 preview">
+  <div class="gallery-card-body">
+    <h3>E063 — Dirichlet convolution playground</h3>
+    <p>Validate classic identities like \mu*1=\varepsilon and \mu*\mathrm{id}=\varphi</p>
+    <div class="gallery-tags">
+      <span class="tag tag-primary">number-theory</span>
+  <span class="tag tag-primary">quantitative-exploration</span>
+  <span class="tag tag-primary">visualization</span>
+  <span class="tag tag-secondary">arithmetic-functions</span>
+  <span class="tag tag-secondary">dirichlet-convolution</span>
+  <span class="tag tag-secondary">model-checking</span>
+    </div>
+  </div>
+</a>
 </div>
 
 ::: {toctree}
-:maxdepth: 1
 :hidden:
+:maxdepth: 1
 
 e001
 e002
@@ -800,4 +996,16 @@ e048
 e049
 e050
 e051
+e052
+e053
+e054
+e055
+e056
+e057
+e058
+e059
+e060
+e061
+e062
+e063
 :::

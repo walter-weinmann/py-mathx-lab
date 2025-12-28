@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from mathxlab.exp.logging import LoggingConfig, setup_logging
+from mathxlab.exp.logging import LoggingConfig
+from mathxlab.exp.logging import setup_logging as setup_logging
 
 
 # ------------------------------------------------------------------------------
