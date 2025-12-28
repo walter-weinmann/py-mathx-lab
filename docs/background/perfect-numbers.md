@@ -87,7 +87,7 @@ Even with correct math, computation has a few traps:
 
 - **Factorization dominates.** Computing $\sigma(n)$ via divisors is slow unless you factor $n$.
   For large $n$, factorization becomes infeasible; prefer the Euclid–Euler generator for even perfect numbers.
-- **Big integers are fine, but expensive.** Python integers won’t overflow, but operations on huge numbers scale with
+- **Big integers are fine but expensive.** Python integers won’t overflow, but operations on huge numbers scale with
   the number of bits (so be mindful in loops and plotting).
 - **Prime testing vs. proof.** Testing that $2^p-1$ is prime is nontrivial for large $p$.
   For experiments, use a curated list of known Mersenne prime exponents (e.g., from OEIS / GIMPS) rather than

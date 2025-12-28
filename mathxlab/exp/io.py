@@ -91,3 +91,16 @@ def write_json(path: Path, data: JsonDict) -> None:
     """
     logger.info("Writing JSON to: %s", path)
     path.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+# ------------------------------------------------------------------------------
+def write_text(path: Path, text: str, encoding: str = "utf-8") -> None:
+    """Write text to a file.
+
+    Args:
+        path: Path to the file.
+        text: Text to write.
+        encoding: Text encoding.
+    """
+    logger.info("Writing text to: %s", path)
+    path.write_text(text, encoding=encoding)

@@ -15,7 +15,7 @@ p_k\# = \prod_{i=1}^{k} p_i
 
 ## What to experiment with
 
-* **Euclid-number factorization:** For $E_k = p_k\# \pm 1$, try to find small factors and compare +1 vs -1.
+* **Euclid-number factorization:** For $E_k = p_k\# \pm 1$, try to find small factors and compare +1 vs. -1.
 * **Primorial wheels:** Use primorials to build “wheel sieves” and benchmark against a simple sieve.
 * **Primorial primes / plus/minus primes:** Scan for primes of the form $p_k\# \pm 1$ and visualize rarity.
 

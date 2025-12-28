@@ -11,7 +11,7 @@ for every integer $a$ coprime to $n$. They are **absolute Fermat pseudoprimes**,
 ## Key facts
 
 * **Korselt’s criterion (1899):** $n$ is Carmichael iff (i) $n$ is squarefree and (ii) for every prime $p\mid n$, we have $(p-1)\mid (n-1)$. {cite:p}`Conrad2004KorseltsCriterionForCarmichaelNumbers,WikipediaContributors2025CarmichaelNumber`
-* **At least 3 prime factors:** No Carmichael number is the product of only two primes. {cite:p}`WikipediaContributors2025CarmichaelNumber`
+* **At least three prime factors:** No Carmichael number is the product of only two primes. {cite:p}`WikipediaContributors2025CarmichaelNumber`
 * **Infinitely many:** Alford–Granville–Pomerance proved there are infinitely many Carmichael numbers. {cite:p}`AlfordGranvillePomerance1994InfinitelyManyCarmichaelNumbers`
 * **Historical origin:** Carmichael studied these numbers in the early 20th century. {cite:p}`Carmichael1912CompositeNumbersSatisfyingFermatTheorem`
 

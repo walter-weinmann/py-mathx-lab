@@ -37,6 +37,7 @@
       input: document.getElementById("gallery-search"),
       clearBtn: document.getElementById("gallery-clear"),
       tagCloud: document.getElementById("gallery-tag-cloud"),
+      tagSummary: document.getElementById("gallery-tags-summary"),
       count: document.getElementById("gallery-count"),
     };
   }
@@ -156,6 +157,10 @@
       const visible = applyFilters(index, q, selected);
       els.count.textContent = `Showing ${visible} of ${index.length} experiments`;
       renderTagCloud(els.tagCloud, tagCounts, selected, toggleTag);
+      if (els.tagSummary) {
+        const n = selected.size;
+        els.tagSummary.textContent = n ? `Tags (${n} selected)` : "Tags";
+      }
       writeStateToUrl(q, Array.from(selected.values()));
     }
 

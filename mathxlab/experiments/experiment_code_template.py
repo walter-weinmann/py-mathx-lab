@@ -14,6 +14,12 @@ Figure math (portable):
     Avoid LaTeX-only macros like ``\pmod``; prefer ``(\mathrm{mod}\ n)``.
 Usage (repository convention):
     make run EXP=exxx_<module_name> ARGS="--out out/exxx --seed 1"
+
+Notes on LaTeX in figures:
+    Matplotlib uses *mathtext* (a LaTeX-like subset) in most environments.
+    Prefer simple symbols such as ``\varphi``, ``\mu``, ``\sigma`` and avoid
+    commands that require full LaTeX (e.g., ``\text{...}``, ``\pmod``).
+
 """
 
 from __future__ import annotations

@@ -6,7 +6,7 @@ This project uses a Makefile as a thin, cross-platform command interface around
 - formatting + linting (`ruff`)
 - typing (`mypy`)
 - tests (`pytest`)
-- documentation build (Sphinx HTML + optional PDF via LaTeX)
+- documentation build (Sphinx HTML and optional PDF via LaTeX)
 
 The Makefile is designed to work on:
 
@@ -99,13 +99,13 @@ gallery and documentation can remain consistent.
 
 ## Common workflows
 
-| Task                   | Command                     |
-| ---------------------- | --------------------------- |
-| Complete quality check | `make final`                |
-| Build HTML docs        | `make docs-html`            |
-| Run tests              | `make test`                 |
-| Clean all artifacts    | `make clean`                |
-| Reset environment      | `make clean && make venv`   |
+| Task                   | Command                   |
+|------------------------|---------------------------|
+| Complete quality check | `make final`              |
+| Build HTML docs        | `make docs-html`          |
+| Run tests              | `make test`               |
+| Clean all artifacts    | `make clean`              |
+| Reset environment      | `make clean && make venv` |
 
 ---
 
@@ -115,7 +115,7 @@ gallery and documentation can remain consistent.
 > This page documents the intent of the standard targets used in this repo.
 
 | Target      | Purpose                                                                               |
-| ----------- | ------------------------------------------------------------------------------------- |
+|-------------|---------------------------------------------------------------------------------------|
 | `venv`      | Create / reuse `.venv` (via `uv venv` / `uv sync`) and install required dependencies. |
 | `docs`      | Build docs HTML and then attempt PDF generation (if the toolchain is installed).      |
 | `docs-html` | Build Sphinx HTML into `docs/_build/html`.                                            |
