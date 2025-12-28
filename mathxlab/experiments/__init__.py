@@ -33,33 +33,318 @@ class ExperimentSpec:
 _EXPERIMENTS: tuple[ExperimentSpec, ...] = (
     ExperimentSpec(
         experiment_id="e001",
-        title="Taylor Error Landscapes",
+        title="Taylor error landscapes for sin(x)",
         module="mathxlab.experiments.e001",
     ),
     ExperimentSpec(
         experiment_id="e002",
-        title="Even Perfect Numbers — Generator and Growth",
+        title="Even perfect numbers: generator and growth",
         module="mathxlab.experiments.e002",
     ),
     ExperimentSpec(
         experiment_id="e003",
-        title="Abundancy Index Landscape",
+        title="Abundancy index landscape",
         module="mathxlab.experiments.e003",
     ),
     ExperimentSpec(
         experiment_id="e004",
-        title="Computing σ(n) at Scale — Sieve vs. Factorization",
+        title="Benchmark σ(n) computation: sieve vs factorization",
         module="mathxlab.experiments.e004",
     ),
     ExperimentSpec(
         experiment_id="e005",
-        title="Odd Perfect Numbers — Constraint Filter Pipeline",
+        title="Odd perfect numbers: constraint filter pipeline",
         module="mathxlab.experiments.e005",
     ),
     ExperimentSpec(
         experiment_id="e006",
-        title="Near Misses to Perfection",
+        title="Near misses to perfection",
         module="mathxlab.experiments.e006",
+    ),
+    ExperimentSpec(
+        experiment_id="e007",
+        title="Mersenne number growth",
+        module="mathxlab.experiments.e007",
+    ),
+    ExperimentSpec(
+        experiment_id="e008",
+        title="Lucas–Lehmer scan for Mersenne primes",
+        module="mathxlab.experiments.e008",
+    ),
+    ExperimentSpec(
+        experiment_id="e009",
+        title="Small-factor scan for Mersenne numbers",
+        module="mathxlab.experiments.e009",
+    ),
+    ExperimentSpec(
+        experiment_id="e010",
+        title="Even perfect numbers from Mersenne primes",
+        module="mathxlab.experiments.e010",
+    ),
+    ExperimentSpec(
+        experiment_id="e011",
+        title="Heuristic vs observed counts of Mersenne primes",
+        module="mathxlab.experiments.e011",
+    ),
+    ExperimentSpec(
+        experiment_id="e012",
+        title="Fermat pseudoprimes and Carmichael numbers (counterexamples)",
+        module="mathxlab.experiments.e012",
+    ),
+    ExperimentSpec(
+        experiment_id="e013",
+        title="Prime-polynomial counterexamples (Euler's n^2 + n + 41)",
+        module="mathxlab.experiments.e013",
+    ),
+    ExperimentSpec(
+        experiment_id="e014",
+        title="Primorial ± 1 counterexamples",
+        module="mathxlab.experiments.e014",
+    ),
+    ExperimentSpec(
+        experiment_id="e015",
+        title="Wilson test infeasibility",
+        module="mathxlab.experiments.e015",
+    ),
+    ExperimentSpec(
+        experiment_id="e016",
+        title="Trial division vs Miller–Rabin scaling",
+        module="mathxlab.experiments.e016",
+    ),
+    ExperimentSpec(
+        experiment_id="e017",
+        title="Sieve memory blow-up vs segmented sieve",
+        module="mathxlab.experiments.e017",
+    ),
+    ExperimentSpec(
+        experiment_id="e018",
+        title="Miller–Rabin base choice counterexamples",
+        module="mathxlab.experiments.e018",
+    ),
+    ExperimentSpec(
+        experiment_id="e019",
+        title="Prime density and PNT visualization",
+        module="mathxlab.experiments.e019",
+    ),
+    ExperimentSpec(
+        experiment_id="e020",
+        title="Compare pi(x) to li(x) numerically",
+        module="mathxlab.experiments.e020",
+    ),
+    ExperimentSpec(
+        experiment_id="e021",
+        title="Explicit bounds sanity checks",
+        module="mathxlab.experiments.e021",
+    ),
+    ExperimentSpec(
+        experiment_id="e022",
+        title="Prime race modulo 4",
+        module="mathxlab.experiments.e022",
+    ),
+    ExperimentSpec(
+        experiment_id="e023",
+        title="Residue class distribution mod q",
+        module="mathxlab.experiments.e023",
+    ),
+    ExperimentSpec(
+        experiment_id="e024",
+        title="Ulam spiral structure",
+        module="mathxlab.experiments.e024",
+    ),
+    ExperimentSpec(
+        experiment_id="e025",
+        title="Prime gaps are not monotone",
+        module="mathxlab.experiments.e025",
+    ),
+    ExperimentSpec(
+        experiment_id="e026",
+        title="Normalized prime gaps",
+        module="mathxlab.experiments.e026",
+    ),
+    ExperimentSpec(
+        experiment_id="e027",
+        title="Record prime gaps vs log^2 heuristic",
+        module="mathxlab.experiments.e027",
+    ),
+    ExperimentSpec(
+        experiment_id="e028",
+        title="Jumping champions (most frequent gaps)",
+        module="mathxlab.experiments.e028",
+    ),
+    ExperimentSpec(
+        experiment_id="e029",
+        title="Twin primes: observed vs heuristic",
+        module="mathxlab.experiments.e029",
+    ),
+    ExperimentSpec(
+        experiment_id="e030",
+        title="Cousin and sexy prime pairs",
+        module="mathxlab.experiments.e030",
+    ),
+    ExperimentSpec(
+        experiment_id="e031",
+        title="Admissibility and modular obstructions",
+        module="mathxlab.experiments.e031",
+    ),
+    ExperimentSpec(
+        experiment_id="e032",
+        title="Prime triplets and quadruplets",
+        module="mathxlab.experiments.e032",
+    ),
+    ExperimentSpec(
+        experiment_id="e033",
+        title="Bounded gaps vs twin primes (not the same)",
+        module="mathxlab.experiments.e033",
+    ),
+    ExperimentSpec(
+        experiment_id="e034",
+        title="Twin primes in sliding windows",
+        module="mathxlab.experiments.e034",
+    ),
+    ExperimentSpec(
+        experiment_id="e035",
+        title="Primes in arithmetic progressions mod q",
+        module="mathxlab.experiments.e035",
+    ),
+    ExperimentSpec(
+        experiment_id="e036",
+        title="Prime arithmetic progressions (small search)",
+        module="mathxlab.experiments.e036",
+    ),
+    ExperimentSpec(
+        experiment_id="e037",
+        title="Prime-free intervals via factorial construction",
+        module="mathxlab.experiments.e037",
+    ),
+    ExperimentSpec(
+        experiment_id="e038",
+        title="Bertrand's postulate (computational verification)",
+        module="mathxlab.experiments.e038",
+    ),
+    ExperimentSpec(
+        experiment_id="e039",
+        title="Sophie Germain and safe primes",
+        module="mathxlab.experiments.e039",
+    ),
+    ExperimentSpec(
+        experiment_id="e040",
+        title="Palindromic primes and the '11 trap'",
+        module="mathxlab.experiments.e040",
+    ),
+    ExperimentSpec(
+        experiment_id="e041",
+        title="Fermat numbers: not all prime",
+        module="mathxlab.experiments.e041",
+    ),
+    ExperimentSpec(
+        experiment_id="e042",
+        title="Repunit primes (small k scan)",
+        module="mathxlab.experiments.e042",
+    ),
+    ExperimentSpec(
+        experiment_id="e043",
+        title="Pollard rho runtime variability",
+        module="mathxlab.experiments.e043",
+    ),
+    ExperimentSpec(
+        experiment_id="e044",
+        title="Solovay–Strassen vs Miller–Rabin (liars)",
+        module="mathxlab.experiments.e044",
+    ),
+    ExperimentSpec(
+        experiment_id="e045",
+        title="Deterministic 64-bit MR base sets",
+        module="mathxlab.experiments.e045",
+    ),
+    ExperimentSpec(
+        experiment_id="e046",
+        title="Prime-testing pipeline and tuning pitfalls",
+        module="mathxlab.experiments.e046",
+    ),
+    ExperimentSpec(
+        experiment_id="e047",
+        title="Fermat numbers: Pépin test and factor witnesses",
+        module="mathxlab.experiments.e047",
+    ),
+    ExperimentSpec(
+        experiment_id="e048",
+        title="Carmichael numbers: Korselt scan + Fermat counterexamples",
+        module="mathxlab.experiments.e048",
+    ),
+    ExperimentSpec(
+        experiment_id="e049",
+        title="Wieferich primes (base 2): rare congruence hits",
+        module="mathxlab.experiments.e049",
+    ),
+    ExperimentSpec(
+        experiment_id="e050",
+        title="Primorials and Euclid numbers: p# ± 1 are usually composite",
+        module="mathxlab.experiments.e050",
+    ),
+    ExperimentSpec(
+        experiment_id="e051",
+        title="Semiprimes: balanced vs unbalanced factorization timing",
+        module="mathxlab.experiments.e051",
+    ),
+    ExperimentSpec(
+        experiment_id="e052",
+        title="Totient ratio landscape: φ(n) / n and primorial structure",
+        module="mathxlab.experiments.e052",
+    ),
+    ExperimentSpec(
+        experiment_id="e053",
+        title="Inverse totient: multiplicities of values φ(n)=m in a prefix",
+        module="mathxlab.experiments.e053",
+    ),
+    ExperimentSpec(
+        experiment_id="e054",
+        title="Möbius μ(n) and squarefree density via μ(n)^2",
+        module="mathxlab.experiments.e054",
+    ),
+    ExperimentSpec(
+        experiment_id="e055",
+        title="Mertens function walk: M(x)=∑_{n≤x} μ(n)",
+        module="mathxlab.experiments.e055",
+    ),
+    ExperimentSpec(
+        experiment_id="e056",
+        title="Liouville vs Möbius: two ±1 walks built from prime factors",
+        module="mathxlab.experiments.e056",
+    ),
+    ExperimentSpec(
+        experiment_id="e057",
+        title="Erdős–Kac in practice: Ω(n) looks Gaussian after normalization",
+        module="mathxlab.experiments.e057",
+    ),
+    ExperimentSpec(
+        experiment_id="e058",
+        title="Divisor count τ(n): record values and highly composite behavior",
+        module="mathxlab.experiments.e058",
+    ),
+    ExperimentSpec(
+        experiment_id="e059",
+        title="Abundancy index: σ(n)/n and the perfect-number threshold",
+        module="mathxlab.experiments.e059",
+    ),
+    ExperimentSpec(
+        experiment_id="e060",
+        title="Jordan totients J_k(n): normalized landscapes for k=1..3",
+        module="mathxlab.experiments.e060",
+    ),
+    ExperimentSpec(
+        experiment_id="e061",
+        title="von Mangoldt Λ(n) and Chebyshev ψ(x): jumps at prime powers",
+        module="mathxlab.experiments.e061",
+    ),
+    ExperimentSpec(
+        experiment_id="e062",
+        title="Carmichael's λ(n) vs Euler's φ(n): exponent vs group size",
+        module="mathxlab.experiments.e062",
+    ),
+    ExperimentSpec(
+        experiment_id="e063",
+        title="Dirichlet convolution identities (computational checks)",
+        module="mathxlab.experiments.e063",
     ),
 )
 
