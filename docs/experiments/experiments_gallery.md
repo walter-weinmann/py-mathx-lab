@@ -2,9 +2,28 @@
 
 A compact, image-first overview of the experiments in **py-mathx-lab**.
 
-<div class="gallery-grid">
+<div class="gallery-toolbar" id="gallery-toolbar">
+  <div class="gallery-search">
+    <input id="gallery-search" type="search" placeholder="Search experiments (ID, title, tags)…" autocomplete="off" spellcheck="false" aria-label="Search experiments">
+    <button id="gallery-clear" class="gallery-btn" type="button" title="Clear search and filters">Clear</button>
+  </div>
+  <div class="gallery-meta">
+    <span id="gallery-count" class="gallery-count">Showing …</span>
+  </div>
+  <div id="gallery-tag-cloud" class="gallery-tag-cloud" aria-label="Tag filters"></div>
+</div>
 
-  <a href="e001.html" class="gallery-card">
+<noscript>
+  <div class="admonition warning">
+    <p class="admonition-title">JavaScript disabled</p>
+    <p>The search and tag filters require JavaScript. The full gallery is still visible below.</p>
+  </div>
+</noscript>
+
+<div class="gallery-grid" data-gallery="experiments">
+
+
+  <a href="e001.html" class="gallery-card" data-title="E001 — Taylor error landscapes" data-desc="Truncation error, convergence behavior, and error landscapes for Taylor approximations." data-tags="analysis,quantitative-exploration,visualization,taylor">
     <img src="../_static/experiments/e001_hero.png" alt="E001 preview">
     <div class="gallery-card-body">
       <h3>E001 — Taylor error landscapes</h3>
@@ -18,7 +37,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e002.html" class="gallery-card">
+  <a href="e002.html" class="gallery-card" data-title="E002 — Perfect numbers" data-desc="Explore perfect numbers via the sum-of-divisors function and the Euclid–Euler characterization." data-tags="number-theory,quantitative-exploration,visualization,perfect">
     <img src="../_static/experiments/e002_hero.png" alt="E002 preview">
     <div class="gallery-card-body">
       <h3>E002 — Perfect numbers</h3>
@@ -32,7 +51,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e003.html" class="gallery-card">
+  <a href="e003.html" class="gallery-card" data-title="E003 — Abundancy index" data-desc="Study the abundancy index σ(n)/n and how it separates number classes." data-tags="number-theory,quantitative-exploration,visualization,classification">
     <img src="../_static/experiments/e003_hero.png" alt="E003 preview">
     <div class="gallery-card-body">
       <h3>E003 — Abundancy index</h3>
@@ -46,7 +65,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e004.html" class="gallery-card">
+  <a href="e004.html" class="gallery-card" data-title="E004 — Sum-of-divisors (sigma)" data-desc="Compute σ(n), test multiplicativity, and explore divisor-sum structure." data-tags="number-theory,quantitative-exploration,sigma">
     <img src="../_static/experiments/e004_hero.png" alt="E004 preview">
     <div class="gallery-card-body">
       <h3>E004 — Sum-of-divisors (sigma)</h3>
@@ -59,7 +78,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e005.html" class="gallery-card">
+  <a href="e005.html" class="gallery-card" data-title="E005 — Odd perfect numbers" data-desc="Constraints, known results, and computational checks related to odd perfect numbers." data-tags="number-theory,counterexample-search,visualization,open-problems">
     <img src="../_static/experiments/e005_hero.png" alt="E005 preview">
     <div class="gallery-card-body">
       <h3>E005 — Odd perfect numbers</h3>
@@ -73,7 +92,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e006.html" class="gallery-card">
+  <a href="e006.html" class="gallery-card" data-title="E006 — Near-perfect numbers" data-desc="Definitions, examples, and experiments around near-perfect (and related) integers." data-tags="number-theory,conjecture-generation,visualization,exploration">
     <img src="../_static/experiments/e006_hero.png" alt="E006 preview">
     <div class="gallery-card-body">
       <h3>E006 — Near-perfect numbers</h3>
@@ -87,7 +106,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e007.html" class="gallery-card">
+  <a href="e007.html" class="gallery-card" data-title="E007 — Mersenne growth" data-desc="Bits and digits of M&lt;sub&gt;n&lt;/sub&gt; = 2&lt;sup&gt;n&lt;/sup&gt; − 1: fast size estimates for planning feasible bounds." data-tags="number-theory,quantitative-exploration,visualization,mersenne">
     <img src="../_static/experiments/e007_hero.png" alt="E007 preview">
     <div class="gallery-card-body">
       <h3>E007 — Mersenne growth</h3>
@@ -101,7 +120,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e008.html" class="gallery-card">
+  <a href="e008.html" class="gallery-card" data-title="E008 — Lucas–Lehmer scan" data-desc="Scan prime exponents with the Lucas–Lehmer test and visualize scaling and outcomes." data-tags="number-theory,quantitative-exploration,visualization,lucas-lehmer">
     <img src="../_static/experiments/e008_hero.png" alt="E008 preview">
     <div class="gallery-card-body">
       <h3>E008 — Lucas–Lehmer scan</h3>
@@ -115,7 +134,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e009.html" class="gallery-card">
+  <a href="e009.html" class="gallery-card" data-title="E009 — Small-factor scan" data-desc="Pre-sieve M&lt;sub&gt;p&lt;/sub&gt; candidates by finding small structured factors before expensive primality tests." data-tags="number-theory,quantitative-exploration,visualization,sieving">
     <img src="../_static/experiments/e009_hero.png" alt="E009 preview">
     <div class="gallery-card-body">
       <h3>E009 — Small-factor scan</h3>
@@ -129,7 +148,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e010.html" class="gallery-card">
+  <a href="e010.html" class="gallery-card" data-title="E010 — Perfect numbers from Mersenne primes" data-desc="Generate even perfect numbers via Euclid–Euler and visualize growth and validation checks." data-tags="number-theory,quantitative-exploration,visualization,perfect">
     <img src="../_static/experiments/e010_hero.png" alt="E010 preview">
     <div class="gallery-card-body">
       <h3>E010 — Perfect numbers from Mersenne primes</h3>
@@ -143,7 +162,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e011.html" class="gallery-card">
+  <a href="e011.html" class="gallery-card" data-title="E011 — Heuristic rarity" data-desc="Compare observed Mersenne-prime counts to a simple heuristic expectation curve." data-tags="number-theory,quantitative-exploration,visualization,heuristics">
     <img src="../_static/experiments/e011_hero.png" alt="E011 preview">
     <div class="gallery-card-body">
       <h3>E011 — Heuristic rarity</h3>
@@ -157,7 +176,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e012.html" class="gallery-card">
+  <a href="e012.html" class="gallery-card" data-title="E012 — Fermat pseudoprimes and Carmichael numbers (counterexamples)" data-desc="Counterexamples to naive Fermat primality testing: base-a pseudoprimes and Carmichael numbers." data-tags="number-theory,counterexample-search,visualization,pseudoprimes">
     <img src="../_static/experiments/e012_hero.png" alt="E012 preview">
     <div class="gallery-card-body">
       <h3>E012 — Fermat pseudoprimes and Carmichael numbers (counterexamples)</h3>
@@ -171,7 +190,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e013.html" class="gallery-card">
+  <a href="e013.html" class="gallery-card" data-title="E013 — Prime-polynomial counterexamples (Euler&#x27;s n^2 + n + 41)" data-desc="Turn “prime-generating polynomials” folklore into a crisp counterexample (Euler’s n²+n+41)." data-tags="number-theory,counterexample-search,visualization,primes">
     <img src="../_static/experiments/e013_hero.png" alt="E013 preview">
     <div class="gallery-card-body">
       <h3>E013 — Prime-polynomial counterexamples (Euler's n^2 + n + 41)</h3>
@@ -185,7 +204,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e014.html" class="gallery-card">
+  <a href="e014.html" class="gallery-card" data-title="E014 — Primorial ± 1 counterexamples" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,counterexample-search,visualization,primorial">
     <img src="../_static/experiments/e014_hero.png" alt="E014 preview">
     <div class="gallery-card-body">
       <h3>E014 — Primorial ± 1 counterexamples</h3>
@@ -199,7 +218,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e015.html" class="gallery-card">
+  <a href="e015.html" class="gallery-card" data-title="E015 — Wilson test infeasibility" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,wilson">
     <img src="../_static/experiments/e015_hero.png" alt="E015 preview">
     <div class="gallery-card-body">
       <h3>E015 — Wilson test infeasibility</h3>
@@ -213,7 +232,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e016.html" class="gallery-card">
+  <a href="e016.html" class="gallery-card" data-title="E016 — Trial division vs Miller–Rabin scaling" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,miller–rabin">
     <img src="../_static/experiments/e016_hero.png" alt="E016 preview">
     <div class="gallery-card-body">
       <h3>E016 — Trial division vs Miller–Rabin scaling</h3>
@@ -227,7 +246,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e017.html" class="gallery-card">
+  <a href="e017.html" class="gallery-card" data-title="E017 — Sieve memory blow-up vs segmented sieve" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,sieving">
     <img src="../_static/experiments/e017_hero.png" alt="E017 preview">
     <div class="gallery-card-body">
       <h3>E017 — Sieve memory blow-up vs segmented sieve</h3>
@@ -241,7 +260,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e018.html" class="gallery-card">
+  <a href="e018.html" class="gallery-card" data-title="E018 — Miller–Rabin base choice counterexamples" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,counterexample-search,visualization,miller–rabin">
     <img src="../_static/experiments/e018_hero.png" alt="E018 preview">
     <div class="gallery-card-body">
       <h3>E018 — Miller–Rabin base choice counterexamples</h3>
@@ -255,7 +274,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e019.html" class="gallery-card">
+  <a href="e019.html" class="gallery-card" data-title="E019 — Prime density and PNT visualization" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,PNT">
     <img src="../_static/experiments/e019_hero.png" alt="E019 preview">
     <div class="gallery-card-body">
       <h3>E019 — Prime density and PNT visualization</h3>
@@ -269,7 +288,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e020.html" class="gallery-card">
+  <a href="e020.html" class="gallery-card" data-title="E020 — Compare pi(x) to li(x) numerically" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,li(x)">
     <img src="../_static/experiments/e020_hero.png" alt="E020 preview">
     <div class="gallery-card-body">
       <h3>E020 — Compare pi(x) to li(x) numerically</h3>
@@ -283,7 +302,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e021.html" class="gallery-card">
+  <a href="e021.html" class="gallery-card" data-title="E021 — Explicit bounds sanity checks" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,bounds">
     <img src="../_static/experiments/e021_hero.png" alt="E021 preview">
     <div class="gallery-card-body">
       <h3>E021 — Explicit bounds sanity checks</h3>
@@ -297,7 +316,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e022.html" class="gallery-card">
+  <a href="e022.html" class="gallery-card" data-title="E022 — Prime race modulo 4" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,primes">
     <img src="../_static/experiments/e022_hero.png" alt="E022 preview">
     <div class="gallery-card-body">
       <h3>E022 — Prime race modulo 4</h3>
@@ -311,7 +330,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e023.html" class="gallery-card">
+  <a href="e023.html" class="gallery-card" data-title="E023 — Residue class distribution mod q" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,primes">
     <img src="../_static/experiments/e023_hero.png" alt="E023 preview">
     <div class="gallery-card-body">
       <h3>E023 — Residue class distribution mod q</h3>
@@ -325,7 +344,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e024.html" class="gallery-card">
+  <a href="e024.html" class="gallery-card" data-title="E024 — Ulam spiral structure" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,ulam">
     <img src="../_static/experiments/e024_hero.png" alt="E024 preview">
     <div class="gallery-card-body">
       <h3>E024 — Ulam spiral structure</h3>
@@ -339,7 +358,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e025.html" class="gallery-card">
+  <a href="e025.html" class="gallery-card" data-title="E025 — Prime gaps are not monotone" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,gaps">
     <img src="../_static/experiments/e025_hero.png" alt="E025 preview">
     <div class="gallery-card-body">
       <h3>E025 — Prime gaps are not monotone</h3>
@@ -353,7 +372,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e026.html" class="gallery-card">
+  <a href="e026.html" class="gallery-card" data-title="E026 — Normalized prime gaps" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,gaps">
     <img src="../_static/experiments/e026_hero.png" alt="E026 preview">
     <div class="gallery-card-body">
       <h3>E026 — Normalized prime gaps</h3>
@@ -367,7 +386,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e027.html" class="gallery-card">
+  <a href="e027.html" class="gallery-card" data-title="E027 — Record prime gaps vs log^2 heuristic" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,conjecture-generation,visualization,gaps">
     <img src="../_static/experiments/e027_hero.png" alt="E027 preview">
     <div class="gallery-card-body">
       <h3>E027 — Record prime gaps vs log^2 heuristic</h3>
@@ -381,7 +400,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e028.html" class="gallery-card">
+  <a href="e028.html" class="gallery-card" data-title="E028 — Jumping champions (most frequent gaps)" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,gaps">
     <img src="../_static/experiments/e028_hero.png" alt="E028 preview">
     <div class="gallery-card-body">
       <h3>E028 — Jumping champions (most frequent gaps)</h3>
@@ -395,7 +414,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e029.html" class="gallery-card">
+  <a href="e029.html" class="gallery-card" data-title="E029 — Twin primes: observed vs heuristic" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,conjecture-generation,visualization,twin">
     <img src="../_static/experiments/e029_hero.png" alt="E029 preview">
     <div class="gallery-card-body">
       <h3>E029 — Twin primes: observed vs heuristic</h3>
@@ -409,7 +428,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e030.html" class="gallery-card">
+  <a href="e030.html" class="gallery-card" data-title="E030 — Cousin and sexy prime pairs" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,primes">
     <img src="../_static/experiments/e030_hero.png" alt="E030 preview">
     <div class="gallery-card-body">
       <h3>E030 — Cousin and sexy prime pairs</h3>
@@ -423,7 +442,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e031.html" class="gallery-card">
+  <a href="e031.html" class="gallery-card" data-title="E031 — Admissibility and modular obstructions" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,primes">
     <img src="../_static/experiments/e031_hero.png" alt="E031 preview">
     <div class="gallery-card-body">
       <h3>E031 — Admissibility and modular obstructions</h3>
@@ -437,7 +456,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e032.html" class="gallery-card">
+  <a href="e032.html" class="gallery-card" data-title="E032 — Prime triplets and quadruplets" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,primes">
     <img src="../_static/experiments/e032_hero.png" alt="E032 preview">
     <div class="gallery-card-body">
       <h3>E032 — Prime triplets and quadruplets</h3>
@@ -451,7 +470,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e033.html" class="gallery-card">
+  <a href="e033.html" class="gallery-card" data-title="E033 — Bounded gaps vs twin primes (not the same)" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,twin">
     <img src="../_static/experiments/e033_hero.png" alt="E033 preview">
     <div class="gallery-card-body">
       <h3>E033 — Bounded gaps vs twin primes (not the same)</h3>
@@ -465,7 +484,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e034.html" class="gallery-card">
+  <a href="e034.html" class="gallery-card" data-title="E034 — Twin primes in sliding windows" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,twin">
     <img src="../_static/experiments/e034_hero.png" alt="E034 preview">
     <div class="gallery-card-body">
       <h3>E034 — Twin primes in sliding windows</h3>
@@ -479,7 +498,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e035.html" class="gallery-card">
+  <a href="e035.html" class="gallery-card" data-title="E035 — Primes in arithmetic progressions mod q" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,APs">
     <img src="../_static/experiments/e035_hero.png" alt="E035 preview">
     <div class="gallery-card-body">
       <h3>E035 — Primes in arithmetic progressions mod q</h3>
@@ -493,7 +512,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e036.html" class="gallery-card">
+  <a href="e036.html" class="gallery-card" data-title="E036 — Prime arithmetic progressions (small search)" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,APs">
     <img src="../_static/experiments/e036_hero.png" alt="E036 preview">
     <div class="gallery-card-body">
       <h3>E036 — Prime arithmetic progressions (small search)</h3>
@@ -507,7 +526,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e037.html" class="gallery-card">
+  <a href="e037.html" class="gallery-card" data-title="E037 — Prime-free intervals via factorial construction" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,primes">
     <img src="../_static/experiments/e037_hero.png" alt="E037 preview">
     <div class="gallery-card-body">
       <h3>E037 — Prime-free intervals via factorial construction</h3>
@@ -521,7 +540,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e038.html" class="gallery-card">
+  <a href="e038.html" class="gallery-card" data-title="E038 — Bertrand&#x27;s postulate (computational verification)" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,primes">
     <img src="../_static/experiments/e038_hero.png" alt="E038 preview">
     <div class="gallery-card-body">
       <h3>E038 — Bertrand's postulate (computational verification)</h3>
@@ -535,7 +554,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e039.html" class="gallery-card">
+  <a href="e039.html" class="gallery-card" data-title="E039 — Sophie Germain and safe primes" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,primes">
     <img src="../_static/experiments/e039_hero.png" alt="E039 preview">
     <div class="gallery-card-body">
       <h3>E039 — Sophie Germain and safe primes</h3>
@@ -549,7 +568,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e040.html" class="gallery-card">
+  <a href="e040.html" class="gallery-card" data-title="E040 — Palindromic primes and the &#x27;11 trap&#x27;" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,primes">
     <img src="../_static/experiments/e040_hero.png" alt="E040 preview">
     <div class="gallery-card-body">
       <h3>E040 — Palindromic primes and the '11 trap'</h3>
@@ -563,7 +582,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e041.html" class="gallery-card">
+  <a href="e041.html" class="gallery-card" data-title="E041 — Fermat numbers: not all prime" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,primes">
     <img src="../_static/experiments/e041_hero.png" alt="E041 preview">
     <div class="gallery-card-body">
       <h3>E041 — Fermat numbers: not all prime</h3>
@@ -577,7 +596,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e042.html" class="gallery-card">
+  <a href="e042.html" class="gallery-card" data-title="E042 — Repunit primes (small k scan)" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,primes">
     <img src="../_static/experiments/e042_hero.png" alt="E042 preview">
     <div class="gallery-card-body">
       <h3>E042 — Repunit primes (small k scan)</h3>
@@ -591,7 +610,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e043.html" class="gallery-card">
+  <a href="e043.html" class="gallery-card" data-title="E043 — Pollard rho runtime variability" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,primes">
     <img src="../_static/experiments/e043_hero.png" alt="E043 preview">
     <div class="gallery-card-body">
       <h3>E043 — Pollard rho runtime variability</h3>
@@ -605,7 +624,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e044.html" class="gallery-card">
+  <a href="e044.html" class="gallery-card" data-title="E044 — Solovay–Strassen vs Miller–Rabin (liars)" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,miller–rabin">
     <img src="../_static/experiments/e044_hero.png" alt="E044 preview">
     <div class="gallery-card-body">
       <h3>E044 — Solovay–Strassen vs Miller–Rabin (liars)</h3>
@@ -619,7 +638,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e045.html" class="gallery-card">
+  <a href="e045.html" class="gallery-card" data-title="E045 — Deterministic 64-bit MR base sets" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,primes">
     <img src="../_static/experiments/e045_hero.png" alt="E045 preview">
     <div class="gallery-card-body">
       <h3>E045 — Deterministic 64-bit MR base sets</h3>
@@ -633,7 +652,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e046.html" class="gallery-card">
+  <a href="e046.html" class="gallery-card" data-title="E046 — Prime-testing pipeline and tuning pitfalls" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,primes">
     <img src="../_static/experiments/e046_hero.png" alt="E046 preview">
     <div class="gallery-card-body">
       <h3>E046 — Prime-testing pipeline and tuning pitfalls</h3>
