@@ -10,7 +10,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
   <div class="gallery-meta">
     <span id="gallery-count" class="gallery-count">Showing …</span>
   </div>
+  <details class="gallery-tags" id="gallery-tags">
+  <summary id="gallery-tags-summary" class="gallery-tags-summary">Tags</summary>
   <div id="gallery-tag-cloud" class="gallery-tag-cloud" aria-label="Tag filters"></div>
+</details>
 </div>
 
 <noscript>
