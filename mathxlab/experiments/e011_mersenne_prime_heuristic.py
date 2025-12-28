@@ -101,7 +101,7 @@ def _plot_observed_expected(
     ax.plot(p, observed, label="observed")
     ax.plot(p, expected, label="expected (heuristic)")
     ax.set_title("Observed vs expected Mersenne prime counts")
-    ax.set_xlabel("prime exponent p (running maximum)")
+    ax.set_xlabel(r"prime exponent $p$ (running maximum)")
     ax.set_ylabel("count")
     ax.legend()
     finalize_figure(fig_obj)

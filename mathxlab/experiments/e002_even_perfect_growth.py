@@ -181,27 +181,27 @@ def main() -> int:
     fig1 = _plot_xy(
         x=p_vals,
         y=digits,
-        title="Digits of even perfect numbers vs. exponent p",
-        xlabel="p",
-        ylabel="digits(N(p))",
+        title=r"Decimal digits of $N(p)$ vs. exponent $p$",
+        xlabel=r"$p$",
+        ylabel=r"digits of $N(p)$",
     )
     save_figure(out_dir=out_paths.figures_dir, name="fig_01_digits_vs_p", fig=fig1)
 
     fig2 = _plot_xy(
         x=p_vals,
         y=bits,
-        title="Bit length of even perfect numbers vs. exponent p",
-        xlabel="p",
-        ylabel="bit_length(N(p))",
+        title=r"Bit length of $N(p)$ vs. exponent $p$",
+        xlabel=r"$p$",
+        ylabel=r"bit length of $N(p)$",
     )
     save_figure(out_dir=out_paths.figures_dir, name="fig_02_bits_vs_p", fig=fig2)
 
     fig3 = _plot_xy(
         x=p_vals,
         y=err,
-        title="Error of log10 approximation: log10(N(p)) - 2p log10(2)",
-        xlabel="p",
-        ylabel="error",
+        title=r"Error: $\log_{10}(N(p)) - 2p\,\log_{10}(2)$",
+        xlabel=r"$p$",
+        ylabel=r"$\mathrm{error}$",
     )
     save_figure(out_dir=out_paths.figures_dir, name="fig_03_log10_error_vs_p", fig=fig3)
 

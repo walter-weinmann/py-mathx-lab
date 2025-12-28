@@ -132,8 +132,8 @@ def _plot_hist(*, values: np.ndarray, bins: int) -> fig.Figure:
     """
     fig_obj, ax = plt.subplots()
     ax.hist(values, bins=bins)
-    ax.set_title("Histogram of abundancy index I(n) = σ(n)/n")
-    ax.set_xlabel("I(n)")
+    ax.set_title(r"Histogram of abundancy index $I(n)=\sigma(n)/n$")
+    ax.set_xlabel(r"$I(n)$")
     ax.set_ylabel("count")
     finalize_figure(fig_obj)
     return fig_obj
@@ -152,9 +152,9 @@ def _plot_scatter(*, n: np.ndarray, i_vals: np.ndarray) -> fig.Figure:
     """
     fig_obj, ax = plt.subplots()
     ax.scatter(n, i_vals, s=3)
-    ax.set_title("Abundancy index landscape")
-    ax.set_xlabel("n")
-    ax.set_ylabel("I(n) = σ(n)/n")
+    ax.set_title(r"Abundancy index landscape: $I(n)=\sigma(n)/n$")
+    ax.set_xlabel(r"$n$")
+    ax.set_ylabel(r"$I(n)=\sigma(n)/n$")
     finalize_figure(fig_obj)
     return fig_obj
 
@@ -208,7 +208,7 @@ def main() -> int:
         n=n[near][:: max(1, params.stride_scatter)],
         i_vals=i_vals[near][:: max(1, params.stride_scatter)],
     )
-    fig3.axes[0].set_title(f"Near misses: |I(n) - 2| < {params.near_band:g}")
+    fig3.axes[0].set_title(rf"Near misses: $|I(n)-2| < {params.near_band:g}$")
     save_figure(out_dir=out_paths.figures_dir, name="fig_03_near_2", fig=fig3)
 
     write_json(out_paths.params_path, data=asdict(params))
