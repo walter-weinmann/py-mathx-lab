@@ -1,4 +1,4 @@
-"""EXXX — <Experiment title>.
+r"""EXXX — <Experiment title>.
 
 This module is a template for experiments in **py-mathx-lab**.
 
@@ -8,6 +8,10 @@ Design goals:
     - useful artifacts (figures/tables + short Markdown report),
     - stable documentation (optional hero image under docs/_static).
 
+
+Figure math (portable):
+    Use Matplotlib *mathtext* in labels/titles, e.g. r"$F_n = 2^{2^n}+1$".
+    Avoid LaTeX-only macros like ``\pmod``; prefer ``(\mathrm{mod}\ n)``.
 Usage (repository convention):
     make run EXP=exxx_<module_name> ARGS="--out out/exxx --seed 1"
 """
