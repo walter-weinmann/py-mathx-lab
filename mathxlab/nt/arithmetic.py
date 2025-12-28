@@ -21,7 +21,6 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import Iterable
 
 
 # ------------------------------------------------------------------------------
@@ -301,10 +300,10 @@ def carmichael_lambda_for_prime_power(p: int, e: int) -> int:
             return 1
         if e == 2:
             return 2
-        return 2 ** (e - 2)
+        return int(2 ** (e - 2))
 
     # For odd primes, λ(p^e) = φ(p^e)
-    return (p - 1) * (p ** (e - 1))
+    return int((p - 1) * (p ** (e - 1)))
 
 
 # ------------------------------------------------------------------------------
@@ -347,9 +346,9 @@ def jordan_totient(n: int, k: int, *, sieve: FactorSieve) -> int:
     factors = factorize(n, sieve=sieve)
 
     # Compute with integer arithmetic: start with n^k, then multiply by (p^k - 1)/p^k.
-    out = n ** k
+    out: int = n**k
     for p, _e in factors:
-        pk = p ** k
+        pk = p**k
         out = out // pk * (pk - 1)
     return out
 

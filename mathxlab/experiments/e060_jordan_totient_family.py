@@ -28,7 +28,7 @@ from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.exp.logging import LoggingConfig
 from mathxlab.exp.logging_setup import setup_logging
 from mathxlab.exp.seeding import set_global_seed
-from mathxlab.nt.arithmetic import build_factor_sieve, jordan_totient
+from mathxlab.nt.arithmetic import FactorSieve, build_factor_sieve, jordan_totient
 
 
 # ------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ class Params:
 
 
 # ------------------------------------------------------------------------------
-def _plot_jordan_normalized(n_max: int, sieve) -> fig.Figure:
+def _plot_jordan_normalized(n_max: int, sieve: FactorSieve) -> fig.Figure:
     """Plot J_k(n)/n^k for k=1..3.
 
     Args:

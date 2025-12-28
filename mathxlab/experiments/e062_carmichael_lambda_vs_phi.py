@@ -1,7 +1,7 @@
 """E062 — Carmichael's λ(n) vs Euler's φ(n): exponent vs group size.
 
 Carmichael's lambda function λ(n) is the exponent of the multiplicative group
-(Z/nZ)^×. It satisfies λ(n) | φ(n), and can be much smaller than φ(n).
+(Z/nZ)^* . It satisfies λ(n) | φ(n), and can be much smaller than φ(n).
 
 This experiment computes λ(n) and φ(n) for n<=N and plots:
 - the ratio λ(n)/φ(n),

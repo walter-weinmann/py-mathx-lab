@@ -62,6 +62,13 @@ These provide more specific detail about the techniques or subtopics involved.
 | `ulam`                 | Ulam spiral and related prime patterns in 2D.                                                |
 | `wieferich`            | Wieferich primes and related congruences.                                                    |
 | `wilson`               | Wilson’s theorem and Wilson primes.                                                          |
+| `carmichael-lambda`            | Carmichael’s lambda function λ(n), the exponent of (Z/nZ)*. |
+| `dirichlet-convolution`            | Dirichlet convolution of arithmetic functions and identity checks. |
+| `divisor-function`            | Divisor functions such as τ(n)=d(n) and σ(n), including record behavior. |
+| `mangoldt`            | von Mangoldt function Λ(n) and related Chebyshev functions θ(x), ψ(x). |
+| `omega`            | Prime-factor counting functions ω(n) and Ω(n) (distinct vs with multiplicity). |
+| `liouville`            | Liouville function λ(n) and related parity questions for Ω(n). |
+
 
 ## Usage
 

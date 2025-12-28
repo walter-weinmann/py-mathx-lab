@@ -127,7 +127,7 @@ def main() -> int:
     lines.append("Top 10 totient values by multiplicity (count, m):")
     lines.append("")
     for c, m in top10:
-        lines.append(f"- {c:>3} × : m = {m}")
+        lines.append(f"- {c:>3} x : m = {m}")
     lines.append("")
     lines.append("Figure:")
     lines.append("- fig_01_multiplicity_hist.png")
