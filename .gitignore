@@ -9,8 +9,6 @@
 /.pytest_tmp/
 /__ARCHIVE__/
 /docs/_build/
-/docs/_static/py-mathx-lab.pdf
-/makefile.pdf
 /out/
 __pycache__/
 build/

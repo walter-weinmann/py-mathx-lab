@@ -98,6 +98,10 @@ html_css_files = [
     "gallery.css",
 ]
 
+
+html_js_files = [
+    "gallery.js",
+]
 html_static_path = ["_static"]
 
 html_theme = "furo"
