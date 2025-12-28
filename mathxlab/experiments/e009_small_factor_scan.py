@@ -132,7 +132,7 @@ def _plot_fraction(*, x: np.ndarray, frac: np.ndarray) -> fig.Figure:
     """Plot cumulative fraction of exponents with a small factor."""
     fig_obj, ax = plt.subplots()
     ax.plot(x, frac)
-    ax.set_title("Fraction of tested M_p with a small factor ≤ q_max")
+    ax.set_title(r"Fraction of tested $M_p$ with a small factor $\leq q_{\max}$")
     ax.set_xlabel("test index")
     ax.set_ylabel("fraction")
     ax.set_ylim(0.0, 1.0)
@@ -145,8 +145,8 @@ def _plot_factors(*, factors: np.ndarray) -> fig.Figure:
     """Plot distribution of found factor sizes."""
     fig_obj, ax = plt.subplots()
     ax.hist(factors, bins=40)
-    ax.set_title("Sizes of first found factors q")
-    ax.set_xlabel("q")
+    ax.set_title(r"Sizes of first found factors $q$")
+    ax.set_xlabel(r"$q$")
     ax.set_ylabel("count")
     ax.set_xscale("log")
     finalize_figure(fig_obj)

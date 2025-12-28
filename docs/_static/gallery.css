@@ -105,3 +105,9 @@
     height: 140px;
   }
 }
+
+.gallery-card-body sub,
+.gallery-card-body sup {
+  font-size: 0.75em;
+  line-height: 0;
+}

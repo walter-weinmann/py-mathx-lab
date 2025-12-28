@@ -133,14 +133,14 @@ def _plot_overlay(
 
     fig_obj, ax = plt.subplots()
 
-    ax.plot(x, y_true, label="sin(x)")
+    ax.plot(x, y_true, label=r"$\sin(x)$")
     for d in params.degrees:
         y_hat = taylor_sin(x=x, x0=center, degree=d)
-        ax.plot(x, y_hat, label=f"T_{d} around x0={center:g}")
+        ax.plot(x, y_hat, label=rf"$T_{{{d}}}$ around $x_0={center:g}$")
 
-    ax.set_title(f"sin(x) and Taylor polynomials around x0={center:g}")
-    ax.set_xlabel("x")
-    ax.set_ylabel("y")
+    ax.set_title(rf"$\sin(x)$ and Taylor polynomials around $x_0={center:g}$")
+    ax.set_xlabel(r"$x$")
+    ax.set_ylabel(r"$y$")
     ax.legend(loc="best")
     finalize_figure(fig_obj)
     return fig_obj
@@ -167,10 +167,10 @@ def _plot_error_landscape(
     for d in params.degrees:
         y_hat = taylor_sin(x=x, x0=center, degree=d)
         err = np.abs(y_true - y_hat)
-        ax.plot(x, err, label=f"degree={d}")
+        ax.plot(x, err, label=rf"$n={d}$")
 
-    ax.set_title(f"Absolute error |sin(x) - T_n(x)| around x0={center:g}")
-    ax.set_xlabel("x")
+    ax.set_title(rf"Absolute error $|\sin(x) - T_n(x)|$ around $x_0={center:g}$")
+    ax.set_xlabel(r"$x$")
     ax.set_ylabel("absolute error")
     ax.set_yscale("log")
     ax.legend(loc="best")

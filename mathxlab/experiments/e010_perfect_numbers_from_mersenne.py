@@ -133,9 +133,9 @@ def _plot_digits(*, idx: np.ndarray, digits: np.ndarray) -> fig.Figure:
     """Plot digits of perfect numbers vs index."""
     fig_obj, ax = plt.subplots()
     ax.plot(idx, digits, marker="o")
-    ax.set_title("Digits of even perfect numbers derived from Mersenne primes")
-    ax.set_xlabel("k (1st, 2nd, ... found)")
-    ax.set_ylabel("digits(N_k)")
+    ax.set_title(r"Digits of even perfect numbers $N_k$ derived from Mersenne primes")
+    ax.set_xlabel(r"index $k$ ($1^{st}$, $2^{nd}$, ... found)")
+    ax.set_ylabel(r"digits of $N_k$")
     ax.set_yscale("log")
     finalize_figure(fig_obj)
     return fig_obj

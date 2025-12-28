@@ -92,8 +92,8 @@ def _plot_time(*, p: np.ndarray, t_ms: np.ndarray) -> fig.Figure:
     """Plot LLT runtime vs p."""
     fig_obj, ax = plt.subplots()
     ax.plot(p, t_ms, marker="o", linestyle="none")
-    ax.set_title("Lucas–Lehmer runtime per exponent")
-    ax.set_xlabel("prime exponent p")
+    ax.set_title(r"Lucas–Lehmer runtime per exponent $p$")
+    ax.set_xlabel(r"prime exponent $p$")
     ax.set_ylabel("time (ms)")
     ax.set_yscale("log")
     finalize_figure(fig_obj)
@@ -106,7 +106,7 @@ def _plot_cumulative(*, idx: np.ndarray, cum: np.ndarray) -> fig.Figure:
     fig_obj, ax = plt.subplots()
     ax.plot(idx, cum)
     ax.set_title("Cumulative Mersenne primes found")
-    ax.set_xlabel("test index (prime exponents in increasing order)")
+    ax.set_xlabel(r"test index (prime exponents $p$ in increasing order)")
     ax.set_ylabel("count")
     finalize_figure(fig_obj)
     return fig_obj

@@ -111,9 +111,9 @@ def _plot_scatter(*, n: np.ndarray, rel_dev: np.ndarray) -> fig.Figure:
     """Scatter plot of relative deviation vs n."""
     fig_obj, ax = plt.subplots()
     ax.scatter(n, rel_dev, s=3)
-    ax.set_title("Relative deviation from perfection")
-    ax.set_xlabel("n")
-    ax.set_ylabel("|σ(n)/n - 2|")
+    ax.set_title(r"Relative deviation from perfection: $|\sigma(n)/n - 2|$")
+    ax.set_xlabel(r"$n$")
+    ax.set_ylabel(r"$|\sigma(n)/n - 2|$")
     ax.set_yscale("log")
     finalize_figure(fig_obj)
     return fig_obj
@@ -124,9 +124,9 @@ def _plot_topk(*, idx: np.ndarray, d1: np.ndarray) -> fig.Figure:
     """Plot absolute deviation for the top-k near misses."""
     fig_obj, ax = plt.subplots()
     ax.plot(np.arange(idx.size), d1, marker="o")
-    ax.set_title("Top-k near misses by |σ(n)-2n|")
-    ax.set_xlabel("rank")
-    ax.set_ylabel("|σ(n)-2n|")
+    ax.set_title(r"Top-$k$ near misses by $|\sigma(n)-2n|$")
+    ax.set_xlabel(r"rank $k$")
+    ax.set_ylabel(r"$|\sigma(n)-2n|$")
     finalize_figure(fig_obj)
     return fig_obj
 
