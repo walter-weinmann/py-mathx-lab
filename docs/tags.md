@@ -10,6 +10,7 @@ These represent the broad mathematical area of the experiment.
 | Tag                        | Description                                                 |
 |:---------------------------|:------------------------------------------------------------|
 | `analysis`                 | Calculus, real/complex analysis, limits, and approximation. |
+| `aps`                      | Arithmetic Progressions and related theorems.               |
 | `conjecture-generation`    | Patterns suggest statements that might be true (or false).  |
 | `counterexample-search`    | Systematic exploration tries to break a hypothesis early.   |
 | `model-checking`           | Validate (or invalidate) approximations and heuristics.     |
@@ -19,34 +20,48 @@ These represent the broad mathematical area of the experiment.
 
 ## Secondary Tags (Topics & Methods)
 
-These provide more specific detail about the techniques or sub-topics involved.
+These provide more specific detail about the techniques or subtopics involved.
 
 | Tag                    | Description                                                             |
 |:-----------------------|:------------------------------------------------------------------------|
-| `arithmetic-functions` | Classical functions on integers (e.g., φ, μ, σ, τ) and their relations. |
+| `arithmetic-functions` | Classical functions on integers (e.g., $\phi$, $\mu$, $\sigma$, $\tau$) and their relations. |
+| `bounds`               | Explicit mathematical bounds (e.g., on prime-counting functions).       |
 | `carmichael`           | Carmichael numbers (absolute Fermat pseudoprimes).                      |
 | `classification`       | Grouping objects into classes based on shared properties.               |
 | `dirichlet-series`     | Dirichlet generating functions and related analytic tools.              |
 | `exploration`          | Open-ended search for patterns or properties.                           |
 | `factorization`        | Integer factorization methods and hardness.                             |
 | `fermat`               | Fermat numbers and Fermat primes.                                       |
+| `gaps`                 | Studies of the distribution of gaps between primes.                     |
 | `generating-functions` | Ordinary/exponential generating functions (esp. partitions).            |
-| `mobius`               | Möbius function μ(n), Möbius inversion, squarefree indicators.          |
+| `heuristics`           | Probabilistic or empirical models (e.g., Cramér’s model for primes).    |
+| `lucas-lehmer`         | Lucas–Lehmer primality test for Mersenne numbers.                       |
+| `li-x`                 | Logarithmic integral $\operatorname{li}(x)$ and its relation to $\pi(x)$.             |
+| `miller-rabin`         | Miller–Rabin primality test and its counterexamples.                    |
+| `mersenne`             | Mersenne numbers $M_p = 2^p - 1$ and Mersenne primes.                   |
+| `mobius`               | Möbius function $\mu(n)$, Möbius inversion, squarefree indicators.          |
 | `multiplicative`       | Multiplicative arithmetic functions; Dirichlet convolution viewpoints.  |
 | `numerics`             | Heavy use of floating-point or high-precision computation.              |
 | `open-problems`        | Related to famous unproven conjectures.                                 |
 | `optimization`         | Finding maxima, minima, or best-fit parameters.                         |
 | `partition`            | Partition function p(n), identities, and asymptotics.                   |
 | `perfect`              | Related specifically to perfect, abundant, or deficient numbers.        |
+| `pnt`                  | Prime Number Theorem and related asymptotics.                           |
+| `primes`               | Prime number distribution, density, and related theorems.               |
 | `primorial`            | Primorials, Euclid numbers, primorial primes.                           |
 | `pseudoprime`          | Pseudoprimes, primality-test failures.                                  |
+| `pseudoprimes`         | Collective study of various types of pseudoprimes.                      |
 | `search`               | Systematic search through a large state space.                          |
 | `semiprime`            | Semiprimes, RSA-type composites.                                        |
+| `sieving`              | Sieve methods (Eratosthenes, Sundaram, Atkin, etc.).                    |
 | `sigma`                | Related to the sum-of-divisors function $\sigma(n)$.                    |
-| `summatory`            | Summatory functions (e.g., Mertens M(x), summatory totient Φ(x)).       |
+| `summatory`            | Summatory functions (e.g., Mertens M(x), summatory totient $\Phi(x)$).       |
 | `taylor`               | Related to Taylor series and their approximations.                      |
-| `totient`              | Euler’s totient function φ(n), totient equations, summatory behavior.   |
+| `totient`              | Euler’s totient function $\phi(n)$, totient equations, summatory behavior.   |
+| `twin`                 | Twin primes and the twin prime conjecture.                              |
+| `ulam`                 | Ulam spiral and related prime patterns in 2D.                           |
 | `wieferich`            | Wieferich primes and related congruences.                               |
+| `wilson`               | Wilson’s theorem and Wilson primes.                                     |
 
 ## Usage
 

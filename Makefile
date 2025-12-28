@@ -21,6 +21,7 @@
         pytest \
         python-check \
         run \
+        tags-check \
         uv-check \
         venv \
         venv-recreate
@@ -122,7 +123,7 @@ docs-pdf: docs-deps
 	@$(UV_RUN_DOCS) python -m mathxlab.tools.docs_pdf --quiet
 
 # CI should be strict and never "fix" silently; keep final check-only.
-final: format lint mypy pytest docs
+final: format lint mypy tags-check pytest docs
 
 # Apply fixes locally (imports + other fixable lint) and format.
 fmt: install-dev
@@ -154,6 +155,7 @@ help:
 	@echo   make mypy          - check typing
 	@echo   make pytest        - run tests
 	@echo   make run EXP=e001  - run an experiment by id
+	@echo   make tags-check    - validate docs tags against docs/tags.md
 	@echo   make venv          - create/update virtual environment
 
 install: venv
@@ -195,6 +197,9 @@ else
 		echo "Logging to: $${log}"; \
 		$(UV_RUN_DEV) python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS) 2>&1 | tee -a "$${log}"'
 endif
+
+tags-check: install-dev
+	$(UV_RUN_DEV) python -m mathxlab.tools.validate_doc_tags
 
 uv-check:
 	$(call assert_uv)

@@ -51,11 +51,11 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e003.html" class="gallery-card" data-title="E003 — Abundancy index" data-desc="Study the abundancy index σ(n)/n and how it separates number classes." data-tags="number-theory,quantitative-exploration,visualization,classification">
+  <a href="e003.html" class="gallery-card" data-title="E003 — Abundancy index" data-desc="Study the abundancy index $\sigma(n)/n$ and how it separates number classes." data-tags="number-theory,quantitative-exploration,visualization,classification">
     <img src="../_static/experiments/e003_hero.png" alt="E003 preview">
     <div class="gallery-card-body">
       <h3>E003 — Abundancy index</h3>
-      <p>Study the abundancy index σ(n)/n and how it separates number classes.</p>
+      <p>Study the abundancy index $\sigma(n)/n$ and how it separates number classes.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
         <span class="tag tag-primary">quantitative-exploration</span>
@@ -65,11 +65,11 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e004.html" class="gallery-card" data-title="E004 — Sum-of-divisors (sigma)" data-desc="Compute σ(n), test multiplicativity, and explore divisor-sum structure." data-tags="number-theory,quantitative-exploration,sigma">
+  <a href="e004.html" class="gallery-card" data-title="E004 — Sum-of-divisors (sigma)" data-desc="Compute $\sigma(n)$, test multiplicativity, and explore divisor-sum structure." data-tags="number-theory,quantitative-exploration,sigma">
     <img src="../_static/experiments/e004_hero.png" alt="E004 preview">
     <div class="gallery-card-body">
       <h3>E004 — Sum-of-divisors (sigma)</h3>
-      <p>Compute σ(n), test multiplicativity, and explore divisor-sum structure.</p>
+      <p>Compute $\sigma(n)$, test multiplicativity, and explore divisor-sum structure.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
         <span class="tag tag-primary">quantitative-exploration</span>
@@ -232,7 +232,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e016.html" class="gallery-card" data-title="E016 — Trial division vs Miller–Rabin scaling" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,miller–rabin">
+  <a href="e016.html" class="gallery-card" data-title="E016 — Trial division vs Miller–Rabin scaling" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,miller-rabin">
     <img src="../_static/experiments/e016_hero.png" alt="E016 preview">
     <div class="gallery-card-body">
       <h3>E016 — Trial division vs Miller–Rabin scaling</h3>
@@ -241,7 +241,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
         <span class="tag tag-primary">number-theory</span>
 <span class="tag tag-primary">quantitative-exploration</span>
 <span class="tag tag-primary">visualization</span>
-<span class="tag tag-secondary">miller–rabin</span>
+<span class="tag tag-secondary">miller-rabin</span>
       </div>
     </div>
   </a>
@@ -260,7 +260,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e018.html" class="gallery-card" data-title="E018 — Miller–Rabin base choice counterexamples" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,counterexample-search,visualization,miller–rabin">
+  <a href="e018.html" class="gallery-card" data-title="E018 — Miller–Rabin base choice counterexamples" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,counterexample-search,visualization,miller-rabin">
     <img src="../_static/experiments/e018_hero.png" alt="E018 preview">
     <div class="gallery-card-body">
       <h3>E018 — Miller–Rabin base choice counterexamples</h3>
@@ -269,35 +269,35 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
         <span class="tag tag-primary">number-theory</span>
 <span class="tag tag-primary">counterexample-search</span>
 <span class="tag tag-primary">visualization</span>
-<span class="tag tag-secondary">miller–rabin</span>
+<span class="tag tag-secondary">miller-rabin</span>
       </div>
     </div>
   </a>
 
-  <a href="e019.html" class="gallery-card" data-title="E019 — Prime density and PNT visualization" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,PNT">
+  <a href="e019.html" class="gallery-card" data-title="E019 — Prime density and pnt visualization" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,pnt">
     <img src="../_static/experiments/e019_hero.png" alt="E019 preview">
     <div class="gallery-card-body">
-      <h3>E019 — Prime density and PNT visualization</h3>
+      <h3>E019 — Prime density and pnt visualization</h3>
       <p>This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
 <span class="tag tag-primary">quantitative-exploration</span>
 <span class="tag tag-primary">visualization</span>
-<span class="tag tag-secondary">PNT</span>
+<span class="tag tag-secondary">pnt</span>
       </div>
     </div>
   </a>
 
-  <a href="e020.html" class="gallery-card" data-title="E020 — Compare pi(x) to li(x) numerically" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,li(x)">
+  <a href="e020.html" class="gallery-card" data-title="E020 — Compare pi(x) to li-x numerically" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,li-x">
     <img src="../_static/experiments/e020_hero.png" alt="E020 preview">
     <div class="gallery-card-body">
-      <h3>E020 — Compare pi(x) to li(x) numerically</h3>
+      <h3>E020 — Compare pi(x) to li-x numerically</h3>
       <p>This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
 <span class="tag tag-primary">quantitative-exploration</span>
 <span class="tag tag-primary">visualization</span>
-<span class="tag tag-secondary">li(x)</span>
+<span class="tag tag-secondary">li-x</span>
       </div>
     </div>
   </a>
@@ -498,7 +498,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e035.html" class="gallery-card" data-title="E035 — Primes in arithmetic progressions mod q" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,APs">
+  <a href="e035.html" class="gallery-card" data-title="E035 — Primes in arithmetic progressions mod q" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,aps">
     <img src="../_static/experiments/e035_hero.png" alt="E035 preview">
     <div class="gallery-card-body">
       <h3>E035 — Primes in arithmetic progressions mod q</h3>
@@ -507,12 +507,12 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
         <span class="tag tag-primary">number-theory</span>
 <span class="tag tag-primary">quantitative-exploration</span>
 <span class="tag tag-primary">visualization</span>
-<span class="tag tag-secondary">APs</span>
+<span class="tag tag-secondary">aps</span>
       </div>
     </div>
   </a>
 
-  <a href="e036.html" class="gallery-card" data-title="E036 — Prime arithmetic progressions (small search)" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,APs">
+  <a href="e036.html" class="gallery-card" data-title="E036 — Prime arithmetic progressions (small search)" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,aps">
     <img src="../_static/experiments/e036_hero.png" alt="E036 preview">
     <div class="gallery-card-body">
       <h3>E036 — Prime arithmetic progressions (small search)</h3>
@@ -521,7 +521,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
         <span class="tag tag-primary">number-theory</span>
 <span class="tag tag-primary">quantitative-exploration</span>
 <span class="tag tag-primary">visualization</span>
-<span class="tag tag-secondary">APs</span>
+<span class="tag tag-secondary">aps</span>
       </div>
     </div>
   </a>
@@ -624,7 +624,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e044.html" class="gallery-card" data-title="E044 — Solovay–Strassen vs Miller–Rabin (liars)" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,miller–rabin">
+  <a href="e044.html" class="gallery-card" data-title="E044 — Solovay–Strassen vs Miller–Rabin (liars)" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…" data-tags="number-theory,quantitative-exploration,visualization,miller-rabin">
     <img src="../_static/experiments/e044_hero.png" alt="E044 preview">
     <div class="gallery-card-body">
       <h3>E044 — Solovay–Strassen vs Miller–Rabin (liars)</h3>
@@ -633,7 +633,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
         <span class="tag tag-primary">number-theory</span>
 <span class="tag tag-primary">quantitative-exploration</span>
 <span class="tag tag-primary">visualization</span>
-<span class="tag tag-secondary">miller–rabin</span>
+<span class="tag tag-secondary">miller-rabin</span>
       </div>
     </div>
   </a>

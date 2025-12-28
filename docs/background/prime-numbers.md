@@ -90,14 +90,14 @@ Segmented sieves are often the right choice once $N$ grows beyond typical RAM-fr
 
 ### Testing primality (single numbers)
 
-If you need to test primality of individual (possibly large) integers, common strategies are:
+If you need to test the primality of individual (possibly large) integers, common strategies are:
 
 - **Trial division** up to $\sqrt{n}$ (great for small $n$, too slow for large),
 - **Probabilistic tests** such as **Miller–Rabin**, fast and extremely reliable with good parameters, {cite:p}`rabin1980probabilisticalgorithmprimality`
 - **Deterministic polynomial-time** primality testing (AKS), important theoretically but rarely used for practical large-number work. {cite:p}`agrawalkayalsaxena2004primesisinp`
 
 In an experiment repo, it is common to use Miller–Rabin for speed and then either:
-(1) accept “probable prime” status (with a stated error bound),
+(1) accept “probable prime” status (with a stated error bound)
 or (2) confirm with stronger checks for the sizes you care about. {cite:p}`crandallpomerance2005primenumberscomputationalperspective`
 
 ### Factorization (often the bottleneck)
@@ -190,7 +190,7 @@ For “ground truth” sequences and curated lists, OEIS and PrimePages are prac
 
 ## Practical numerical caveats
 
-- **Pick the right primitive:** if you need *many* primes up to $N$, use a sieve; if you need primality of a few large numbers, use primality testing.
+- **Pick the right primitive:** if you need *many* primes up-to $N$, use a sieve; if you need primality of a few large numbers, use primality testing.
 - **Memory matters for sieves:** a naive boolean list of length $N$ can be huge; segmented sieves avoid this.
 - **State what “prime” means in code:** if you use Miller–Rabin, your results are “probable primes” unless you add a deterministic guarantee for your size range. {cite:p}`rabin1980probabilisticalgorithmprimality`
 - **Avoid floating-point traps:** use natural logs, guard against $\log(0)$, and remember that $\log x$ changes slowly.
