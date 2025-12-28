@@ -201,10 +201,10 @@ def _plot_cumulative(*, x: np.ndarray, pseudo: np.ndarray, carm: np.ndarray) -> 
         Matplotlib figure.
     """
     fig_obj, ax = plt.subplots()
-    ax.plot(x, pseudo, label="Fermat pseudoprimes (base a)")
+    ax.plot(x, pseudo, label=r"Fermat pseudoprimes (base $a$)")
     ax.plot(x, carm, label="Carmichael numbers")
-    ax.set_title("Cumulative counts up to n")
-    ax.set_xlabel("n")
+    ax.set_title(r"Cumulative counts up to $n$")
+    ax.set_xlabel(r"$n$")
     ax.set_ylabel("count")
     ax.legend(loc="best")
     finalize_figure(fig_obj)
@@ -223,7 +223,7 @@ def _plot_smallest_factor_hist(*, smallest_factors: np.ndarray) -> fig.Figure:
     """
     fig_obj, ax = plt.subplots()
     ax.hist(smallest_factors, bins=40)
-    ax.set_title("Smallest prime factor of Fermat pseudoprimes (base a)")
+    ax.set_title(r"Smallest prime factor of Fermat pseudoprimes (base $a$)")
     ax.set_xlabel("smallest prime factor")
     ax.set_ylabel("count")
     ax.set_xscale("log")

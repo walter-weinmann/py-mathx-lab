@@ -240,7 +240,7 @@ def main() -> int:
     # Stage 2: Euler form possible
     mask2 = np.array([euler_form_possible(int(n), spf) for n in candidates], dtype=bool)
     candidates = candidates[mask2]
-    stages.append("Euler form (q^a*m^2)")
+    stages.append("Euler form ($q^a*m^2$)")
     counts.append(int(candidates.size))
     logger.info("After Euler form filter: %d", candidates.size)
 

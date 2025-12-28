@@ -116,10 +116,10 @@ def _plot_example(*, x: np.ndarray) -> fig.Figure:
     """
 
     fig_obj, ax = plt.subplots()
-    ax.plot(x, np.sin(x), label="sin(x)")
+    ax.plot(x, np.sin(x), label=r"$\sin(x)$")
     ax.set_title("EXXX — template figure")
-    ax.set_xlabel("x")
-    ax.set_ylabel("y")
+    ax.set_xlabel(r"$x$")
+    ax.set_ylabel(r"$y$")
     ax.legend(loc="best")
     finalize_figure(fig_obj)
     return fig_obj

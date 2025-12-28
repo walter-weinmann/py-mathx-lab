@@ -171,9 +171,9 @@ def _polynomials() -> list[tuple[str, str]]:
         List of (label, expr) where expr uses only `n`.
     """
     return [
-        ("n^2 + n + 41", "n*n + n + 41"),
-        ("n^2 - n + 41", "n*n - n + 41"),
-        ("n^2 + n + 17", "n*n + n + 17"),
+        (r"$n^2 + n + 41$", "n*n + n + 41"),
+        (r"$n^2 - n + 41$", "n*n - n + 41"),
+        (r"$n^2 + n + 17$", "n*n + n + 17"),
     ]
 
 
@@ -252,9 +252,9 @@ def _plot_prime_indicator(
     fig_obj, ax = plt.subplots()
     for label, indicator in series:
         ax.plot(n, indicator, label=label)
-    ax.set_title("Prime indicator for quadratic polynomials")
-    ax.set_xlabel("n")
-    ax.set_ylabel("is_prime(f(n))")
+    ax.set_title(r"Prime indicator for quadratic polynomials $f(n)$")
+    ax.set_xlabel(r"$n$")
+    ax.set_ylabel(r"is_prime($f(n)$)")
     ax.set_yticks([0, 1])
     ax.legend(loc="best")
     finalize_figure(fig_obj)
@@ -275,7 +275,7 @@ def _plot_run_lengths(*, labels: list[str], run_lengths: np.ndarray) -> fig.Figu
     fig_obj, ax = plt.subplots()
     x = np.arange(len(labels), dtype=np.int64)
     ax.bar(x, run_lengths)
-    ax.set_title("Initial consecutive-prime run length (starting at n=0)")
+    ax.set_title(r"Initial consecutive-prime run length (starting at $n=0$)")
     ax.set_xlabel("polynomial")
     ax.set_ylabel("run length")
     ax.set_xticks(x)

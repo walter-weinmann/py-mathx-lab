@@ -6,7 +6,8 @@ small and consistent.
 A key feature is optional *true LaTeX* rendering in generated figures:
 
 - Default: Matplotlib's built-in mathtext engine (portable; no TeX required)
-- Optional: enable `text.usetex = True` if a LaTeX toolchain is available
+  with a LaTeX-like global style (Computer Modern math + serif font stack).
+- Optional: enable `text.usetex = True` if a LaTeX toolchain is available.
 
 Recommended usage (early in an experiment's `run()`):
 
@@ -28,10 +29,24 @@ from __future__ import annotations
 
 import os
 import shutil
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
-from typing import Mapping, Sequence
 
 import matplotlib as mpl
+
+# ------------------------------------------------------------------------------
+# A LaTeX-ish serif font preference stack.
+# Matplotlib will pick the first installed font available at runtime.
+_LATEXISH_SERIF_STACK: list[str] = [
+    # Best if installed:
+    "CMU Serif",  # Computer Modern Unicode
+    "Computer Modern Roman",
+    "Latin Modern Roman",
+    # Good widely-available fallback with TeX-like proportions:
+    "STIXGeneral",
+    # Always available with Matplotlib:
+    "DejaVu Serif",
+]
 
 
 # ------------------------------------------------------------------------------
@@ -101,6 +116,11 @@ def configure_matplotlib(
       - Otherwise, `MATHXLAB_USETEX=1` triggers an attempt to enable `usetex`.
       - If LaTeX tools are missing, configuration falls back to mathtext.
 
+    Global LaTeX-like look without TeX:
+      - `mathtext.fontset = "cm"` uses Computer Modern for `$...$`.
+      - `font.serif` prefers CMU/Computer Modern/Latin Modern (falls back cleanly).
+      - `axes.formatter.use_mathtext = True` makes tick formatting use mathtext.
+
     Args:
         use_tex: Whether to enable Matplotlib's `text.usetex`. If None, uses
             `MATHXLAB_USETEX` env var.
@@ -113,8 +133,17 @@ def configure_matplotlib(
         True if LaTeX rendering was enabled; False if mathtext is used.
     """
     # Stable defaults that work well across platforms.
+    #
+    # Important: we configure a LaTeX-ish mathtext + font stack by default,
+    # even when TeX is not installed, so `$...$` and surrounding text look consistent.
     base: dict[str, object] = {
+        # Text (non-math) font configuration
         "font.family": font_family,
+        "font.serif": list(_LATEXISH_SERIF_STACK),
+        # MathText configuration (TeX-free, but LaTeX-like)
+        "mathtext.fontset": "cm",  # Computer Modern math look
+        "axes.formatter.use_mathtext": True,  # tick formatter uses mathtext too
+        # General figure defaults
         "axes.grid": True,
         "figure.constrained_layout.use": True,
         "savefig.bbox": "tight",
@@ -142,7 +171,6 @@ def configure_matplotlib(
             # Fall back cleanly.
             mpl.rcParams.update({"text.usetex": False})
             latex_enabled = False
-
     else:
         mpl.rcParams.update({"text.usetex": False})
         latex_enabled = False

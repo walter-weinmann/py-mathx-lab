@@ -70,9 +70,9 @@ def _plot_digits(*, n: NDArray[np.int64], digits: NDArray[np.int64]) -> fig.Figu
     """Plot digits(M_n) vs n."""
     fig_obj, ax = plt.subplots()
     ax.plot(n, digits)
-    ax.set_title("Decimal digits of M_n = 2^n - 1")
-    ax.set_xlabel("n")
-    ax.set_ylabel("digits(M_n)")
+    ax.set_title(r"Decimal digits of $M_n = 2^n - 1$")
+    ax.set_xlabel(r"$n$")
+    ax.set_ylabel(r"digits of $M_n$")
     finalize_figure(fig_obj)
     return fig_obj
 
@@ -82,9 +82,9 @@ def _plot_bits(*, n: NDArray[np.int64], bits: NDArray[np.int64]) -> fig.Figure:
     """Plot bit-length of M_n vs n."""
     fig_obj, ax = plt.subplots()
     ax.plot(n, bits)
-    ax.set_title("Bit-length of M_n = 2^n - 1")
-    ax.set_xlabel("n")
-    ax.set_ylabel("bits(M_n)")
+    ax.set_title(r"Bit length of $M_n = 2^n - 1$")
+    ax.set_xlabel(r"$n$")
+    ax.set_ylabel(r"bit length of $M_n$")
     finalize_figure(fig_obj)
     return fig_obj
 

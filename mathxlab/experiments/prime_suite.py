@@ -478,20 +478,20 @@ def run_e019(
     fig1 = _plot_series(
         x=x,
         ys=[
-            ("pi(x)", pi[x].astype(np.float64)),
-            ("x/log x", approx),
+            (r"$\pi(x)$", pi[x].astype(np.float64)),
+            (r"$x/\log(x)$", approx),
         ],
-        title="Prime counting vs x/log x",
-        xlab="x",
+        title=r"Prime counting vs $x/\log(x)$",
+        xlab=r"$x$",
         ylab="value",
     )
     save_figure(out_dir=figures_dir, name="fig_01_pi_vs_x_logx", fig=fig1)
 
     fig2 = _plot_series(
         x=x,
-        ys=[("pi(x) - x/log x", err)],
-        title="Approximation error: pi(x) - x/log x",
-        xlab="x",
+        ys=[(r"$\pi(x) - x/\log(x)$", err)],
+        title=r"Approximation error: $\pi(x) - x/\log(x)$",
+        xlab=r"$x$",
         ylab="error",
     )
     save_figure(out_dir=figures_dir, name="fig_02_pi_minus_x_logx", fig=fig2)
@@ -502,7 +502,7 @@ def run_e019(
         f"- n_max: `{params.n_max}`",
         "",
         "## Notes",
-        "- The Prime Number Theorem suggests pi(x) ~ x/log x.",
+        r"- The Prime Number Theorem suggests $\pi(x) ~ x/\log(x)$.",
         "- The error curve shows the approximation improves overall but wiggles persist.",
         "",
     ]
@@ -551,12 +551,12 @@ def run_e020(
     fig1 = _plot_series(
         x=xs,
         ys=[
-            ("pi(x)", pi_x),
-            ("x/log x", xlogx),
-            ("li(x) (numeric)", li),
+            (r"$\pi(x)$", pi_x),
+            (r"$x/\log(x)$", xlogx),
+            (r"$li(x)$ (numeric)", li),
         ],
         title="pi(x) vs approximations",
-        xlab="x",
+        xlab="$x$",
         ylab="value",
     )
     save_figure(out_dir=figures_dir, name="fig_01_pi_vs_li", fig=fig1)
@@ -564,23 +564,23 @@ def run_e020(
     fig2 = _plot_series(
         x=xs,
         ys=[
-            ("pi(x)-x/log x", pi_x - xlogx),
-            ("pi(x)-li(x)", pi_x - li),
+            (r"$\pi(x)-x/\log(x)$", pi_x - xlogx),
+            (r"$\pi(x)-li(x)$", pi_x - li),
         ],
         title="Error comparison on coarse grid",
-        xlab="x",
+        xlab="$x$",
         ylab="error",
     )
     save_figure(out_dir=figures_dir, name="fig_02_error_comparison", fig=fig2)
 
-    lines = _basic_report_header("E020", "Compare pi(x) to li(x) numerically", "e020")
+    lines = _basic_report_header("E020", r"Compare $\pi(x)$ to $li(x)$ numerically", "e020")
     lines += [
         "## Parameters",
         f"- n_max: `{params.n_max}`",
         f"- step: `{params.step}`",
         "",
         "## Notes",
-        "- li(x) is defined by an integral of 1/log t and often tracks pi(x) more closely than x/log x.",
+        r"- li(x) is defined by an integral of 1/log t and often tracks $\pi(x)$ more closely than $x/\log(x)$.",
         "- Here we use a coarse trapezoidal approximation (good enough for a visual experiment).",
         "",
     ]
@@ -617,12 +617,12 @@ def run_e021(
     fig1 = _plot_series(
         x=x,
         ys=[
-            ("pi(x)", pix),
-            ("x/log x", xlogx),
-            ("1.25506 x/log x", upper),
+            (r"$\pi(x)$", pix),
+            (r"$x/\log(x)$", xlogx),
+            (r"$1.25506 x/\log(x)$", upper),
         ],
         title="Explicit inequality sanity check (coarse grid)",
-        xlab="x",
+        xlab="$x$",
         ylab="value",
     )
     save_figure(out_dir=figures_dir, name="fig_01_explicit_bound_sanity", fig=fig1)
@@ -633,7 +633,7 @@ def run_e021(
         f"- n_max: `{params.n_max}`",
         "",
         "## Notes",
-        "- Many explicit inequalities for pi(x) have *starting points* (valid only for x ≥ x0).",
+        r"- Many explicit inequalities for $\pi(x)$ have *starting points* (valid only for $x ≥ x_0$).",
         "- Experiments should always verify the assumptions before using a bound as a 'test oracle'.",
         "",
     ]
@@ -666,9 +666,9 @@ def run_e022(
 
     fig1 = _plot_series(
         x=x,
-        ys=[("pi(x;4,1) - pi(x;4,3)", diff.astype(np.int64))],
-        title="Prime race bias (mod 4) on growing x",
-        xlab="prime p (as x)",
+        ys=[(r"$\pi(x;4,1) - \pi(x;4,3)$", diff.astype(np.int64))],
+        title=r"Prime race bias (mod 4) on growing $x$",
+        xlab=r"prime $p$ (as $x$)",
         ylab="difference",
     )
     save_figure(out_dir=figures_dir, name="fig_01_prime_race_mod4", fig=fig1)
@@ -676,10 +676,10 @@ def run_e022(
     lines = _basic_report_header("E022", "Prime race modulo 4", "e022")
     lines += [
         "## Parameters",
-        f"- n_max: `{params.n_max}`",
+        f"- $n_max$: `{params.n_max}`",
         "",
         "## Notes",
-        "- Dirichlet's theorem implies each residue class (1 and 3 mod 4) gets infinitely many primes.",
+        r"- Dirichlet's theorem implies each residue class (1 and 3 $\mod 4$) gets infinitely many primes.",
         "- Yet finite ranges show biases (the 'prime race' phenomenon).",
         "",
     ]
@@ -718,12 +718,12 @@ def run_e023(
         x=x,
         ys=ys,
         title=f"Counts of primes in residue classes mod {params.q}",
-        xlab="prime p (as x)",
+        xlab=r"prime $p$ (as $x$)",
         ylab="count",
     )
     save_figure(out_dir=figures_dir, name="fig_01_residue_class_counts", fig=fig1)
 
-    lines = _basic_report_header("E023", f"Residue class distribution mod {params.q}", "e023")
+    lines = _basic_report_header("E023", r"Residue class distribution $\mod {params.q}$", "e023")
     lines += [
         "## Parameters",
         f"- n_max: `{params.n_max}`",
@@ -824,8 +824,8 @@ def run_e025(
         x=idx,
         ys=[("gap", gaps.astype(np.int64))],
         title="Prime gaps vs index (shows strong non-monotonicity)",
-        xlab="n (gap index)",
-        ylab="p_{n+1}-p_n",
+        xlab="$n$ (gap index)",
+        ylab="$p_{n+1}-p_n$",
     )
     save_figure(out_dir=figures_dir, name="fig_01_prime_gaps", fig=fig1)
 
@@ -868,8 +868,8 @@ def run_e026(
 
     fig_obj, ax = plt.subplots()
     ax.hist(gnorm, bins=params.bins)
-    ax.set_title("Histogram of normalized prime gaps g/log p")
-    ax.set_xlabel("g / log p")
+    ax.set_title(r"Histogram of normalized prime gaps $g/\log(p)$")
+    ax.set_xlabel(r"$g/\log(p)$")
     ax.set_ylabel("count")
     finalize_figure(fig_obj)
     save_figure(out_dir=figures_dir, name="fig_01_gap_normalized_hist", fig=fig_obj)
@@ -923,21 +923,21 @@ def run_e027(
 
     fig1 = _plot_series(
         x=p_arr,
-        ys=[("record gap", g_arr), ("log(p)^2", heuristic)],
-        title="Record gaps vs log^2(p) heuristic",
-        xlab="p (where record occurs)",
+        ys=[("record gap", g_arr), (r"$\log(p)^2$", heuristic)],
+        title=r"Record gaps vs $\log(p)^2$ heuristic",
+        xlab="$p$ (where record occurs)",
         ylab="gap size",
     )
     save_figure(out_dir=figures_dir, name="fig_01_record_gaps_vs_log2", fig=fig1)
 
-    lines = _basic_report_header("E027", "Record prime gaps vs log^2 heuristic", "e027")
+    lines = _basic_report_header("E027", r"Record prime gaps vs $\log^2$ heuristic", "e027")
     lines += [
         "## Parameters",
         f"- n_max: `{params.n_max}`",
         "",
         "## Notes",
-        "- Cramér-style heuristics suggest maximal gaps around x scale like O(log^2 x).",
-        "- This experiment is empirical: we compare record gaps to log^2(p) on a finite range.",
+        r"- Cramér-style heuristics suggest maximal gaps around $x$ scale like $O(\log^2 x$).",
+        r"- This experiment is empirical: we compare record gaps to $\log(p)^2$ on a finite range.",
         "",
     ]
     _write_lines(report_path, lines)
@@ -1042,10 +1042,10 @@ def run_e029(
         x=xs.astype(np.float64),
         ys=[
             ("observed twins", np.array(counts, dtype=np.float64)),
-            ("heuristic ~ 2C2 x/log^2 x", np.array(heur)),
+            (r"heuristic ~ $2C2 x/\log^2 x$", np.array(heur)),
         ],
         title="Twin prime counts vs heuristic",
-        xlab="x",
+        xlab="$x$",
         ylab="count",
     )
     save_figure(out_dir=figures_dir, name="fig_01_twin_count_vs_heuristic", fig=fig1)
@@ -1099,7 +1099,7 @@ def run_e030(
         x=xs.astype(np.float64),
         ys=[(label, y.astype(np.float64)) for label, y in curves],
         title="Counts of prime pairs (cousin d=4, sexy d=6)",
-        xlab="x",
+        xlab="$x$",
         ylab="count",
     )
     save_figure(out_dir=figures_dir, name="fig_01_cousin_sexy_counts", fig=fig1)
@@ -1112,7 +1112,7 @@ def run_e030(
         "",
         "## Notes",
         "- Prime pairs with fixed even gap d are all instances of prime constellations.",
-        "- Different d values have different 'local obstructions' (mod constraints) and different constants.",
+        "- Different $d$ values have different 'local obstructions' (mod constraints) and different constants.",
         "",
     ]
     _write_lines(report_path, lines)
@@ -1236,7 +1236,7 @@ def run_e032(
         x=xs.astype(np.float64),
         ys=[(name, arr.astype(np.float64)) for name, arr in ys],
         title="Counts of small prime constellations (finite range)",
-        xlab="x",
+        xlab="$x$",
         ylab="count",
     )
     save_figure(out_dir=figures_dir, name="fig_01_constellation_counts", fig=fig1)
@@ -1400,7 +1400,7 @@ def run_e035(
         x=xs.astype(np.float64),
         ys=[(label, arr.astype(np.float64)) for label, arr in ys],
         title=f"Prime counts in residue classes mod {params.q}",
-        xlab="x",
+        xlab="$x$",
         ylab="count",
     )
     save_figure(out_dir=figures_dir, name="fig_01_primes_in_ap_counts", fig=fig1)
@@ -1410,8 +1410,8 @@ def run_e035(
     )
     lines += [
         "## Parameters",
-        f"- n_max: `{params.n_max}`",
-        f"- q: `{params.q}`",
+        f"- $n_max$: `{params.n_max}`",
+        f"- $q$: `{params.q}`",
         "",
         "## Notes",
         "- Dirichlet's theorem guarantees infinitely many primes in each reduced residue class.",
@@ -1643,7 +1643,7 @@ def run_e039(
             ("safe primes q ((q-1)/2 prime)", np.array(safe_counts, dtype=np.float64)),
         ],
         title="Counts of related prime families",
-        xlab="x",
+        xlab="$x$",
         ylab="count up to x",
     )
     save_figure(out_dir=figures_dir, name="fig_01_sg_safe_counts", fig=fig1)
