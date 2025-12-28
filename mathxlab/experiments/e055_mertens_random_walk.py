@@ -79,7 +79,7 @@ def _plot_mertens(n_max: int, M: list[int]) -> fig.Figure:
     f = plt.figure()
     ax = f.add_subplot(1, 1, 1)
     ax.plot(xs, ys, linewidth=0.8)
-    ax.set_title(r"Mertens function $M(x)=\sum_{n\le x}\mu(n)$")
+    ax.set_title(r"Mertens function $M(x)=\sum_{n\leq x}\mu(n)$")
     ax.set_xlabel(r"$x$")
     ax.set_ylabel(r"$M(x)$")
     ax.set_xlim(1, n_max)

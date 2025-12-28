@@ -71,7 +71,7 @@ def _plot_squarefree_density(n_max: int, mu: list[int]) -> fig.Figure:
 
     f = plt.figure()
     ax = f.add_subplot(1, 1, 1)
-    ax.plot(xs, ys, linewidth=1.0, label=r"running $\#\{k\le n: \mu(k)\ne 0\}/n$")
+    ax.plot(xs, ys, linewidth=1.0, label=r"running $\#\{k\leq n: \mu(k)\neq 0\}/n$")
     ax.axhline(target, linestyle="--", linewidth=1.0, label=r"$6/\pi^2$")
     ax.set_title("Squarefree density via μ(n)²")
     ax.set_xlabel(r"$n$")

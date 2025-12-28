@@ -84,7 +84,9 @@ def _plot_abs_error(n_max: int, err: list[int]) -> fig.Figure:
     ax.set_xlabel(r"$n$")
     ax.set_ylabel(r"$|\mathrm{error}(n)|$")
     ax.set_xlim(1, n_max)
-    ax.set_yscale("log")
+
+    if any(y > 0 for y in ys):
+        ax.set_yscale("log")
     return f
 
 
