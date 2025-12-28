@@ -11,7 +11,7 @@ Each experiment is runnable with one command and produces an output folder conta
 
 Documentation (GitHub Pages):
 
-- https://walter-weinmann.github.io/py-mathx-lab/
+- <a href="https://walter-weinmann.github.io/py-mathx-lab/">Documentation</a>
 
 The docs include: **Experiments**, **Getting started**, **Development**, **References**.  
 As the project grows, experiment write-ups can scale under `docs/experiments/`.
