@@ -58,6 +58,12 @@ Keep it concrete and specific to this experiment.
 
 ## Experiment design
 
+### Figures and formulas
+
+- Use Matplotlib **mathtext** (portable) for formulas in plots, e.g. `r"$F_n = 2^{2^n}+1$"`.
+- Avoid LaTeX-only macros not supported by mathtext (notably `\pmod`). Prefer `r"(\mathrm{mod}\ n)"`.
+- Keep labels short and use `bbox_inches="tight"` / padding to avoid clipping (handled by `save_figure()`).
+
 - Data / sampling:
   - describe the domain, range, grid, random sampling, enumeration bounds
 - Parameters:

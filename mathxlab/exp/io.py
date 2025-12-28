@@ -8,6 +8,8 @@ from typing import Any
 
 import matplotlib.figure
 
+from mathxlab.plots.helpers import finalize_figure
+
 # ------------------------------------------------------------------------------
 logger = logging.getLogger(__name__)
 
@@ -49,7 +51,14 @@ def prepare_out_dir(*, out_dir: Path) -> RunPaths:
 
 
 # ------------------------------------------------------------------------------
-def save_figure(*, out_dir: Path, name: str, fig: matplotlib.figure.Figure, dpi: int = 160) -> Path:
+def save_figure(
+    *,
+    out_dir: Path,
+    name: str,
+    fig: matplotlib.figure.Figure,
+    dpi: int = 160,
+    finalize: bool = True,
+) -> Path:
     """Save a Matplotlib figure to disk.
 
     Args:
@@ -57,14 +66,18 @@ def save_figure(*, out_dir: Path, name: str, fig: matplotlib.figure.Figure, dpi:
         name: Filename (without extension).
         fig: The figure object to save.
         dpi: Dots per inch for the output image.
+        finalize: If True, apply standard formatting via :func:`finalize_figure`
+            before saving.
 
     Returns:
         The path where the figure was saved.
     """
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / f"{name}.png"
+    if finalize:
+        finalize_figure(fig)
     logger.info("Saving figure to: %s", path)
-    fig.savefig(path, dpi=dpi, bbox_inches="tight")
+    fig.savefig(path, dpi=dpi, bbox_inches="tight", pad_inches=0.10)
     return path
 
 

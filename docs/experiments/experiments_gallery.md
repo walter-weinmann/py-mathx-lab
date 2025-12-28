@@ -4,7 +4,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
 
 <div class="gallery-toolbar" id="gallery-toolbar">
   <div class="gallery-search">
-    <input id="gallery-search" type="search" placeholder="Search experiments (ID, title, tags)…" autocomplete="off" spellcheck="false" aria-label="Search experiments">
+  <input id="gallery-search" type="search" placeholder="Search experiments…" autocomplete="off" spellcheck="false" aria-label="Search experiments" />
     <button id="gallery-clear" class="gallery-btn" type="button" title="Clear search and filters">Clear</button>
   </div>
   <div class="gallery-meta">
@@ -667,6 +667,82 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
   </a>
 
 
+  <a href="e047.html" class="gallery-card" data-title="E047 — Fermat numbers: Pépin test + factor witnesses" data-desc="Pépin test classification and bounded factor search, showing the classic counterexample at F₅." data-tags="number-theory,counterexample-search,visualization,fermat">
+    <img src="../_static/experiments/e047_hero.png" alt="E047 preview">
+    <div class="gallery-card-body">
+      <h3>E047 — Fermat numbers: Pépin test + factor witnesses</h3>
+      <p>Pépin test classification and bounded factor search, showing the classic counterexample at F₅.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+<span class="tag tag-primary">counterexample-search</span>
+<span class="tag tag-primary">visualization</span>
+<span class="tag tag-secondary">fermat</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="e048.html" class="gallery-card" data-title="E048 — Carmichael numbers: Korselt scan" data-desc="Enumerate 3-prime-factor Carmichael numbers via Korselt’s criterion and verify Fermat-test failure modes." data-tags="number-theory,counterexample-search,quantitative-exploration,visualization,carmichael,pseudoprime">
+    <img src="../_static/experiments/e048_hero.png" alt="E048 preview">
+    <div class="gallery-card-body">
+      <h3>E048 — Carmichael numbers: Korselt scan</h3>
+      <p>Enumerate 3-prime-factor Carmichael numbers via Korselt’s criterion and verify Fermat-test failure modes.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+<span class="tag tag-primary">counterexample-search</span>
+<span class="tag tag-primary">quantitative-exploration</span>
+<span class="tag tag-primary">visualization</span>
+<span class="tag tag-secondary">carmichael</span>
+<span class="tag tag-secondary">pseudoprime</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="e049.html" class="gallery-card" data-title="E049 — Wieferich primes: scan up to a bound" data-desc="Search for base-2 Wieferich primes and visualize the quotient-like distribution; recovers 1093 and 3511 under default bounds." data-tags="number-theory,counterexample-search,visualization,wieferich">
+    <img src="../_static/experiments/e049_hero.png" alt="E049 preview">
+    <div class="gallery-card-body">
+      <h3>E049 — Wieferich primes: scan up to a bound</h3>
+      <p>Search for base-2 Wieferich primes and visualize the quotient-like distribution; recovers 1093 and 3511 under default bounds.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+<span class="tag tag-primary">counterexample-search</span>
+<span class="tag tag-primary">visualization</span>
+<span class="tag tag-secondary">wieferich</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="e050.html" class="gallery-card" data-title="E050 — Primorials: Euclid numbers p# ± 1" data-desc="Compute primorial ± 1 and show they are usually composite; produce small factor witnesses for early k." data-tags="number-theory,counterexample-search,quantitative-exploration,visualization,primorial">
+    <img src="../_static/experiments/e050_hero.png" alt="E050 preview">
+    <div class="gallery-card-body">
+      <h3>E050 — Primorials: Euclid numbers p# ± 1</h3>
+      <p>Compute primorial ± 1 and show they are usually composite; produce small factor witnesses for early k.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+<span class="tag tag-primary">counterexample-search</span>
+<span class="tag tag-primary">quantitative-exploration</span>
+<span class="tag tag-primary">visualization</span>
+<span class="tag tag-secondary">primorial</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="e051.html" class="gallery-card" data-title="E051 — Semiprimes: balanced vs unbalanced factoring" data-desc="Generate small semiprimes and compare Pollard-rho factorization timings for balanced vs unbalanced cases." data-tags="number-theory,quantitative-exploration,visualization,factorization,semiprime">
+    <img src="../_static/experiments/e051_hero.png" alt="E051 preview">
+    <div class="gallery-card-body">
+      <h3>E051 — Semiprimes: balanced vs unbalanced factoring</h3>
+      <p>Generate small semiprimes and compare Pollard-rho factorization timings for balanced vs unbalanced cases.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+<span class="tag tag-primary">quantitative-exploration</span>
+<span class="tag tag-primary">visualization</span>
+<span class="tag tag-primary">factorization</span>
+<span class="tag tag-secondary">semiprime</span>
+      </div>
+    </div>
+  </a>
+
+
+
 </div>
 
 ::: {toctree}
@@ -719,4 +795,9 @@ e043
 e044
 e045
 e046
+e047
+e048
+e049
+e050
+e051
 :::
