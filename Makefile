@@ -11,6 +11,7 @@
         final \
         fmt \
         format \
+        format-check \
         help \
         install \
         install-all \
@@ -139,6 +140,9 @@ fmt: install-dev
 
 # Check-only formatting (used by CI and by final)
 format: install-dev
+	$(UV_RUN_DEV) ruff format mathxlab tests experiments scripts pyproject.toml
+
+format-check:
 	$(UV_RUN_DEV) ruff format --check mathxlab tests experiments scripts pyproject.toml
 
 # Check-only lint (used by CI and by final)
@@ -187,12 +191,12 @@ pytest: install-dev
 pytest-slow: install-dev
 ifeq ($(IS_WINDOWS),1)
 	@if exist .coverage del /f .coverage
-	$(PYTEST) -q -m "not slow" $(COV_PKGS) --cov-report=term || exit /b 0
-	$(PYTEST) -q -m "slow" $(COV_PKGS) --cov-append --cov-report=term-missing --cov-fail-under=70 --progress --progress-every=1
+	$(PYTEST) -m "not slow" -s $(COV_PKGS) --cov-report=term || exit /b 0
+	$(PYTEST) -m "slow" -s $(COV_PKGS) --cov-append --cov-report=term-missing --cov-fail-under=70 --progress --progress-every=1
 else
 	@rm -f .coverage
-	$(PYTEST) -q -m "not slow" $(COV_PKGS) --cov-report=term
-	$(PYTEST) -q -m "slow" $(COV_PKGS) --cov-append --cov-report=term-missing --cov-fail-under=80 --progress --progress-every=1
+	$(PYTEST) -m "not slow" -s $(COV_PKGS) --cov-report=term
+	$(PYTEST) -m "slow" -s $(COV_PKGS) --cov-append --cov-report=term-missing --cov-fail-under=80 --progress --progress-every=1
 endif
 
 python-check:

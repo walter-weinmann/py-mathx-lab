@@ -74,6 +74,11 @@ def _run_experiment(*, module_name: str) -> int:
         AssertionError: If the module has no ``main`` attribute or does not return
             an int exit code.
     """
+    print("=" * 80)
+    print(f"[slow] running module {module_name} ...", flush=True)
+    print("-" * 80)
+    print("")
+
     module = importlib.import_module(module_name)
     if not hasattr(module, "main"):
         raise AssertionError(f"{module_name} has no 'main' function")
