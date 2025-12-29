@@ -3,7 +3,13 @@ import json
 import matplotlib.pyplot as plt
 import pytest
 
-from mathxlab.exp.reporting import RunArtifacts, prepare_out_dir, save_figure, write_json
+from mathxlab.exp.io import write_text
+from mathxlab.exp.reporting import (
+    RunArtifacts,
+    prepare_out_dir,
+    save_figure,
+    write_json,
+)
 
 
 def test_prepare_out_dir(tmp_path_factory: pytest.TempPathFactory) -> None:
@@ -41,3 +47,15 @@ def test_write_json(tmp_path_factory: pytest.TempPathFactory) -> None:
     # Check for stable formatting (sorted keys, indent=2)
     expected_content = json.dumps(data, indent=2, sort_keys=True) + "\n"
     assert content == expected_content
+
+
+def test_write_text(tmp_path_factory: pytest.TempPathFactory) -> None:
+    """write_text should write UTF-8 and preserve a trailing newline."""
+    out_dir = tmp_path_factory.mktemp("txt")
+    txt_path = out_dir / "note.txt"
+    text = "Line 1\nLine 2\n"
+
+    write_text(txt_path, text)
+
+    assert txt_path.exists()
+    assert txt_path.read_text(encoding="utf-8") == text

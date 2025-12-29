@@ -1,121 +1,124 @@
-"""Smoke test that executes all experiment entry points.
+"""Smoke tests for experiment entry points.
 
-The goal of this test is to ensure that every experiment module can be executed
-end-to-end without raising an exception. This protects the repository against
-accidental breakage (import errors, API drift, missing dependencies, etc.).
+This suite executes each experiment entry module ``mathxlab.experiments.e###`` as if it
+were run via ``python -m ...``. The goal is to catch import errors, CLI drift, and
+runtime crashes early.
 
-The test runs the *entry modules* ``mathxlab.experiments.e###`` (not the descriptive
-implementation modules). Each experiment is executed with a temporary output
-directory and a deterministic seed.
+Why the entry module?
+    We intentionally execute the small wrapper module (``e###.py``) instead of the
+    implementation module so we also test the public "run as module" contract.
+
+Parallel execution:
+    Each experiment is an independent pytest test case, so the slow suite can be
+    distributed across workers with ``pytest-xdist`` (e.g. ``-n auto``) while still
+    collecting coverage, because everything runs in-process inside the worker.
 
 Notes:
-    - This test is intentionally integration-like: it executes the full experiment
-      stack, including plotting and artifact writing.
-    - Experiments should therefore keep default workloads reasonably small.
-    - The matplotlib backend is forced to "Agg" so the test works in headless CI.
-
+    - The matplotlib backend is forced to "Agg" so the tests work in headless CI.
+    - Experiments should keep default workloads reasonably small.
 """
 
 from __future__ import annotations
 
-import importlib
+import os
 import re
+import runpy
 import sys
 from pathlib import Path
-from typing import TYPE_CHECKING
 
-import matplotlib
+import pytest
 
-if TYPE_CHECKING:
-    import pytest
+# Force a non-interactive matplotlib backend as early as possible.
+os.environ.setdefault("MPLBACKEND", "Agg")
 
-matplotlib.use("Agg", force=True)
+import matplotlib.pyplot as plt
 
 
 def _discover_experiment_entry_modules(*, repo_root: Path) -> list[str]:
-    """Discover experiment entry module names in ``mathxlab/experiments``.
+    """Discover entry modules ``mathxlab.experiments.e###``.
 
     Args:
         repo_root: Repository root (directory containing ``mathxlab/``).
 
     Returns:
-        A sorted list of fully-qualified module names like
-        ``mathxlab.experiments.e001``.
+        Sorted list of fully-qualified module names like ``mathxlab.experiments.e001``.
     """
     exp_dir = repo_root / "mathxlab" / "experiments"
     pattern = re.compile(r"^e\d{3}\.py$")
 
     module_names: list[str] = []
     for path in exp_dir.iterdir():
-        if not path.is_file():
-            continue
-        if not pattern.match(path.name):
-            continue
-        module_names.append(f"mathxlab.experiments.{path.stem}")
+        if path.is_file() and pattern.match(path.name):
+            module_names.append(f"mathxlab.experiments.{path.stem}")
 
     # Sort numerically by experiment id.
     module_names.sort(key=lambda s: int(s.rsplit(".", 1)[-1][1:]))
     return module_names
 
 
-def _run_experiment(*, module_name: str) -> int:
-    """Run a single experiment module by calling its ``main()``.
+def _run_entry_module(*, module_name: str, argv: list[str]) -> int:
+    """Run an entry module as ``__main__`` with a controlled argv.
 
     Args:
         module_name: Fully-qualified module name (e.g. ``mathxlab.experiments.e001``).
+        argv: argv to install into ``sys.argv`` during execution.
 
     Returns:
-        Exit code returned by the experiment ``main()``.
+        The integer exit code (0 means success).
 
     Raises:
-        AssertionError: If the module has no ``main`` attribute or does not return
-            an int exit code.
+        AssertionError: If the module exits with a non-integer, non-zero code.
     """
-    module = importlib.import_module(module_name)
-    if not hasattr(module, "main"):
-        raise AssertionError(f"{module_name} has no 'main' function")
+    old_argv = sys.argv[:]
+    try:
+        sys.argv = argv
+        try:
+            runpy.run_module(module_name, run_name="__main__", alter_sys=True)
+        except SystemExit as exc:
+            code = exc.code
+            if code is None:
+                return 0
+            if isinstance(code, int):
+                return code
+            # argparse sometimes uses strings for exit codes; treat them as failure.
+            raise AssertionError(f"{module_name} exited with non-int code: {code!r}") from exc
+        return 0
+    finally:
+        sys.argv = old_argv
 
-    main = module.main
-    result = main()
-    if not isinstance(result, int):
-        raise AssertionError(f"{module_name}.main() returned non-int: {type(result)!r}")
-    return result
+
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+_EXPERIMENT_MODULES = _discover_experiment_entry_modules(repo_root=_REPO_ROOT)
 
 
-def test_run_all_experiments(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
-    """Run all experiments and fail if any of them crashes.
+@pytest.mark.slow
+@pytest.mark.parametrize(
+    "module_name",
+    _EXPERIMENT_MODULES,
+    ids=lambda m: m.rsplit(".", 1)[-1],
+)
+def test_run_experiment_entrypoint(module_name: str, tmp_path: Path) -> None:
+    """Execute a single experiment entrypoint with a temporary output directory.
 
     Args:
+        module_name: Experiment entry module (``mathxlab.experiments.e###``).
         tmp_path: Pytest temporary directory.
-        monkeypatch: Pytest monkeypatch fixture.
     """
-    repo_root = Path(__file__).resolve().parent.parent
-    modules = _discover_experiment_entry_modules(repo_root=repo_root)
-    assert modules, "No experiment entry modules were discovered."
-
+    exp_id = module_name.rsplit(".", 1)[-1]
+    out_dir = tmp_path / exp_id
     seed = "1"
 
-    # Defer pyplot import until after the backend is fixed.
-    import matplotlib.pyplot as plt
+    exit_code = _run_entry_module(
+        module_name=module_name,
+        argv=[exp_id, "--out", str(out_dir), "--seed", seed],
+    )
+    try:
+        assert exit_code == 0, f"{module_name} returned exit_code={exit_code}"
+    finally:
+        # Each experiment may create figures; close them to avoid state bleed.
+        plt.close("all")
 
-    failures: list[str] = []
 
-    for module_name in modules:
-        exp_id = module_name.rsplit(".", 1)[-1]
-        out_dir = tmp_path / exp_id
-
-        # Experiments parse standard args from sys.argv.
-        monkeypatch.setattr(sys, "argv", [exp_id, "--out", str(out_dir), "--seed", seed])
-
-        try:
-            code = _run_experiment(module_name=module_name)
-            if code != 0:
-                failures.append(f"{exp_id}: exit_code={code}")
-        except SystemExit as exc:
-            failures.append(f"{exp_id}: SystemExit({exc.code})")
-        except Exception as exc:
-            failures.append(f"{exp_id}: {exc.__class__.__name__}: {exc}")
-        finally:
-            plt.close("all")
-
-    assert not failures, "Some experiments failed:\n" + "\n".join(failures)
+def test_experiment_discovery_is_nonempty() -> None:
+    """Sanity check: ensure we discover at least one experiment."""
+    assert _EXPERIMENT_MODULES, "No experiment entry modules were discovered."
