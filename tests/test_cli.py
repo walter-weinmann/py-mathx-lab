@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
+
+import pytest
 
 from mathxlab.exp.cli import parse_experiment_args
 
@@ -23,13 +26,37 @@ def test_parse_experiment_args_accepts_positional_list_argv(tmp_path: Path) -> N
     assert args.verbose is True
 
 
-def test_parse_experiment_args_accepts_positional_none(tmp_path: Path) -> None:
-    """Positional None should be accepted (argv taken from sys.argv).
+def test_parse_experiment_args_accepts_positional_none(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Positional ``None`` should be accepted (argv taken from ``sys.argv``).
 
-    We can't reliably assert sys.argv contents here, but we *can* assert
-    that passing None positionally does not raise TypeError.
+    This function is intentionally flexible: some experiments call
+    ``parse_experiment_args(argv)``, others call ``parse_experiment_args(argv=...)``.
+    Passing ``None`` positionally should behave like omitting ``argv`` entirely.
+
+    Args:
+        tmp_path: Temporary directory provided by pytest.
+        monkeypatch: Pytest fixture to patch globals safely.
     """
-    # We pass a minimal argv via keyword to ensure parser doesn't exit;
-    # the goal is to ensure positional None is accepted, not to parse from sys.argv.
-    args = parse_experiment_args(None, argv=["--out", str(tmp_path)])
+    monkeypatch.setattr(sys, "argv", ["prog", "--out", str(tmp_path)])
+    args = parse_experiment_args(None)
     assert args.out_dir == tmp_path
+
+
+def test_parse_experiment_args_rejects_argv_given_twice(tmp_path: Path) -> None:
+    """Passing argv both positionally and via keyword should raise TypeError."""
+    with pytest.raises(TypeError, match="both positionally and as a keyword"):
+        _ = parse_experiment_args(None, argv=["--out", str(tmp_path)])
+
+
+def test_parse_experiment_args_rejects_multiple_positional_args() -> None:
+    """More than one positional argument should raise TypeError."""
+    with pytest.raises(TypeError, match="at most one positional"):
+        _ = parse_experiment_args([], [])
+
+
+def test_parse_experiment_args_rejects_bad_positional_type() -> None:
+    """A non-list/tuple positional argv should raise TypeError."""
+    with pytest.raises(TypeError, match="positional argv must be"):
+        _ = parse_experiment_args(123)

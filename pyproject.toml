@@ -50,6 +50,10 @@ exclude_lines = [
 branch = true
 source = ["mathxlab"]
 omit = [
+  # Experiment scripts are treated as runnable notebooks / binaries and are
+  # not part of the library coverage KPI.
+  "mathxlab/experiments/*",
+  "mathxlab/experiments/**",
   "mathxlab/tools/*",
   "mathxlab/utils/*",
   "mathxlab/viz/*",

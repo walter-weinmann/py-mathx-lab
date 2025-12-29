@@ -9,8 +9,8 @@ Progress logging is intentionally lightweight and prints a single line every N t
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import time
+from dataclasses import dataclass
 
 import matplotlib
 import pytest
@@ -65,10 +65,7 @@ def pytest_configure(config: pytest.Config) -> None:
     enabled = bool(config.getoption("--progress")) or auto_enable
 
     every_opt = int(config.getoption("--progress-every") or 0)
-    if every_opt > 0:
-        every = every_opt
-    else:
-        every = 1 if auto_enable else 20
+    every = every_opt if every_opt > 0 else 1 if auto_enable else 20
 
     config._mathxlab_progress = _ProgressState(  # type: ignore[attr-defined]
         total_selected=0,
@@ -103,11 +100,11 @@ def pytest_runtest_setup(item: pytest.Item) -> None:
         item: The test item about to run.
     """
     config = item.config
-    state: _ProgressState = getattr(config, "_mathxlab_progress", None)  # type: ignore[attr-defined]
+    state: _ProgressState = getattr(config, "_mathxlab_progress", None)  # type: ignore[assignment]
     if not state or not state.enabled:
         return
 
-    seen = int(getattr(config, "_mathxlab_progress_seen", 0)) + 1  # type: ignore[attr-defined]
+    seen = int(getattr(config, "_mathxlab_progress_seen", 0)) + 1
     config._mathxlab_progress_seen = seen  # type: ignore[attr-defined]
 
     if seen == 1 or seen == state.total_selected or (seen % state.every == 0):
@@ -121,11 +118,11 @@ def pytest_runtest_setup(item: pytest.Item) -> None:
 def pytest_sessionfinish(session: pytest.Session, exitstatus: int) -> None:
     """Print a short end-of-run progress line when enabled."""
     config = session.config
-    state: _ProgressState = getattr(config, "_mathxlab_progress", None)  # type: ignore[attr-defined]
+    state: _ProgressState = getattr(config, "_mathxlab_progress", None)  # type: ignore[assignment]
     if not state or not state.enabled:
         return
 
-    started_at = float(getattr(config, "_mathxlab_progress_started_at", time.monotonic()))  # type: ignore[attr-defined]
+    started_at = float(getattr(config, "_mathxlab_progress_started_at", time.monotonic()))
     elapsed_s = time.monotonic() - started_at
 
     tr = config.pluginmanager.get_plugin("terminalreporter")
