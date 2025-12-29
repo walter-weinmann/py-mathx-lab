@@ -1,38 +1,30 @@
-"""Smoke test that executes all experiment entry points.
+"""Smoke test that executes all experiment entry points (one test per experiment).
 
-The goal of this test is to ensure that every experiment module can be executed
-end-to-end without raising an exception. This protects the repository against
-accidental breakage (import errors, API drift, missing dependencies, etc.).
+This test ensures that each entry module ``mathxlab.experiments.e###`` can be
+executed end-to-end without raising an exception.
 
-The test runs the *entry modules* ``mathxlab.experiments.e###`` (not the descriptive
-implementation modules). Each experiment is executed with a temporary output
-directory and a deterministic seed.
+Key design choices:
+- Each experiment runs in its own subprocess to avoid shared global state
+  (sys.argv, matplotlib globals, logging handlers, module import cache).
+- We parameterize so pytest (and pytest-xdist) can run experiments in parallel.
+- Stdout/stderr are captured and written to a per-experiment log file on failure.
 
 Notes:
-    - This test is intentionally integration-like: it executes the full experiment
-      stack, including plotting and artifact writing.
-    - Experiments should therefore keep default workloads reasonably small.
-    - The matplotlib backend is forced to "Agg" so the test works in headless CI.
-
+- Matplotlib backend is forced to "Agg" via environment for headless CI.
+- The experiment output directory is unique per test (tmp_path/exp_id).
 """
 
 from __future__ import annotations
 
-import importlib
+import os
 import re
+import subprocess
 import sys
 from pathlib import Path
-from typing import TYPE_CHECKING
 
-import matplotlib
 import pytest
 
-if TYPE_CHECKING:
-    import pytest
-
 pytestmark = pytest.mark.slow
-
-matplotlib.use("Agg", force=True)
 
 
 def _discover_experiment_entry_modules(*, repo_root: Path) -> list[str]:
@@ -50,80 +42,73 @@ def _discover_experiment_entry_modules(*, repo_root: Path) -> list[str]:
 
     module_names: list[str] = []
     for path in exp_dir.iterdir():
-        if not path.is_file():
-            continue
-        if not pattern.match(path.name):
-            continue
-        module_names.append(f"mathxlab.experiments.{path.stem}")
+        if path.is_file() and pattern.match(path.name):
+            module_names.append(f"mathxlab.experiments.{path.stem}")
 
-    # Sort numerically by experiment id.
     module_names.sort(key=lambda s: int(s.rsplit(".", 1)[-1][1:]))
     return module_names
 
 
-def _run_experiment(*, module_name: str) -> int:
-    """Run a single experiment module by calling its ``main()``.
+REPO_ROOT = Path(__file__).resolve().parent.parent
+MODULES = _discover_experiment_entry_modules(repo_root=REPO_ROOT)
+assert MODULES, "No experiment entry modules were discovered."
+
+
+@pytest.mark.parametrize("module_name", MODULES)
+def test_run_experiment_entrypoint(module_name: str, tmp_path: Path) -> None:
+    """Run a single experiment in a subprocess and fail if it crashes.
 
     Args:
         module_name: Fully-qualified module name (e.g. ``mathxlab.experiments.e001``).
-
-    Returns:
-        Exit code returned by the experiment ``main()``.
-
-    Raises:
-        AssertionError: If the module has no ``main`` attribute or does not return
-            an int exit code.
+        tmp_path: Pytest temporary directory unique to this test invocation.
     """
-    print("=" * 80)
-    print(f"[slow] running module {module_name} ...", flush=True)
-    print("-" * 80)
-    print("")
-
-    module = importlib.import_module(module_name)
-    if not hasattr(module, "main"):
-        raise AssertionError(f"{module_name} has no 'main' function")
-
-    main = module.main
-    result = main()
-    if not isinstance(result, int):
-        raise AssertionError(f"{module_name}.main() returned non-int: {type(result)!r}")
-    return result
-
-
-def test_run_all_experiments(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
-    """Run all experiments and fail if any of them crashes.
-
-    Args:
-        tmp_path: Pytest temporary directory.
-        monkeypatch: Pytest monkeypatch fixture.
-    """
-    repo_root = Path(__file__).resolve().parent.parent
-    modules = _discover_experiment_entry_modules(repo_root=repo_root)
-    assert modules, "No experiment entry modules were discovered."
+    exp_id = module_name.rsplit(".", 1)[-1]
+    out_dir = tmp_path / exp_id
+    out_dir.mkdir(parents=True, exist_ok=True)
 
     seed = "1"
 
-    # Defer pyplot import until after the backend is fixed.
-    import matplotlib.pyplot as plt
+    env = os.environ.copy()
+    env["MPLBACKEND"] = "Agg"
+    # Make Windows console / captured output more robust for Greek letters, etc.
+    env.setdefault("PYTHONUTF8", "1")
+    env.setdefault("PYTHONIOENCODING", "utf-8")
 
-    failures: list[str] = []
+    cmd = [
+        sys.executable,
+        "-m",
+        module_name,
+        "--out",
+        str(out_dir),
+        "--seed",
+        seed,
+    ]
 
-    for module_name in modules:
-        exp_id = module_name.rsplit(".", 1)[-1]
-        out_dir = tmp_path / exp_id
+    # Useful progress signal even without -s (shown on failure; with -s it shows live)
+    print(f"[slow] running {module_name} -> {out_dir}", flush=True)
 
-        # Experiments parse standard args from sys.argv.
-        monkeypatch.setattr(sys, "argv", [exp_id, "--out", str(out_dir), "--seed", seed])
+    completed = subprocess.run(
+        cmd,
+        env=env,
+        cwd=str(REPO_ROOT),
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        capture_output=True,
+    )
 
-        try:
-            code = _run_experiment(module_name=module_name)
-            if code != 0:
-                failures.append(f"{exp_id}: exit_code={code}")
-        except SystemExit as exc:
-            failures.append(f"{exp_id}: SystemExit({exc.code})")
-        except Exception as exc:
-            failures.append(f"{exp_id}: {exc.__class__.__name__}: {exc}")
-        finally:
-            plt.close("all")
-
-    assert not failures, "Some experiments failed:\n" + "\n".join(failures)
+    if completed.returncode != 0:
+        log_path = tmp_path / f"{exp_id}_subprocess.log"
+        log_path.write_text(
+            "COMMAND:\n"
+            + " ".join(cmd)
+            + "\n\nSTDOUT:\n"
+            + (completed.stdout or "")
+            + "\n\nSTDERR:\n"
+            + (completed.stderr or ""),
+            encoding="utf-8",
+        )
+        pytest.fail(
+            f"{exp_id} failed with exit code {completed.returncode}. "
+            f"See log: {log_path}"
+        )
