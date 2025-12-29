@@ -55,6 +55,10 @@ exclude = [
   "build",
 ]
 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
 [tool.ruff]
 target-version = "py314"
 line-length = 100

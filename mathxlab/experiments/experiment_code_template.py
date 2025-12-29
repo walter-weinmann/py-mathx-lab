@@ -136,11 +136,8 @@ def _plot_example(*, x: np.ndarray) -> fig.Figure:
 
 
 # ------------------------------------------------------------------------------
-def main(argv: list[str] | None = None) -> int:
+def main() -> int:
     """Run the experiment.
-
-    Args:
-        argv: Optional CLI arguments.
 
     Returns:
         Process exit code (0 for success).
@@ -149,7 +146,6 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_experiment_args(
         experiment_id="exxx",
         description="<Experiment title>",
-        argv=argv,
     )
 
     setup_logging(config=LoggingConfig(verbose=args.verbose))
@@ -185,5 +181,4 @@ def main(argv: list[str] | None = None) -> int:
 
 # ------------------------------------------------------------------------------
 if __name__ == "__main__":
-    import sys
-    raise SystemExit(main(sys.argv[1:]))
+    raise SystemExit(main())

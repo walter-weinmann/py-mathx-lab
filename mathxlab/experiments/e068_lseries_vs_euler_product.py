@@ -27,9 +27,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
+from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
+from mathxlab.exp.random import set_global_seed
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.experiments._prime_utils import primes_up_to
 from mathxlab.nt.dirichlet import all_characters
+
+# ------------------------------------------------------------------------------
+logger = get_logger(__name__)
+
 
 
 # ------------------------------------------------------------------------------
@@ -122,9 +128,17 @@ def _plot(*, idx: np.ndarray, series_vals: np.ndarray, euler_vals: np.ndarray, q
 # ------------------------------------------------------------------------------
 def main(argv: list[str] | None = None) -> int:
     """Run E068."""
-    args = parse_experiment_args(argv=argv)
+    args = parse_experiment_args(
+        experiment_id="e068",
+        description="Dirichlet L(s,χ): series vs Euler product (partial approximations).",
+        argv=argv,
+    )
+
+    setup_logging(config=LoggingConfig(verbose=args.verbose))
+    logger.info("Starting experiment E068: Dirichlet L(s,χ): series vs Euler product (partial approximations).")
+    set_global_seed(args.seed)
     params = Params()
-    paths = prepare_out_dir(out_dir=Path(args.out_dir))
+    paths = prepare_out_dir(out_dir=args.out_dir)
 
     chars = all_characters(params.q)
     if len(chars) < 2:

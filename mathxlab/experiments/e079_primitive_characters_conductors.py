@@ -25,8 +25,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
+from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
+from mathxlab.exp.random import set_global_seed
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.nt.dirichlet import all_characters, conductor, euler_phi
+
+# ------------------------------------------------------------------------------
+logger = get_logger(__name__)
+
 
 
 # ------------------------------------------------------------------------------
@@ -52,9 +58,17 @@ def _plot_counts(*, conductors: list[int], counts: list[int], q: int) -> fig.Fig
 # ------------------------------------------------------------------------------
 def main(argv: list[str] | None = None) -> int:
     """Run E079."""
-    args = parse_experiment_args(argv=argv)
+    args = parse_experiment_args(
+        experiment_id="e079",
+        description="Primitive vs imprimitive characters: conductors.",
+        argv=argv,
+    )
+
+    setup_logging(config=LoggingConfig(verbose=args.verbose))
+    logger.info("Starting experiment E079: Primitive vs imprimitive characters: conductors.")
+    set_global_seed(args.seed)
     params = Params()
-    paths = prepare_out_dir(out_dir=Path(args.out_dir))
+    paths = prepare_out_dir(out_dir=args.out_dir)
 
     chars = all_characters(params.q)
     conds = [conductor(c) for c in chars]

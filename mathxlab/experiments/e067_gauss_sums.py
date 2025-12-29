@@ -27,8 +27,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
+from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
+from mathxlab.exp.random import set_global_seed
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.nt.dirichlet import all_characters, euler_phi
+
+# ------------------------------------------------------------------------------
+logger = get_logger(__name__)
+
 
 
 # ------------------------------------------------------------------------------
@@ -68,10 +74,18 @@ def _plot_magnitudes(*, mags: np.ndarray, q: int) -> fig.Figure:
 # ------------------------------------------------------------------------------
 def main(argv: list[str] | None = None) -> int:
     """Run E067."""
-    args = parse_experiment_args(argv=argv)
+    args = parse_experiment_args(
+        experiment_id="e067",
+        description="Gauss sums: magnitude vs sqrt(q).",
+        argv=argv,
+    )
+
+    setup_logging(config=LoggingConfig(verbose=args.verbose))
+    logger.info("Starting experiment E067: Gauss sums: magnitude vs sqrt(q).")
+    set_global_seed(args.seed)
     params = Params()
 
-    paths = prepare_out_dir(out_dir=Path(args.out_dir))
+    paths = prepare_out_dir(out_dir=args.out_dir)
 
     chars = all_characters(params.q)
     tables = np.array([c.table() for c in chars], dtype=np.complex128)  # (phi(q), q)

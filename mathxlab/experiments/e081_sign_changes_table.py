@@ -29,8 +29,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
+from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
+from mathxlab.exp.random import set_global_seed
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.experiments._prime_utils import primes_up_to
+
+# ------------------------------------------------------------------------------
+logger = get_logger(__name__)
+
 
 
 # ------------------------------------------------------------------------------
@@ -106,9 +112,17 @@ def _md_table(changes: list[tuple[int, int]]) -> list[str]:
 # ------------------------------------------------------------------------------
 def main(argv: list[str] | None = None) -> int:
     """Run E081."""
-    args = parse_experiment_args(argv=argv)
+    args = parse_experiment_args(
+        experiment_id="e081",
+        description="Prime race sign changes: first crossings table.",
+        argv=argv,
+    )
+
+    setup_logging(config=LoggingConfig(verbose=args.verbose))
+    logger.info("Starting experiment E081: Prime race sign changes: first crossings table.")
+    set_global_seed(args.seed)
     params = Params()
-    paths = prepare_out_dir(out_dir=Path(args.out_dir))
+    paths = prepare_out_dir(out_dir=args.out_dir)
 
     primes = primes_up_to(params.x_max)
 

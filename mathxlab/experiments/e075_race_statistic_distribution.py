@@ -28,9 +28,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
+from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
+from mathxlab.exp.random import set_global_seed
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.experiments._prime_utils import primes_up_to
 from mathxlab.experiments._ap_utils import counts_in_residue_class, normalized_race_statistic, sample_grid
+
+# ------------------------------------------------------------------------------
+logger = get_logger(__name__)
+
 
 
 # ------------------------------------------------------------------------------
@@ -56,9 +62,17 @@ def _plot_hist(*, z: np.ndarray, bins: int) -> fig.Figure:
 # ------------------------------------------------------------------------------
 def main(argv: list[str] | None = None) -> int:
     """Run E075."""
-    args = parse_experiment_args(argv=argv)
+    args = parse_experiment_args(
+        experiment_id="e075",
+        description="Prime race statistic: distribution on a log-grid.",
+        argv=argv,
+    )
+
+    setup_logging(config=LoggingConfig(verbose=args.verbose))
+    logger.info("Starting experiment E075: Prime race statistic: distribution on a log-grid.")
+    set_global_seed(args.seed)
     params = Params()
-    paths = prepare_out_dir(out_dir=Path(args.out_dir))
+    paths = prepare_out_dir(out_dir=args.out_dir)
 
     primes = primes_up_to(params.x_max)
     xs = sample_grid(x_max=params.x_max, n=params.n_points, log=True)

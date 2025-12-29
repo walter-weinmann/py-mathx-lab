@@ -30,10 +30,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
+from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
+from mathxlab.exp.random import set_global_seed
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.experiments._prime_utils import primes_up_to
 from mathxlab.experiments._ap_utils import counts_in_residue_class, li_trap, sample_grid
 from mathxlab.nt.dirichlet import euler_phi
+
+# ------------------------------------------------------------------------------
+logger = get_logger(__name__)
+
 
 
 # ------------------------------------------------------------------------------
@@ -64,9 +70,17 @@ def _plot(*, xs: np.ndarray, errors: dict[int, np.ndarray], q: int) -> fig.Figur
 # ------------------------------------------------------------------------------
 def main(argv: list[str] | None = None) -> int:
     """Run E071."""
-    args = parse_experiment_args(argv=argv)
+    args = parse_experiment_args(
+        experiment_id="e071",
+        description="PNT(AP) numerics: pi(x;q,a) - Li(x)/phi(q).",
+        argv=argv,
+    )
+
+    setup_logging(config=LoggingConfig(verbose=args.verbose))
+    logger.info("Starting experiment E071: PNT(AP) numerics: pi(x;q,a) - Li(x)/phi(q).")
+    set_global_seed(args.seed)
     params = Params()
-    paths = prepare_out_dir(out_dir=Path(args.out_dir))
+    paths = prepare_out_dir(out_dir=args.out_dir)
 
     for a in params.residues:
         if gcd(a, params.q) != 1:

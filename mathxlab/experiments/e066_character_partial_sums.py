@@ -1,136 +1,156 @@
 """E066 — Character partial sums: cancellation profiles.
 
-For a Dirichlet character χ modulo q, consider partial sums:
+This experiment visualizes partial sums
 
-    S(N) = ∑_{n=1}^N χ(n)
+    S(N) = sum_{n <= N} chi(n)
 
-For "nontrivial" χ one expects substantial cancellation (S(N) grows slowly
-compared to N). This experiment computes S(N) for all characters modulo q and
-plots:
+for Dirichlet characters chi modulo q, and summarizes maximal partial-sum
+magnitudes across characters.
 
-- max_{N<=Nmax} |S(N)| for each character,
-- one example trajectory S(N) (real/imag) for a selected character.
-
-Usage:
-    make run EXP=e066
-
-Artifacts:
-    - figures/fig_01_max_partial_sums.png
-    - figures/fig_02_example_partial_sum.png
-    - params.json
-    - report.md
+Notes:
+    - Matplotlib's built-in mathtext parser is intentionally limited. To keep
+      this experiment robust across platforms, we avoid LaTeX-heavy titles.
+    - Character values are periodic modulo q, with chi(n)=0 when gcd(n,q)>1.
 """
 
 from __future__ import annotations
 
+import logging
 from dataclasses import asdict, dataclass
-from pathlib import Path
 
-import matplotlib.figure as fig
 import matplotlib.pyplot as plt
 import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
-from mathxlab.nt.dirichlet import all_characters, character_table, euler_phi
-
+from mathxlab.exp.logging import LoggingConfig, setup_logging
+from mathxlab.exp.seeding import set_global_seed
+from mathxlab.nt.dirichlet import all_characters
 
 # ------------------------------------------------------------------------------
+logger = logging.getLogger(__name__)
+
+
 @dataclass(frozen=True)
 class Params:
-    """Parameters for E066.
-
-    Attributes:
-        q: Modulus.
-        n_max: Maximum N for partial sums.
-        example_index: Which character index to plot as example.
-    """
+    """Experiment parameters."""
 
     q: int = 15
-    n_max: int = 30_000
-    example_index: int = 1
+    n_max: int = 50_000
+    include_principal: bool = False
+    top_k: int = 8
 
 
-# ------------------------------------------------------------------------------
-def _partial_sums_from_table(*, table: np.ndarray, q: int, n_max: int) -> np.ndarray:
-    """Compute cumulative sums S(N) for each character using periodicity.
+def _compute_partial_sums(*, q: int, n_max: int, include_principal: bool) -> tuple[list[object], np.ndarray]:
+    """Compute partial sums S(N)=sum_{n<=N} chi(n) for all characters mod q.
 
     Args:
-        table: Character table (phi(q), q), entries for residues 0..q-1.
         q: Modulus.
         n_max: Maximum N.
+        include_principal: Whether to include the principal character.
 
     Returns:
-        Complex array of shape (phi(q), n_max) with S(N) for N=1..n_max.
+        A pair (chars, sums) where:
+            chars: List of DirichletCharacter objects.
+            sums: Complex array of shape (m, n_max) with cumulative sums for each chi.
     """
-    residues = (np.arange(1, n_max + 1) % q).astype(np.int64)
-    vals = table[:, residues]  # (phi(q), n_max)
-    return np.cumsum(vals, axis=1)
+    chars = all_characters(q)
+    if not include_principal:
+        chars = [c for c in chars if not getattr(c, "is_principal", False)]
+
+    # Use periodicity: chi(n) = chi(n mod q).
+    residues = (np.arange(1, n_max + 1, dtype=np.int64) % q).astype(np.int64)
+
+    table = np.array([c.table() for c in chars], dtype=np.complex128)  # (m, q)
+    vals = table[:, residues]  # (m, n_max)
+    sums = np.cumsum(vals, axis=1)
+    return chars, sums
 
 
-# ------------------------------------------------------------------------------
-def _plot_max_abs(*, max_abs: np.ndarray, q: int) -> fig.Figure:
-    """Plot max |S(N)| per character index."""
-    fig_obj, ax = plt.subplots()
-    x = np.arange(len(max_abs))
-    ax.bar(x, max_abs)
-    ax.set_title(rf"Max partial sums $\max_{{N\leq N_{{\max}}}} |S(N)|$ (q={q})")
-    ax.set_xlabel("Character index")
-    ax.set_ylabel("Max |S(N)|")
-    return fig_obj
+def _plot_maxima(*, max_abs: np.ndarray, q: int, n_max: int) -> plt.Figure:
+    """Plot maximal partial-sum magnitudes per character."""
+    fig, ax = plt.subplots()
+    order = np.argsort(max_abs)[::-1]
+    ax.plot(np.arange(1, len(max_abs) + 1), max_abs[order], marker=".", linestyle="none")
+    ax.set_title(f"Max |S(N)| across characters (q={q}, N_max={n_max})")
+    ax.set_xlabel("Character rank (sorted by max |S|)")
+    ax.set_ylabel("max_N |S(N)|")
+    ax.set_yscale("log")
+    return fig
 
 
-# ------------------------------------------------------------------------------
-def _plot_example(*, S: np.ndarray, q: int, idx: int) -> fig.Figure:
-    """Plot real and imaginary parts of one partial-sum trajectory."""
-    fig_obj, ax = plt.subplots()
-    n = np.arange(1, S.size + 1)
-    ax.plot(n, S.real, label="Re S(N)")
-    ax.plot(n, S.imag, label="Im S(N)")
-    ax.set_title(rf"Example partial sums $S(N)$ (q={q}, index={idx})")
+def _plot_example(*, abs_s: np.ndarray, q: int, n_max: int) -> plt.Figure:
+    """Plot |S(N)| for one representative character."""
+    fig, ax = plt.subplots()
+    ax.plot(np.arange(1, n_max + 1), abs_s)
+    ax.set_title(f"Example trajectory: |S(N)| (q={q}, N_max={n_max})")
     ax.set_xlabel("N")
-    ax.set_ylabel("Value")
-    ax.legend(loc="best")
-    return fig_obj
+    ax.set_ylabel("|S(N)|")
+    ax.set_yscale("log")
+    return fig
 
 
-# ------------------------------------------------------------------------------
-def main(argv: list[str] | None = None) -> int:
-    """Run E066."""
-    args = parse_experiment_args(argv=argv)
+def main() -> int:
+    """Run the experiment.
+
+    Returns:
+        Process exit code (0 for success).
+    """
+    args = parse_experiment_args(
+        experiment_id="e066",
+        description="Character partial sums: cancellation profiles",
+    )
+    setup_logging(config=LoggingConfig(verbose=args.verbose))
+    set_global_seed(args.seed)
+
+    logger.info("Starting experiment E066: Character partial sums: cancellation profiles.")
+
     params = Params()
+    out_paths = prepare_out_dir(out_dir=args.out_dir)
 
-    paths = prepare_out_dir(out_dir=Path(args.out_dir))
+    chars, sums = _compute_partial_sums(
+        q=params.q, n_max=params.n_max, include_principal=params.include_principal
+    )
+    abs_sums = np.abs(sums)
+    max_abs = abs_sums.max(axis=1)
 
-    table = character_table(params.q)
-    S = _partial_sums_from_table(table=table, q=params.q, n_max=params.n_max)
-    max_abs = np.max(np.abs(S), axis=1)
+    fig1 = _plot_maxima(max_abs=max_abs, q=params.q, n_max=params.n_max)
+    save_figure(out_dir=out_paths.figures_dir, name="fig_01_max_partial_sums", fig=fig1)
 
-    fig1 = _plot_max_abs(max_abs=max_abs, q=params.q)
-    save_figure(out_dir=paths.figures_dir, name="fig_01_max_partial_sums", fig=fig1)
+    idx = int(np.argmax(max_abs))
+    fig2 = _plot_example(abs_s=abs_sums[idx], q=params.q, n_max=params.n_max)
+    save_figure(out_dir=out_paths.figures_dir, name="fig_02_example_partial_sum", fig=fig2)
 
-    idx = int(np.clip(params.example_index, 0, S.shape[0] - 1))
-    fig2 = _plot_example(S=S[idx], q=params.q, idx=idx)
-    save_figure(out_dir=paths.figures_dir, name="fig_02_example_partial_sum", fig=fig2)
+    write_json(out_paths.params_path, data=asdict(params))
 
-    lines = [
-        "# E066 — Character partial sums",
+    top_k = min(params.top_k, len(chars))
+    top_idx = np.argsort(max_abs)[::-1][:top_k]
+    lines: list[str] = [
+        "# E066 — Character partial sums: cancellation profiles",
         "",
+        "## Parameters",
         f"- q: {params.q}",
-        f"- phi(q): {euler_phi(params.q)}",
-        f"- n_max: {params.n_max}",
-        f"- max over characters of max|S(N)|: {float(max_abs.max()):.2f}",
+        f"- N_max: {params.n_max}",
+        f"- include_principal: {params.include_principal}",
         "",
-        "Figures:",
-        "- fig_01_max_partial_sums.png",
-        "- fig_02_example_partial_sum.png",
+        "## Summary",
+        f"Computed partial sums S(N)=sum_{{n<=N}} chi(n) for {len(chars)} Dirichlet characters modulo q.",
         "",
-        "Notes:",
-        "- The principal character typically shows linear growth on units (less cancellation).",
-        "- Nontrivial characters usually exhibit strong cancellation (slow growth).",
+        "### Top characters by max |S(N)|",
         "",
+        "| rank | index | max |S(N)| | conductor | principal |",
+        "|---:|---:|---:|---:|:---:|",
     ]
+    for r, i in enumerate(top_idx, start=1):
+        chi = chars[int(i)]
+        cond = getattr(chi, "conductor", None)
+        cond_val = int(cond) if isinstance(cond, int) else (int(cond()) if callable(cond) else -1)
+        is_pr = bool(getattr(chi, "is_principal", False))
+        lines.append(f"| {r} | {int(i)} | {float(max_abs[int(i)]):.6g} | {cond_val} | {is_pr} |")
 
-    write_json(paths.params_path, asdict(params))
-    write_text(paths.report_path, "\n".join(lines))
+    write_text(out_paths.report_path, "\n".join(lines) + "\n")
     return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

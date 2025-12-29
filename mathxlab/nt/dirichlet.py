@@ -21,7 +21,6 @@ References:
 from __future__ import annotations
 
 from dataclasses import dataclass
-from functools import cached_property
 from math import gcd
 from pathlib import Path
 from typing import Iterable
@@ -291,7 +290,7 @@ def _build_components(q: int) -> list[_Component]:
 
 
 # ------------------------------------------------------------------------------
-@dataclass(frozen=True)
+@dataclass(frozen=True, slots=True)
 class DirichletCharacter:
     """Dirichlet character modulo q.
 
@@ -324,16 +323,39 @@ class DirichletCharacter:
             val *= comp.value(n=r, param=par)
         return val
 
-    @cached_property
+    @property
     def is_principal(self) -> bool:
         """Return True if χ is the principal character."""
         # Principal means all component parameters are 0.
         return all(all(x == 0 for x in par) for par in self.params)
 
     def table(self) -> np.ndarray:
-        """Return the character table row for residues 0..q-1."""
+        """Return the character table row for residues 0..q-1.
+
+        Returns:
+            A complex NumPy array of shape (q,) containing χ(0), χ(1), ..., χ(q-1).
+        """
         q = self.modulus
         return np.array([self(n) for n in range(q)], dtype=np.complex128)
+
+    @property
+    def conductor(self) -> int:
+        """Return the conductor of the character.
+
+        Returns:
+            The smallest f | q such that χ(n) depends only on n mod f.
+        """
+        return conductor(self)
+
+    @property
+    def is_primitive(self) -> bool:
+        """Return True if the character is primitive.
+
+        Returns:
+            True iff conductor(χ) == q.
+        """
+        return self.conductor == self.modulus
+
 
 
 # ------------------------------------------------------------------------------

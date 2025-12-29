@@ -54,6 +54,17 @@ def setup_logging(*, config: LoggingConfig | None = None) -> None:
     """
     cfg = config or LoggingConfig()
 
+    # Ensure our console handlers can handle Unicode safely on Windows consoles.
+    # PowerShell/Windows console defaults can be cp1252; that can raise
+    # UnicodeEncodeError for symbols like χ, φ, π in log messages. Using
+    # backslashreplace keeps output readable without forcing a code page.
+    for _stream in (sys.stdout, sys.stderr):
+        try:
+            _stream.reconfigure(errors="backslashreplace")
+        except Exception:
+            # Not all streams support reconfigure (e.g., redirected outputs).
+            pass
+
     root = logging.getLogger()
     root.handlers.clear()
 

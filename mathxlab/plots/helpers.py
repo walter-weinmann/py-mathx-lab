@@ -35,4 +35,11 @@ def finalize_figure(fig: matplotlib.figure.Figure) -> None:
         fig: The figure to finalize.
     """
     configure_mathtext()
-    fig.tight_layout()
+    try:
+        fig.tight_layout()
+    except ValueError as exc:
+        # Matplotlib mathtext can fail on unknown symbols (e.g. \le vs \leq).
+        # Do not fail the experiment run for a layout issue.
+        import logging
+
+        logging.getLogger(__name__).warning("tight_layout() failed: %s", exc)
