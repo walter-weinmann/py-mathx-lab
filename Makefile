@@ -42,6 +42,8 @@ UV_RUN_DEV  = $(UV) run --extra dev
 UV_RUN_DOCS = $(UV) run --extra docs
 
 PYTEST   = $(UV_RUN_DEV) pytest -o "cache_dir=temp_pytest_cache" --basetemp=temp_pytest
+PYTEST_XDIST_FAST ?=
+PYTEST_XDIST_SLOW ?= -n auto --dist=load
 # Coverage focuses on library code. Experiment scripts are excluded via
 # [tool.coverage.run].omit in pyproject.toml.
 COV_PKGS = --cov=mathxlab.exp --cov=mathxlab.nt --cov=mathxlab.num --cov=mathxlab.plots --cov=mathxlab.viz
@@ -186,18 +188,29 @@ mypy: install-dev
 	$(UV_RUN_DEV) mypy mathxlab tests experiments
 
 pytest: install-dev
-	$(PYTEST) -q -m "not slow" $(COV_OPTS)
+	$(PYTEST) -q $(PYTEST_XDIST_FAST) -m "not slow" \
+		$(COV_PKGS) --cov-report=term-missing --cov-fail-under=80
+
+pytest-xdist: install-dev
+	$(PYTEST) -q -n auto --dist=load -m "not slow" \
+		$(COV_PKGS) --cov-report=term-missing --cov-fail-under=80
 
 pytest-slow: install-dev
 ifeq ($(IS_WINDOWS),1)
 	@if exist .coverage del /f .coverage
-	$(PYTEST) -m "not slow" -s $(COV_PKGS) --cov-report=term || exit /b 0
-	$(PYTEST) -m "slow" -s $(COV_PKGS) --cov-append --cov-report=term-missing --cov-fail-under=70 --progress --progress-every=1
 else
 	@rm -f .coverage
-	$(PYTEST) -m "not slow" -s $(COV_PKGS) --cov-report=term
-	$(PYTEST) -m "slow" -s $(COV_PKGS) --cov-append --cov-report=term-missing --cov-fail-under=80 --progress --progress-every=1
 endif
+ifeq ($(IS_WINDOWS),1)
+	$(PYTEST) -q -m "not slow" \
+		$(COV_PKGS) --cov-report=term || exit /b 0
+else
+	$(PYTEST) -q -m "not slow" \
+		$(COV_PKGS) --cov-report=term || true
+endif
+	$(PYTEST) -q $(PYTEST_XDIST_SLOW) -m "slow" \
+		$(COV_PKGS) --cov-append --cov-report=term-missing --cov-fail-under=70 \
+		--progress --progress-every=1
 
 python-check:
 	@python -c "import sys; req='$(PYTHON_MIN)'.split('.'); req=(int(req[0]), int(req[1])); v=sys.version_info; assert v[:2] >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"
