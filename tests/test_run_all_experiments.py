@@ -25,14 +25,13 @@ import re
 import runpy
 import sys
 from pathlib import Path
-from typing import Iterable
 
 import pytest
 
 # Force a non-interactive matplotlib backend as early as possible.
 os.environ.setdefault("MPLBACKEND", "Agg")
 
-import matplotlib.pyplot as plt  # noqa: E402
+import matplotlib.pyplot as plt
 
 
 def _discover_experiment_entry_modules(*, repo_root: Path) -> list[str]:

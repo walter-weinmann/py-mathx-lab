@@ -9,6 +9,7 @@
         docs-html \
         docs-pdf \
         final \
+        final-slow \
         fmt \
         format \
         format-check \
@@ -132,10 +133,10 @@ docs-pdf: docs-deps
 	@echo "Building PDF docs (optional; requires LaTeX toolchain + latexmk)..."
 	@$(UV_RUN_DOCS) python -m mathxlab.tools.docs_pdf --quiet
 
-# CI should be strict and never "fix" silently; keep final check-only.
-final: format lint mypy tags-check pytest-slow docs
+final: format lint-fix mypy tags-check pytest docs
 
-# Apply fixes locally (imports + other fixable lint) and format.
+final-slow: format lint mypy tags-check pytest-slow docs
+
 fmt: install-dev
 	$(UV_RUN_DEV) ruff check --fix .
 	$(UV_RUN_DEV) ruff format .
@@ -147,24 +148,22 @@ format: install-dev
 format-check:
 	$(UV_RUN_DEV) ruff format --check mathxlab tests experiments scripts pyproject.toml
 
-# Check-only lint (used by CI and by final)
-lint: install-dev
-	$(UV_RUN_DEV) ruff check .
-
 help:
 	@echo Targets:
 	@echo   make clean         - remove caches/build artifacts
 	@echo   make clean-venv    - remove .venv
 	@echo   make docs          - build Sphinx HTML docs
 	@echo   make docs-clean    - remove docs/_build
-	@echo   make final         - run format-check + lint + mypy + pytest + docs
+	@echo   make final         - run format-check + lint + mypy + pytest      + docs
+	@echo   make final-slow    - run format-check + lint + mypy + pytest-slow + docs
 	@echo   make fmt           - apply ruff fixes + format (local developer helper)
 	@echo   make format        - check formatting (ruff format --check)
 	@echo   make install       - install package editable
-	@echo   make install-all   - sync default deps
-	@echo   make install-dev   - sync default + dev deps
+	@echo   make install-all   - sync default        deps
+	@echo   make install-dev   - sync default + dev  deps
 	@echo   make install-docs  - sync default + docs deps
 	@echo   make lint          - ruff lint (check-only)
+	@echo   make lint-fix      - ruff lint
 	@echo   make mypy          - check typing
 	@echo   make pytest        - run fast tests with coverage
 	@echo   make pytest-slow   - run slow tests with coverage
@@ -183,6 +182,14 @@ install-dev: uv-check python-check venv
 
 install-docs: uv-check python-check venv
 	$(UV) sync --extra docs
+
+# Check-only lint (used by CI and by final)
+lint: install-dev
+	$(UV_RUN_DEV) ruff check .
+
+# Check-only lint (used by final)
+lint-fix: install-dev
+	$(UV_RUN_DEV) ruff check --fix .
 
 mypy: install-dev
 	$(UV_RUN_DEV) mypy mathxlab tests experiments
