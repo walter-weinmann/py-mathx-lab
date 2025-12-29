@@ -198,10 +198,6 @@ pytest: install-dev
 	$(PYTEST) -q $(PYTEST_XDIST_FAST) -m "not slow" \
 		$(COV_PKGS) --cov-report=term-missing --cov-fail-under=80
 
-pytest-xdist: install-dev
-	$(PYTEST) -q -n auto --dist=load -m "not slow" \
-		$(COV_PKGS) --cov-report=term-missing --cov-fail-under=80
-
 pytest-slow: install-dev
 ifeq ($(IS_WINDOWS),1)
 	@if exist .coverage del /f .coverage
@@ -218,6 +214,10 @@ endif
 	$(PYTEST) -q $(PYTEST_XDIST_SLOW) -m "slow" \
 		$(COV_PKGS) --cov-append --cov-report=term-missing --cov-fail-under=70 \
 		--progress --progress-every=1
+
+pytest-xdist: install-dev
+	$(PYTEST) -q -n auto --dist=load -m "not slow" \
+		$(COV_PKGS) --cov-report=term-missing --cov-fail-under=80
 
 python-check:
 	@python -c "import sys; req='$(PYTHON_MIN)'.split('.'); req=(int(req[0]), int(req[1])); v=sys.version_info; assert v[:2] >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"

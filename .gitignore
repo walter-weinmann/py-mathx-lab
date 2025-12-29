@@ -11,7 +11,7 @@
 /__ARCHIVE__/
 /docs/_build/
 /out/
-/temp_pytest_new/
+/temp_pytest*/
 __pycache__/
 build/
 dist/
