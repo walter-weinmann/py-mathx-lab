@@ -9,8 +9,10 @@
         docs-html \
         docs-pdf \
         final \
+        final-slow \
         fmt \
         format \
+        format-check \
         help \
         install \
         install-all \
@@ -19,6 +21,7 @@
         lint \
         mypy \
         pytest \
+        pytest-slow \
         python-check \
         run \
         tags-check \
@@ -27,7 +30,7 @@
         venv-recreate
 
 PYTHON_MIN := 3.14
-CLEAN_DIRS := .mypy_cache .pytest_cache .ruff_cache build dist docs/_build
+CLEAN_DIRS := .mypy_cache .pytest_cache .ruff_cache build dist docs/_build temp_pytest temp_pytest_cache
 VENV_DIR   := .venv
 
 DOCS_DIR        := docs
@@ -38,6 +41,14 @@ UV         ?= uv
 UV_RUN      = $(UV) run
 UV_RUN_DEV  = $(UV) run --extra dev
 UV_RUN_DOCS = $(UV) run --extra docs
+
+PYTEST   = $(UV_RUN_DEV) pytest -o "cache_dir=temp_pytest_cache" --basetemp=temp_pytest
+PYTEST_XDIST_FAST ?=
+PYTEST_XDIST_SLOW ?= -n auto --dist=load
+# Coverage focuses on library code. Experiment scripts are excluded via
+# [tool.coverage.run].omit in pyproject.toml.
+COV_PKGS = --cov=mathxlab.exp --cov=mathxlab.nt --cov=mathxlab.num --cov=mathxlab.plots --cov=mathxlab.viz
+COV_OPTS = $(COV_PKGS) --cov-report=term-missing --cov-fail-under=80
 
 # Optional: silence uv "Failed to hardlink files" warning on multi-drive setups (common on Windows).
 # You can also set this globally via environment instead of here.
@@ -122,21 +133,20 @@ docs-pdf: docs-deps
 	@echo "Building PDF docs (optional; requires LaTeX toolchain + latexmk)..."
 	@$(UV_RUN_DOCS) python -m mathxlab.tools.docs_pdf --quiet
 
-# CI should be strict and never "fix" silently; keep final check-only.
-final: format lint mypy tags-check pytest docs
+final: format lint-fix mypy tags-check pytest docs
 
-# Apply fixes locally (imports + other fixable lint) and format.
+final-slow: format lint mypy tags-check pytest-slow docs
+
 fmt: install-dev
 	$(UV_RUN_DEV) ruff check --fix .
 	$(UV_RUN_DEV) ruff format .
 
 # Check-only formatting (used by CI and by final)
 format: install-dev
-	$(UV_RUN_DEV) ruff format --check .
+	$(UV_RUN_DEV) ruff format mathxlab tests experiments scripts pyproject.toml
 
-# Check-only lint (used by CI and by final)
-lint: install-dev
-	$(UV_RUN_DEV) ruff check .
+format-check:
+	$(UV_RUN_DEV) ruff format --check mathxlab tests experiments scripts pyproject.toml
 
 help:
 	@echo Targets:
@@ -144,16 +154,19 @@ help:
 	@echo   make clean-venv    - remove .venv
 	@echo   make docs          - build Sphinx HTML docs
 	@echo   make docs-clean    - remove docs/_build
-	@echo   make final         - run format-check + lint + mypy + pytest + docs
+	@echo   make final         - run format-check + lint + mypy + pytest      + docs
+	@echo   make final-slow    - run format-check + lint + mypy + pytest-slow + docs
 	@echo   make fmt           - apply ruff fixes + format (local developer helper)
 	@echo   make format        - check formatting (ruff format --check)
 	@echo   make install       - install package editable
-	@echo   make install-all   - sync default deps
-	@echo   make install-dev   - sync default + dev deps
+	@echo   make install-all   - sync default        deps
+	@echo   make install-dev   - sync default + dev  deps
 	@echo   make install-docs  - sync default + docs deps
 	@echo   make lint          - ruff lint (check-only)
+	@echo   make lint-fix      - ruff lint
 	@echo   make mypy          - check typing
-	@echo   make pytest        - run tests
+	@echo   make pytest        - run fast tests with coverage
+	@echo   make pytest-slow   - run slow tests with coverage
 	@echo   make run EXP=e001  - run an experiment by id
 	@echo   make tags-check    - validate docs tags against docs/tags.md
 	@echo   make venv          - create/update virtual environment
@@ -170,11 +183,41 @@ install-dev: uv-check python-check venv
 install-docs: uv-check python-check venv
 	$(UV) sync --extra docs
 
+# Check-only lint (used by CI and by final)
+lint: install-dev
+	$(UV_RUN_DEV) ruff check .
+
+# Check-only lint (used by final)
+lint-fix: install-dev
+	$(UV_RUN_DEV) ruff check --fix .
+
 mypy: install-dev
-	$(UV_RUN_DEV) mypy .
+	$(UV_RUN_DEV) mypy mathxlab tests experiments
 
 pytest: install-dev
-	$(UV_RUN_DEV) pytest -q
+	$(PYTEST) -q $(PYTEST_XDIST_FAST) -m "not slow" \
+		$(COV_PKGS) --cov-report=term-missing --cov-fail-under=80
+
+pytest-xdist: install-dev
+	$(PYTEST) -q -n auto --dist=load -m "not slow" \
+		$(COV_PKGS) --cov-report=term-missing --cov-fail-under=80
+
+pytest-slow: install-dev
+ifeq ($(IS_WINDOWS),1)
+	@if exist .coverage del /f .coverage
+else
+	@rm -f .coverage
+endif
+ifeq ($(IS_WINDOWS),1)
+	$(PYTEST) -q -m "not slow" \
+		$(COV_PKGS) --cov-report=term || exit /b 0
+else
+	$(PYTEST) -q -m "not slow" \
+		$(COV_PKGS) --cov-report=term || true
+endif
+	$(PYTEST) -q $(PYTEST_XDIST_SLOW) -m "slow" \
+		$(COV_PKGS) --cov-append --cov-report=term-missing --cov-fail-under=70 \
+		--progress --progress-every=1
 
 python-check:
 	@python -c "import sys; req='$(PYTHON_MIN)'.split('.'); req=(int(req[0]), int(req[1])); v=sys.version_info; assert v[:2] >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"

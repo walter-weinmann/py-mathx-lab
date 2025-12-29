@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import contextlib
 import logging
 import sys
 from dataclasses import dataclass
@@ -53,6 +54,15 @@ def setup_logging(*, config: LoggingConfig | None = None) -> None:
         config: Logging configuration. If omitted, defaults are used.
     """
     cfg = config or LoggingConfig()
+
+    # Ensure our console handlers can handle Unicode safely on Windows consoles.
+    # PowerShell/Windows console defaults can be cp1252; that can raise
+    # UnicodeEncodeError for symbols like χ, φ, π in log messages. Using
+    # backslashreplace keeps output readable without forcing a code page.
+    for _stream in (sys.stdout, sys.stderr):
+        with contextlib.suppress(Exception):
+            if hasattr(_stream, "reconfigure"):
+                _stream.reconfigure(errors="backslashreplace")
 
     root = logging.getLogger()
     root.handlers.clear()
