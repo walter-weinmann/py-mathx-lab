@@ -1241,6 +1241,65 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
+  <a href="e090.html" class="gallery-card" data-title="E090 — Funct...ion residual heatmap" data-tags="analysis,quantitative-exploration,visualization,riemann-zeta,numerics" data-desc="Heatmap of the functional-equation residual R(s)=ζ(s)-χ(s)ζ(1−s) on a grid.">
+    <img src="../_static/experiments/e090_hero.png" alt="E090 hero">
+    <div class="gallery-card-body">
+      <h3>E090 — Functional equation residual heatmap</h3>
+      <p>Heatmap of the functional-equation residual R(s)=ζ(s)-χ(s)ζ(1−s) on a grid.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">analysis</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">riemann-zeta</span>
+        <span class="tag tag-secondary">numerics</span>
+      </div>
+    </div>
+  </a>
+  <a href="e091.html" class="gallery-card" data-title="E091 — Parti...on the critical line" data-tags="analysis,quantitative-exploration,visualization,riemann-zeta,dirichlet-series,numerics" data-desc="Compare ζ(1/2+it) to partial Euler products as the prime cutoff grows.">
+    <img src="../_static/experiments/e091_hero.png" alt="E091 hero">
+    <div class="gallery-card-body">
+      <h3>E091 — Partial Euler products on the critical line</h3>
+      <p>Compare ζ(1/2+it) to partial Euler products as the prime cutoff grows.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">analysis</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">riemann-zeta</span>
+        <span class="tag tag-secondary">dirichlet-series</span>
+        <span class="tag tag-secondary">numerics</span>
+      </div>
+    </div>
+  </a>
+  <a href="e092.html" class="gallery-card" data-title="E092 — 1/ζ(s...ius Dirichlet series" data-tags="analysis,quantitative-exploration,visualization,riemann-zeta,mobius,dirichlet-series" data-desc="Compare 1/ζ(s) to partial sums Σ_{n≤N} μ(n)/n^s for Re(s)>1.">
+    <img src="../_static/experiments/e092_hero.png" alt="E092 hero">
+    <div class="gallery-card-body">
+      <h3>E092 — 1/ζ(s) via the Möbius Dirichlet series</h3>
+      <p>Compare 1/ζ(s) to partial sums Σ_{n≤N} μ(n)/n^s for Re(s)>1.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">analysis</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">riemann-zeta</span>
+        <span class="tag tag-secondary">mobius</span>
+        <span class="tag tag-secondary">dirichlet-series</span>
+      </div>
+    </div>
+  </a>
+  <a href="e093.html" class="gallery-card" data-title="E093 — −ζ′(s... von Mangoldt series" data-tags="analysis,quantitative-exploration,visualization,riemann-zeta,dirichlet-series,numerics" data-desc="Compare −ζ′(s)/ζ(s) to partial sums Σ_{n≤N} Λ(n)/n^s for Re(s)>1.">
+    <img src="../_static/experiments/e093_hero.png" alt="E093 hero">
+    <div class="gallery-card-body">
+      <h3>E093 — −ζ′(s)/ζ(s) via the von Mangoldt series</h3>
+      <p>Compare −ζ′(s)/ζ(s) to partial sums Σ_{n≤N} Λ(n)/n^s for Re(s)>1.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">analysis</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">riemann-zeta</span>
+        <span class="tag tag-secondary">dirichlet-series</span>
+        <span class="tag tag-secondary">numerics</span>
+      </div>
+    </div>
+  </a>
 </div>
 
 ::: {toctree}
@@ -1328,4 +1387,16 @@ e078
 e079
 e080
 e081
+e082
+e083
+e084
+e085
+e086
+e087
+e088
+e089
+e090
+e091
+e092
+e093
 :::
