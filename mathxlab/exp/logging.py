@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import contextlib
 import logging
 import sys
 from dataclasses import dataclass
@@ -59,11 +60,9 @@ def setup_logging(*, config: LoggingConfig | None = None) -> None:
     # UnicodeEncodeError for symbols like χ, φ, π in log messages. Using
     # backslashreplace keeps output readable without forcing a code page.
     for _stream in (sys.stdout, sys.stderr):
-        try:
-            _stream.reconfigure(errors="backslashreplace")
-        except Exception:
-            # Not all streams support reconfigure (e.g., redirected outputs).
-            pass
+        with contextlib.suppress(Exception):
+            if hasattr(_stream, "reconfigure"):
+                _stream.reconfigure(errors="backslashreplace")
 
     root = logging.getLogger()
     root.handlers.clear()

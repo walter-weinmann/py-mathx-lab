@@ -25,9 +25,12 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 import matplotlib
+import pytest
 
 if TYPE_CHECKING:
     import pytest
+
+pytestmark = pytest.mark.slow
 
 matplotlib.use("Agg", force=True)
 

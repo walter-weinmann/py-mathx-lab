@@ -57,7 +57,9 @@ def parse_experiment_args(
         if len(args) != 1:
             raise TypeError("parse_experiment_args() accepts at most one positional argument: argv")
         if argv is not None:
-            raise TypeError("parse_experiment_args(): argv given both positionally and as a keyword")
+            raise TypeError(
+                "parse_experiment_args(): argv given both positionally and as a keyword"
+            )
 
         pos_argv = args[0]
         if pos_argv is None:

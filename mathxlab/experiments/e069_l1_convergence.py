@@ -28,21 +28,19 @@ Artifacts:
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
-from pathlib import Path
 
 import matplotlib.figure as fig
 import matplotlib.pyplot as plt
 import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
+from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
-from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
-from mathxlab.nt.dirichlet import all_characters
+from mathxlab.nt.dirichlet import DirichletCharacter, all_characters
 
 # ------------------------------------------------------------------------------
 logger = get_logger(__name__)
-
 
 
 # ------------------------------------------------------------------------------
@@ -62,7 +60,7 @@ class Params:
 
 
 # ------------------------------------------------------------------------------
-def _raw_partial_sums(*, chi, n_max: int) -> np.ndarray:
+def _raw_partial_sums(*, chi: DirichletCharacter, n_max: int) -> np.ndarray:
     """Compute partial sums ∑_{n<=N} χ(n)/n for N=1..n_max."""
     n = np.arange(1, n_max + 1, dtype=np.float64)
     chi_vals = np.array([chi(int(k)) for k in n], dtype=np.complex128)
@@ -71,7 +69,7 @@ def _raw_partial_sums(*, chi, n_max: int) -> np.ndarray:
 
 
 # ------------------------------------------------------------------------------
-def _smoothed_sum(*, chi, N: int, n_max: int) -> complex:
+def _smoothed_sum(*, chi: DirichletCharacter, N: int, n_max: int) -> complex:
     """Compute ∑_{n<=n_max} χ(n)/n * exp(-n/N)."""
     n = np.arange(1, n_max + 1, dtype=np.float64)
     chi_vals = np.array([chi(int(k)) for k in n], dtype=np.complex128)

@@ -18,6 +18,7 @@ from __future__ import annotations
 import logging
 from dataclasses import asdict, dataclass
 
+import matplotlib.figure as fig
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -25,7 +26,7 @@ from mathxlab.exp.cli import parse_experiment_args
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.exp.logging import LoggingConfig, setup_logging
 from mathxlab.exp.seeding import set_global_seed
-from mathxlab.nt.dirichlet import all_characters
+from mathxlab.nt.dirichlet import DirichletCharacter, all_characters
 
 # ------------------------------------------------------------------------------
 logger = logging.getLogger(__name__)
@@ -41,7 +42,9 @@ class Params:
     top_k: int = 8
 
 
-def _compute_partial_sums(*, q: int, n_max: int, include_principal: bool) -> tuple[list[object], np.ndarray]:
+def _compute_partial_sums(
+    *, q: int, n_max: int, include_principal: bool
+) -> tuple[list[DirichletCharacter], np.ndarray]:
     """Compute partial sums S(N)=sum_{n<=N} chi(n) for all characters mod q.
 
     Args:
@@ -67,7 +70,7 @@ def _compute_partial_sums(*, q: int, n_max: int, include_principal: bool) -> tup
     return chars, sums
 
 
-def _plot_maxima(*, max_abs: np.ndarray, q: int, n_max: int) -> plt.Figure:
+def _plot_maxima(*, max_abs: np.ndarray, q: int, n_max: int) -> fig.Figure:
     """Plot maximal partial-sum magnitudes per character."""
     fig, ax = plt.subplots()
     order = np.argsort(max_abs)[::-1]
@@ -79,7 +82,7 @@ def _plot_maxima(*, max_abs: np.ndarray, q: int, n_max: int) -> plt.Figure:
     return fig
 
 
-def _plot_example(*, abs_s: np.ndarray, q: int, n_max: int) -> plt.Figure:
+def _plot_example(*, abs_s: np.ndarray, q: int, n_max: int) -> fig.Figure:
     """Plot |S(N)| for one representative character."""
     fig, ax = plt.subplots()
     ax.plot(np.arange(1, n_max + 1), abs_s)

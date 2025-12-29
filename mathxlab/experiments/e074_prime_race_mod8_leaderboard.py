@@ -20,22 +20,20 @@ Artifacts:
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
-from pathlib import Path
 
 import matplotlib.figure as fig
 import matplotlib.pyplot as plt
 import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
+from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
-from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
-from mathxlab.experiments._prime_utils import primes_up_to
 from mathxlab.experiments._ap_utils import counts_in_residue_class, sample_grid
+from mathxlab.experiments._prime_utils import primes_up_to
 
 # ------------------------------------------------------------------------------
 logger = get_logger(__name__)
-
 
 
 # ------------------------------------------------------------------------------

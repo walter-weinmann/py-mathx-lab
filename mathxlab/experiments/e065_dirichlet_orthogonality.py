@@ -19,21 +19,19 @@ Artifacts:
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
-from pathlib import Path
 
 import matplotlib.figure as fig
 import matplotlib.pyplot as plt
 import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
+from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
-from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.nt.dirichlet import euler_phi, orthogonality_matrix
 
 # ------------------------------------------------------------------------------
 logger = get_logger(__name__)
-
 
 
 # ------------------------------------------------------------------------------
@@ -77,8 +75,8 @@ def main(argv: list[str] | None = None) -> int:
     paths = prepare_out_dir(out_dir=args.out_dir)
 
     M = orthogonality_matrix(params.q)
-    I = np.eye(M.shape[0], dtype=np.complex128)
-    err = np.abs(M - I)
+    identity = np.eye(M.shape[0], dtype=np.complex128)
+    err = np.abs(M - identity)
 
     fig1 = _plot_error(err=err, q=params.q)
     save_figure(out_dir=paths.figures_dir, name="fig_01_orthogonality_error", fig=fig1)

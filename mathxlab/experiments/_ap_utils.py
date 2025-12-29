@@ -12,9 +12,7 @@ provide the most accurate numerical methods.
 
 from __future__ import annotations
 
-import math
-from dataclasses import dataclass
-from pathlib import Path
+from typing import cast
 
 import numpy as np
 
@@ -91,7 +89,7 @@ def li_trap(*, xs: np.ndarray, step: int = 200) -> np.ndarray:
     cum = np.zeros_like(grid)
     cum[1:] = np.cumsum(0.5 * (f[1:] + f[:-1]) * (grid[1:] - grid[:-1]))
     # interpolate to requested points
-    return np.interp(xs, grid, cum)
+    return cast(np.ndarray, np.interp(xs, grid, cum).astype(np.float64))
 
 
 # ------------------------------------------------------------------------------
@@ -109,4 +107,5 @@ def normalized_race_statistic(*, xs: np.ndarray, diff: np.ndarray) -> np.ndarray
         Normalized statistic.
     """
     x = np.maximum(xs, 2.0)
-    return diff.astype(np.float64) * np.log(x) / np.sqrt(x)
+    res = diff.astype(np.float64) * np.log(x) / np.sqrt(x)
+    return cast(np.ndarray, res.astype(np.float64))

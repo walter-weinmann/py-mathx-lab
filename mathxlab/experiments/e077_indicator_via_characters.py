@@ -21,21 +21,19 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 from math import gcd
-from pathlib import Path
 
 import matplotlib.figure as fig
 import matplotlib.pyplot as plt
 import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
+from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
-from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.nt.dirichlet import all_characters, euler_phi
 
 # ------------------------------------------------------------------------------
 logger = get_logger(__name__)
-
 
 
 # ------------------------------------------------------------------------------
@@ -83,7 +81,9 @@ def main(argv: list[str] | None = None) -> int:
     n_vals = np.arange(params.q, dtype=int)
     recon = np.zeros(params.q, dtype=np.complex128)
     for chi in chars:
-        recon += np.array([chi(int(n)) for n in n_vals], dtype=np.complex128) * np.conjugate(chi(params.a_target))
+        recon += np.array([chi(int(n)) for n in n_vals], dtype=np.complex128) * np.conjugate(
+            chi(params.a_target)
+        )
     recon /= float(phi_q)
 
     # True indicator on units:

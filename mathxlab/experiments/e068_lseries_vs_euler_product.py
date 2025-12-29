@@ -20,22 +20,21 @@ Artifacts:
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
-from pathlib import Path
+from typing import cast
 
 import matplotlib.figure as fig
 import matplotlib.pyplot as plt
 import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
+from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
-from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.experiments._prime_utils import primes_up_to
-from mathxlab.nt.dirichlet import all_characters
+from mathxlab.nt.dirichlet import DirichletCharacter, all_characters
 
 # ------------------------------------------------------------------------------
 logger = get_logger(__name__)
-
 
 
 # ------------------------------------------------------------------------------
@@ -61,7 +60,9 @@ class Params:
 
 
 # ------------------------------------------------------------------------------
-def _series_trace(*, chi, s: complex, n_max: int, cutoffs: np.ndarray) -> np.ndarray:
+def _series_trace(
+    *, chi: DirichletCharacter, s: complex, n_max: int, cutoffs: np.ndarray
+) -> np.ndarray:
     """Compute partial sum trace at specified cutoffs.
 
     Args:
@@ -75,13 +76,15 @@ def _series_trace(*, chi, s: complex, n_max: int, cutoffs: np.ndarray) -> np.nda
     """
     ks = np.arange(1, n_max + 1, dtype=np.float64)
     chi_vals = np.array([chi(int(k)) for k in ks], dtype=np.complex128)
-    terms = chi_vals / (ks ** s)
-    csum = np.cumsum(terms)
-    return csum[cutoffs - 1]
+    terms = chi_vals / (ks**s)
+    csum = np.cumsum(terms).astype(np.complex128)
+    return cast(np.ndarray, csum[cutoffs - 1].astype(np.complex128))
 
 
 # ------------------------------------------------------------------------------
-def _euler_trace(*, chi, s: complex, q: int, p_max: int, cutoffs: np.ndarray) -> np.ndarray:
+def _euler_trace(
+    *, chi: DirichletCharacter, s: complex, q: int, p_max: int, cutoffs: np.ndarray
+) -> np.ndarray:
     """Compute partial Euler product trace at specified prime cutoffs.
 
     Args:
@@ -113,7 +116,9 @@ def _euler_trace(*, chi, s: complex, q: int, p_max: int, cutoffs: np.ndarray) ->
 
 
 # ------------------------------------------------------------------------------
-def _plot(*, idx: np.ndarray, series_vals: np.ndarray, euler_vals: np.ndarray, q: int, s: complex) -> fig.Figure:
+def _plot(
+    *, idx: np.ndarray, series_vals: np.ndarray, euler_vals: np.ndarray, q: int, s: complex
+) -> fig.Figure:
     """Plot real parts of the two approximation traces."""
     fig_obj, ax = plt.subplots()
     ax.plot(idx, np.real(series_vals), label="Re partial series")
@@ -135,7 +140,9 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     setup_logging(config=LoggingConfig(verbose=args.verbose))
-    logger.info("Starting experiment E068: Dirichlet L(s,χ): series vs Euler product (partial approximations).")
+    logger.info(
+        "Starting experiment E068: Dirichlet L(s,χ): series vs Euler product (partial approximations)."
+    )
     set_global_seed(args.seed)
     params = Params()
     paths = prepare_out_dir(out_dir=args.out_dir)
@@ -154,7 +161,13 @@ def main(argv: list[str] | None = None) -> int:
     series_vals = _series_trace(chi=chi, s=s, n_max=params.n_max, cutoffs=n_cut)
     euler_vals = _euler_trace(chi=chi, s=s, q=params.q, p_max=params.p_max, cutoffs=p_cut)
 
-    fig1 = _plot(idx=np.arange(params.n_points), series_vals=series_vals, euler_vals=euler_vals, q=params.q, s=s)
+    fig1 = _plot(
+        idx=np.arange(params.n_points),
+        series_vals=series_vals,
+        euler_vals=euler_vals,
+        q=params.q,
+        s=s,
+    )
     save_figure(out_dir=paths.figures_dir, name="fig_01_series_vs_euler", fig=fig1)
 
     diff_last = abs(series_vals[-1] - euler_vals[-1])

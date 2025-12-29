@@ -25,23 +25,21 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 from math import gcd
-from pathlib import Path
 
 import matplotlib.figure as fig
 import matplotlib.pyplot as plt
 import numpy as np
 
 from mathxlab.exp.cli import parse_experiment_args
+from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
-from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
-from mathxlab.experiments._prime_utils import primes_up_to
 from mathxlab.experiments._ap_utils import sample_grid
+from mathxlab.experiments._prime_utils import primes_up_to
 from mathxlab.nt.dirichlet import euler_phi
 
 # ------------------------------------------------------------------------------
 logger = get_logger(__name__)
-
 
 
 # ------------------------------------------------------------------------------
@@ -93,7 +91,9 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     setup_logging(config=LoggingConfig(verbose=args.verbose))
-    logger.info("Starting experiment E076: Chebyshev θ(x;q,a): weighted prime counts in progressions.")
+    logger.info(
+        "Starting experiment E076: Chebyshev θ(x;q,a): weighted prime counts in progressions."
+    )
     set_global_seed(args.seed)
     params = Params()
     paths = prepare_out_dir(out_dir=args.out_dir)
