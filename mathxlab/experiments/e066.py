@@ -1,0 +1,19 @@
+"""Experiment E066 entry point.
+
+This module exists to provide a stable import path:
+
+    python -m mathxlab.experiments.e066
+
+The implementation lives in the descriptive module:
+    mathxlab.experiments.e066_character_partial_sums
+"""
+
+from __future__ import annotations
+
+from mathxlab.experiments.e066_character_partial_sums import main
+
+__all__ = ["main"]
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

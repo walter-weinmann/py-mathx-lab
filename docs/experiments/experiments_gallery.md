@@ -939,6 +939,319 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </div>
 </a>
+
+  <a class="gallery-card" href="e064.html"
+    data-title="E064 — Dirichlet character tables (phase view)."
+    data-desc="This experiment enumerates all Dirichlet characters modulo a small modulus q and visualizes the values χ(a) for residues a=0..q-1."
+    data-tags="number-theory,quantitative-exploration,visualization,dirichlet-characters">
+    <img src="../_static/experiments/e064_hero.png" alt="E064 preview">
+    <div class="card-body">
+      <h3>E064 — Dirichlet character tables (phase view).</h3>
+      <p>This experiment enumerates all Dirichlet characters modulo a small modulus q and visualizes the values χ(a) for residues a=0..q-1.</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">dirichlet-characters</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e065.html"
+    data-title="E065 — Orthogonality matrix for Dirichlet characters."
+    data-desc="For characters χ_i modulo q, orthogonality says:"
+    data-tags="number-theory,quantitative-exploration,visualization,dirichlet-characters">
+    <img src="../_static/experiments/e065_hero.png" alt="E065 preview">
+    <div class="card-body">
+      <h3>E065 — Orthogonality matrix for Dirichlet characters.</h3>
+      <p>For characters χ_i modulo q, orthogonality says:</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">dirichlet-characters</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e066.html"
+    data-title="E066 — Character partial sums: cancellation profiles."
+    data-desc="For a Dirichlet character χ modulo q, consider partial sums:"
+    data-tags="number-theory,quantitative-exploration,visualization,dirichlet-characters">
+    <img src="../_static/experiments/e066_hero.png" alt="E066 preview">
+    <div class="card-body">
+      <h3>E066 — Character partial sums: cancellation profiles.</h3>
+      <p>For a Dirichlet character χ modulo q, consider partial sums:</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">dirichlet-characters</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e067.html"
+    data-title="E067 — Gauss sums: magnitude vs sqrt(q)."
+    data-desc="For a Dirichlet character χ modulo q, define the Gauss sum"
+    data-tags="number-theory,quantitative-exploration,visualization,dirichlet-characters">
+    <img src="../_static/experiments/e067_hero.png" alt="E067 preview">
+    <div class="card-body">
+      <h3>E067 — Gauss sums: magnitude vs sqrt(q).</h3>
+      <p>For a Dirichlet character χ modulo q, define the Gauss sum</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">dirichlet-characters</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e068.html"
+    data-title="E068 — Dirichlet L(s,χ): series vs Euler product (partial approximations)."
+    data-desc="For Re(s) > 1, Dirichlet L-functions admit both:"
+    data-tags="number-theory,quantitative-exploration,visualization,dirichlet-characters,l-functions">
+    <img src="../_static/experiments/e068_hero.png" alt="E068 preview">
+    <div class="card-body">
+      <h3>E068 — Dirichlet L(s,χ): series vs Euler product (partial approximations).</h3>
+      <p>For Re(s) > 1, Dirichlet L-functions admit both:</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">dirichlet-characters</span>
+          <span class="tag tag-secondary">l-functions</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e069.html"
+    data-title="E069 — L(1,χ): slow convergence and smoothing."
+    data-desc="At s=1, the Dirichlet series for L(1,χ) converges very slowly. For the nontrivial character modulo 4:"
+    data-tags="number-theory,quantitative-exploration,visualization,dirichlet-characters,l-functions">
+    <img src="../_static/experiments/e069_hero.png" alt="E069 preview">
+    <div class="card-body">
+      <h3>E069 — L(1,χ): slow convergence and smoothing.</h3>
+      <p>At s=1, the Dirichlet series for L(1,χ) converges very slowly. For the nontrivial character modulo 4:</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">dirichlet-characters</span>
+          <span class="tag tag-secondary">l-functions</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e070.html"
+    data-title="E070 — Primes in residue classes: pi(x; q, a)."
+    data-desc="This experiment counts primes in selected reduced residue classes modulo q:"
+    data-tags="number-theory,quantitative-exploration,visualization,aps">
+    <img src="../_static/experiments/e070_hero.png" alt="E070 preview">
+    <div class="card-body">
+      <h3>E070 — Primes in residue classes: pi(x; q, a).</h3>
+      <p>This experiment counts primes in selected reduced residue classes modulo q:</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">aps</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e071.html"
+    data-title="E071 — PNT(AP) numerics: pi(x;q,a) - Li(x)/phi(q)."
+    data-desc="The prime number theorem in arithmetic progressions suggests:"
+    data-tags="number-theory,quantitative-exploration,visualization,aps">
+    <img src="../_static/experiments/e071_hero.png" alt="E071 preview">
+    <div class="card-body">
+      <h3>E071 — PNT(AP) numerics: pi(x;q,a) - Li(x)/phi(q).</h3>
+      <p>The prime number theorem in arithmetic progressions suggests:</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">aps</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e072.html"
+    data-title="E072 — Prime race mod 4: pi(x;4,3) vs pi(x;4,1)."
+    data-desc="A classical "prime race" compares how often one residue class leads another in prime counts. The most famous is mod 4:"
+    data-tags="number-theory,quantitative-exploration,visualization,prime-races,aps">
+    <img src="../_static/experiments/e072_hero.png" alt="E072 preview">
+    <div class="card-body">
+      <h3>E072 — Prime race mod 4: pi(x;4,3) vs pi(x;4,1).</h3>
+      <p>A classical "prime race" compares how often one residue class leads another in prime counts. The most famous is mod 4:</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">prime-races</span>
+          <span class="tag tag-secondary">aps</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e073.html"
+    data-title="E073 — Prime race mod 3: pi(x;3,2) vs pi(x;3,1)."
+    data-desc="Another small prime race compares the two reduced residue classes modulo 3:"
+    data-tags="number-theory,quantitative-exploration,visualization,prime-races,aps">
+    <img src="../_static/experiments/e073_hero.png" alt="E073 preview">
+    <div class="card-body">
+      <h3>E073 — Prime race mod 3: pi(x;3,2) vs pi(x;3,1).</h3>
+      <p>Another small prime race compares the two reduced residue classes modulo 3:</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">prime-races</span>
+          <span class="tag tag-secondary">aps</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e074.html"
+    data-title="E074 — Prime race mod 8: leaderboard among 1,3,5,7."
+    data-desc="This experiment tracks four residue classes modulo 8:"
+    data-tags="number-theory,quantitative-exploration,visualization,prime-races,aps">
+    <img src="../_static/experiments/e074_hero.png" alt="E074 preview">
+    <div class="card-body">
+      <h3>E074 — Prime race mod 8: leaderboard among 1,3,5,7.</h3>
+      <p>This experiment tracks four residue classes modulo 8:</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">prime-races</span>
+          <span class="tag tag-secondary">aps</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e075.html"
+    data-title="E075 — Prime race statistic: distribution on a log-grid."
+    data-desc="For a prime race difference D(x), a common heuristic normalization is:"
+    data-tags="number-theory,quantitative-exploration,visualization,prime-races,aps">
+    <img src="../_static/experiments/e075_hero.png" alt="E075 preview">
+    <div class="card-body">
+      <h3>E075 — Prime race statistic: distribution on a log-grid.</h3>
+      <p>For a prime race difference D(x), a common heuristic normalization is:</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">prime-races</span>
+          <span class="tag tag-secondary">aps</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e076.html"
+    data-title="E076 — Chebyshev θ(x;q,a): weighted prime counts in progressions."
+    data-desc="Define the Chebyshev theta function in a residue class:"
+    data-tags="number-theory,quantitative-exploration,visualization,prime-races,aps">
+    <img src="../_static/experiments/e076_hero.png" alt="E076 preview">
+    <div class="card-body">
+      <h3>E076 — Chebyshev θ(x;q,a): weighted prime counts in progressions.</h3>
+      <p>Define the Chebyshev theta function in a residue class:</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">prime-races</span>
+          <span class="tag tag-secondary">aps</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e077.html"
+    data-title="E077 — Indicator via character orthogonality (sanity check)."
+    data-desc="A standard identity expresses an indicator of a residue class using Dirichlet characters. For gcd(a,q)=1 and gcd(n,q)=1:"
+    data-tags="number-theory,quantitative-exploration,visualization,dirichlet-characters">
+    <img src="../_static/experiments/e077_hero.png" alt="E077 preview">
+    <div class="card-body">
+      <h3>E077 — Indicator via character orthogonality (sanity check).</h3>
+      <p>A standard identity expresses an indicator of a residue class using Dirichlet characters. For gcd(a,q)=1 and gcd(n,q)=1:</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">dirichlet-characters</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e078.html"
+    data-title="E078 — Max partial sums across characters."
+    data-desc="For each Dirichlet character χ modulo q, define"
+    data-tags="number-theory,quantitative-exploration,visualization,dirichlet-characters">
+    <img src="../_static/experiments/e078_hero.png" alt="E078 preview">
+    <div class="card-body">
+      <h3>E078 — Max partial sums across characters.</h3>
+      <p>For each Dirichlet character χ modulo q, define</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">dirichlet-characters</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e079.html"
+    data-title="E079 — Primitive vs imprimitive characters: conductors."
+    data-desc="A character modulo q may factor through a smaller modulus f | q. The smallest such modulus is the **conductor** of the character."
+    data-tags="number-theory,quantitative-exploration,visualization,dirichlet-characters">
+    <img src="../_static/experiments/e079_hero.png" alt="E079 preview">
+    <div class="card-body">
+      <h3>E079 — Primitive vs imprimitive characters: conductors.</h3>
+      <p>A character modulo q may factor through a smaller modulus f | q. The smallest such modulus is the **conductor** of the character.</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">dirichlet-characters</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e080.html"
+    data-title="E080 — Chebyshev bias: leader fraction vs x."
+    data-desc="For the mod 4 race D(x)=π(x;4,3)-π(x;4,1), define the empirical leader fraction:"
+    data-tags="number-theory,quantitative-exploration,visualization,prime-races">
+    <img src="../_static/experiments/e080_hero.png" alt="E080 preview">
+    <div class="card-body">
+      <h3>E080 — Chebyshev bias: leader fraction vs x.</h3>
+      <p>For the mod 4 race D(x)=π(x;4,3)-π(x;4,1), define the empirical leader fraction:</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">prime-races</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="gallery-card" href="e081.html"
+    data-title="E081 — Prime race sign changes: first crossings table."
+    data-desc="A prime race difference D(x) only changes when x passes a prime. We can track sign changes by iterating primes in order."
+    data-tags="number-theory,quantitative-exploration,visualization,prime-races">
+    <img src="../_static/experiments/e081_hero.png" alt="E081 preview">
+    <div class="card-body">
+      <h3>E081 — Prime race sign changes: first crossings table.</h3>
+      <p>A prime race difference D(x) only changes when x passes a prime. We can track sign changes by iterating primes in order.</p>
+      <div class="tags">
+          <span class="tag tag-primary">number-theory</span>
+          <span class="tag tag-primary">quantitative-exploration</span>
+          <span class="tag tag-primary">visualization</span>
+          <span class="tag tag-secondary">prime-races</span>
+      </div>
+    </div>
+  </a>
 </div>
 
 ::: {toctree}
@@ -1008,4 +1321,22 @@ e060
 e061
 e062
 e063
+   e064
+   e065
+   e066
+   e067
+   e068
+   e069
+   e070
+   e071
+   e072
+   e073
+   e074
+   e075
+   e076
+   e077
+   e078
+   e079
+   e080
+   e081
 :::

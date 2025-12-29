@@ -346,6 +346,96 @@ _EXPERIMENTS: tuple[ExperimentSpec, ...] = (
         title="Dirichlet convolution identities (computational checks)",
         module="mathxlab.experiments.e063",
     ),
+    ExperimentSpec(
+        experiment_id="e064",
+        title="Dirichlet characters: tables and phases",
+        module="mathxlab.experiments.e064",
+    ),
+    ExperimentSpec(
+        experiment_id="e065",
+        title="Dirichlet characters: orthogonality matrix",
+        module="mathxlab.experiments.e065",
+    ),
+    ExperimentSpec(
+        experiment_id="e066",
+        title="Character partial sums: cancellation profiles",
+        module="mathxlab.experiments.e066",
+    ),
+    ExperimentSpec(
+        experiment_id="e067",
+        title="Gauss sums: magnitude vs sqrt(q)",
+        module="mathxlab.experiments.e067",
+    ),
+    ExperimentSpec(
+        experiment_id="e068",
+        title="Dirichlet L(s,χ): series vs Euler product",
+        module="mathxlab.experiments.e068",
+    ),
+    ExperimentSpec(
+        experiment_id="e069",
+        title="L(1,χ): slow convergence and smoothing",
+        module="mathxlab.experiments.e069",
+    ),
+    ExperimentSpec(
+        experiment_id="e070",
+        title="Primes in residue classes: pi(x;q,a)",
+        module="mathxlab.experiments.e070",
+    ),
+    ExperimentSpec(
+        experiment_id="e071",
+        title="PNT(AP) numerics: pi(x;q,a) - Li(x)/phi(q)",
+        module="mathxlab.experiments.e071",
+    ),
+    ExperimentSpec(
+        experiment_id="e072",
+        title="Prime race mod 4: pi(x;4,3) vs pi(x;4,1)",
+        module="mathxlab.experiments.e072",
+    ),
+    ExperimentSpec(
+        experiment_id="e073",
+        title="Prime race mod 3: pi(x;3,2) vs pi(x;3,1)",
+        module="mathxlab.experiments.e073",
+    ),
+    ExperimentSpec(
+        experiment_id="e074",
+        title="Prime race mod 8: leaderboard among 1,3,5,7",
+        module="mathxlab.experiments.e074",
+    ),
+    ExperimentSpec(
+        experiment_id="e075",
+        title="Prime race statistic: distribution on log-grid",
+        module="mathxlab.experiments.e075",
+    ),
+    ExperimentSpec(
+        experiment_id="e076",
+        title="Chebyshev θ(x;q,a): weighted prime counts",
+        module="mathxlab.experiments.e076",
+    ),
+    ExperimentSpec(
+        experiment_id="e077",
+        title="Indicator via character orthogonality (sanity check)",
+        module="mathxlab.experiments.e077",
+    ),
+    ExperimentSpec(
+        experiment_id="e078",
+        title="Max |sum_{n<=N} χ(n)| across characters",
+        module="mathxlab.experiments.e078",
+    ),
+    ExperimentSpec(
+        experiment_id="e079",
+        title="Primitive vs imprimitive characters: conductors",
+        module="mathxlab.experiments.e079",
+    ),
+    ExperimentSpec(
+        experiment_id="e080",
+        title="Chebyshev bias: leader fraction vs x",
+        module="mathxlab.experiments.e080",
+    ),
+    ExperimentSpec(
+        experiment_id="e081",
+        title="Prime race: first sign changes and crossings",
+        module="mathxlab.experiments.e081",
+    ),
 )
 
 
