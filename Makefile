@@ -104,6 +104,12 @@ clean:
 clean-venv:
 	$(call rm_venv)
 
+coverage: install-dev
+	$(UV_RUN_DEV) python -m coverage erase
+	$(UV_RUN_DEV) pytest -q -m "not slow" --cov=mathxlab --cov-report=term-missing
+	$(UV_RUN_DEV) pytest -q -m "slow" --cov=mathxlab --cov-append --cov-report=term-missing
+	$(UV_RUN_DEV) python -m coverage report --fail-under=80 --show-missing
+
 docs: docs-html docs-pdf
 
 docs-clean:
@@ -128,7 +134,7 @@ docs-pdf: docs-deps
 	@$(UV_RUN_DOCS) python -m mathxlab.tools.docs_pdf --quiet
 
 # CI should be strict and never "fix" silently; keep final check-only.
-final: format lint mypy tags-check pytest-slow docs
+final: format lint mypy tags-check coverage docs
 
 # Apply fixes locally (imports + other fixable lint) and format.
 fmt: install-dev
@@ -181,13 +187,10 @@ mypy: install-dev
 	$(UV_RUN_DEV) mypy .
 
 pytest: install-dev
-	$(UV_RUN_DEV) pytest -q --cov=$(COV_PKG) --cov-report=term-missing --cov-fail-under=$(COV_FAIL_UNDER) -m "not slow"
-
-pytest-all: install-dev
-	$(UV_RUN_DEV) pytest -q --cov=$(COV_PKG) --cov-report=term-missing --cov-fail-under=$(COV_FAIL_UNDER)
+	$(UV_RUN_DEV) pytest -q -m "not slow" --cov=mathxlab --cov-report=term-missing --cov-fail-under=80
 
 pytest-slow: install-dev
-	$(UV_RUN_DEV) pytest -q --cov=$(COV_PKG) --cov-report=term-missing --cov-fail-under=$(COV_FAIL_UNDER) -m "slow"
+	$(UV_RUN_DEV) pytest -q -m "slow" --cov=mathxlab --cov-append --cov-report=term-missing
 
 python-check:
 	@python -c "import sys; req='$(PYTHON_MIN)'.split('.'); req=(int(req[0]), int(req[1])); v=sys.version_info; assert v[:2] >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"

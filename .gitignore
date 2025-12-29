@@ -5,6 +5,7 @@
 .mypy_cache/
 .pytest_cache/
 .ruff_cache/
+/.hypothesis/
 /.idea/
 /.pytest_tmp/
 /__ARCHIVE__/
