@@ -164,9 +164,8 @@ def configure_matplotlib(
             latex_enabled = True
 
             if tex_preamble:
-                # Matplotlib expects a single string or list depending on version;
-                # keep it as a list to be explicit.
-                mpl.rcParams.update({"text.latex.preamble": list(tex_preamble)})
+                # Matplotlib expects a single string for the preamble.
+                mpl.rcParams.update({"text.latex.preamble": "\n".join(tex_preamble)})
         else:
             # Fall back cleanly.
             mpl.rcParams.update({"text.usetex": False})
