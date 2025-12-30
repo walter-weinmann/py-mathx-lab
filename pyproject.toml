@@ -6,7 +6,7 @@ dependencies = [
   "sympy>=1.12",
 ]
 description = "A gallery of numerical experiments: conjectures, counterexamples, and code."
-version = "1.4.0"
+version = "1.5.0"
 name = "mathxlab"
 readme = "README.md"
 requires-python = ">=3.14"
@@ -54,10 +54,7 @@ omit = [
   # Experiment scripts are treated as runnable notebooks / binaries and are
   # not part of the library coverage KPI.
   "mathxlab/experiments/*",
-  "mathxlab/experiments/**",
   "mathxlab/tools/*",
-  "mathxlab/utils/*",
-  "mathxlab/viz/*",
 ]
 
 [tool.mypy]

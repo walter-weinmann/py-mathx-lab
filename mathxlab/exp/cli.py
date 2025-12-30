@@ -56,14 +56,16 @@ def parse_experiment_args(
     if args:
         if len(args) != 1:
             raise TypeError("parse_experiment_args() accepts at most one positional argument: argv")
-        if argv is not None:
+
+        pos_argv = args[0]
+        if pos_argv is not None and argv is not None:
             raise TypeError(
                 "parse_experiment_args(): argv given both positionally and as a keyword"
             )
 
-        pos_argv = args[0]
         if pos_argv is None:
-            argv = None
+            # argv remains as passed via keyword (which might be None)
+            pass
         elif isinstance(pos_argv, (list, tuple)):
             argv = list(pos_argv)
         else:

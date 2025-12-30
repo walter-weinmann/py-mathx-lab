@@ -11,10 +11,14 @@ background/carmichael-lambda-function
 background/carmichael-numbers
 background/dirichlet-characters
 background/dirichlet-convolution
+background/dirichlet-eta-function
 background/dirichlet-l-functions
 background/divisor-functions
 background/euler-totient-function
+background/explicit-formula-and-chebyshev
 background/fermat-numbers
+background/gram-points-and-zero-counting
+background/hardy-z-function
 background/jordan-totient-function
 background/liouville-function
 background/mersenne-primes
@@ -22,10 +26,12 @@ background/mobius-and-mertens
 background/omega-functions
 background/partition-function
 background/perfect-numbers
+background/prime-counting-approximations
 background/prime-number-races
 background/prime-numbers
 background/primes-in-arithmetic-progressions
 background/primorials
+background/riemann-zeta-function
 background/semiprimes
 background/taylor-series
 background/von-mangoldt-and-chebyshev

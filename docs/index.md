@@ -28,7 +28,7 @@ make run EXP=e001 ARGS="--out out/e001 --seed 1"
 
 ## Latest
 
-* * **E081** - {doc}`experiments/e081`
+* * **E093** - {doc}`experiments/e093`
 
 ---
 

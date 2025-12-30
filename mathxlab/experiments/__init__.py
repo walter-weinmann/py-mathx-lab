@@ -436,6 +436,66 @@ _EXPERIMENTS: tuple[ExperimentSpec, ...] = (
         title="Prime race: first sign changes and crossings",
         module="mathxlab.experiments.e081",
     ),
+    ExperimentSpec(
+        experiment_id="e082",
+        title="Zeta(s) Dirichlet series convergence",
+        module="mathxlab.experiments.e082",
+    ),
+    ExperimentSpec(
+        experiment_id="e083",
+        title="Zeta(s) series vs Euler product",
+        module="mathxlab.experiments.e083",
+    ),
+    ExperimentSpec(
+        experiment_id="e084",
+        title="Zeta on the critical line: magnitude sampling",
+        module="mathxlab.experiments.e084",
+    ),
+    ExperimentSpec(
+        experiment_id="e085",
+        title="Eta-series acceleration near s=1",
+        module="mathxlab.experiments.e085",
+    ),
+    ExperimentSpec(
+        experiment_id="e086",
+        title="Hardy Z(t) near the first zeros",
+        module="mathxlab.experiments.e086",
+    ),
+    ExperimentSpec(
+        experiment_id="e087",
+        title="Gram points and Hardy Z",
+        module="mathxlab.experiments.e087",
+    ),
+    ExperimentSpec(
+        experiment_id="e088",
+        title="Zero counting vs Riemann--von Mangoldt main term",
+        module="mathxlab.experiments.e088",
+    ),
+    ExperimentSpec(
+        experiment_id="e089",
+        title="Heatmap of log|zeta(s)| on a coarse grid",
+        module="mathxlab.experiments.e089",
+    ),
+    ExperimentSpec(
+        experiment_id="e090",
+        title="Functional equation residual heatmap",
+        module="mathxlab.experiments.e090",
+    ),
+    ExperimentSpec(
+        experiment_id="e091",
+        title="Partial Euler products on the critical line",
+        module="mathxlab.experiments.e091",
+    ),
+    ExperimentSpec(
+        experiment_id="e092",
+        title="1/zeta(s) via the Möbius Dirichlet series",
+        module="mathxlab.experiments.e092",
+    ),
+    ExperimentSpec(
+        experiment_id="e093",
+        title="-zeta'(s)/zeta(s) via the von Mangoldt series",
+        module="mathxlab.experiments.e093",
+    ),
 )
 
 
