@@ -32,14 +32,18 @@ These provide more specific detail about the techniques or subtopics involved.
 | `carmichael-lambda`     | Carmichael’s lambda function λ(n), the exponent of (Z/nZ)*.                                  |
 | `carmichael`            | Carmichael numbers (absolute Fermat pseudoprimes).                                           |
 | `classification`        | Grouping objects into classes based on shared properties.                                    |
+| `critical-line`         | Zeta/L-function values on Re(s)=1/2 and related numerics.                                    |
 | `dirichlet-convolution` | Dirichlet convolution of arithmetic functions and identity checks.                           |
 | `dirichlet-series`      | Dirichlet generating functions and related analytic tools.                                   |
 | `divisor-function`      | Divisor functions such as τ(n)=d(n) and σ(n), including record behavior.                     |
+| `explicit-formula`      | Explicit formulas connecting primes and zeros (ψ(x), π(x), etc.).                            |
 | `exploration`           | Open-ended search for patterns or properties.                                                |
 | `factorization`         | Integer factorization methods and hardness.                                                  |
 | `fermat`                | Fermat numbers and Fermat primes.                                                            |
 | `gaps`                  | Studies of the distribution of gaps between primes.                                          |
 | `generating-functions`  | Ordinary/exponential generating functions (esp. partitions).                                 |
+| `gram-points`           | Gram points and Gram's law heuristics for zeta zeros.                                        |
+| `hardy-z`               | Hardy's Z-function and Riemann–Siegel theta function.                                        |
 | `heuristics`            | Probabilistic or empirical models (e.g., Cramér’s model for primes).                         |
 | `li-x`                  | Logarithmic integral $\operatorname{li}(x)$ and its relation to $\pi(x)$.                    |
 | `liouville`             | Liouville function λ(n) and related parity questions for Ω(n).                               |
@@ -60,18 +64,19 @@ These provide more specific detail about the techniques or subtopics involved.
 | `primorial`             | Primorials, Euclid numbers, primorial primes.                                                |
 | `pseudoprime`           | Pseudoprimes, primality-test failures.                                                       |
 | `pseudoprimes`          | Collective study of various types of pseudoprimes.                                           |
+| `riemann-zeta`          | Riemann zeta function ζ(s): series, Euler product, analytic continuation, zeros.             |
 | `search`                | Systematic search through a large state space.                                               |
 | `semiprime`             | Semiprimes, RSA-type composites.                                                             |
 | `sieving`               | Sieve methods (Eratosthenes, Sundaram, Atkin, etc.).                                         |
 | `sigma`                 | Related to the sum-of-divisors function $\sigma(n)$.                                         |
-| `summatory`             | Summatory functions (e.g., Mertens M(x), summatory totient $\Phi(x)$).                       |
+| `summatory`             | Summatory functions (e.g., Mertens $M(x)$, summatory totient $\Phi(x)$).                     |
 | `taylor`                | Related to Taylor series and their approximations.                                           |
 | `totient`               | Euler’s totient function $\phi(n)$, totient equations, summatory behavior.                   |
 | `twin`                  | Twin primes and the twin prime conjecture.                                                   |
 | `ulam`                  | Ulam spiral and related prime patterns in 2D.                                                |
 | `wieferich`             | Wieferich primes and related congruences.                                                    |
 | `wilson`                | Wilson’s theorem and Wilson primes.                                                          |
-
+| `zeta-zeros`            | Nontrivial zeros, zero-counting $N(T)$, root bracketing.                                     |
 
 ## Usage
 
