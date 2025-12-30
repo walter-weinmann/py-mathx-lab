@@ -72,3 +72,8 @@ Analytic/probabilistic number theory focuses on these averages; see
 - **Normal order:** show “typical size” vs. rare extremes (e.g. Erdős–Kac behavior)
 - **Summatory oscillations:** $M(x)$, $\sum_{n\le x}\lambda(n)$, etc.
 - **Extremal orders:** highly composite numbers maximize $d(n)$ (see {cite:p}`ramanujan1915highlycompositenumbers`)
+
+## Experiments in this repository
+
+- **E121** — Multiplicativity stress tests across core arithmetic functions.
+- **E123** — Correlation matrix of arithmetic functions on 1..N (empirical relationships).

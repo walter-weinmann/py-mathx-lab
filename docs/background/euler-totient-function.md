@@ -37,3 +37,7 @@ $$
 
 Given the prime factorization of $n$, $\varphi(n)$ is cheap to compute via the product formula.
 For experiments, you can often compute it for all $n\le N$ efficiently using a sieve-style method.
+
+## Experiments in this repository
+
+- **E101** — Reduced residues (ℤ/qℤ)× as an explicit set; verify size φ(q).

@@ -19,8 +19,12 @@ which converges for \(\Re(s)>0\) (by alternating-series arguments). It is relate
 
 When we want quick, small-scale experiments (e.g. comparing partial sums, smoothing, or convergence acceleration), η(s) provides stable numerics with minimal infrastructure.
 
+## Experiments in this repository
+
+- **E114** — ζ(1/2+it) via η(s): truncation/precision stability map.
+
 ## References
 
-- cite:p:`edwards1974zeta`
-- cite:p:`titchmarsh1986zeta`
-- cite:p:`WikipediaContributors2025RiemannZetaFunction`
+See {doc}`../references`.
+
+{cite:p}`edwards1974,titchmarsh1986,WikipediaContributors2025RiemannZetaFunction`

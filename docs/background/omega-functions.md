@@ -47,3 +47,9 @@ This is why histograms of $\omega(n)$ over ranges often look Gaussian.
 - histogram of $\omega(n)$ for $n\le N$ and compare to a normal curve
 - compare $\omega(n)$ vs. $\log\log n$ (“normal order”)
 - scatter $\Omega(n)$ vs. $\omega(n)$ to see multiplicities
+
+## Experiments in this repository
+
+- **E094** — ω(n) vs Ω(n): Erdős–Kac side-by-side (distribution + scaling).
+- **E095** — Squarefree conditioning (μ(n)≠0): forces ω(n)=Ω(n).
+- **E122** — Heatmap atlas of μ, ω, Ω (visual textures / patterns).

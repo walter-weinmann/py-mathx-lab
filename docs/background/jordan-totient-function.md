@@ -35,3 +35,7 @@ hence $J_k = \mu \ast \mathrm{id}^k$.
 - compare $J_k(n)$ as $k$ varies
 - visualize $J_2(n)$ and $J_3(n)$ over $n\le N$
 - compare $J_k(n)/n^k$ as a “prime factor penalty”
+
+## Experiments in this repository
+
+- **E099** — Jordan totients J_k: atlas, identities (J_1=φ), and scaling J_k(n)/n^k.
