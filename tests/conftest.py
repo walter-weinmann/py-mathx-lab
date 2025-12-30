@@ -35,7 +35,9 @@ class _ProgressPlugin:
         """
         self._state = state
 
-    def pytest_collection_modifyitems(self, session: pytest.Session, config: pytest.Config, items: list[pytest.Item]) -> None:
+    def pytest_collection_modifyitems(
+        self, session: pytest.Session, config: pytest.Config, items: list[pytest.Item]
+    ) -> None:
         """Record total number of collected tests.
 
         Args:

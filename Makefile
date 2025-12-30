@@ -212,7 +212,7 @@ else
 		$(COV_PKGS) --cov-report=term || true
 endif
 	$(PYTEST) -q $(PYTEST_XDIST_SLOW) -m "slow" \
-		$(COV_PKGS) --cov-append --cov-report=term-missing --cov-fail-under=70 \
+		$(COV_PKGS) --cov-append --cov-report=term-missing --cov-fail-under=80 \
 		--progress --progress-every=1
 
 pytest-xdist: install-dev

@@ -22,16 +22,15 @@ import importlib
 import re
 import sys
 from pathlib import Path
-from typing import TYPE_CHECKING
 
 import matplotlib
+import pytest
 
-if TYPE_CHECKING:
-    import pytest
-
+# ------------------------------------------------------------------------------
 matplotlib.use("Agg", force=True)
 
 
+# ------------------------------------------------------------------------------
 def _discover_experiment_entry_modules(*, repo_root: Path) -> list[str]:
     """Discover experiment entry module names in ``mathxlab/experiments``.
 
@@ -58,6 +57,7 @@ def _discover_experiment_entry_modules(*, repo_root: Path) -> list[str]:
     return module_names
 
 
+# ------------------------------------------------------------------------------
 def _run_experiment(*, module_name: str) -> int:
     """Run a single experiment module by calling its ``main()``.
 
@@ -82,6 +82,8 @@ def _run_experiment(*, module_name: str) -> int:
     return result
 
 
+# ------------------------------------------------------------------------------
+@pytest.mark.slow
 def test_run_all_experiments(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     """Run all experiments and fail if any of them crashes.
 
