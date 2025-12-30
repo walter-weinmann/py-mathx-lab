@@ -1,0 +1,8 @@
+"""Backward-compatible entry point for E122."""
+
+from __future__ import annotations
+
+from mathxlab.experiments.e122 import main  # re-export
+
+# ------------------------------------------------------------------------------
+__all__ = ["main"]

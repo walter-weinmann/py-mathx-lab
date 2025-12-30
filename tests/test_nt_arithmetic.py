@@ -15,7 +15,9 @@ from mathxlab.nt.arithmetic import (
     carmichael_lambda,
     carmichael_lambda_for_prime_power,
     chebyshev_psi,
+    compute_big_omega,
     compute_mobius,
+    compute_omega,
     compute_phi,
     compute_tau_sigma,
     compute_von_mangoldt,
@@ -165,3 +167,31 @@ def test_jordan_totient_rejects_invalid_k() -> None:
     sieve = build_factor_sieve(50)
     with pytest.raises(ValueError):
         jordan_totient(10, 0, sieve=sieve)
+
+
+def test_omega_and_bigomega_basic_values() -> None:
+    """ω(n) and Ω(n) should match known factorization counts."""
+    n_max = 100
+    sieve = build_factor_sieve(n_max)
+
+    omega = compute_omega(n_max, sieve=sieve)
+    bigomega = compute_big_omega(n_max, sieve=sieve)
+    mu = compute_mobius(n_max, sieve=sieve)
+
+    # primes: ω(p)=Ω(p)=1
+    for p in (2, 3, 5, 7, 11, 13, 17, 19):
+        assert omega[p] == 1
+        assert bigomega[p] == 1
+
+    # prime power: ω(p^k)=1, Ω(p^k)=k
+    assert omega[16] == 1
+    assert bigomega[16] == 4
+
+    # mixed factorization: 12 = 2^2 * 3
+    assert omega[12] == 2
+    assert bigomega[12] == 3
+
+    # squarefree numbers: ω(n)=Ω(n)
+    for n in range(1, n_max + 1):
+        if mu[n] != 0:
+            assert omega[n] == bigomega[n]

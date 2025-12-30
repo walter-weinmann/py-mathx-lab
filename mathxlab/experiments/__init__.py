@@ -496,6 +496,156 @@ _EXPERIMENTS: tuple[ExperimentSpec, ...] = (
         title="-zeta'(s)/zeta(s) via the von Mangoldt series",
         module="mathxlab.experiments.e093",
     ),
+    ExperimentSpec(
+        experiment_id="e094",
+        title="ω(n) vs Ω(n): Erdős–Kac side-by-side",
+        module="mathxlab.experiments.e094",
+    ),
+    ExperimentSpec(
+        experiment_id="e095",
+        title="Squarefree filter: ω(n)=Ω(n) when μ(n)≠0",
+        module="mathxlab.experiments.e095",
+    ),
+    ExperimentSpec(
+        experiment_id="e096",
+        title="Record-holders for τ(n)",
+        module="mathxlab.experiments.e096",
+    ),
+    ExperimentSpec(
+        experiment_id="e097",
+        title="σ(n)/n landscape: deficient, perfect, abundant",
+        module="mathxlab.experiments.e097",
+    ),
+    ExperimentSpec(
+        experiment_id="e098",
+        title="Extremals of sigma(n)/n^a across a",
+        module="mathxlab.experiments.e098",
+    ),
+    ExperimentSpec(
+        experiment_id="e099",
+        title="Jordan totients J_k: atlas and identities",
+        module="mathxlab.experiments.e099",
+    ),
+    ExperimentSpec(
+        experiment_id="e100",
+        title="Carmichael λ(n) vs Euler φ(n)",
+        module="mathxlab.experiments.e100",
+    ),
+    ExperimentSpec(
+        experiment_id="e101",
+        title="Reduced residues: (Z/qZ)^x as a concrete set",
+        module="mathxlab.experiments.e101",
+    ),
+    ExperimentSpec(
+        experiment_id="e102",
+        title="Dirichlet convolution identity zoo",
+        module="mathxlab.experiments.e102",
+    ),
+    ExperimentSpec(
+        experiment_id="e103",
+        title="Chebyshev ψ(x): prime powers drive the jumps",
+        module="mathxlab.experiments.e103",
+    ),
+    ExperimentSpec(
+        experiment_id="e104",
+        title="Von Mangoldt Λ: support and statistics",
+        module="mathxlab.experiments.e104",
+    ),
+    ExperimentSpec(
+        experiment_id="e105",
+        title="Mertens function M(x): scaling views",
+        module="mathxlab.experiments.e105",
+    ),
+    ExperimentSpec(
+        experiment_id="e106",
+        title="Real vs complex Dirichlet characters (small moduli)",
+        module="mathxlab.experiments.e106",
+    ),
+    ExperimentSpec(
+        experiment_id="e107",
+        title="Conductor distribution for characters",
+        module="mathxlab.experiments.e107",
+    ),
+    ExperimentSpec(
+        experiment_id="e108",
+        title="Character orthogonality matrix heatmap",
+        module="mathxlab.experiments.e108",
+    ),
+    ExperimentSpec(
+        experiment_id="e109",
+        title="Gauss sums τ(χ) for prime modulus",
+        module="mathxlab.experiments.e109",
+    ),
+    ExperimentSpec(
+        experiment_id="e110",
+        title="Dirichlet L-series partial sums (toy)",
+        module="mathxlab.experiments.e110",
+    ),
+    ExperimentSpec(
+        experiment_id="e111",
+        title="Euler product vs Dirichlet series for L(s,χ)",
+        module="mathxlab.experiments.e111",
+    ),
+    ExperimentSpec(
+        experiment_id="e112",
+        title="Prime race pi(x;q,a) - pi(x;q,b)",
+        module="mathxlab.experiments.e112",
+    ),
+    ExperimentSpec(
+        experiment_id="e113",
+        title="First prime in each reduced residue class",
+        module="mathxlab.experiments.e113",
+    ),
+    ExperimentSpec(
+        experiment_id="e114",
+        title="ζ(1/2+it) via η-series: truncation error curves",
+        module="mathxlab.experiments.e114",
+    ),
+    ExperimentSpec(
+        experiment_id="e115",
+        title="Hardy Z(t): sign-change scan near low zeros",
+        module="mathxlab.experiments.e115",
+    ),
+    ExperimentSpec(
+        experiment_id="e116",
+        title="Zero-count proxy vs Riemann–von Mangoldt main term",
+        module="mathxlab.experiments.e116",
+    ),
+    ExperimentSpec(
+        experiment_id="e117",
+        title="Functional equation check: zeta(s) approx chi(s) zeta(1-s)",
+        module="mathxlab.experiments.e117",
+    ),
+    ExperimentSpec(
+        experiment_id="e118",
+        title="Euler product approximation vs ζ(s): where it degrades",
+        module="mathxlab.experiments.e118",
+    ),
+    ExperimentSpec(
+        experiment_id="e119",
+        title="psi(x)-x with simple smoothing",
+        module="mathxlab.experiments.e119",
+    ),
+    ExperimentSpec(
+        experiment_id="e120",
+        title="Pretentious distance toy: sum_{p<=x} (1-Re chi(p))/p",
+        module="mathxlab.experiments.e120",
+    ),
+    ExperimentSpec(
+        experiment_id="e121",
+        title="Multiplicativity stress tests (random coprime pairs)",
+        module="mathxlab.experiments.e121",
+    ),
+    ExperimentSpec(
+        experiment_id="e122",
+        title="Arithmetic function atlas: μ(n), ω(n), φ(n)/n heatmaps",
+        module="mathxlab.experiments.e122",
+    ),
+    ExperimentSpec(
+        experiment_id="e123",
+        title="Correlation matrix: arithmetic functions on 1..N",
+        module="mathxlab.experiments.e123",
+    ),
 )
 
 
