@@ -7,6 +7,8 @@ from typing import Any
 
 import matplotlib.pyplot as plt
 
+from mathxlab.exp.io import json_default
+
 type JsonPayload = dict[str, Any]
 
 
@@ -64,4 +66,6 @@ def write_json(path: Path, payload: JsonPayload) -> None:
         path: Output path.
         payload: JSON-serializable payload.
     """
-    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(payload, indent=2, sort_keys=True, default=json_default) + "\n", encoding="utf-8"
+    )

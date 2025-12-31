@@ -16,8 +16,12 @@ where \(\theta(t)\) is the Riemann--Siegel theta function. The key feature is th
 
 It gives a clean, visualization-friendly path from “complex ζ-values” to “real curves” whose roots can be bracketed and counted.
 
+## Experiments in this repository
+
+- **E115** — Hardy Z sign-change scan and zero bracketing (bisection refinement).
+
 ## References
 
-- cite:p:`titchmarsh1986zeta`
-- cite:p:`WikipediaContributors2025ZFunction`
-- cite:p:`WikipediaContributors2025RiemannVonMangoldtFormula`
+See {doc}`../references`.
+
+{cite:p}`titchmarsh1986,odlyzko1992zeta10to20thzero,WikipediaContributors2025ZFunction,WikipediaContributors2025RiemannVonMangoldtFormula`

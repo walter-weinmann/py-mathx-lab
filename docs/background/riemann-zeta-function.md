@@ -20,9 +20,13 @@ which converges for \(\Re(s)>1\) and extends (by analytic continuation) to a mer
 
 Many “analytic prime number theory” numerics (prime counting approximations, explicit formulas, prime races, etc.) are most naturally expressed in terms of ζ(s), its logarithmic derivative, and its zeros.
 
+## Experiments in this repository
+
+- **E117** — χ-factor functional-equation consistency checks on a grid of s values.
+- **E118** — Partial Euler product for ζ(s): where it breaks as Re(s) decreases.
+
 ## References
 
-- cite:p:`titchmarsh1986zeta`
-- cite:p:`edwards1974zeta`
-- cite:p:`ivic1985zeta`
-- cite:p:`WikipediaContributors2025RiemannZetaFunction`
+See {doc}`../references`.
+
+{cite:p}`titchmarsh1986,edwards1974,ivic1985,odlyzko1992zeta10to20thzero,WikipediaContributors2025RiemannZetaFunction`

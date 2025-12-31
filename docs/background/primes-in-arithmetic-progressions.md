@@ -37,3 +37,7 @@ So, asymptotically, primes split evenly among the reduced residue classes.
 See {doc}`../references`.
 
 {cite:p}`dirichlet1837primesinprogressions,davenport2000multiplicativenumbertheory`
+
+## Experiments in this repository
+
+- **E113** — First prime in each residue class (smallest p ≡ a mod q for all a∈(ℤ/qℤ)×).

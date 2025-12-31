@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 import matplotlib.figure
+import numpy as np
 
 from mathxlab.plots.helpers import finalize_figure
 
@@ -82,6 +83,30 @@ def save_figure(
 
 
 # ------------------------------------------------------------------------------
+def json_default(obj: Any) -> Any:
+    """Default JSON encoder for math objects.
+
+    Args:
+        obj: Object to encode.
+
+    Returns:
+        A JSON-serializable representation of the object.
+
+    Raises:
+        TypeError: If the object type is not supported.
+    """
+    if isinstance(obj, complex):
+        return {"real": obj.real, "imag": obj.imag}
+    if isinstance(obj, (np.integer, np.floating)):
+        return obj.item()
+    if isinstance(obj, np.ndarray):
+        return obj.tolist()
+    if isinstance(obj, Path):
+        return str(obj)
+    raise TypeError(f"Object of type {obj.__class__.__name__} is not JSON serializable")
+
+
+# ------------------------------------------------------------------------------
 def write_json(path: Path, data: JsonDict) -> None:
     """Write a dictionary to a JSON file with stable formatting.
 
@@ -90,7 +115,9 @@ def write_json(path: Path, data: JsonDict) -> None:
         data: Dictionary to write.
     """
     logger.info("Writing JSON to: %s", path)
-    path.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(data, indent=2, sort_keys=True, default=json_default) + "\n", encoding="utf-8"
+    )
 
 
 # ------------------------------------------------------------------------------

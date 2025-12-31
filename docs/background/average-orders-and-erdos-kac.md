@@ -36,3 +36,7 @@ has an approximately standard normal distribution over $n\le x$ as $x\to\infty$.
 - for a chosen $N$, compute $\omega(n)$ for $n\le N$ and histogram the normalized values
 - compare the empirical mean/variance with $\log\log N$
 - explore how the fit improves as $N$ grows
+
+## Experiments in this repository
+
+- **E094** — Erdős–Kac side-by-side for ω and Ω (normal order / scaling).

@@ -12,6 +12,7 @@ from mathxlab.nt.dirichlet import (
     character_table,
     euler_phi,
     orthogonality_matrix,
+    reduced_residues,
 )
 
 
@@ -60,3 +61,16 @@ def test_orthogonality_matrix_is_identity_approx() -> None:
     eye = np.eye(euler_phi(q), dtype=np.complex128)
     err = np.max(np.abs(m - eye))
     assert err < 1e-10
+
+
+def test_reduced_residues_matches_phi() -> None:
+    """reduced_residues(q) should be a complete reduced residue system."""
+    q = 10
+    rr = reduced_residues(q)
+
+    assert rr == [1, 3, 7, 9]
+    assert rr == sorted(rr)
+    assert len(rr) == euler_phi(q)
+    assert len(set(rr)) == len(rr)
+    assert all(1 <= a < q for a in rr)
+    assert all(gcd(a, q) == 1 for a in rr)

@@ -21,6 +21,7 @@ from matplotlib import pyplot as plt
 from mathxlab.exp.cli import parse_experiment_args
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
+from mathxlab.exp.run_logging import infer_run_log_file
 from mathxlab.exp.seeding import set_global_seed
 from mathxlab.experiments._prime_utils import primes_up_to
 from mathxlab.nt.zeta import euler_product_partial
@@ -39,8 +40,11 @@ class Params:
 def main(argv: list[str] | None = None) -> int:
     """Run experiment E091."""
     args = parse_experiment_args(experiment_id="E091", description=__doc__, argv=argv)
-    setup_logging(config=LoggingConfig(verbose=args.verbose))
+    run_log = infer_run_log_file(out_dir=args.out_dir, experiment_slug="e091")
+    setup_logging(config=LoggingConfig(verbose=args.verbose, log_file=run_log.log_file))
     logger = get_logger(__name__)
+    logger.info("Starting experiment E091 (log_file=%s)", run_log.log_file)
+    logger.info("seed=%d out_dir=%s", args.seed, args.out_dir)
     set_global_seed(args.seed)
 
     params = Params()

@@ -16,7 +16,9 @@ background/dirichlet-l-functions
 background/divisor-functions
 background/euler-totient-function
 background/explicit-formula-and-chebyshev
+background/exploratory-visualizations
 background/fermat-numbers
+background/gauss-sums
 background/gram-points-and-zero-counting
 background/hardy-z-function
 background/jordan-totient-function
@@ -26,6 +28,7 @@ background/mobius-and-mertens
 background/omega-functions
 background/partition-function
 background/perfect-numbers
+background/pretentious-number-theory
 background/prime-counting-approximations
 background/prime-number-races
 background/prime-numbers

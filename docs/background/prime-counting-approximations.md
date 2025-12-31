@@ -15,5 +15,6 @@ These approximations are central for numerical experiments around the Prime Numb
 
 ## References
 
-- cite:p:`titchmarsh1986zeta`
-- cite:p:`WikipediaContributors2025PrimeCountingFunction`
+See {doc}`../references`.
+
+{cite:p}`titchmarsh1986,WikipediaContributors2025PrimeCountingFunction`

@@ -48,3 +48,7 @@ It was disproved by Odlyzko and te Riele. {cite:p}`odlyzkoteriele1985disproofmer
 - It is deeply connected to the Riemann zeta function and the Riemann hypothesis.
 
 Typical experiment: plot $M(x)$ for growing $x$ and compare to envelopes like $\pm \sqrt{x}$ or $\pm x^{1/2}\log x$.
+
+## Experiments in this repository
+
+- **E105** — Mertens function M(x) at multiple scales (including rescaling views).

@@ -16,8 +16,12 @@ A prototypical form expresses \(\psi(x)\) as a main term \(x\) plus oscillatory 
 
 This is the bridge between the “Dirichlet character / L-function” block and the “prime race / bias” phenomena: you can literally watch zero contributions modulate prime-counting curves.
 
+## Experiments in this repository
+
+- **E119** — ψ(x) − x oscillations and “explicit-formula intuition” (visual).
+
 ## References
 
-- cite:p:`titchmarsh1986zeta`
-- cite:p:`ivic1985zeta`
-- cite:p:`WikipediaContributors2025RiemannZetaFunction`
+See {doc}`../references`.
+
+{cite:p}`titchmarsh1986,ivic1985,schoenfeld1976sharperboundschebyshev,iwanieckowalski2004analyticnumbertheory,WikipediaContributors2025RiemannZetaFunction`

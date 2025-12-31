@@ -46,3 +46,8 @@ L(1,\chi) \ne 0 \quad \text{for every nonprincipal character } \chi.
 See {doc}`../references`.
 
 {cite:p}`dirichlet1837primesinprogressions,davenport2000multiplicativenumbertheory,serre1973coursearithmetic,washington1997introductioncyclotomicfields`
+
+## Experiments in this repository
+
+- **E110** — Dirichlet L-series partial sums at s=1 and s=1/2 (principal vs nonprincipal).
+- **E111** — Euler product vs Dirichlet series truncations for L(s,χ): error vs cutoff.
