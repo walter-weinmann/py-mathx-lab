@@ -10,3 +10,8 @@ from mathxlab.experiments.e123_arithmetic_correlation_matrix import main
 
 # ------------------------------------------------------------------------------
 __all__ = ["main"]
+
+
+# ------------------------------------------------------------------------------
+if __name__ == "__main__":
+    raise SystemExit(main())

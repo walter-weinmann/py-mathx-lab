@@ -10,3 +10,8 @@ from mathxlab.experiments.e104_von_mangoldt_statistics import main
 
 # ------------------------------------------------------------------------------
 __all__ = ["main"]
+
+
+# ------------------------------------------------------------------------------
+if __name__ == "__main__":
+    raise SystemExit(main())

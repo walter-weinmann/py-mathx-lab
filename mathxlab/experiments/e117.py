@@ -10,3 +10,8 @@ from mathxlab.experiments.e117_functional_equation_check import main
 
 # ------------------------------------------------------------------------------
 __all__ = ["main"]
+
+
+# ------------------------------------------------------------------------------
+if __name__ == "__main__":
+    raise SystemExit(main())

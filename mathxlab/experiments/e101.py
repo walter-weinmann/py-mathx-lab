@@ -10,3 +10,8 @@ from mathxlab.experiments.e101_reduced_residues_structure import main
 
 # ------------------------------------------------------------------------------
 __all__ = ["main"]
+
+
+# ------------------------------------------------------------------------------
+if __name__ == "__main__":
+    raise SystemExit(main())

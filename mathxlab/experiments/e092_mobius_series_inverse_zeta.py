@@ -23,6 +23,7 @@ from mathxlab.exp.cli import parse_experiment_args
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
+from mathxlab.exp.run_logging import infer_run_log_file
 from mathxlab.nt.arithmetic import build_factor_sieve, compute_mobius
 
 
@@ -56,9 +57,12 @@ def _mobius_partial_sums(s: float, n_values: list[int]) -> np.ndarray:
 def main(argv: list[str] | None = None) -> int:
     """Run experiment E092."""
     args = parse_experiment_args(experiment_id="E092", description=__doc__, argv=argv)
-    setup_logging(config=LoggingConfig(verbose=args.verbose))
+    run_log = infer_run_log_file(out_dir=args.out_dir, experiment_slug="e092")
+    setup_logging(config=LoggingConfig(verbose=args.verbose, log_file=run_log.log_file))
     logger = get_logger(__name__)
-    set_global_seed(12345)
+    logger.info("Starting experiment E092 (log_file=%s)", run_log.log_file)
+    logger.info("seed=%d out_dir=%s", args.seed, args.out_dir)
+    set_global_seed(args.seed)
 
     params = Params()
     paths = prepare_out_dir(out_dir=args.out_dir)

@@ -10,3 +10,8 @@ from mathxlab.experiments.e121_multiplicativity_stress_tests import main
 
 # ------------------------------------------------------------------------------
 __all__ = ["main"]
+
+
+# ------------------------------------------------------------------------------
+if __name__ == "__main__":
+    raise SystemExit(main())

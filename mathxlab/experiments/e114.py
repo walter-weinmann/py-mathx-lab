@@ -10,3 +10,8 @@ from mathxlab.experiments.e114_zeta_eta_truncation_error import main
 
 # ------------------------------------------------------------------------------
 __all__ = ["main"]
+
+
+# ------------------------------------------------------------------------------
+if __name__ == "__main__":
+    raise SystemExit(main())

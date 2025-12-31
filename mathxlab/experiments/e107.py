@@ -10,3 +10,8 @@ from mathxlab.experiments.e107_dirichlet_conductor_histogram import main
 
 # ------------------------------------------------------------------------------
 __all__ = ["main"]
+
+
+# ------------------------------------------------------------------------------
+if __name__ == "__main__":
+    raise SystemExit(main())

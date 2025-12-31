@@ -115,7 +115,7 @@ def run_e094(
     ax.set_ylabel("count (clipped at max_k)")
     ax.legend()
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_omega_vs_bigomega_hist.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_omega_vs_bigomega_hist", fig=fig)
     plt.close(fig)
     mu1 = float(np.mean(omega))
     mu2 = float(np.mean(bigomega))
@@ -179,7 +179,7 @@ def run_e095(
     ax.set_ylabel("count")
     ax.legend()
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_bigomega_minus_omega.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_bigomega_minus_omega", fig=fig)
     plt.close(fig)
 
     lines: list[str] = []
@@ -240,7 +240,7 @@ def run_e096(
     ax.set_ylabel("max τ(n) so far")
     ax.set_xscale("log")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_tau_records.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_tau_records", fig=fig)
     plt.close(fig)
     top = list(zip(record_ns[-10:], record_vals[-10:], strict=False))
 
@@ -299,7 +299,7 @@ def run_e097(
     ax.set_ylabel("σ(n)/n")
     ax.set_xscale("log")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_sigma_over_n_scatter.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_sigma_over_n_scatter", fig=fig)
     plt.close(fig)
     perfect_ns = np.where(perfect)[0] + 1
     perfect_list = perfect_ns[:20].tolist()
@@ -339,7 +339,7 @@ class ParamsE098:
 def run_e098(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E098 — Extremals of sigma(n)/n^a across a."""
+    """E098 — Extremals of σ(n)/n^α across α."""
     params = ParamsE098()
     write_json(params_path, asdict(params))
 
@@ -357,11 +357,11 @@ def run_e098(
         best_vals.append(float(score[i]))
     fig, ax = plt.subplots()
     ax.plot(alphas, argmax)
-    ax.set_title("Argmax of sigma(n)/n^a (n<=N)")
-    ax.set_xlabel("a")
+    ax.set_title("Argmax of σ(n)/n^α (n≤N)")
+    ax.set_xlabel("α")
     ax.set_ylabel("argmax n")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_argmax_vs_alpha.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_argmax_vs_alpha", fig=fig)
     plt.close(fig)
     # summarize transitions
     transitions: list[tuple[float, int]] = []
@@ -372,7 +372,7 @@ def run_e098(
             last = n_star
 
     lines: list[str] = []
-    lines.append("# E098 — Extremals of sigma(n)/n^a across a")
+    lines.append("# E098 — Extremals of σ(n)/n^α across α")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_argmax_vs_alpha.png")
@@ -411,7 +411,6 @@ def run_e099(
     sieve = _factor_sieve(params.n_max)
     phi = compute_phi(params.n_max, sieve=sieve)
     # n = np.arange(1, params.n_max + 1, dtype=np.float64)
-    # compute ratios J_k(n)/n^k for k=1..k_max (downsampled for plot)
     idx = np.arange(1, params.n_max + 1, params.stride, dtype=int)
     fig, ax = plt.subplots()
     means: list[float] = []
@@ -432,7 +431,7 @@ def run_e099(
     ax.set_xscale("log")
     ax.legend()
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_jordan_ratios.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_jordan_ratios", fig=fig)
     plt.close(fig)
 
     lines: list[str] = []
@@ -486,7 +485,7 @@ def run_e100(
     ax.set_xlabel("λ(n)/φ(n)")
     ax.set_ylabel("count")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_lambda_over_phi_hist.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_lambda_over_phi_hist", fig=fig)
     plt.close(fig)
     min_ratio = float(np.min(ratio))
     max_ratio = float(np.max(ratio))
@@ -502,7 +501,7 @@ def run_e100(
     lines.append("## Notes")
     lines.append(f"- min λ(n)/φ(n): {min_ratio:.6f}")
     lines.append(f"- max λ(n)/φ(n): {max_ratio:.6f}")
-    lines.append("- lambda(n) is the exponent of (Z/nZ)^x and often much smaller than phi(n).")
+    lines.append("- λ(n) is the exponent of (Z/nZ)^× and often much smaller than φ(n).")
     _write_report(report_path=report_path, lines=lines)
 
 
@@ -520,7 +519,7 @@ class ParamsE101:
 def run_e101(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E101 — Reduced residues: (Z/qZ)^x as a concrete set."""
+    """E101 — Reduced residues: (Z/qZ)^× as a concrete set."""
     params = ParamsE101()
     write_json(params_path, asdict(params))
 
@@ -541,12 +540,12 @@ def run_e101(
     ax.set_xticks(x, [str(q) for q in q_vals])
     ax.legend()
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_reduced_residues_sizes.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_reduced_residues_sizes", fig=fig)
     plt.close(fig)
     examples = {int(q): reduced_residues(int(q))[:15] for q in q_vals}
 
     lines: list[str] = []
-    lines.append("# E101 — Reduced residues: (Z/qZ)^x as a concrete set")
+    lines.append("# E101 — Reduced residues: (Z/qZ)^× as a concrete set")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_reduced_residues_sizes.png")
@@ -608,7 +607,7 @@ def run_e102(
     ax.set_ylabel("max |lhs-rhs|")
     ax.set_xticks(np.arange(len(errs)), labels, rotation=20, ha="right")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_convolution_identity_errors.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_convolution_identity_errors", fig=fig)
     plt.close(fig)
 
     lines: list[str] = []
@@ -659,7 +658,7 @@ def run_e103(
     ax.set_ylabel("ψ(x)-x")
     ax.set_xscale("log")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_psi_minus_x.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_psi_minus_x", fig=fig)
     plt.close(fig)
     nonzero = int(sum(1 for v in lam[1 : params.n_max + 1] if v != 0.0))
 
@@ -707,7 +706,7 @@ def run_e104(
     ax.set_xlabel("Λ(n)")
     ax.set_ylabel("count")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_lambda_hist.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_lambda_hist", fig=fig)
     plt.close(fig)
     unique = sorted({round(float(x), 8) for x in vals})
 
@@ -759,7 +758,7 @@ def run_e105(
     ax.set_ylabel("M(x)")
     ax.set_xscale("log")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_mertens_M.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_mertens_M", fig=fig)
     plt.close(fig)
     fig, ax = plt.subplots()
     ax.plot((idx + 1), rescaled[idx])
@@ -768,7 +767,7 @@ def run_e105(
     ax.set_ylabel("M(x)/sqrt(x)")
     ax.set_xscale("log")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_02_mertens_rescaled.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_02_mertens_rescaled", fig=fig)
     plt.close(fig)
     max_abs = float(np.max(np.abs(M)))
 
@@ -828,7 +827,7 @@ def run_e106(
     ax.set_xticks(x, [str(q) for q in q_vals])
     ax.legend()
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_real_character_counts.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_real_character_counts", fig=fig)
     plt.close(fig)
 
     lines: list[str] = []
@@ -874,7 +873,7 @@ def run_e107(
     ax.set_xlabel("conductor")
     ax.set_ylabel("count")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_conductor_hist.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_conductor_hist", fig=fig)
     plt.close(fig)
     nontrivial = int(sum(1 for chi in chars if not chi.is_principal))
 
@@ -921,7 +920,7 @@ def run_e108(
     ax.set_xlabel("j")
     ax.set_ylabel("i")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_orthogonality_abs.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_orthogonality_abs", fig=fig)
     plt.close(fig)
     diag_mean = float(np.mean(np.diag(abs_mat)))
     off_mean = float(np.mean(abs_mat - np.diag(np.diag(abs_mat)))) / (
@@ -980,7 +979,7 @@ def run_e109(
     ax.set_xlabel("nonprincipal character index")
     ax.set_ylabel("|τ(χ)|")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_gauss_sum_magnitudes.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_gauss_sum_magnitudes", fig=fig)
     plt.close(fig)
     rel_err = float(np.max(np.abs(mags_np - math.sqrt(q))))
 
@@ -1042,7 +1041,7 @@ def run_e110(
     ax.set_xlabel("N")
     ax.set_ylabel("magnitude")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_L_partial_magnitude.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_L_partial_magnitude", fig=fig)
     plt.close(fig)
     final_val = partial_np[-1]
 
@@ -1118,7 +1117,7 @@ def run_e111(
     ax.set_xscale("log")
     ax.set_yscale("log")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_euler_product_error.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_euler_product_error", fig=fig)
     plt.close(fig)
     best = float(min(errs)) if errs else float("nan")
 
@@ -1157,7 +1156,7 @@ class ParamsE112:
 def run_e112(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E112 — Prime race pi(x;q,a) - pi(x;q,b)."""
+    """E112 — Prime race π(x;q,a) − π(x;q,b)."""
     params = ParamsE112()
     write_json(params_path, asdict(params))
 
@@ -1175,12 +1174,12 @@ def run_e112(
     ax.set_ylabel("π(p;q,a)-π(p;q,b)")
     ax.set_xscale("log")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_prime_race_diff.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_prime_race_diff", fig=fig)
     plt.close(fig)
     lead = int(diff[-1]) if diff.size else 0
 
     lines: list[str] = []
-    lines.append("# E112 — Prime race pi(x;q,a) - pi(x;q,b)")
+    lines.append("# E112 — Prime race π(x;q,a) − π(x;q,b)")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_prime_race_diff.png")
@@ -1233,7 +1232,7 @@ def run_e113(
     ax.set_ylabel("first prime")
     ax.set_xticks(np.arange(len(rr)), [str(a) for a in rr], rotation=30, ha="right")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_first_prime_per_residue.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_first_prime_per_residue", fig=fig)
     plt.close(fig)
     missing = [a for a, v in first.items() if v == 0]
 
@@ -1305,7 +1304,7 @@ def run_e114(
     ax.set_yscale("log")
     ax.legend()
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_eta_truncation_errors.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_eta_truncation_errors", fig=fig)
     plt.close(fig)
     max_err = {n: float(np.max(err)) for n, err in errors.items()}
 
@@ -1359,7 +1358,7 @@ def run_e115(
     ax.set_xlabel("t")
     ax.set_ylabel("Z(t)")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_hardy_Z_scan.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_hardy_Z_scan", fig=fig)
     plt.close(fig)
 
     lines: list[str] = []
@@ -1415,7 +1414,7 @@ def run_e116(
     ax.set_ylabel("count")
     ax.legend()
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_zero_count_vs_rvm.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_zero_count_vs_rvm", fig=fig)
     plt.close(fig)
     final_obs = int(obs_counts[-1]) if obs_counts.size else 0
     final_rvm = float(rvm[-1]) if rvm.size else 0.0
@@ -1457,7 +1456,7 @@ class ParamsE117:
 def run_e117(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E117 — Functional equation check: zeta(s) approx chi(s) zeta(1-s)."""
+    """E117 — Functional equation check: ζ(s) ≈ χ(s) ζ(1−s)."""
     params = ParamsE117()
     write_json(params_path, asdict(params))
 
@@ -1480,12 +1479,12 @@ def run_e117(
     ax.set_ylabel("rel error")
     ax.set_yscale("log")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_functional_equation_residual.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_functional_equation_residual", fig=fig)
     plt.close(fig)
     max_rel = float(np.max(rel)) if rel.size else float("nan")
 
     lines: list[str] = []
-    lines.append("# E117 — Functional equation check: zeta(s) approx chi(s) zeta(1-s)")
+    lines.append("# E117 — Functional equation check: ζ(s) ≈ χ(s) ζ(1−s)")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_functional_equation_residual.png")
@@ -1547,7 +1546,7 @@ def run_e118(
     ax.set_yscale("log")
     ax.legend()
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_euler_product_breakdown.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_euler_product_breakdown", fig=fig)
     plt.close(fig)
     best = {k: float(min(v)) for k, v in errs_by_s.items()}
 
@@ -1576,7 +1575,7 @@ class ParamsE119:
     Args:
         n_max: Upper bound N (inclusive).
         stride: Downsampling stride for plotting.
-        window: Smoothing window (moving average) for psi(x)-x.
+        window: Smoothing window (moving average) for ψ(x)−x.
     """
 
     n_max: int = 300_000
@@ -1587,7 +1586,7 @@ class ParamsE119:
 def run_e119(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E119 — psi(x)-x with simple smoothing."""
+    """E119 — ψ(x)−x with simple smoothing."""
     params = ParamsE119()
     write_json(params_path, asdict(params))
 
@@ -1603,19 +1602,19 @@ def run_e119(
     fig, ax = plt.subplots()
     ax.plot((idx + 1), diff[idx], label="raw")
     ax.plot((idx + 1), smooth[idx], label="smoothed")
-    ax.set_title("psi(x)-x (raw and smoothed)")
+    ax.set_title("ψ(x)−x (raw and smoothed)")
     ax.set_xlabel("x")
     ax.set_ylabel("value")
     ax.set_xscale("log")
     ax.legend()
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_psi_minus_x_smoothed.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_psi_minus_x_smoothed", fig=fig)
     plt.close(fig)
     max_raw = float(np.max(np.abs(diff)))
     max_smooth = float(np.max(np.abs(smooth)))
 
     lines: list[str] = []
-    lines.append("# E119 — psi(x)-x with simple smoothing")
+    lines.append("# E119 — ψ(x)−x with simple smoothing")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_psi_minus_x_smoothed.png")
@@ -1623,8 +1622,8 @@ def run_e119(
     lines.append("- report.md")
     lines.append("")
     lines.append("## Notes")
-    lines.append(f"- max |psi(x)-x| (raw): {max_raw:.1f}")
-    lines.append(f"- max |psi(x)-x| (smoothed): {max_smooth:.1f}")
+    lines.append(f"- max |ψ(x)−x| (raw): {max_raw:.1f}")
+    lines.append(f"- max |ψ(x)−x| (smoothed): {max_smooth:.1f}")
     lines.append("- Smoothing suppresses prime-power spikes and reveals slower oscillations.")
     _write_report(report_path=report_path, lines=lines)
 
@@ -1645,7 +1644,7 @@ class ParamsE120:
 def run_e120(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E120 — Pretentious distance toy: sum_{p<=x} (1-Re chi(p))/p."""
+    """E120 — Pretentious distance toy: sum_{p<=x} (1−Re χ(p))/p."""
     params = ParamsE120()
     write_json(params_path, asdict(params))
 
@@ -1675,13 +1674,13 @@ def run_e120(
     ax.set_xscale("log")
     ax.legend()
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_pretentious_distance_proxy.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_pretentious_distance_proxy", fig=fig)
     plt.close(fig)
     end0 = float(d0[-1]) if d0.size else 0.0
     end1 = float(d1[-1]) if d1.size else 0.0
 
     lines: list[str] = []
-    lines.append("# E120 — Pretentious distance toy: sum_{p <= x} (1-Re chi(p))/p")
+    lines.append("# E120 — Pretentious distance toy: sum_{p <= x} (1−Re χ(p))/p")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_pretentious_distance_proxy.png")
@@ -1770,7 +1769,7 @@ def run_e121(
     ax.set_ylabel("failure count")
     ax.set_xticks(np.arange(len(keys)), keys, rotation=25, ha="right")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_multiplicativity_failures.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_multiplicativity_failures", fig=fig)
     plt.close(fig)
 
     lines: list[str] = []
@@ -1824,7 +1823,7 @@ def run_e122(
     ax.set_xlabel("col")
     ax.set_ylabel("row")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_mu_atlas.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_mu_atlas", fig=fig)
     plt.close(fig)
     fig, ax = plt.subplots()
     im = ax.imshow(omega_img, aspect="auto")
@@ -1833,7 +1832,7 @@ def run_e122(
     ax.set_xlabel("col")
     ax.set_ylabel("row")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_02_omega_atlas.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_02_omega_atlas", fig=fig)
     plt.close(fig)
     fig, ax = plt.subplots()
     im = ax.imshow(phi_img, aspect="auto")
@@ -1842,7 +1841,7 @@ def run_e122(
     ax.set_xlabel("col")
     ax.set_ylabel("row")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_03_phi_ratio_atlas.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_03_phi_ratio_atlas", fig=fig)
     plt.close(fig)
 
     lines: list[str] = []
@@ -1908,7 +1907,7 @@ def run_e123(
     ax.set_yticks(np.arange(len(names)), names)
     ax.set_title("Correlation matrix (sampled)")
     finalize_figure(fig)
-    save_figure(out_dir=figures_dir, name="fig_01_correlation_matrix.png", fig=fig)
+    save_figure(out_dir=figures_dir, name="fig_01_correlation_matrix", fig=fig)
     plt.close(fig)
     # list strongest correlations off-diagonal
     pairs: list[tuple[float, str, str]] = []

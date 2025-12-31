@@ -10,3 +10,8 @@ from mathxlab.experiments.e103_chebyshev_psi_prime_powers import main
 
 # ------------------------------------------------------------------------------
 __all__ = ["main"]
+
+
+# ------------------------------------------------------------------------------
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -14,6 +14,8 @@ Artifacts:
 
 from __future__ import annotations
 
+from pathlib import Path
+
 from mathxlab.exp.cli import parse_experiment_args
 from mathxlab.exp.io import prepare_out_dir
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
@@ -31,17 +33,28 @@ def main() -> int:
     Returns:
         Process exit code (0 for success).
     """
-    args = parse_experiment_args(experiment_id="e102")
+    args = parse_experiment_args(
+        experiment_id="e102",
+        description="Dirichlet convolution identity zoo",
+    )
     setup_logging(config=LoggingConfig(verbose=args.verbose))
     set_global_seed(args.seed)
 
     out_paths = prepare_out_dir(out_dir=args.out_dir)
+
+    logger.info("Starting experiment E102")
     run_e102(
-        out_dir=out_paths.root,
+        out_dir=Path(args.out_dir),
         seed=args.seed,
         figures_dir=out_paths.figures_dir,
         report_path=out_paths.report_path,
         params_path=out_paths.params_path,
     )
-    logger.info("Done: %s", out_paths.root)
+    logger.info(
+        "Experiment E102 completed successfully. Artifacts saved to: %s",
+        args.out_dir,
+    )
     return 0
+
+
+# ------------------------------------------------------------------------------

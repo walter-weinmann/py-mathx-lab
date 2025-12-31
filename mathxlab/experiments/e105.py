@@ -10,3 +10,8 @@ from mathxlab.experiments.e105_mertens_function_scaling import main
 
 # ------------------------------------------------------------------------------
 __all__ = ["main"]
+
+
+# ------------------------------------------------------------------------------
+if __name__ == "__main__":
+    raise SystemExit(main())

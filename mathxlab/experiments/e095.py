@@ -10,3 +10,8 @@ from mathxlab.experiments.e095_squarefree_omega_equals_bigomega import main
 
 # ------------------------------------------------------------------------------
 __all__ = ["main"]
+
+
+# ------------------------------------------------------------------------------
+if __name__ == "__main__":
+    raise SystemExit(main())
