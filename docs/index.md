@@ -8,15 +8,15 @@ Small, reproducible math experiments implemented in Python.
 
 ## Start here
 
-- {doc}`mathematical-experimentation` - what “experiments” in mathematics mean and how to read this repo
-- {doc}`experiments/experiments_gallery` - experiment gallery (IDs, tags, how to run)
-- {doc}`tags` - central directory of valid tags for experiments
 - {doc}`background` - mathematical background for experiments
-- {doc}`getting-started` - install, setup, and run your first experiment
 - {doc}`development` - Makefile workflow, CI, coding conventions
-- {doc}`references` - bibliography and reading list
-- {doc}`pdf` - download the PDF version of these docs
 - {doc}`experiment_status` - document the processing status
+- {doc}`experiments/experiments_gallery` - experiment gallery (IDs, tags, how to run)
+- {doc}`getting-started` - install, setup, and run your first experiment
+- {doc}`mathematical-experimentation` - what “experiments” in mathematics mean and how to read this repo
+- {doc}`pdf` - download the PDF version of these docs
+- {doc}`references` - bibliography and reading list
+- {doc}`tags` - central directory of valid tags for experiments
 
 ## Run one experiment
 
@@ -40,10 +40,10 @@ make run EXP=e001 ARGS="--out out/e001 --seed 1"
 mathematical-experimentation
 tags
 experiments/experiments_gallery
-background
 getting-started
 development
-references
+background
 pdf
 experiment_status
+references
 ```

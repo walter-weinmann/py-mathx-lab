@@ -11,6 +11,9 @@
 /__ARCHIVE__/
 /docs/_build/
 /out/
+/perf/results/.gitkeep
+/perf/results/dev_*.json
+/perf/work/
 /temp_pytest*/
 __pycache__/
 build/

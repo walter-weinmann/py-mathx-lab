@@ -1751,7 +1751,7 @@ def run_e041(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
     """E041 — Fermat numbers: not all are prime (counterexample at F5)."""
-    params = ParamsE041(m_max=8)
+    params = ParamsE041(m_max=6)
 
     ms: list[int] = []
     prime_flag: list[int] = []

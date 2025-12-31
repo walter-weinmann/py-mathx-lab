@@ -20,6 +20,9 @@
         install-docs \
         lint \
         mypy \
+        perf \
+        perf-compare \
+        perf-release \
         pytest \
         pytest-slow \
         python-check \
@@ -128,7 +131,7 @@ endif
 
 docs-html: docs-deps
 	@echo Building HTML docs...
-	@$(UV_RUN_DOCS) python -m sphinx -q -b html $(DOCS_DIR) $(DOCS_HTML_DIR)
+	@$(UV_RUN_DOCS) python -m sphinx -q -W -b html $(DOCS_DIR) $(DOCS_HTML_DIR)
 
 docs-pdf: docs-deps
 	@echo "Building PDF docs (optional; requires LaTeX toolchain + latexmk)..."
@@ -166,6 +169,9 @@ help:
 	@echo   make lint          - ruff lint (check-only)
 	@echo   make lint-fix      - ruff lint
 	@echo   make mypy          - check typing
+	@echo   make perf          - run performance suite for all experiments (dev snapshot)
+	@echo   make perf-compare  - compare two snapshots (make perf-compare A=vX B=vY)
+	@echo   make perf-release  - run performance suite and store results for current MVERSION
 	@echo   make pytest        - run fast tests with coverage
 	@echo   make pytest-slow   - run slow tests with coverage
 	@echo   make run EXP=e001  - run an experiment by id
@@ -195,6 +201,22 @@ lint-fix: install-dev
 
 mypy: install-dev
 	$(UV_RUN_DEV) mypy mathxlab tests experiments
+
+perf: install-dev
+	$(UV_RUN_DEV) python mathxlab/tools/run_perf.py --mode dev --overwrite
+
+perf-compare: install-dev
+ifeq ($(IS_WINDOWS),1)
+	@if "$(A)"=="" (echo ERROR: Provide A, e.g. make perf-compare A=v0.1.0 B=v0.2.0 & exit /b 1)
+	@if "$(B)"=="" (echo ERROR: Provide B, e.g. make perf-compare A=v0.1.0 B=v0.2.0 & exit /b 1)
+else
+	@test -n "$(A)" || (echo "ERROR: Provide A, e.g. make perf-compare A=v0.1.0 B=v0.2.0" && exit 1)
+	@test -n "$(B)" || (echo "ERROR: Provide B, e.g. make perf-compare A=v0.1.0 B=v0.2.0" && exit 1)
+endif
+	$(UV_RUN_DEV) python mathxlab/tools/compare_perf.py --a $(A) --b $(B)
+
+perf-release: install-dev
+	$(UV_RUN_DEV) python mathxlab/tools/run_perf.py --mode release --overwrite
 
 pytest: install-dev
 	$(PYTEST) -q $(PYTEST_XDIST_FAST) -m "not slow" \

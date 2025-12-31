@@ -1,0 +1,1135 @@
+{
+  "experiments": [
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e001",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e001",
+      "returncode": 0,
+      "seconds": 2.603508
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e002",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e002",
+      "returncode": 0,
+      "seconds": 1.571276
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e003",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e003",
+      "returncode": 0,
+      "seconds": 2.133115
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e004",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e004",
+      "returncode": 0,
+      "seconds": 2.871666
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e005",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e005",
+      "returncode": 0,
+      "seconds": 1.267191
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e006",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e006",
+      "returncode": 0,
+      "seconds": 1.998711
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e007",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e007",
+      "returncode": 0,
+      "seconds": 1.376026
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e008",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e008",
+      "returncode": 0,
+      "seconds": 19.674215
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e009",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e009",
+      "returncode": 0,
+      "seconds": 1.766816
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e010",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e010",
+      "returncode": 0,
+      "seconds": 63.307251
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e011",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e011",
+      "returncode": 0,
+      "seconds": 103.805212
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e012",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e012",
+      "returncode": 0,
+      "seconds": 1.966561
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e013",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e013",
+      "returncode": 0,
+      "seconds": 1.394658
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e014",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e014",
+      "returncode": 0,
+      "seconds": 1.108286
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e015",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e015",
+      "returncode": 0,
+      "seconds": 1.150216
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e016",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e016",
+      "returncode": 0,
+      "seconds": 1.180366
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e017",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e017",
+      "returncode": 0,
+      "seconds": 1.168559
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e018",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e018",
+      "returncode": 0,
+      "seconds": 2.800117
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e019",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e019",
+      "returncode": 0,
+      "seconds": 6.070713
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e020",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e020",
+      "returncode": 0,
+      "seconds": 1.472643
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e021",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e021",
+      "returncode": 0,
+      "seconds": 1.353124
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e022",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e022",
+      "returncode": 0,
+      "seconds": 1.519539
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e023",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e023",
+      "returncode": 0,
+      "seconds": 1.915966
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e024",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e024",
+      "returncode": 0,
+      "seconds": 1.219187
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e025",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e025",
+      "returncode": 0,
+      "seconds": 1.700565
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e026",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e026",
+      "returncode": 0,
+      "seconds": 1.293232
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e027",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e027",
+      "returncode": 0,
+      "seconds": 1.435116
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e028",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e028",
+      "returncode": 0,
+      "seconds": 1.271442
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e029",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e029",
+      "returncode": 0,
+      "seconds": 7.787296
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e030",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e030",
+      "returncode": 0,
+      "seconds": 11.308729
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e031",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e031",
+      "returncode": 0,
+      "seconds": 1.220287
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e032",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e032",
+      "returncode": 0,
+      "seconds": 6.236874
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e033",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e033",
+      "returncode": 0,
+      "seconds": 2.19142
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e034",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e034",
+      "returncode": 0,
+      "seconds": 1.439094
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e035",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e035",
+      "returncode": 0,
+      "seconds": 1.797098
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e036",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e036",
+      "returncode": 0,
+      "seconds": 1.266629
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e037",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e037",
+      "returncode": 0,
+      "seconds": 1.212991
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e038",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e038",
+      "returncode": 0,
+      "seconds": 1.247208
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e039",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e039",
+      "returncode": 0,
+      "seconds": 9.404055
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e040",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e040",
+      "returncode": 0,
+      "seconds": 1.843774
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e041",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e041",
+      "returncode": 0,
+      "seconds": 1.22177
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e042",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e042",
+      "returncode": 0,
+      "seconds": 1.170141
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e043",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e043",
+      "returncode": 0,
+      "seconds": 4.071183
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e044",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e044",
+      "returncode": 0,
+      "seconds": 1.204288
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e045",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e045",
+      "returncode": 0,
+      "seconds": 1.491615
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e046",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e046",
+      "returncode": 0,
+      "seconds": 3.124896
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e047",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e047",
+      "returncode": 0,
+      "seconds": 1.551059
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e048",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e048",
+      "returncode": 0,
+      "seconds": 2.161348
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e049",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e049",
+      "returncode": 0,
+      "seconds": 1.381884
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e050",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e050",
+      "returncode": 0,
+      "seconds": 1.683668
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e051",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e051",
+      "returncode": 0,
+      "seconds": 1.399592
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e052",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e052",
+      "returncode": 0,
+      "seconds": 2.737632
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e053",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e053",
+      "returncode": 0,
+      "seconds": 1.265354
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e054",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e054",
+      "returncode": 0,
+      "seconds": 1.253421
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e055",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e055",
+      "returncode": 0,
+      "seconds": 1.597195
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e056",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e056",
+      "returncode": 0,
+      "seconds": 1.960507
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e057",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e057",
+      "returncode": 0,
+      "seconds": 1.875099
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e058",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e058",
+      "returncode": 0,
+      "seconds": 1.825937
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e059",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e059",
+      "returncode": 0,
+      "seconds": 2.45771
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e060",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e060",
+      "returncode": 0,
+      "seconds": 3.606269
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e061",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e061",
+      "returncode": 0,
+      "seconds": 2.24727
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e062",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e062",
+      "returncode": 0,
+      "seconds": 2.762813
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e063",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e063",
+      "returncode": 0,
+      "seconds": 1.2699
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e064",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e064",
+      "returncode": 0,
+      "seconds": 1.286709
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e065",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e065",
+      "returncode": 0,
+      "seconds": 1.230561
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e066",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e066",
+      "returncode": 0,
+      "seconds": 2.016313
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e067",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e067",
+      "returncode": 0,
+      "seconds": 1.185905
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e068",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e068",
+      "returncode": 0,
+      "seconds": 1.419079
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e069",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e069",
+      "returncode": 0,
+      "seconds": 3.34306
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e070",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e070",
+      "returncode": 0,
+      "seconds": 1.253695
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e071",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e071",
+      "returncode": 0,
+      "seconds": 1.247907
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e072",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e072",
+      "returncode": 0,
+      "seconds": 1.1577
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e073",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e073",
+      "returncode": 0,
+      "seconds": 1.151238
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e074",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e074",
+      "returncode": 0,
+      "seconds": 1.495648
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e075",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e075",
+      "returncode": 0,
+      "seconds": 1.246955
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e076",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e076",
+      "returncode": 0,
+      "seconds": 1.163866
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e077",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e077",
+      "returncode": 0,
+      "seconds": 1.063223
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e078",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e078",
+      "returncode": 0,
+      "seconds": 1.214417
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e079",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e079",
+      "returncode": 0,
+      "seconds": 1.053589
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e080",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e080",
+      "returncode": 0,
+      "seconds": 1.097298
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e081",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e081",
+      "returncode": 0,
+      "seconds": 1.643422
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e082",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e082",
+      "returncode": 0,
+      "seconds": 1.424624
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e083",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e083",
+      "returncode": 0,
+      "seconds": 1.372562
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e084",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e084",
+      "returncode": 0,
+      "seconds": 1.346797
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e085",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e085",
+      "returncode": 0,
+      "seconds": 2.920426
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e086",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e086",
+      "returncode": 0,
+      "seconds": 2.508573
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e087",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e087",
+      "returncode": 0,
+      "seconds": 1.315697
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e088",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e088",
+      "returncode": 0,
+      "seconds": 2.072196
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e089",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e089",
+      "returncode": 0,
+      "seconds": 2.221787
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e090",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e090",
+      "returncode": 0,
+      "seconds": 3.740931
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e091",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e091",
+      "returncode": 0,
+      "seconds": 1.435315
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e092",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e092",
+      "returncode": 0,
+      "seconds": 1.521683
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e093",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e093",
+      "returncode": 0,
+      "seconds": 1.418483
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e094",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e094",
+      "returncode": 0,
+      "seconds": 1.23732
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e095",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e095",
+      "returncode": 0,
+      "seconds": 1.294993
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e096",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e096",
+      "returncode": 0,
+      "seconds": 1.530153
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e097",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e097",
+      "returncode": 0,
+      "seconds": 1.42863
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e098",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e098",
+      "returncode": 0,
+      "seconds": 1.23019
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e099",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e099",
+      "returncode": 0,
+      "seconds": 1.486885
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e100",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e100",
+      "returncode": 0,
+      "seconds": 1.23899
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e101",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e101",
+      "returncode": 0,
+      "seconds": 1.158524
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e102",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e102",
+      "returncode": 0,
+      "seconds": 1.240843
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e103",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e103",
+      "returncode": 0,
+      "seconds": 1.386024
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e104",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e104",
+      "returncode": 0,
+      "seconds": 1.182524
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e105",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e105",
+      "returncode": 0,
+      "seconds": 1.775061
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e106",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e106",
+      "returncode": 0,
+      "seconds": 1.209325
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e107",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e107",
+      "returncode": 0,
+      "seconds": 1.157345
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e108",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e108",
+      "returncode": 0,
+      "seconds": 1.212595
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e109",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e109",
+      "returncode": 0,
+      "seconds": 1.188934
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e110",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e110",
+      "returncode": 0,
+      "seconds": 1.205999
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e111",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e111",
+      "returncode": 0,
+      "seconds": 1.503166
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e112",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e112",
+      "returncode": 0,
+      "seconds": 1.42764
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e113",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e113",
+      "returncode": 0,
+      "seconds": 1.139321
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e114",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e114",
+      "returncode": 0,
+      "seconds": 2.505819
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e115",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e115",
+      "returncode": 0,
+      "seconds": 1.495579
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e116",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e116",
+      "returncode": 0,
+      "seconds": 1.794265
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e117",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e117",
+      "returncode": 0,
+      "seconds": 1.494954
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e118",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e118",
+      "returncode": 0,
+      "seconds": 9.469895
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e119",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e119",
+      "returncode": 0,
+      "seconds": 1.475325
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e120",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e120",
+      "returncode": 0,
+      "seconds": 1.588079
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e121",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e121",
+      "returncode": 0,
+      "seconds": 1.261831
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e122",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e122",
+      "returncode": 0,
+      "seconds": 1.880177
+    },
+    {
+      "artifacts_ok": true,
+      "error": null,
+      "exp_id": "e123",
+      "kind": "entrypoint",
+      "module": "mathxlab.experiments.e123",
+      "returncode": 0,
+      "seconds": 1.263146
+    }
+  ],
+  "git": {
+    "branch": "wwe_26_01_01_dt",
+    "head": "c3bbb6f28de8ff382e34006c7685eed3ebeb8848"
+  },
+  "label": "1.6.0",
+  "mode": "release",
+  "platform": {
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "release": "11",
+    "system": "Windows"
+  },
+  "python": {
+    "executable": "D:\\SoftDevelopment\\Projects\\py-mathx-lab\\.venv\\Scripts\\python.exe",
+    "implementation": "CPython",
+    "version": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "suite": {
+    "artifacts_ok": 123,
+    "experiments_ok": 123,
+    "experiments_total": 123,
+    "seconds_total": 423.776502
+  },
+  "timestamp_utc": "2025-12-31T13:40:10.336885+00:00"
+}
