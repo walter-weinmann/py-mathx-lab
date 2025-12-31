@@ -98,6 +98,7 @@ exclude = [
   "build",
   "dist",
   "out",
+  "templates",
 ]
 
 [tool.ruff.format]

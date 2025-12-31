@@ -24,6 +24,7 @@
         pytest-slow \
         python-check \
         run \
+        status \
         tags-check \
         uv-check \
         venv \
@@ -110,7 +111,7 @@ clean:
 clean-venv:
 	$(call rm_venv)
 
-docs: docs-html docs-pdf
+docs: status tags-check docs-html docs-pdf
 
 docs-clean:
 	$(call rmdir_if_exists,$(DOCS_BUILD_DIR))
@@ -133,9 +134,9 @@ docs-pdf: docs-deps
 	@echo "Building PDF docs (optional; requires LaTeX toolchain + latexmk)..."
 	@$(UV_RUN_DOCS) python -m mathxlab.tools.docs_pdf --quiet
 
-final: format lint-fix mypy tags-check pytest docs
+final: format lint-fix mypy pytest docs
 
-final-slow: format lint mypy tags-check pytest-slow docs
+final-slow: format lint mypy pytest-slow docs
 
 fmt: install-dev
 	$(UV_RUN_DEV) ruff check --fix .
@@ -168,6 +169,7 @@ help:
 	@echo   make pytest        - run fast tests with coverage
 	@echo   make pytest-slow   - run slow tests with coverage
 	@echo   make run EXP=e001  - run an experiment by id
+	@echo   make status        - update docs/experiment_status.md (append new experiments)
 	@echo   make tags-check    - validate docs tags against docs/tags.md
 	@echo   make venv          - create/update virtual environment
 
@@ -240,6 +242,9 @@ else
 		echo "Logging to: $${log}"; \
 		$(UV_RUN_DEV) python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS) 2>&1 | tee -a "$${log}"'
 endif
+
+status: install-dev
+	$(UV_RUN_DEV) python mathxlab/tools/generate_experiment_status.py
 
 tags-check: install-dev
 	$(UV_RUN_DEV) python -m mathxlab.tools.validate_doc_tags

@@ -16,6 +16,7 @@ Small, reproducible math experiments implemented in Python.
 - {doc}`development` - Makefile workflow, CI, coding conventions
 - {doc}`references` - bibliography and reading list
 - {doc}`pdf` - download the PDF version of these docs
+- {doc}`experiment_status` - document the processing status
 
 ## Run one experiment
 
@@ -44,4 +45,5 @@ getting-started
 development
 references
 pdf
+experiment_status
 ```

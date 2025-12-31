@@ -6,7 +6,7 @@
 ```
 
 **Tags:** `number-theory`, `quantitative-exploration`, `visualization`  <!-- add more -->
-See: {doc}`../tags`.
+See: {doc}`../tags`. Do not introduce new tags without adding them to `docs/tags.md`.
 
 ## Highlights
 
@@ -52,14 +52,15 @@ This experiment follows the standard output contract:
 
 - `out/exxx/figures/` — generated figures (PNG)
 - `out/exxx/report.md` — short narrative report
-- `out/exxx/manifest.json` — snapshot metadata for the gallery
+- `out/exxx/params.json` — run parameters (stable JSON)
+- `out/exxx/logs/` — run logs (created by the runner/Makefile)
 
 ## Figure LaTeX tips
 
 Most figures are generated with Matplotlib **mathtext**, not full LaTeX.
 Keep expressions simple and mathtext-compatible:
 
-- Prefer `$\varphi(n)/n$`, `$\mu(n)$`, `$\Omega(n)$`, `$\sum_{k\le x}$`.
+- Prefer `$arphi(n)/n$`, `$\mu(n)$`, `$\Omega(n)$`, `$\sum_{k\le x}$`.
 - Avoid unsupported commands (e.g. `\pmod`, `\operatorname{...}`).
 - Use raw strings in Python: `title = r"$\varphi(n)/n$"`.
 
