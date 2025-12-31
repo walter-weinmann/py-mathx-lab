@@ -14,8 +14,12 @@ with refinements that include the argument of ζ on the critical line.
 - **Gram blocks / Gram's law:** empirical rules about how zeros sit between consecutive Gram points (useful, but not always true).
 - **Practical numerics:** many experiments become clearer when plotted against \(\theta(t)\) or indexed by Gram points.
 
+## Experiments in this repository
+
+- **E116** — Observed zero counts (via sign changes) vs Riemann–von Mangoldt estimate.
+
 ## References
 
-- cite:p:`titchmarsh1986zeta`
-- cite:p:`WikipediaContributors2025RiemannVonMangoldtFormula`
-- cite:p:`WikipediaContributors2025ZFunction`
+See {doc}`../references`.
+
+{cite:p}`titchmarsh1986,odlyzko1992zeta10to20thzero,WikipediaContributors2025RiemannVonMangoldtFormula,WikipediaContributors2025ZFunction`

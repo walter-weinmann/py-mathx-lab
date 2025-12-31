@@ -49,3 +49,7 @@ $$
 - compare $\lambda(n)$ vs. $\varphi(n)$ on ranges
 - visualize distribution of $\varphi(n)/\lambda(n)$
 - record-breakers for large $\varphi(n)/\lambda(n)$
+
+## Experiments in this repository
+
+- **E100** — Carmichael λ(n) vs Euler φ(n): ratios, typical size, and extremes.

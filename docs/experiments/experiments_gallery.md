@@ -218,10 +218,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e016.html" class="gallery-card" data-title="E016 — Trial division vs Miller–Rabin scaling" data-tags="number-theory,quantitative-exploration,visualization,miller-rabin" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
+  <a href="e016.html" class="gallery-card" data-title="E016 — Trial division vs. Miller–Rabin scaling" data-tags="number-theory,quantitative-exploration,visualization,miller-rabin" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
     <img src="../_static/experiments/e016_hero.png" alt="E016 preview">
     <div class="gallery-card-body">
-      <h3>E016 — Trial division vs Miller–Rabin scaling</h3>
+      <h3>E016 — Trial division vs. Miller–Rabin scaling</h3>
       <p>This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -231,10 +231,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e017.html" class="gallery-card" data-title="E017 — Sieve memory blow-up vs segmented sieve" data-tags="number-theory,quantitative-exploration,visualization,sieving" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
+  <a href="e017.html" class="gallery-card" data-title="E017 — Sieve memory blow-up vs. segmented sieve" data-tags="number-theory,quantitative-exploration,visualization,sieving" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
     <img src="../_static/experiments/e017_hero.png" alt="E017 preview">
     <div class="gallery-card-body">
-      <h3>E017 — Sieve memory blow-up vs segmented sieve</h3>
+      <h3>E017 — Sieve memory blow-up vs. segmented sieve</h3>
       <p>This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -361,10 +361,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e027.html" class="gallery-card" data-title="E027 — Record prime gaps vs log^2 heuristic" data-tags="number-theory,conjecture-generation,visualization,gaps" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
+  <a href="e027.html" class="gallery-card" data-title="E027 — Record prime gaps vs. log^2 heuristic" data-tags="number-theory,conjecture-generation,visualization,gaps" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
     <img src="../_static/experiments/e027_hero.png" alt="E027 preview">
     <div class="gallery-card-body">
-      <h3>E027 — Record prime gaps vs log^2 heuristic</h3>
+      <h3>E027 — Record prime gaps vs. log^2 heuristic</h3>
       <p>This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -387,10 +387,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e029.html" class="gallery-card" data-title="E029 — Twin primes: observed vs heuristic" data-tags="number-theory,conjecture-generation,visualization,twin" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
+  <a href="e029.html" class="gallery-card" data-title="E029 — Twin primes: observed vs. heuristic" data-tags="number-theory,conjecture-generation,visualization,twin" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
     <img src="../_static/experiments/e029_hero.png" alt="E029 preview">
     <div class="gallery-card-body">
-      <h3>E029 — Twin primes: observed vs heuristic</h3>
+      <h3>E029 — Twin primes: observed vs. heuristic</h3>
       <p>This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -439,10 +439,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e033.html" class="gallery-card" data-title="E033 — Bounded gaps vs twin primes (not the same)" data-tags="number-theory,quantitative-exploration,visualization,twin" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
+  <a href="e033.html" class="gallery-card" data-title="E033 — Bounded gaps vs. twin primes (not the same)" data-tags="number-theory,quantitative-exploration,visualization,twin" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
     <img src="../_static/experiments/e033_hero.png" alt="E033 preview">
     <div class="gallery-card-body">
-      <h3>E033 — Bounded gaps vs twin primes (not the same)</h3>
+      <h3>E033 — Bounded gaps vs. twin primes (not the same)</h3>
       <p>This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -582,10 +582,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e044.html" class="gallery-card" data-title="E044 — Solovay–Strassen vs Miller–Rabin (liars)" data-tags="number-theory,quantitative-exploration,visualization,miller-rabin" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
+  <a href="e044.html" class="gallery-card" data-title="E044 — Solovay–Strassen vs. Miller–Rabin (liars)" data-tags="number-theory,quantitative-exploration,visualization,miller-rabin" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
     <img src="../_static/experiments/e044_hero.png" alt="E044 preview">
     <div class="gallery-card-body">
-      <h3>E044 — Solovay–Strassen vs Miller–Rabin (liars)</h3>
+      <h3>E044 — Solovay–Strassen vs. Miller–Rabin (liars)</h3>
       <p>This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -676,11 +676,11 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e051.html" class="gallery-card" data-title="E051 — Semiprimes: balanced vs unbalanced factoring" data-tags="number-theory,quantitative-exploration,visualization,factorization,semiprime" data-desc="Generate small semiprimes and compare Pollard-rho factorization timings for balanced vs unbalanced cases.">
+  <a href="e051.html" class="gallery-card" data-title="E051 — Semiprimes: balanced vs. unbalanced factoring" data-tags="number-theory,quantitative-exploration,visualization,factorization,semiprime" data-desc="Generate small semiprimes and compare Pollard-rho factorization timings for balanced vs. unbalanced cases.">
     <img src="../_static/experiments/e051_hero.png" alt="E051 preview">
     <div class="gallery-card-body">
-      <h3>E051 — Semiprimes: balanced vs unbalanced factoring</h3>
-      <p>Generate small semiprimes and compare Pollard-rho factorization timings for balanced vs unbalanced cases.</p>
+      <h3>E051 — Semiprimes: balanced vs. unbalanced factoring</h3>
+      <p>Generate small semiprimes and compare Pollard-rho factorization timings for balanced vs. unbalanced cases.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
 <span class="tag tag-primary">quantitative-exploration</span>
@@ -751,10 +751,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </div>
 </a>
-  <a href="e056.html" class="gallery-card" data-title="E056 — Liouville vs Möbius walks" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,summatory,liouville,mobius" data-desc="Compare summatory \lambda(n) and \mu(n)">
+  <a href="e056.html" class="gallery-card" data-title="E056 — Liouville vs. Möbius walks" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,summatory,liouville,mobius" data-desc="Compare summatory \lambda(n) and \mu(n)">
   <img src="../_static/experiments/e056_hero.png" alt="E056 preview">
   <div class="gallery-card-body">
-    <h3>E056 — Liouville vs Möbius walks</h3>
+    <h3>E056 — Liouville vs. Möbius walks</h3>
     <p>Compare summatory \lambda(n) and \mu(n)</p>
     <div class="gallery-tags">
       <span class="tag tag-primary">number-theory</span>
@@ -844,10 +844,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </div>
 </a>
-  <a href="e062.html" class="gallery-card" data-title="E062 — Carmichael λ(n) vs φ(n)" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,carmichael-lambda,totient" data-desc="Compare λ(n) and φ(n) via ratios and distributions">
+  <a href="e062.html" class="gallery-card" data-title="E062 — Carmichael λ(n) vs. φ(n)" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,carmichael-lambda,totient" data-desc="Compare λ(n) and φ(n) via ratios and distributions">
   <img src="../_static/experiments/e062_hero.png" alt="E062 preview">
   <div class="gallery-card-body">
-    <h3>E062 — Carmichael λ(n) vs φ(n)</h3>
+    <h3>E062 — Carmichael λ(n) vs. φ(n)</h3>
     <p>Compare λ(n) and φ(n) via ratios and distributions</p>
     <div class="gallery-tags">
       <span class="tag tag-primary">number-theory</span>
@@ -913,10 +913,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e067.html" class="gallery-card" data-title="E067 — Gauss sums: magnitude vs sqrt(q)" data-tags="number-theory,quantitative-exploration,visualization,dirichlet-characters" data-desc="Compute Gauss sums for characters modulo q and compare magnitudes to sqrt(q).">
+  <a href="e067.html" class="gallery-card" data-title="E067 — Gauss sums: magnitude vs. sqrt(q)" data-tags="number-theory,quantitative-exploration,visualization,dirichlet-characters" data-desc="Compute Gauss sums for characters modulo q and compare magnitudes to sqrt(q).">
     <img src="../_static/experiments/e067_hero.png" alt="E067 preview">
     <div class="gallery-card-body">
-      <h3>E067 — Gauss sums: magnitude vs sqrt(q)</h3>
+      <h3>E067 — Gauss sums: magnitude vs. sqrt(q)</h3>
       <p>Compute Gauss sums for characters modulo q and compare magnitudes to sqrt(q).</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -926,10 +926,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e068.html" class="gallery-card" data-title="E068 — Dirichlet L(s,chi): series vs Euler product" data-tags="number-theory,quantitative-exploration,visualization,dirichlet-characters,l-functions" data-desc="For Re(s)&gt;1, compare partial Dirichlet series and partial Euler products for L(s,chi).">
+  <a href="e068.html" class="gallery-card" data-title="E068 — Dirichlet L(s,chi): series vs. Euler product" data-tags="number-theory,quantitative-exploration,visualization,dirichlet-characters,l-functions" data-desc="For Re(s)&gt;1, compare partial Dirichlet series and partial Euler products for L(s,chi).">
     <img src="../_static/experiments/e068_hero.png" alt="E068 preview">
     <div class="gallery-card-body">
-      <h3>E068 — Dirichlet L(s,chi): series vs Euler product</h3>
+      <h3>E068 — Dirichlet L(s,chi): series vs. Euler product</h3>
       <p>For Re(s)&gt;1, compare partial Dirichlet series and partial Euler products for L(s,chi).</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -980,10 +980,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e072.html" class="gallery-card" data-title="E072 — Prime race mod 4: pi(x;4,3) vs pi(x;4,1)" data-tags="number-theory,quantitative-exploration,visualization,prime-races,aps" data-desc="Track the classic mod-4 prime race and visualize the running lead and sign changes.">
+  <a href="e072.html" class="gallery-card" data-title="E072 — Prime race mod 4: pi(x;4,3) vs. pi(x;4,1)" data-tags="number-theory,quantitative-exploration,visualization,prime-races,aps" data-desc="Track the classic mod-4 prime race and visualize the running lead and sign changes.">
     <img src="../_static/experiments/e072_hero.png" alt="E072 preview">
     <div class="gallery-card-body">
-      <h3>E072 — Prime race mod 4: pi(x;4,3) vs pi(x;4,1)</h3>
+      <h3>E072 — Prime race mod 4: pi(x;4,3) vs. pi(x;4,1)</h3>
       <p>Track the classic mod-4 prime race and visualize the running lead and sign changes.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -994,10 +994,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e073.html" class="gallery-card" data-title="E073 — Prime race mod 3: pi(x;3,2) vs pi(x;3,1)" data-tags="number-theory,quantitative-exploration,visualization,prime-races,aps" data-desc="Compare the two reduced residue classes modulo 3 and study lead changes over x.">
+  <a href="e073.html" class="gallery-card" data-title="E073 — Prime race mod 3: pi(x;3,2) vs. pi(x;3,1)" data-tags="number-theory,quantitative-exploration,visualization,prime-races,aps" data-desc="Compare the two reduced residue classes modulo 3 and study lead changes over x.">
     <img src="../_static/experiments/e073_hero.png" alt="E073 preview">
     <div class="gallery-card-body">
-      <h3>E073 — Prime race mod 3: pi(x;3,2) vs pi(x;3,1)</h3>
+      <h3>E073 — Prime race mod 3: pi(x;3,2) vs. pi(x;3,1)</h3>
       <p>Compare the two reduced residue classes modulo 3 and study lead changes over x.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -1076,11 +1076,11 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e079.html" class="gallery-card" data-title="E079 — Primitive vs imprimitive characters: conductors" data-tags="number-theory,quantitative-exploration,visualization,dirichlet-characters" data-desc="Classify characters by conductor (smallest modulus they factor through) and visualize primitive vs imprimitive structure.">
+  <a href="e079.html" class="gallery-card" data-title="E079 — Primitive vs. imprimitive characters: conductors" data-tags="number-theory,quantitative-exploration,visualization,dirichlet-characters" data-desc="Classify characters by conductor (smallest modulus they factor through) and visualize primitive vs. imprimitive structure.">
     <img src="../_static/experiments/e079_hero.png" alt="E079 preview">
     <div class="gallery-card-body">
-      <h3>E079 — Primitive vs imprimitive characters: conductors</h3>
-      <p>Classify characters by conductor (smallest modulus they factor through) and visualize primitive vs imprimitive structure.</p>
+      <h3>E079 — Primitive vs. imprimitive characters: conductors</h3>
+      <p>Classify characters by conductor (smallest modulus they factor through) and visualize primitive vs. imprimitive structure.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
         <span class="tag tag-primary">quantitative-exploration</span>
@@ -1089,10 +1089,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e080.html" class="gallery-card" data-title="E080 — Chebyshev bias: leader fraction vs x" data-tags="number-theory,quantitative-exploration,visualization,prime-races" data-desc="For a prime race difference D(x), compute the fraction of x where D(x)&gt;0 and visualize bias as x grows.">
+  <a href="e080.html" class="gallery-card" data-title="E080 — Chebyshev bias: leader fraction vs. x" data-tags="number-theory,quantitative-exploration,visualization,prime-races" data-desc="For a prime race difference D(x), compute the fraction of x where D(x)&gt;0 and visualize bias as x grows.">
     <img src="../_static/experiments/e080_hero.png" alt="E080 preview">
     <div class="gallery-card-body">
-      <h3>E080 — Chebyshev bias: leader fraction vs x</h3>
+      <h3>E080 — Chebyshev bias: leader fraction vs. x</h3>
       <p>For a prime race difference D(x), compute the fraction of x where D(x)&gt;0 and visualize bias as x grows.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -1131,10 +1131,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
 
-  <a href="e083.html" class="gallery-card" data-title="E083 — Series vs Euler product (ζ)" data-tags="analysis,quantitative-exploration,visualization,riemann-zeta,numerics" data-desc="Numerically compare ζ(s) via truncated Dirichlet series versus truncated Euler product.">
+  <a href="e083.html" class="gallery-card" data-title="E083 — Series vs. Euler product (ζ)" data-tags="analysis,quantitative-exploration,visualization,riemann-zeta,numerics" data-desc="Numerically compare ζ(s) via truncated Dirichlet series versus truncated Euler product.">
     <img src="../_static/experiments/e083_hero.png" alt="E083 hero">
     <div class="gallery-card-body">
-      <h3>E083 — Series vs Euler product (ζ)</h3>
+      <h3>E083 — Series vs. Euler product (ζ)</h3>
       <p>Numerically compare ζ(s) via truncated Dirichlet series versus truncated Euler product.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">analysis</span>
@@ -1300,6 +1300,441 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
+  <a href="e094.html" class="gallery-card" data-title="E094 — ω(n) vs. Ω(n): Erdős–Kac normalization" data-tags="number-theory,quantitative-exploration,visualization,omega,arithmetic-functions,numerics" data-desc="Compare ω(n) and Ω(n) distributions and their Erdős–Kac normalizations.">
+    <img src="../_static/experiments/e094_hero.png" alt="E094 hero">
+    <div class="gallery-card-body">
+      <h3>E094 — ω(n) vs. Ω(n): Erdős–Kac normalization</h3>
+      <p>Compare ω(n) and Ω(n) distributions and their Erdős–Kac normalizations.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">omega</span>
+        <span class="tag tag-secondary">arithmetic-functions</span>
+        <span class="tag tag-secondary">numerics</span>
+      </div>
+    </div>
+  </a>
+  <a href="e095.html" class="gallery-card" data-title="E095 — Squarefree filter: ω(n)=Ω(n) when μ(n)≠0" data-tags="number-theory,model-checking,visualization,mobius,omega,arithmetic-functions" data-desc="Use μ(n) as a squarefree indicator and verify ω(n)=Ω(n) on that subset.">
+    <img src="../_static/experiments/e095_hero.png" alt="E095 hero">
+    <div class="gallery-card-body">
+      <h3>E095 — Squarefree filter: ω(n)=Ω(n) when μ(n)≠0</h3>
+      <p>Use μ(n) as a squarefree indicator and verify ω(n)=Ω(n) on that subset.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">model-checking</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">mobius</span>
+        <span class="tag tag-secondary">omega</span>
+        <span class="tag tag-secondary">arithmetic-functions</span>
+      </div>
+    </div>
+  </a>
+  <a href="e096.html" class="gallery-card" data-title="E096 — Record-holders for τ(n)" data-tags="number-theory,quantitative-exploration,visualization,divisor-function,arithmetic-functions" data-desc="Track running maxima of τ(n) up to N and visualize growth of record values.">
+    <img src="../_static/experiments/e096_hero.png" alt="E096 hero">
+    <div class="gallery-card-body">
+      <h3>E096 — Record-holders for τ(n)</h3>
+      <p>Track running maxima of τ(n) up to N and visualize growth of record values.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">divisor-function</span>
+        <span class="tag tag-secondary">arithmetic-functions</span>
+      </div>
+    </div>
+  </a>
+  <a href="e097.html" class="gallery-card" data-title="E097 — σ(n)/n landscape: deficient, perfect, abundant" data-tags="number-theory,quantitative-exploration,visualization,sigma,perfect,classification" data-desc="Visualize σ(n)/n and classify integers using σ(n) compared to 2n.">
+    <img src="../_static/experiments/e097_hero.png" alt="E097 hero">
+    <div class="gallery-card-body">
+      <h3>E097 — σ(n)/n landscape: deficient, perfect, abundant</h3>
+      <p>Visualize σ(n)/n and classify integers using σ(n) compared to 2n.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">sigma</span>
+        <span class="tag tag-secondary">perfect</span>
+        <span class="tag tag-secondary">classification</span>
+      </div>
+    </div>
+  </a>
+  <a href="e098.html" class="gallery-card" data-title="E098 — Maximizers of σ(n)/n^α across α" data-tags="number-theory,quantitative-exploration,visualization,sigma,optimization" data-desc="For α on a grid, find n≤N maximizing σ(n)/n^α and show regime changes.">
+    <img src="../_static/experiments/e098_hero.png" alt="E098 hero">
+    <div class="gallery-card-body">
+      <h3>E098 — Maximizers of σ(n)/n^α across α</h3>
+      <p>For α on a grid, find n≤N maximizing σ(n)/n^α and show regime changes.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">sigma</span>
+        <span class="tag tag-secondary">optimization</span>
+      </div>
+    </div>
+  </a>
+  <a href="e099.html" class="gallery-card" data-title="E099 — Jordan totients J_k: identities and ratios" data-tags="number-theory,model-checking,visualization,totient,arithmetic-functions" data-desc="Compute J_k(n), verify J_1=φ, and visualize ratios J_k(n)/n^k.">
+    <img src="../_static/experiments/e099_hero.png" alt="E099 hero">
+    <div class="gallery-card-body">
+      <h3>E099 — Jordan totients J_k: identities and ratios</h3>
+      <p>Compute J_k(n), verify J_1=φ, and visualize ratios J_k(n)/n^k.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">model-checking</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">totient</span>
+        <span class="tag tag-secondary">arithmetic-functions</span>
+      </div>
+    </div>
+  </a>
+  <a href="e100.html" class="gallery-card" data-title="E100 — Carmichael λ(n) vs. Euler φ(n)" data-tags="number-theory,quantitative-exploration,visualization,carmichael-lambda,totient,arithmetic-functions" data-desc="Compare λ(n) and φ(n) and visualize λ(n)/φ(n) over a finite range.">
+    <img src="../_static/experiments/e100_hero.png" alt="E100 hero">
+    <div class="gallery-card-body">
+      <h3>E100 — Carmichael λ(n) vs. Euler φ(n)</h3>
+      <p>Compare λ(n) and φ(n) and visualize λ(n)/φ(n) over a finite range.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">carmichael-lambda</span>
+        <span class="tag tag-secondary">totient</span>
+        <span class="tag tag-secondary">arithmetic-functions</span>
+      </div>
+    </div>
+  </a>
+  <a href="e101.html" class="gallery-card" data-title="E101 — Reduced residues modulo q: concrete structure" data-tags="number-theory,dirichlet-characters,model-checking,visualization,totient" data-desc="List reduced residues mod q, verify count=φ(q), and summarize simple structure checks.">
+    <img src="../_static/experiments/e101_hero.png" alt="E101 hero">
+    <div class="gallery-card-body">
+      <h3>E101 — Reduced residues modulo q: concrete structure</h3>
+      <p>List reduced residues mod q, verify count=φ(q), and summarize simple structure checks.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">dirichlet-characters</span>
+        <span class="tag tag-primary">model-checking</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">totient</span>
+      </div>
+    </div>
+  </a>
+  <a href="e102.html" class="gallery-card" data-title="E102 — Dirichlet convolution identity zoo" data-tags="number-theory,model-checking,visualization,dirichlet-convolution,multiplicative,arithmetic-functions" data-desc="Verify classic convolution identities numerically on 1..N (μ*1=ε, φ*1=id, 1*1=τ).">
+    <img src="../_static/experiments/e102_hero.png" alt="E102 hero">
+    <div class="gallery-card-body">
+      <h3>E102 — Dirichlet convolution identity zoo</h3>
+      <p>Verify classic convolution identities numerically on 1..N (μ*1=ε, φ*1=id, 1*1=τ).</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">model-checking</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">dirichlet-convolution</span>
+        <span class="tag tag-secondary">multiplicative</span>
+        <span class="tag tag-secondary">arithmetic-functions</span>
+      </div>
+    </div>
+  </a>
+  <a href="e103.html" class="gallery-card" data-title="E103 — Chebyshev ψ(x): prime powers drive jumps" data-tags="number-theory,quantitative-exploration,visualization,mangoldt,explicit-formula" data-desc="Plot ψ(x) and highlight jump contributions coming from prime powers.">
+    <img src="../_static/experiments/e103_hero.png" alt="E103 hero">
+    <div class="gallery-card-body">
+      <h3>E103 — Chebyshev ψ(x): prime powers drive jumps</h3>
+      <p>Plot ψ(x) and highlight jump contributions coming from prime powers.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">mangoldt</span>
+        <span class="tag tag-secondary">explicit-formula</span>
+      </div>
+    </div>
+  </a>
+  <a href="e104.html" class="gallery-card" data-title="E104 — von Mangoldt Λ(n): support and statistics" data-tags="number-theory,quantitative-exploration,visualization,mangoldt,arithmetic-functions" data-desc="Visualize where Λ(n) is nonzero (prime powers) and summarize basic statistics.">
+    <img src="../_static/experiments/e104_hero.png" alt="E104 hero">
+    <div class="gallery-card-body">
+      <h3>E104 — von Mangoldt Λ(n): support and statistics</h3>
+      <p>Visualize where Λ(n) is nonzero (prime powers) and summarize basic statistics.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">mangoldt</span>
+        <span class="tag tag-secondary">arithmetic-functions</span>
+      </div>
+    </div>
+  </a>
+  <a href="e105.html" class="gallery-card" data-title="E105 — Mertens M(x): scaling views" data-tags="number-theory,quantitative-exploration,visualization,mobius,summatory,open-problems" data-desc="Plot M(x)=∑_{n≤x} μ(n) and rescalings such as M(x)/√x.">
+    <img src="../_static/experiments/e105_hero.png" alt="E105 hero">
+    <div class="gallery-card-body">
+      <h3>E105 — Mertens M(x): scaling views</h3>
+      <p>Plot M(x)=∑_{n≤x} μ(n) and rescalings such as M(x)/√x.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">mobius</span>
+        <span class="tag tag-secondary">summatory</span>
+        <span class="tag tag-secondary">open-problems</span>
+      </div>
+    </div>
+  </a>
+  <a href="e106.html" class="gallery-card" data-title="E106 — Character gallery: real vs. complex" data-tags="number-theory,dirichlet-characters,visualization,multiplicative" data-desc="Compare value-sets of Dirichlet characters and count real-valued characters.">
+    <img src="../_static/experiments/e106_hero.png" alt="E106 hero">
+    <div class="gallery-card-body">
+      <h3>E106 — Character gallery: real vs. complex</h3>
+      <p>Compare value-sets of Dirichlet characters and count real-valued characters.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">dirichlet-characters</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">multiplicative</span>
+      </div>
+    </div>
+  </a>
+  <a href="e107.html" class="gallery-card" data-title="E107 — Conductor: primitive vs. induced characters" data-tags="number-theory,dirichlet-characters,quantitative-exploration,visualization,l-functions" data-desc="Compute conductors and separate primitive from imprimitive characters.">
+    <img src="../_static/experiments/e107_hero.png" alt="E107 hero">
+    <div class="gallery-card-body">
+      <h3>E107 — Conductor: primitive vs. induced characters</h3>
+      <p>Compute conductors and separate primitive from imprimitive characters.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">dirichlet-characters</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-primary">l-functions</span>
+      </div>
+    </div>
+  </a>
+  <a href="e108.html" class="gallery-card" data-title="E108 — Orthogonality heatmap for characters" data-tags="number-theory,dirichlet-characters,model-checking,visualization,multiplicative" data-desc="Visualize orthogonality relations via inner-product matrices.">
+    <img src="../_static/experiments/e108_hero.png" alt="E108 hero">
+    <div class="gallery-card-body">
+      <h3>E108 — Orthogonality heatmap for characters</h3>
+      <p>Visualize orthogonality relations via inner-product matrices.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">dirichlet-characters</span>
+        <span class="tag tag-primary">model-checking</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">multiplicative</span>
+      </div>
+    </div>
+  </a>
+  <a href="e109.html" class="gallery-card" data-title="E109 — Gauss sums: magnitude patterns" data-tags="number-theory,dirichlet-characters,quantitative-exploration,visualization,numerics" data-desc="Compute Gauss sums τ(χ) and compare |τ(χ)| to √q.">
+    <img src="../_static/experiments/e109_hero.png" alt="E109 hero">
+    <div class="gallery-card-body">
+      <h3>E109 — Gauss sums: magnitude patterns</h3>
+      <p>Compute Gauss sums τ(χ) and compare |τ(χ)| to √q.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">dirichlet-characters</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">numerics</span>
+      </div>
+    </div>
+  </a>
+  <a href="e110.html" class="gallery-card" data-title="E110 — Dirichlet L-series partial sums at s=1 and s=1/2" data-tags="number-theory,l-functions,quantitative-exploration,visualization,dirichlet-series,numerics" data-desc="Compare partial Dirichlet series behavior near s=1 and on the critical line.">
+    <img src="../_static/experiments/e110_hero.png" alt="E110 hero">
+    <div class="gallery-card-body">
+      <h3>E110 — Dirichlet L-series partial sums at s=1 and s=1/2</h3>
+      <p>Compare partial Dirichlet series behavior near s=1 and on the critical line.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">l-functions</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">dirichlet-series</span>
+        <span class="tag tag-secondary">numerics</span>
+      </div>
+    </div>
+  </a>
+  <a href="e111.html" class="gallery-card" data-title="E111 — Euler product vs. Dirichlet series for L(s,χ)" data-tags="number-theory,l-functions,model-checking,visualization,dirichlet-series,numerics" data-desc="Compare truncated Euler products and truncated series for L(s,χ).">
+    <img src="../_static/experiments/e111_hero.png" alt="E111 hero">
+    <div class="gallery-card-body">
+      <h3>E111 — Euler product vs. Dirichlet series for L(s,χ)</h3>
+      <p>Compare truncated Euler products and truncated series for L(s,χ).</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">l-functions</span>
+        <span class="tag tag-primary">model-checking</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">dirichlet-series</span>
+        <span class="tag tag-secondary">numerics</span>
+      </div>
+    </div>
+  </a>
+  <a href="e112.html" class="gallery-card" data-title="E112 — Prime race: π(x;q,a) − π(x;q,b)" data-tags="number-theory,prime-races,visualization,aps,primes" data-desc="Compute prime counts in residue classes and plot difference curves for representative pairs.">
+    <img src="../_static/experiments/e112_hero.png" alt="E112 hero">
+    <div class="gallery-card-body">
+      <h3>E112 — Prime race: π(x;q,a) − π(x;q,b)</h3>
+      <p>Compute prime counts in residue classes and plot difference curves for representative pairs.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">prime-races</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-primary">aps</span>
+        <span class="tag tag-secondary">primes</span>
+      </div>
+    </div>
+  </a>
+  <a href="e113.html" class="gallery-card" data-title="E113 — First prime in each residue class" data-tags="number-theory,prime-races,visualization,aps,primes" data-desc="For each reduced residue a (mod q), find the smallest prime p≡a (mod q) and visualize results.">
+    <img src="../_static/experiments/e113_hero.png" alt="E113 hero">
+    <div class="gallery-card-body">
+      <h3>E113 — First prime in each residue class</h3>
+      <p>For each reduced residue a (mod q), find the smallest prime p≡a (mod q) and visualize results.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">prime-races</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-primary">aps</span>
+        <span class="tag tag-secondary">primes</span>
+      </div>
+    </div>
+  </a>
+  <a href="e114.html" class="gallery-card" data-title="E114 — ζ via η: stability map on the critical line" data-tags="analysis,quantitative-exploration,visualization,riemann-zeta,critical-line,numerics" data-desc="Study stability of ζ(1/2+it) via η-acceleration under truncation changes.">
+    <img src="../_static/experiments/e114_hero.png" alt="E114 hero">
+    <div class="gallery-card-body">
+      <h3>E114 — ζ via η: stability map on the critical line</h3>
+      <p>Study stability of ζ(1/2+it) via η-acceleration under truncation changes.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">analysis</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">riemann-zeta</span>
+        <span class="tag tag-secondary">critical-line</span>
+        <span class="tag tag-secondary">numerics</span>
+      </div>
+    </div>
+  </a>
+  <a href="e115.html" class="gallery-card" data-title="E115 — Hardy Z: sign changes and zero bracketing" data-tags="analysis,quantitative-exploration,visualization,riemann-zeta,hardy-z,zeta-zeros" data-desc="Scan Hardy Z(t), bracket sign changes, and visualize candidate zeros.">
+    <img src="../_static/experiments/e115_hero.png" alt="E115 hero">
+    <div class="gallery-card-body">
+      <h3>E115 — Hardy Z: sign changes and zero bracketing</h3>
+      <p>Scan Hardy Z(t), bracket sign changes, and visualize candidate zeros.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">analysis</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">riemann-zeta</span>
+        <span class="tag tag-secondary">hardy-z</span>
+        <span class="tag tag-secondary">zeta-zeros</span>
+      </div>
+    </div>
+  </a>
+  <a href="e116.html" class="gallery-card" data-title="E116 — Gram points and zero-counting heuristics" data-tags="analysis,model-checking,visualization,riemann-zeta,gram-points,zeta-zeros" data-desc="Compare Gram-point heuristics and simple zero-counting diagnostics over a finite range.">
+    <img src="../_static/experiments/e116_hero.png" alt="E116 hero">
+    <div class="gallery-card-body">
+      <h3>E116 — Gram points and zero-counting heuristics</h3>
+      <p>Compare Gram-point heuristics and simple zero-counting diagnostics over a finite range.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">analysis</span>
+        <span class="tag tag-primary">model-checking</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">riemann-zeta</span>
+        <span class="tag tag-secondary">gram-points</span>
+        <span class="tag tag-secondary">zeta-zeros</span>
+      </div>
+    </div>
+  </a>
+  <a href="e117.html" class="gallery-card" data-title="E117 — Prime-counting approximations: li(x) and friends" data-tags="number-theory,model-checking,visualization,li-x,pnt,bounds" data-desc="Compare π(x) to li(x) and related approximations and visualize signed error.">
+    <img src="../_static/experiments/e117_hero.png" alt="E117 hero">
+    <div class="gallery-card-body">
+      <h3>E117 — Prime-counting approximations: li(x) and friends</h3>
+      <p>Compare π(x) to li(x) and related approximations and visualize signed error.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">model-checking</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">li-x</span>
+        <span class="tag tag-secondary">pnt</span>
+        <span class="tag tag-secondary">bounds</span>
+      </div>
+    </div>
+  </a>
+  <a href="e118.html" class="gallery-card" data-title="E118 — Chebyshev bias: lead-time statistics" data-tags="number-theory,prime-races,quantitative-exploration,visualization,heuristics" data-desc="Measure how often one residue class leads another and visualize lead-time statistics.">
+    <img src="../_static/experiments/e118_hero.png" alt="E118 hero">
+    <div class="gallery-card-body">
+      <h3>E118 — Chebyshev bias: lead-time statistics</h3>
+      <p>Measure how often one residue class leads another and visualize lead-time statistics.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">prime-races</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">heuristics</span>
+      </div>
+    </div>
+  </a>
+  <a href="e119.html" class="gallery-card" data-title="E119 — Summatory totient Φ(x) scaling check" data-tags="number-theory,quantitative-exploration,visualization,totient,summatory,bounds" data-desc="Plot Φ(x)=∑_{n≤x} φ(n) and compare to the main-term scaling 3x²/π².">
+    <img src="../_static/experiments/e119_hero.png" alt="E119 hero">
+    <div class="gallery-card-body">
+      <h3>E119 — Summatory totient Φ(x) scaling check</h3>
+      <p>Plot Φ(x)=∑_{n≤x} φ(n) and compare to the main-term scaling 3x²/π².</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">totient</span>
+        <span class="tag tag-secondary">summatory</span>
+        <span class="tag tag-secondary">bounds</span>
+      </div>
+    </div>
+  </a>
+  <a href="e120.html" class="gallery-card" data-title="E120 — Liouville λ(n): partial sums and parity" data-tags="number-theory,quantitative-exploration,visualization,liouville,omega" data-desc="Explore partial sums of the Liouville function and simple parity correlations.">
+    <img src="../_static/experiments/e120_hero.png" alt="E120 hero">
+    <div class="gallery-card-body">
+      <h3>E120 — Liouville λ(n): partial sums and parity</h3>
+      <p>Explore partial sums of the Liouville function and simple parity correlations.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">liouville</span>
+        <span class="tag tag-secondary">omega</span>
+      </div>
+    </div>
+  </a>
+  <a href="e121.html" class="gallery-card" data-title="E121 — Möbius inversion as convolution undo" data-tags="number-theory,model-checking,visualization,dirichlet-convolution,mobius,multiplicative" data-desc="Recover a function from its Dirichlet convolution with 1 via Möbius inversion.">
+    <img src="../_static/experiments/e121_hero.png" alt="E121 hero">
+    <div class="gallery-card-body">
+      <h3>E121 — Möbius inversion as convolution undo</h3>
+      <p>Recover a function from its Dirichlet convolution with 1 via Möbius inversion.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">model-checking</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">dirichlet-convolution</span>
+        <span class="tag tag-secondary">mobius</span>
+        <span class="tag tag-secondary">multiplicative</span>
+      </div>
+    </div>
+  </a>
+  <a href="e122.html" class="gallery-card" data-title="E122 — Character averages over primes" data-tags="number-theory,dirichlet-characters,l-functions,quantitative-exploration,visualization,aps" data-desc="Average χ(p) over primes in arithmetic progressions and compare to equidistribution heuristics.">
+    <img src="../_static/experiments/e122_hero.png" alt="E122 hero">
+    <div class="gallery-card-body">
+      <h3>E122 — Character averages over primes</h3>
+      <p>Average χ(p) over primes in arithmetic progressions and compare to equidistribution heuristics.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">dirichlet-characters</span>
+        <span class="tag tag-primary">l-functions</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-primary">aps</span>
+      </div>
+    </div>
+  </a>
+  <a href="e123.html" class="gallery-card" data-title="E123 — π(x;q,a) vs. a simple baseline" data-tags="number-theory,prime-races,model-checking,visualization,aps,bounds" data-desc="Compare π(x;q,a) to a baseline x/(φ(q) log x) and visualize deviations.">
+    <img src="../_static/experiments/e123_hero.png" alt="E123 hero">
+    <div class="gallery-card-body">
+      <h3>E123 — π(x;q,a) vs. a simple baseline</h3>
+      <p>Compare π(x;q,a) to a baseline x/(φ(q) log x) and visualize deviations.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">prime-races</span>
+        <span class="tag tag-primary">model-checking</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-primary">aps</span>
+        <span class="tag tag-secondary">bounds</span>
+      </div>
+    </div>
+  </a>
 </div>
 
 ::: {toctree}
@@ -1399,4 +1834,34 @@ e090
 e091
 e092
 e093
+e094
+e095
+e096
+e097
+e098
+e099
+e100
+e101
+e102
+e103
+e104
+e105
+e106
+e107
+e108
+e109
+e110
+e111
+e112
+e113
+e114
+e115
+e116
+e117
+e118
+e119
+e120
+e121
+e122
+e123
 :::

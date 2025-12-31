@@ -34,3 +34,7 @@ Rubinstein–Sarnak analyze this phenomenon via the distribution of zeros of rel
 See {doc}`../references`.
 
 {cite:p}`rubinsteinsarnak1994chebyshevsbias,granvillemartin2006primenumberraces`
+
+## Experiments in this repository
+
+- **E112** — Prime race curves π(x;q,a) − π(x;q,b): sign changes and time-in-lead.

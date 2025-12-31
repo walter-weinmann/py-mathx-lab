@@ -68,3 +68,8 @@ $$
 
 This “turns convolution into multiplication” and underlies many analytic estimates; see
 {cite:p}`montgomeryvaughan2006multiplicativenumbertheoryi`.
+
+## Experiments in this repository
+
+- **E102** — Dirichlet convolution identity zoo (μ*1=ε, φ*1=id, 1*1=τ, id*1=σ, …).
+- **E121** — Multiplicativity stress tests and convolution sanity checks (random coprime tests).

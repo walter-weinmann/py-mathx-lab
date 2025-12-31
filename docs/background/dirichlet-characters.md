@@ -79,3 +79,9 @@ This single character already explains the classic race between primes $1 \bmod 
 See {doc}`../references`.
 
 {cite:p}`dirichlet1837primesinprogressions,irelandrosen1990classicalintromodernnumbertheory,davenport2000multiplicativenumbertheory,serre1973coursearithmetic`
+
+## Experiments in this repository
+
+- **E106** — Character gallery: real vs complex characters; conjugate pairing.
+- **E107** — Primitive vs imprimitive via conductor (induced characters).
+- **E108** — Orthogonality relations as a heatmap; numeric sanity checks.

@@ -37,3 +37,9 @@ Since $\psi$ sums $\log p$ over prime powers, it is smoother and often easier in
 - plot $\psi(x)$ and compare to $x$
 - plot $\theta(x)$ and compare to $x$
 - compare contributions from primes vs. higher prime powers in $\psi(x)$
+
+## Experiments in this repository
+
+- **E103** — Chebyshev ψ(x) jumps at prime powers (Λ support).
+- **E104** — Von Mangoldt Λ statistics (support, value distribution, summatory behavior).
+- **E119** — ψ(x) − x oscillations (prime-weighted deviation view).

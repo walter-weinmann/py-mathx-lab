@@ -42,3 +42,15 @@ Ramanujan’s classic paper studies their structure. {cite:p}`ramanujan1915highl
 - visualize $d(n)$ up to $N$ and highlight record-breakers
 - compare $\sigma(n)$ to $n$ (abundant / perfect / deficient classification)
 - log-scale plots of $d(n)$ to make extremes visible
+
+## Experiments in this repository
+
+- **E096** — Record-holders for τ(n) up to N (highly composite flavor).
+- **E097** — σ(n)/n landscape: deficient / perfect / abundant classification.
+- **E098** — Extremals of σ(n)/n^α across α (phase changes / superabundant intuition).
+
+## References
+
+See {doc}`../references`.
+
+{cite:p}`apostol1976introanalyticnumbertheory,ramanujan1915highlycompositenumbers,alaogluerdos1944highlycompositeandsimilarnumbers,robin1984grandesvaleurssommediviseurs,lagarias2002elementaryproblemequivalentrh`
