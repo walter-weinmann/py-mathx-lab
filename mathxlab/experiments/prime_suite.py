@@ -27,7 +27,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from mathxlab.exp.io import save_figure, write_json
-from mathxlab.plots.helpers import finalize_figure
+from mathxlab.plots.helpers import apply_axis_style, finalize_figure, imshow_centered
 
 from ._prime_utils import (
     MR_BASES_64BIT_12,
@@ -57,11 +57,6 @@ class CommonParams:
 
 
 # ------------------------------------------------------------------------------
-def _write_lines(report_path: Path, lines: list[str]) -> None:
-    """Write a report as Markdown lines."""
-    report_path.write_text("\n".join(lines), encoding="utf-8")
-
-
 def _basic_report_header(eid: str, title: str, reproduce_exp: str) -> list[str]:
     """Return standard report header lines."""
     return [
@@ -76,32 +71,75 @@ def _basic_report_header(eid: str, title: str, reproduce_exp: str) -> list[str]:
     ]
 
 
-def _plot_series(
-    *, x: np.ndarray, ys: list[tuple[str, np.ndarray]], title: str, xlab: str, ylab: str
+# ------------------------------------------------------------------------------
+def _plot_scatter(
+    *,
+    x: np.ndarray,
+    y: np.ndarray,
+    title: str,
+    xlab: str,
+    ylab: str,
+    equal: bool = False,
 ) -> fig.Figure:
-    """Simple multi-line plot helper."""
+    """Simple scatter plot helper.
+
+    Args:
+        x: X values.
+        y: Y values.
+        title: Plot title.
+        xlab: X-axis label.
+        ylab: Y-axis label.
+        equal: If True, enforce equal axis scaling.
+
+    Returns:
+        Matplotlib figure.
+    """
+    fig_obj, ax = plt.subplots()
+    ax.scatter(x, y, s=8)
+    apply_axis_style(ax, title=title, xlab=xlab, ylab=ylab, equal=equal)
+    finalize_figure(fig_obj)
+    return fig_obj
+
+
+# ------------------------------------------------------------------------------
+def _plot_series(
+    *,
+    x: np.ndarray,
+    ys: list[tuple[str, np.ndarray]],
+    title: str,
+    xlab: str,
+    ylab: str,
+    equal: bool = False,
+) -> fig.Figure:
+    """Simple multi-line plot helper.
+
+    Args:
+        x: X values.
+        ys: List of (label, y values) series.
+        title: Plot title.
+        xlab: X-axis label.
+        ylab: Y-axis label.
+        equal: If True, enforce equal axis scaling.
+
+    Returns:
+        Matplotlib figure.
+    """
     fig_obj, ax = plt.subplots()
     for label, y in ys:
         ax.plot(x, y, label=label)
-    ax.set_title(title)
-    ax.set_xlabel(xlab)
-    ax.set_ylabel(ylab)
     ax.legend(loc="best")
+    apply_axis_style(ax, title=title, xlab=xlab, ylab=ylab, equal=equal)
     finalize_figure(fig_obj)
     return fig_obj
 
 
-def _plot_scatter(*, x: np.ndarray, y: np.ndarray, title: str, xlab: str, ylab: str) -> fig.Figure:
-    """Simple scatter plot helper."""
-    fig_obj, ax = plt.subplots()
-    ax.scatter(x, y, s=8)
-    ax.set_title(title)
-    ax.set_xlabel(xlab)
-    ax.set_ylabel(ylab)
-    finalize_figure(fig_obj)
-    return fig_obj
+# ------------------------------------------------------------------------------
+def _write_lines(report_path: Path, lines: list[str]) -> None:
+    """Write a report as Markdown lines."""
+    report_path.write_text("\n".join(lines), encoding="utf-8")
 
 
+# ------------------------------------------------------------------------------
 @dataclass(frozen=True, slots=True)
 class ParamsE014:
     """Parameters for E014.
@@ -749,10 +787,28 @@ class ParamsE024:
 
 
 def run_e024(
-    *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
+    *,
+    out_dir: Path,
+    seed: int,
+    figures_dir: Path,
+    report_path: Path,
+    params_path: Path,
+    size: int = 301,
 ) -> None:
-    """E024 — Ulam spiral: primes in a spiral show diagonal structure."""
-    params = ParamsE024(size=301)
+    """E024 — Ulam spiral: primes in a spiral show diagonal structure.
+
+    Args:
+        out_dir: Experiment output directory.
+        seed: Deterministic seed for reproducibility.
+        figures_dir: Directory for figure artifacts.
+        report_path: Path to the Markdown report.
+        params_path: Path to params.json.
+        size: Odd grid size (size x size).
+
+    Raises:
+        ValueError: If size is not odd.
+    """
+    params = ParamsE024(size=size)
     if params.size % 2 == 0:
         raise ValueError("size must be odd")
 
@@ -778,12 +834,20 @@ def run_e024(
         step += 2
 
     prime_img = is_prime[grid]
+
     fig_obj, ax = plt.subplots()
-    ax.imshow(prime_img, interpolation="nearest")
-    ax.set_title("Ulam spiral (primes = True)")
-    ax.set_xlabel("x")
-    ax.set_ylabel("y")
+
+    imshow_centered(ax, prime_img, size=params.size, origin="lower", interpolation="nearest")
+    apply_axis_style(
+        ax,
+        title="Ulam spiral (primes = True)",
+        xlab=r"$x$ (grid offset from center)",
+        ylab=r"$y$ (grid offset from center)",
+        equal=True,
+    )
+
     finalize_figure(fig_obj)
+
     save_figure(out_dir=figures_dir, name="fig_01_ulam_spiral", fig=fig_obj)
 
     lines = _basic_report_header("E024", "Ulam spiral structure", "e024")
