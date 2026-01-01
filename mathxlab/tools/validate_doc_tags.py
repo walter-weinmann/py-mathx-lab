@@ -166,7 +166,10 @@ def _extract_gallery_tags(gallery_text: str) -> list[str]:
         found.append(m.group(1).strip())
 
     for m in re.finditer(r"`([^`]+)`", gallery_text):
-        found.append(m.group(1).strip())
+        tag = m.group(1).strip()
+        # Filter out experiment IDs like e106, e013, etc.
+        if not re.fullmatch(r"e\d{3,4}", tag):
+            found.append(tag)
 
     return [t for t in found if t]
 

@@ -72,3 +72,12 @@ in the experiment code (but that adds external dependencies).
 Use Sphinx bibtex citations:
 
 - See {cite:t}`someKey`, {cite:t}`anotherKey`.
+
+## Related experiments
+
+List a few experiments that are closely connected (ideally 3–6):
+
+- {doc}`e0xx` (<short reason>)
+- {doc}`e0yy` (<short reason>)
+- {doc}`e0zz` (<short reason>)
+

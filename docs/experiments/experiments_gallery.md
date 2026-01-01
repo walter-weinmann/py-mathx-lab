@@ -1908,3 +1908,8 @@ e124
 e125
 e126
 :::
+
+## Related experiments
+
+- {doc}`e106` (E106 — Character gallery: real vs. complex)
+
