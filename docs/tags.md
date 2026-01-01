@@ -73,6 +73,9 @@ These provide more specific detail about the techniques or subtopics involved.
 | `taylor`                | Related to Taylor series and their approximations.                                           |
 | `totient`               | Euler’s totient function $\phi(n)$, totient equations, summatory behavior.                   |
 | `twin`                  | Twin primes and the twin prime conjecture.                                                   |
+| `klauber`               | Klauber triangle and prime patterns between consecutive squares.                             |
+| `sacks`                 | Sacks spiral ($r=\sqrt{n},\ \theta=2\pi\sqrt{n}$) and related prime patterns.           |
+| `hex-spiral`            | Integer spirals on a hexagonal lattice (hex-grid prime maps).                                |
 | `ulam`                  | Ulam spiral and related prime patterns in 2D.                                                |
 | `wieferich`             | Wieferich primes and related congruences.                                                    |
 | `wilson`                | Wilson’s theorem and Wilson primes.                                                          |

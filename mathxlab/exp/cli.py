@@ -33,6 +33,121 @@ class ExperimentArgs:
 
 
 # ------------------------------------------------------------------------------
+@dataclass(frozen=True)
+class ExperimentArgsWithSize:
+    """Parsed command-line arguments for an experiment run with a `size` parameter.
+
+    Attributes:
+        out_dir: Output directory where all artifacts will be written.
+        seed: Deterministic seed for reproducibility.
+        verbose: Enable verbose logging.
+        size: Grid size parameter (meaning depends on experiment).
+    """
+
+    out_dir: Path
+    seed: int
+    verbose: bool
+    size: int
+
+
+# ------------------------------------------------------------------------------
+def parse_experiment_args_with_size(
+    *args: object,
+    experiment_id: str | None = None,
+    description: str | None = None,
+    argv: list[str] | None = None,
+    size_default: int = 301,
+    size_help: str = "Grid size parameter (must be positive and odd).",
+) -> ExperimentArgsWithSize:
+    """Parse standard experiment CLI arguments plus a `--size` option.
+
+    This helper keeps new experiments consistent with the standard template while
+    allowing a common `--size` knob for grid-based visualizations.
+
+    Args:
+        experiment_id: Optional program name for help.
+        description: Optional description for help.
+        argv: Optional argv list (without a program name). If None, argparse reads
+            from sys.argv.
+        size_default: Default `size` value.
+        size_help: Help text for the `--size` option.
+
+    Returns:
+        Parsed ExperimentArgsWithSize.
+
+    Raises:
+        TypeError: If argv is passed both positionally and as a keyword, or if the
+            positional argv is invalid.
+        SystemExit: If size is non-positive or even.
+    """
+    # Backward/forward compatibility (match parse_experiment_args):
+    if args:
+        if len(args) != 1:
+            raise TypeError(
+                "parse_experiment_args_with_size() accepts at most one positional argument: argv"
+            )
+
+        pos_argv = args[0]
+        if pos_argv is not None and argv is not None:
+            raise TypeError(
+                "parse_experiment_args_with_size(): argv given both positionally and as a keyword"
+            )
+
+        if pos_argv is None:
+            pass
+        elif isinstance(pos_argv, (list, tuple)):
+            argv = list(pos_argv)
+        else:
+            raise TypeError(
+                "parse_experiment_args_with_size(): positional argv must be None, list[str], or tuple[str, ...]"
+            )
+
+    parser = argparse.ArgumentParser(
+        prog=experiment_id,
+        description=description,
+        add_help=True,
+    )
+    parser.add_argument(
+        "--out",
+        dest="out_dir",
+        type=Path,
+        required=True,
+        help="Output directory (e.g., out/e124).",
+    )
+    parser.add_argument(
+        "--seed",
+        dest="seed",
+        type=int,
+        default=1,
+        help="Deterministic seed for reproducibility.",
+    )
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action="store_true",
+        help="Enable verbose logging.",
+    )
+    parser.add_argument(
+        "--size",
+        dest="size",
+        type=int,
+        default=size_default,
+        help=size_help,
+    )
+
+    ns = parser.parse_args(argv)
+
+    if ns.size <= 0:
+        raise SystemExit("--size must be positive")
+    if ns.size % 2 == 0:
+        raise SystemExit("--size must be odd")
+
+    return ExperimentArgsWithSize(
+        out_dir=ns.out_dir, seed=ns.seed, verbose=ns.verbose, size=ns.size
+    )
+
+
+# ------------------------------------------------------------------------------
 def parse_experiment_args(
     *args: object,
     experiment_id: str | None = None,

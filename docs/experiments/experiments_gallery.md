@@ -1735,6 +1735,46 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
+
+  <a href="e124.html" class="gallery-card" data-title="E124 — Klauber triangle" data-tags="number-theory,quantitative-exploration,visualization,klauber" data-summary="Rows between consecutive squares; highlight primes to reveal vertical streaks.">
+    <img src="../_static/experiments/e124_hero.png" alt="E124 preview">
+    <div class="gallery-card-body">
+      <h3>E124 — Klauber triangle</h3>
+      <p>Rows between consecutive squares; highlight primes to reveal vertical streaks.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+<span class="tag tag-primary">quantitative-exploration</span>
+<span class="tag tag-primary">visualization</span>
+<span class="tag tag-secondary">klauber</span>
+      </div>
+    </div>
+  </a>
+  <a href="e125.html" class="gallery-card" data-title="E125 — Sacks spiral" data-tags="number-theory,quantitative-exploration,visualization,sacks" data-summary="Polar spiral r=√n, θ=2π√n; primes plotted as points often form dense spiral fragments.">
+    <img src="../_static/experiments/e125_hero.png" alt="E125 preview">
+    <div class="gallery-card-body">
+      <h3>E125 — Sacks spiral</h3>
+      <p>Polar spiral r=√n, θ=2π√n; primes plotted as points often form dense spiral fragments.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+<span class="tag tag-primary">quantitative-exploration</span>
+<span class="tag tag-primary">visualization</span>
+<span class="tag tag-secondary">sacks</span>
+      </div>
+    </div>
+  </a>
+  <a href="e126.html" class="gallery-card" data-title="E126 — Hexagonal number spiral" data-tags="number-theory,quantitative-exploration,visualization,hex-spiral" data-summary="Centered hex-grid spiral; plot primes only to explore lattice-aligned structure.">
+    <img src="../_static/experiments/e126_hero.png" alt="E126 preview">
+    <div class="gallery-card-body">
+      <h3>E126 — Hexagonal number spiral</h3>
+      <p>Centered hex-grid spiral; plot primes only to explore lattice-aligned structure.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+<span class="tag tag-primary">quantitative-exploration</span>
+<span class="tag tag-primary">visualization</span>
+<span class="tag tag-secondary">hex-spiral</span>
+      </div>
+    </div>
+  </a>
 </div>
 
 ::: {toctree}
@@ -1864,4 +1904,7 @@ e120
 e121
 e122
 e123
+e124
+e125
+e126
 :::

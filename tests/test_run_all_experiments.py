@@ -102,12 +102,25 @@ def test_run_all_experiments(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) ->
 
     failures: list[str] = []
 
+    # Some visualization-heavy experiments accept additional CLI args.
+    # Keep CI runtime reasonable by using a smaller grid size for these.
+    extra_args_by_exp: dict[str, list[str]] = {
+        "e024": ["--size", "101"],
+        "e124": ["--size", "101"],
+        "e125": ["--size", "101"],
+        "e126": ["--size", "101"],
+    }
+
     for module_name in modules:
         exp_id = module_name.rsplit(".", 1)[-1]
         out_dir = tmp_path / exp_id
 
         # Experiments parse standard args from sys.argv.
-        monkeypatch.setattr(sys, "argv", [exp_id, "--out", str(out_dir), "--seed", seed])
+        extra_args = extra_args_by_exp.get(exp_id, [])
+
+        monkeypatch.setattr(
+            sys, "argv", [exp_id, "--out", str(out_dir), "--seed", seed, *extra_args]
+        )
 
         try:
             code = _run_experiment(module_name=module_name)

@@ -27,7 +27,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from mathxlab.exp.io import save_figure, write_json
-from mathxlab.plots.helpers import apply_axis_style, finalize_figure, imshow_centered
+from mathxlab.plots.helpers import finalize_figure
 
 from ._prime_utils import (
     MR_BASES_64BIT_12,
@@ -57,6 +57,11 @@ class CommonParams:
 
 
 # ------------------------------------------------------------------------------
+def _write_lines(report_path: Path, lines: list[str]) -> None:
+    """Write a report as Markdown lines."""
+    report_path.write_text("\n".join(lines), encoding="utf-8")
+
+
 def _basic_report_header(eid: str, title: str, reproduce_exp: str) -> list[str]:
     """Return standard report header lines."""
     return [
@@ -71,75 +76,32 @@ def _basic_report_header(eid: str, title: str, reproduce_exp: str) -> list[str]:
     ]
 
 
-# ------------------------------------------------------------------------------
-def _plot_scatter(
-    *,
-    x: np.ndarray,
-    y: np.ndarray,
-    title: str,
-    xlab: str,
-    ylab: str,
-    equal: bool = False,
-) -> fig.Figure:
-    """Simple scatter plot helper.
-
-    Args:
-        x: X values.
-        y: Y values.
-        title: Plot title.
-        xlab: X-axis label.
-        ylab: Y-axis label.
-        equal: If True, enforce equal axis scaling.
-
-    Returns:
-        Matplotlib figure.
-    """
-    fig_obj, ax = plt.subplots()
-    ax.scatter(x, y, s=8)
-    apply_axis_style(ax, title=title, xlab=xlab, ylab=ylab, equal=equal)
-    finalize_figure(fig_obj)
-    return fig_obj
-
-
-# ------------------------------------------------------------------------------
 def _plot_series(
-    *,
-    x: np.ndarray,
-    ys: list[tuple[str, np.ndarray]],
-    title: str,
-    xlab: str,
-    ylab: str,
-    equal: bool = False,
+    *, x: np.ndarray, ys: list[tuple[str, np.ndarray]], title: str, xlab: str, ylab: str
 ) -> fig.Figure:
-    """Simple multi-line plot helper.
-
-    Args:
-        x: X values.
-        ys: List of (label, y values) series.
-        title: Plot title.
-        xlab: X-axis label.
-        ylab: Y-axis label.
-        equal: If True, enforce equal axis scaling.
-
-    Returns:
-        Matplotlib figure.
-    """
+    """Simple multi-line plot helper."""
     fig_obj, ax = plt.subplots()
     for label, y in ys:
         ax.plot(x, y, label=label)
+    ax.set_title(title)
+    ax.set_xlabel(xlab)
+    ax.set_ylabel(ylab)
     ax.legend(loc="best")
-    apply_axis_style(ax, title=title, xlab=xlab, ylab=ylab, equal=equal)
     finalize_figure(fig_obj)
     return fig_obj
 
 
-# ------------------------------------------------------------------------------
-def _write_lines(report_path: Path, lines: list[str]) -> None:
-    """Write a report as Markdown lines."""
-    report_path.write_text("\n".join(lines), encoding="utf-8")
+def _plot_scatter(*, x: np.ndarray, y: np.ndarray, title: str, xlab: str, ylab: str) -> fig.Figure:
+    """Simple scatter plot helper."""
+    fig_obj, ax = plt.subplots()
+    ax.scatter(x, y, s=8)
+    ax.set_title(title)
+    ax.set_xlabel(xlab)
+    ax.set_ylabel(ylab)
+    finalize_figure(fig_obj)
+    return fig_obj
 
 
-# ------------------------------------------------------------------------------
 @dataclass(frozen=True, slots=True)
 class ParamsE014:
     """Parameters for E014.
@@ -795,19 +757,7 @@ def run_e024(
     params_path: Path,
     size: int = 301,
 ) -> None:
-    """E024 — Ulam spiral: primes in a spiral show diagonal structure.
-
-    Args:
-        out_dir: Experiment output directory.
-        seed: Deterministic seed for reproducibility.
-        figures_dir: Directory for figure artifacts.
-        report_path: Path to the Markdown report.
-        params_path: Path to params.json.
-        size: Odd grid size (size x size).
-
-    Raises:
-        ValueError: If size is not odd.
-    """
+    """E024 — Ulam spiral: primes in a spiral show diagonal structure."""
     params = ParamsE024(size=size)
     if params.size % 2 == 0:
         raise ValueError("size must be odd")
@@ -834,20 +784,12 @@ def run_e024(
         step += 2
 
     prime_img = is_prime[grid]
-
     fig_obj, ax = plt.subplots()
-
-    imshow_centered(ax, prime_img, size=params.size, origin="lower", interpolation="nearest")
-    apply_axis_style(
-        ax,
-        title="Ulam spiral (primes = True)",
-        xlab=r"$x$ (grid offset from center)",
-        ylab=r"$y$ (grid offset from center)",
-        equal=True,
-    )
-
+    ax.imshow(prime_img, interpolation="nearest")
+    ax.set_title("Ulam spiral (primes = True)")
+    ax.set_xlabel("x")
+    ax.set_ylabel("y")
     finalize_figure(fig_obj)
-
     save_figure(out_dir=figures_dir, name="fig_01_ulam_spiral", fig=fig_obj)
 
     lines = _basic_report_header("E024", "Ulam spiral structure", "e024")
@@ -2191,6 +2133,302 @@ def run_e046(
         "## Notes",
         "- Pipelines are great for speed, but correctness depends on parameters.",
         "- This experiment intentionally uses too few MR bases to produce counterexamples.",
+        "",
+    ]
+    _write_lines(report_path, lines)
+    write_json(params_path, data=asdict(params))
+
+
+# ==============================================================================
+# Prime visualizations beyond the Ulam spiral
+# ==============================================================================
+
+
+@dataclass(frozen=True, slots=True)
+class ParamsE124:
+    """Parameters for E124.
+
+    Args:
+        size: Grid size (odd). The triangle visualizes integers 1..size^2.
+    """
+
+    size: int
+
+
+def run_e124(
+    *,
+    out_dir: Path,
+    seed: int,
+    figures_dir: Path,
+    report_path: Path,
+    params_path: Path,
+    size: int = 301,
+) -> None:
+    """E124 — Klauber triangle: prime patterns on a triangular array.
+
+    Notes:
+        The Klauber triangle (1932) places row n as the consecutive integers
+        (n-1)^2+1 .. n^2 (so each row has length 2n-1). When primes are highlighted,
+        lines rich in primes become visible (often associated with quadratic
+        polynomials), similar in spirit to the Ulam spiral.
+
+        This experiment is deterministic; `seed` is accepted for framework
+        consistency but does not affect the output.
+    """
+    params = ParamsE124(size=size)
+    if params.size % 2 == 0:
+        raise ValueError("size must be odd")
+
+    n_max = params.size * params.size
+    is_prime = prime_mask_up_to(n_max)
+
+    rows = params.size
+    cols = 2 * params.size - 1
+    grid = np.zeros((rows, cols), dtype=np.int64)
+    valid = np.zeros((rows, cols), dtype=bool)
+
+    # Row index i corresponds to n=i+1; it contains integers (n-1)^2+1 .. n^2
+    for i in range(rows):
+        n = i + 1
+        start = (n - 1) * (n - 1) + 1
+        end = n * n
+        values = np.arange(start, end + 1, dtype=np.int64)
+        j0 = (cols // 2) - (n - 1)
+        j1 = j0 + values.size
+        grid[i, j0:j1] = values
+        valid[i, j0:j1] = True
+
+    prime_mask = np.zeros_like(valid, dtype=bool)
+    prime_mask[valid] = is_prime[grid[valid]]
+
+    # Render as masked integer image: 1 for prime, 0 for non-prime, masked outside.
+    img = np.where(prime_mask, 1.0, 0.0)
+    img = np.ma.masked_where(~valid, img)  # type: ignore[no-untyped-call]
+
+    fig_obj, ax = plt.subplots()
+    k = (params.size - 1) // 2
+    ax.imshow(
+        img,
+        origin="upper",
+        extent=(-k - 0.5, k + 0.5, rows - 0.5, -0.5),
+        interpolation="nearest",
+    )
+    ax.set_title("Klauber triangle (primes = 1)")
+    ax.set_xlabel(r"$x$ (column offset from center)")
+    ax.set_ylabel(r"row $n$ (top = 1)")
+    finalize_figure(fig_obj)
+    save_figure(out_dir=figures_dir, name="fig_01_klauber_triangle", fig=fig_obj)
+
+    lines = _basic_report_header("E124", "Klauber triangle structure", "e124")
+    lines += [
+        "## Parameters",
+        f"- size: `{params.size}` (odd); visualizes integers `1..{n_max}`.",
+        "",
+        "## Notes",
+        "- The triangle arranges row n as `(n-1)^2+1 .. n^2` (row length `2n-1`).",
+        "- Prime-rich lines are linked to quadratic polynomials, similar to the Ulam spiral.",
+        "- This experiment is deterministic; `seed` does not change the output.",
+        "",
+    ]
+    _write_lines(report_path, lines)
+    write_json(params_path, data=asdict(params))
+
+
+@dataclass(frozen=True, slots=True)
+class ParamsE125:
+    """Parameters for E125.
+
+    Args:
+        size: Scale parameter (odd). The experiment visualizes integers 1..size^2.
+    """
+
+    size: int
+
+
+def run_e125(
+    *,
+    out_dir: Path,
+    seed: int,
+    figures_dir: Path,
+    report_path: Path,
+    params_path: Path,
+    size: int = 301,
+) -> None:
+    """E125 — Sacks spiral: primes on an Archimedean spiral (one square per turn).
+
+    Notes:
+        In the Sacks spiral, integer n is placed at polar coordinates:
+
+            r = sqrt(n),  θ = 2π r
+
+        so perfect squares lie on the positive x-axis (θ is a multiple of 2π).
+        Primes are highlighted to reveal curve-like prime concentrations.
+
+        This experiment is deterministic; `seed` is accepted for framework
+        consistency but does not affect the output.
+    """
+    params = ParamsE125(size=size)
+    if params.size % 2 == 0:
+        raise ValueError("size must be odd")
+
+    n_max = params.size * params.size
+    is_prime = prime_mask_up_to(n_max)
+
+    n = np.arange(1, n_max + 1, dtype=np.int64)
+    n_pr = n[is_prime[1:]]  # align: is_prime[0] for 0, is_prime[1] for 1
+
+    r = np.sqrt(n_pr.astype(np.float64))
+    theta = 2.0 * np.pi * r
+    x = r * np.cos(theta)
+    y = r * np.sin(theta)
+
+    fig_obj, ax = plt.subplots()
+    ax.scatter(x, y, s=2)
+    ax.set_title("Sacks spiral (primes)")
+    ax.set_xlabel(r"$x$")
+    ax.set_ylabel(r"$y$")
+    ax.set_aspect("equal")
+    finalize_figure(fig_obj)
+    save_figure(out_dir=figures_dir, name="fig_01_sacks_spiral", fig=fig_obj)
+
+    lines = _basic_report_header("E125", "Sacks spiral structure", "e125")
+    lines += [
+        "## Parameters",
+        f"- size: `{params.size}` (odd); visualizes integers `1..{n_max}`.",
+        "",
+        "## Notes",
+        "- Construction: `r = sqrt(n)`, `θ = 2π sqrt(n)` so squares align on a ray.",
+        "- Prime-rich curves correspond to quadratic polynomials under this embedding.",
+        "- This experiment is deterministic; `seed` does not change the output.",
+        "",
+    ]
+    _write_lines(report_path, lines)
+    write_json(params_path, data=asdict(params))
+
+
+@dataclass(frozen=True, slots=True)
+class ParamsE126:
+    """Parameters for E126.
+
+    Args:
+        size: Scale parameter (odd). The experiment visualizes integers 1..size^2.
+    """
+
+    size: int
+
+
+def _hex_spiral_axial_coords(n_max: int) -> tuple[np.ndarray, np.ndarray]:
+    """Generate axial hex-grid coordinates for integers 1..n_max in spiral order.
+
+    The walk follows concentric hexagonal rings around the origin on an axial
+    hex grid (pointy-top layout). The sequence starts at (0, 0) for n=1 and then
+    enumerates rings k=1,2,..., adding exactly 6*k points per ring.
+
+    Implementation notes:
+        For ring k, we start at the axial corner (-k, k) and walk k steps in each
+        of the 6 axial directions:
+            (1, 0), (1, -1), (0, -1), (-1, 0), (-1, 1), (0, 1)
+
+        This construction yields a centered, symmetric hexagon when plotted in
+        Cartesian coordinates.
+
+    Args:
+        n_max: Maximum integer to place (>= 1).
+
+    Returns:
+        Two int arrays (q, r) of length n_max, where the i-th entry gives the
+        axial coordinate for integer (i+1).
+    """
+    if n_max <= 0:
+        raise ValueError("n_max must be positive")
+
+    coords_q: list[int] = [0]
+    coords_r: list[int] = [0]
+
+    directions: list[tuple[int, int]] = [
+        (1, 0),
+        (1, -1),
+        (0, -1),
+        (-1, 0),
+        (-1, 1),
+        (0, 1),
+    ]
+
+    k = 1
+    while len(coords_q) < n_max:
+        cq, cr = -k, k
+        for dq, dr in directions:
+            for _ in range(k):
+                if len(coords_q) >= n_max:
+                    break
+                coords_q.append(cq)
+                coords_r.append(cr)
+                cq += dq
+                cr += dr
+            if len(coords_q) >= n_max:
+                break
+        k += 1
+
+    return np.asarray(coords_q, dtype=np.int64), np.asarray(coords_r, dtype=np.int64)
+
+
+def run_e126(
+    *,
+    out_dir: Path,
+    seed: int,
+    figures_dir: Path,
+    report_path: Path,
+    params_path: Path,
+    size: int = 301,
+) -> None:
+    """E126 — Hexagonal number spiral: primes on a hexagonal lattice spiral.
+
+    Notes:
+        This is a hex-grid analogue of the Ulam spiral: integers are placed in a
+        spiral on a hexagonal tiling and primes are highlighted.
+
+        The parameter `size` controls the max integer via `n_max = size^2` so the
+        prime counts are comparable to square-grid experiments.
+
+        This experiment is deterministic; `seed` is accepted for framework
+        consistency but does not affect the output.
+    """
+    params = ParamsE126(size=size)
+    if params.size % 2 == 0:
+        raise ValueError("size must be odd")
+
+    n_max = params.size * params.size
+    is_prime = prime_mask_up_to(n_max)
+
+    q, r = _hex_spiral_axial_coords(n_max=n_max)
+
+    # Map axial coords to 2D Cartesian (pointy-top):
+    # x = q + r/2, y = r * sqrt(3)/2
+    xf = q.astype(np.float64) + 0.5 * r.astype(np.float64)
+    yf = (math.sqrt(3.0) / 2.0) * r.astype(np.float64)
+
+    mask = is_prime[1:]  # 1..n_max
+    x = xf[mask]
+    y = yf[mask]
+
+    fig_obj, ax = plt.subplots()
+    ax.scatter(x, y, s=2)
+    ax.set_title("Hexagonal number spiral (primes)")
+    ax.set_xlabel(r"$x$")
+    ax.set_ylabel(r"$y$")
+    ax.set_aspect("equal")
+    finalize_figure(fig_obj)
+    save_figure(out_dir=figures_dir, name="fig_01_hex_spiral", fig=fig_obj)
+
+    lines = _basic_report_header("E126", "Hexagonal number spiral structure", "e126")
+    lines += [
+        "## Parameters",
+        f"- size: `{params.size}` (odd); visualizes integers `1..{n_max}`.",
+        "",
+        "## Notes",
+        "- Integers are placed by walking concentric hexagonal rings around the origin.",
+        "- Prime-rich lines/curves are expected analogues of the Ulam spiral phenomena.",
+        "- This experiment is deterministic; `seed` does not change the output.",
         "",
     ]
     _write_lines(report_path, lines)

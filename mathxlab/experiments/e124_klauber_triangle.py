@@ -1,10 +1,10 @@
-"""E024 — Ulam spiral structure.
+"""E124 — Klauber triangle structure.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.prime_suite`.
 
 Usage:
-    make run EXP=e024
+    make run EXP=e124
 
 Artifacts:
     - figures/fig_*.png
@@ -20,9 +20,8 @@ from mathxlab.exp.cli import parse_experiment_args_with_size
 from mathxlab.exp.io import prepare_out_dir
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
-from mathxlab.experiments.prime_suite import run_e024
+from mathxlab.experiments.prime_suite import run_e124
 
-# ------------------------------------------------------------------------------
 logger = get_logger(__name__)
 
 
@@ -34,18 +33,18 @@ def main() -> int:
         Process exit code (0 for success).
     """
     args = parse_experiment_args_with_size(
-        experiment_id="e024",
-        description="Ulam spiral structure",
+        experiment_id="e124",
+        description="E124 — Klauber triangle structure.",
         size_default=301,
-        size_help="Grid size parameter (odd).",
+        size_help="Grid size parameter (odd). The experiment visualizes integers 1..size^2.",
     )
     setup_logging(config=LoggingConfig(verbose=args.verbose))
     set_global_seed(args.seed)
 
     out_paths = prepare_out_dir(out_dir=args.out_dir)
 
-    logger.info("Starting experiment E024")
-    run_e024(
+    logger.info("Starting experiment E124")
+    run_e124(
         out_dir=Path(args.out_dir),
         seed=args.seed,
         figures_dir=out_paths.figures_dir,
@@ -53,7 +52,7 @@ def main() -> int:
         params_path=out_paths.params_path,
         size=args.size,
     )
-    logger.info("Experiment E024 completed successfully. Artifacts saved to: %s", args.out_dir)
+    logger.info("Experiment E124 completed successfully. Artifacts saved to: %s", args.out_dir)
     return 0
 
 
