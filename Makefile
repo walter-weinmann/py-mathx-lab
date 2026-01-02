@@ -43,6 +43,9 @@ VENV_DIR   := .venv
 DOCS_DIR        := docs
 DOCS_BUILD_DIR  := $(DOCS_DIR)/_build
 DOCS_HTML_DIR   := $(DOCS_BUILD_DIR)/html
+DOCS_ROOT       ?= docs
+
+OUT_ROOT ?= out
 
 UV         ?= uv
 UV_RUN      = $(UV) run
@@ -271,6 +274,9 @@ python-check:
 	@python -c "import sys; req='$(PYTHON_MIN)'.split('.'); req=(int(req[0]), int(req[1])); v=sys.version_info; assert v[:2] >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"
 
 run: install-dev _run_core
+
+snapshots: install-dev
+	$(UV_RUN_DEV) python -m mathxlab.tools.sync_docs_snapshots --overwrite --out-root "$(OUT_ROOT)" --docs-root "$(DOCS_ROOT)" $(if $(IDS),--ids $(IDS),)
 
 status: install-dev
 	$(UV_RUN_DEV) python mathxlab/tools/generate_experiment_status.py

@@ -1,0 +1,6 @@
+{
+  "include_principal": false,
+  "n_max": 50000,
+  "q": 15,
+  "top_k": 8
+}

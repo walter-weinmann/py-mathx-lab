@@ -1,0 +1,6 @@
+{
+  "max_tests": 800,
+  "p_max": 10000,
+  "q_max": 5000000,
+  "require_q_prime": true
+}
