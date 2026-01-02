@@ -1775,6 +1775,47 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
+  <a href="e127.html" class="gallery-card" data-title="E127 — Quadratic prime-run atlas" data-tags="number-theory,quantitative-exploration,visualization,primes,optimization" data-summary="Heatmap of initial prime-run lengths for f(n)=n^2+an+b over a small coefficient grid.">
+    <img src="../_static/experiments/e127_hero.png" alt="E127 preview">
+    <div class="gallery-card-body">
+      <h3>E127 — Quadratic prime-run atlas</h3>
+      <p>Heatmap of initial prime-run lengths for f(n)=n^2+an+b over a small coefficient grid.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">primes</span>
+        <span class="tag tag-secondary">optimization</span>
+      </div>
+    </div>
+  </a>
+  <a href="e128.html" class="gallery-card" data-title="E128 — Quadratic modular obstructions" data-tags="number-theory,model-checking,counterexample-search,primes" data-summary="Roots of f(n)≡0 (mod p) for small primes p; explains why prime streaks must fail.">
+    <img src="../_static/experiments/e128_hero.png" alt="E128 preview">
+    <div class="gallery-card-body">
+      <h3>E128 — Quadratic modular obstructions</h3>
+      <p>Roots of f(n)≡0 (mod p) for small primes p; explains why prime streaks must fail.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">model-checking</span>
+        <span class="tag tag-primary">counterexample-search</span>
+        <span class="tag tag-secondary">primes</span>
+      </div>
+    </div>
+  </a>
+  <a href="e129.html" class="gallery-card" data-title="E129 — Euler lucky constants" data-tags="number-theory,quantitative-exploration,visualization,primes,heuristics" data-summary="Compare n^2+n+b for classical 'lucky' b; visualize prime indicators and streak lengths.">
+    <img src="../_static/experiments/e129_hero.png" alt="E129 preview">
+    <div class="gallery-card-body">
+      <h3>E129 — Euler lucky constants</h3>
+      <p>Compare n^2+n+b for classical 'lucky' b; visualize prime indicators and streak lengths.</p>
+      <div class="gallery-tags">
+        <span class="tag tag-primary">number-theory</span>
+        <span class="tag tag-primary">quantitative-exploration</span>
+        <span class="tag tag-primary">visualization</span>
+        <span class="tag tag-secondary">primes</span>
+        <span class="tag tag-secondary">heuristics</span>
+      </div>
+    </div>
+  </a>
 </div>
 
 ::: {toctree}
@@ -1907,6 +1948,9 @@ e123
 e124
 e125
 e126
+e127
+e128
+e129
 :::
 
 ## Related experiments

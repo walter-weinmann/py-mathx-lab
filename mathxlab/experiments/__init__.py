@@ -646,6 +646,36 @@ _EXPERIMENTS: tuple[ExperimentSpec, ...] = (
         title="Correlation matrix: arithmetic functions on 1..N",
         module="mathxlab.experiments.e123",
     ),
+    ExperimentSpec(
+        experiment_id="e124",
+        title="Klauber triangle",
+        module="mathxlab.experiments.e124",
+    ),
+    ExperimentSpec(
+        experiment_id="e125",
+        title="Sacks spiral",
+        module="mathxlab.experiments.e125",
+    ),
+    ExperimentSpec(
+        experiment_id="e126",
+        title="Hexagonal number spiral",
+        module="mathxlab.experiments.e126",
+    ),
+    ExperimentSpec(
+        experiment_id="e127",
+        title="Quadratic prime-run atlas (n^2 + a n + b)",
+        module="mathxlab.experiments.e127",
+    ),
+    ExperimentSpec(
+        experiment_id="e128",
+        title="Quadratic modular obstructions (Euler-type)",
+        module="mathxlab.experiments.e128",
+    ),
+    ExperimentSpec(
+        experiment_id="e129",
+        title="Euler lucky constants for n^2 + n + b",
+        module="mathxlab.experiments.e129",
+    ),
 )
 
 
