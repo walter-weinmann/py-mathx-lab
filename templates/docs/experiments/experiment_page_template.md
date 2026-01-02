@@ -55,6 +55,34 @@ This experiment follows the standard output contract:
 - `out/exxx/params.json` — run parameters (stable JSON)
 - `out/exxx/logs/` — run logs (created by the runner/Makefile)
 
+## Published run snapshot
+
+To keep version control clean, the **published** documentation embeds a stable snapshot of
+the most important textual outputs:
+
+- `docs/reports/exxx.md` — snapshot of `out/exxx/report.md`
+- `docs/params/exxx.json` — snapshot of `out/exxx/params.json`
+
+Regenerate these snapshots after running the experiment:
+
+- `make run EXP=exxx`
+- `make snapshots`
+
+```{dropdown} report.md (snapshot)
+:open:
+
+```{include} ../reports/exxx.md
+```
+```
+
+```{dropdown} params.json (snapshot)
+:open:
+
+```{literalinclude} ../params/exxx.json
+:language: json
+```
+```
+
 ## Figure LaTeX tips
 
 Most figures are generated with Matplotlib **mathtext**, not full LaTeX.

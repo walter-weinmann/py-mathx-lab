@@ -29,6 +29,7 @@
         pytest-slow \
         python-check \
         run \
+        snapshots \
         status \
         tags-check \
         uv-check \
@@ -190,6 +191,7 @@ help:
 	@echo   make pytest        - run fast tests with coverage
 	@echo   make pytest-slow   - run slow tests with coverage
 	@echo   make run EXP=e001  - run an experiment by id
+	@echo   make snapshots     - sync out/* (params/report) into docs/params + docs/reports
 	@echo   make status        - update docs/experiment_status.md (append new experiments)
 	@echo   make tags-check    - validate docs tags against docs/tags.md
 	@echo   make venv          - create/update virtual environment

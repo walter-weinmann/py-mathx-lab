@@ -90,7 +90,7 @@ uv run python -m mathxlab.experiments.e001
 Depending on the experiment runner implementation, outputs are usually placed in:
 
 * `out/e###/` (generated artifacts, figures, manifests)
-* `docs/gallery/`, `docs/reports/`, `docs/manifests/` (published snapshots)
+* `docs/reports/`, `docs/params/` (published snapshots)
 
 If you add new experiments, keep the numbering stable (`e001`, `e002`, …) so the
 gallery and documentation can remain consistent.
