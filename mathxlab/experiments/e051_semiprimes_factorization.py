@@ -38,6 +38,7 @@ from mathxlab.exp.cli import parse_experiment_args
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
+from mathxlab.exp.run_logging import infer_run_log_file
 from mathxlab.experiments._prime_utils import (
     is_prime_deterministic_64,
     is_probable_prime_miller_rabin,
@@ -277,7 +278,9 @@ def main() -> int:
         experiment_id="e051",
         description="Semiprimes: balanced vs unbalanced factorization timing",
     )
-    setup_logging(config=LoggingConfig(verbose=args.verbose))
+
+    run_log = infer_run_log_file(out_dir=args.out_dir, experiment_slug="e051")
+    setup_logging(config=LoggingConfig(verbose=args.verbose, log_file=run_log.log_file))
     set_global_seed(args.seed)
 
     params = Params(

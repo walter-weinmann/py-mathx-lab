@@ -28,6 +28,7 @@ from mathxlab.exp.cli import parse_experiment_args
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
+from mathxlab.exp.run_logging import infer_run_log_file
 from mathxlab.nt.dirichlet import character_table, euler_phi
 
 # ------------------------------------------------------------------------------
@@ -101,7 +102,8 @@ def main(argv: list[str] | None = None) -> int:
         argv=argv,
     )
 
-    setup_logging(config=LoggingConfig(verbose=args.verbose))
+    run_log = infer_run_log_file(out_dir=args.out_dir, experiment_slug="e064")
+    setup_logging(config=LoggingConfig(verbose=args.verbose, log_file=run_log.log_file))
     logger.info("Starting experiment E064: Dirichlet character tables (phase view).")
     set_global_seed(args.seed)
     params = Params()

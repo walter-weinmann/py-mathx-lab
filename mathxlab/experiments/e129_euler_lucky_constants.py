@@ -36,6 +36,7 @@ from mathxlab.exp.cli import parse_experiment_args
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
+from mathxlab.exp.run_logging import infer_run_log_file
 from mathxlab.experiments._prime_utils import (
     factorize_pollard_rho,
     format_factor_multiset,
@@ -252,7 +253,8 @@ def main() -> int:
         description="Euler's lucky constants for n^2 + n + b",
     )
 
-    setup_logging(config=LoggingConfig(verbose=args.verbose))
+    run_log = infer_run_log_file(out_dir=args.out_dir, experiment_slug="e129")
+    setup_logging(config=LoggingConfig(verbose=args.verbose, log_file=run_log.log_file))
     set_global_seed(args.seed)
     logger.info("Starting experiment E129")
 

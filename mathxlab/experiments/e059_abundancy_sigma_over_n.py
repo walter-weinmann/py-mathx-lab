@@ -25,6 +25,7 @@ from mathxlab.exp.cli import parse_experiment_args
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.exp.logging import LoggingConfig
 from mathxlab.exp.logging_setup import setup_logging
+from mathxlab.exp.run_logging import infer_run_log_file
 from mathxlab.exp.seeding import set_global_seed
 from mathxlab.nt.arithmetic import build_factor_sieve, compute_tau_sigma
 
@@ -80,7 +81,9 @@ def main() -> int:
         experiment_id="e059",
         description="Abundancy index σ(n)/n and perfect-number threshold",
     )
-    setup_logging(config=LoggingConfig(verbose=args.verbose))
+
+    run_log = infer_run_log_file(out_dir=args.out_dir, experiment_slug="e059")
+    setup_logging(config=LoggingConfig(verbose=args.verbose, log_file=run_log.log_file))
     set_global_seed(args.seed)
 
     params = Params()

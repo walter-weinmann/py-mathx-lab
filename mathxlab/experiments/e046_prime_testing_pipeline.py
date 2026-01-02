@@ -20,6 +20,7 @@ from mathxlab.exp.cli import parse_experiment_args
 from mathxlab.exp.io import prepare_out_dir
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
+from mathxlab.exp.run_logging import infer_run_log_file
 from mathxlab.experiments.prime_suite import run_e046
 
 # ------------------------------------------------------------------------------
@@ -37,7 +38,9 @@ def main() -> int:
         experiment_id="e046",
         description="Prime-testing pipeline and tuning pitfalls",
     )
-    setup_logging(config=LoggingConfig(verbose=args.verbose))
+
+    run_log = infer_run_log_file(out_dir=args.out_dir, experiment_slug="e046")
+    setup_logging(config=LoggingConfig(verbose=args.verbose, log_file=run_log.log_file))
     set_global_seed(args.seed)
 
     out_paths = prepare_out_dir(out_dir=args.out_dir)

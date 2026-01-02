@@ -117,16 +117,9 @@ else
 	@test -n "$(EXP)" || (echo "ERROR: Please provide EXP, e.g. make run EXP=e001" && exit 1)
 endif
 ifeq ($(IS_WINDOWS),1)
-	@powershell -NoProfile -ExecutionPolicy Bypass -Command "$$exp='$(EXP)'; $$out='out/$(EXP)'; $$logDir=Join-Path $$out 'logs'; New-Item -ItemType Directory -Force -Path $$logDir | Out-Null; $$ts=Get-Date -Format 'yyyyMMdd_HHmmss'; $$log=Join-Path $$logDir ('run_'+$$exp+'_'+$$ts+'.log'); $$cmd='$(UV_RUN_DEV) python -m mathxlab.experiments.'+$$exp+' --out '+$$out+' -v $(ARGS)'; Write-Host ('Logging to: ' + $$log); & { \"COMMAND: $$cmd`nSTART: $$(Get-Date -Format o)`n\"; & $(UV) run --extra dev python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS) 2>&1 } | Tee-Object -FilePath $$log; exit $$LASTEXITCODE"
+	@powershell -NoProfile -ExecutionPolicy Bypass -Command "$$ErrorActionPreference = 'Stop'; $$exp='$(EXP)'; $$out=Join-Path 'out' $$exp; $$logDir=Join-Path $$out 'logs'; New-Item -ItemType Directory -Force -Path $$logDir | Out-Null; $$log=Join-Path $$logDir ('run_' + $$exp + '.log'); Write-Host ('Logging to: ' + $$log); & $(UV_RUN_DEV) python -m mathxlab.experiments.$$exp --out $$out -v $(ARGS); exit $$LASTEXITCODE"
 else
-	@bash -lc 'set -euo pipefail; \
-		mkdir -p "out/$(EXP)/logs"; \
-		ts="$$(date +%Y%m%d_%H%M%S)"; \
-		log="out/$(EXP)/logs/run_$(EXP)_$${ts}.log"; \
-		echo "COMMAND: $(UV_RUN_DEV) python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS)" | tee "$${log}"; \
-		echo "START: $$(date -Iseconds)" | tee -a "$${log}"; \
-		echo "Logging to: $${log}"; \
-		$(UV_RUN_DEV) python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS) 2>&1 | tee -a "$${log}"'
+	@bash -lc 'set -euo pipefail; mkdir -p "out/$(EXP)/logs"; log="out/$(EXP)/logs/run_$(EXP).log"; echo "Logging to: $${log}"; $(UV_RUN_DEV) python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS)'
 endif
 
 clean:
@@ -226,22 +219,9 @@ mypy: install-dev
 
 out: install-dev
 ifeq ($(IS_WINDOWS),1)
-	@powershell -NoProfile -ExecutionPolicy Bypass -Command "$$ErrorActionPreference = 'Stop'; \
-		$$exps = Get-ChildItem -Path 'mathxlab/experiments' -Filter 'e???.py' | Sort-Object Name | ForEach-Object { $$_.BaseName }; \
-		foreach ($$e in $$exps) { \
-			if ($$e -and $$e -match '^e\d{3}$$') { \
-				Write-Host ('== RUN ' + $$e + ' =='); \
-				& $(MAKE) _run_core EXP=$$e ARGS=\"$(ARGS)\"; \
-				if ($$LASTEXITCODE -ne 0) { exit $$LASTEXITCODE } \
-			} \
-		}"
+	@powershell -NoProfile -ExecutionPolicy Bypass -Command "$$ErrorActionPreference = 'Stop'; $$files = Get-ChildItem -Path 'mathxlab/experiments' -Filter 'e???.py' | Sort-Object Name; foreach ($$f in $$files) { $$exp = $$f.BaseName; if ($$exp -match '^e\d{3}$$') { Write-Host ('== RUN ' + $$exp + ' =='); & $(MAKE) _run_core EXP=$$exp ARGS=\"$(ARGS)\"; if ($$LASTEXITCODE -ne 0) { exit $$LASTEXITCODE } } }"
 else
-	@bash -lc "set -euo pipefail; \
-		exps=\"$$( $(UV_RUN_DEV) python -c 'from pathlib import Path; exps = sorted(p.stem for p in Path(\"mathxlab/experiments\").glob(\"e[0-9][0-9][0-9].py\")); print(\" \".join(exps))' )\"; \
-		for exp in $$exps; do \
-			echo \"== RUN $$exp ==\"; \
-			$(MAKE) _run_core EXP=$$exp ARGS='$(ARGS)'; \
-		done"
+	@bash -lc 'set -euo pipefail; for f in mathxlab/experiments/e[0-9][0-9][0-9].py; do exp="$$(basename "$$f" .py)"; echo "== RUN $$exp =="; $(MAKE) _run_core EXP="$$exp" ARGS="$(ARGS)"; done'
 endif
 
 perf: install-dev

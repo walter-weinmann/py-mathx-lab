@@ -1,22 +1,26 @@
 """Utilities for run log file discovery.
 
-The repository's ``make run EXP=e###`` workflow typically prints a log file path
-like::
+The repository runs experiments via ``make run EXP=e###`` and stores outputs under
+``out/e###/``. Each experiment also writes a run log under ``out/e###/logs/``.
 
-    out/e094/logs/run_e094.log
+This project intentionally uses **deterministic** run log filenames without any
+timestamp information:
 
-Depending on how the Makefile is implemented, stdout/stderr may or may not be
-redirected to that file. To make experiment logging robust across platforms and
-shells, we attempt to *reuse* the freshest ``run_<exp>.log`` file in
-``out_dir/logs/`` if it exists, otherwise we create a new one.
+    ``out/e094/logs/run_e094.log``
+
+To keep compatibility with older runs that produced timestamped filenames like
+``run_e094_YYYYMMDD_HHMMSS.log``, discovery will migrate the newest legacy log
+to the deterministic name the first time it is called.
 
 This module is intentionally tiny and dependency-free.
 """
 
 from __future__ import annotations
 
+import contextlib
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Final
 
 
 # ------------------------------------------------------------------------------
@@ -26,7 +30,8 @@ class RunLogDiscovery:
 
     Attributes:
         log_file: The discovered or newly created log file path.
-        was_created: True if the file did not exist and was created by discovery.
+        was_created: True if the deterministic log file did not exist and was created
+            (or migrated) by discovery.
     """
 
     log_file: Path
@@ -37,28 +42,44 @@ class RunLogDiscovery:
 def infer_run_log_file(*, out_dir: Path, experiment_slug: str) -> RunLogDiscovery:
     """Infer the run log file for an experiment.
 
-    The Makefile convention is a single deterministic log file per experiment::
-
-        out/e094/logs/run_e094.log
-
-    This makes it easy to diff runs and avoids leaking timestamps into filenames.
-    The file is created if missing. It may be overwritten by the Makefile (e.g. the
-    initial header lines), so experiments should treat it as an *optional* sink.
-
     Args:
         out_dir: Output directory for the experiment (e.g. ``out/e094``).
         experiment_slug: Experiment slug used by the Makefile (e.g. ``"e094"``).
 
     Returns:
-        A :class:`RunLogDiscovery` with a log file path.
+        A :class:`RunLogDiscovery` with the deterministic log file path.
     """
     logs_dir = out_dir / "logs"
     logs_dir.mkdir(parents=True, exist_ok=True)
 
     slug = experiment_slug.lower()
-    path = logs_dir / f"run_{slug}.log"
-    if path.exists():
-        return RunLogDiscovery(log_file=path, was_created=False)
+    canonical: Final[Path] = logs_dir / f"run_{slug}.log"
 
-    path.write_text("", encoding="utf-8")
-    return RunLogDiscovery(log_file=path, was_created=True)
+    if canonical.exists():
+        return RunLogDiscovery(log_file=canonical, was_created=False)
+
+    # Backward compatibility: migrate the newest timestamped log (if present) to the
+    # canonical filename. This preserves the "reuse newest" behavior while keeping
+    # future runs timestamp-free.
+    legacy_candidates = sorted(
+        logs_dir.glob(f"run_{slug}_*.log"),
+        key=lambda p: p.stat().st_mtime,
+        reverse=True,
+    )
+    if legacy_candidates:
+        newest = legacy_candidates[0]
+        try:
+            newest.replace(canonical)
+        except OSError:
+            # Some platforms/filesystems may not allow atomic replace across devices.
+            # Fall back to copy + best-effort cleanup.
+            data = newest.read_bytes()
+            canonical.write_bytes(data)
+            with contextlib.suppress(OSError):
+                newest.unlink()
+
+        return RunLogDiscovery(log_file=canonical, was_created=True)
+
+    # No existing log files: create an empty deterministic log file.
+    canonical.write_text("", encoding="utf-8")
+    return RunLogDiscovery(log_file=canonical, was_created=True)

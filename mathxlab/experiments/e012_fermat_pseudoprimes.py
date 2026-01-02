@@ -38,6 +38,7 @@ from mathxlab.exp.cli import parse_experiment_args
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
+from mathxlab.exp.run_logging import infer_run_log_file
 from mathxlab.plots.helpers import finalize_figure
 
 # ------------------------------------------------------------------------------
@@ -307,7 +308,8 @@ def main() -> int:
         description="Fermat pseudoprimes and Carmichael numbers (counterexamples)",
     )
 
-    setup_logging(config=LoggingConfig(verbose=args.verbose))
+    run_log = infer_run_log_file(out_dir=args.out_dir, experiment_slug="e012")
+    setup_logging(config=LoggingConfig(verbose=args.verbose, log_file=run_log.log_file))
     logger.info("Starting experiment E012")
 
     params = Params(

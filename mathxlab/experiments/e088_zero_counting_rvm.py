@@ -22,6 +22,7 @@ from matplotlib import pyplot as plt
 from mathxlab.exp.cli import parse_experiment_args
 from mathxlab.exp.io import prepare_out_dir, save_figure, write_json, write_text
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
+from mathxlab.exp.run_logging import infer_run_log_file
 from mathxlab.exp.seeding import set_global_seed
 from mathxlab.nt.zeta import riemann_von_mangoldt_count
 
@@ -38,7 +39,9 @@ class Params:
 def main(argv: list[str] | None = None) -> int:
     """Run experiment E088."""
     args = parse_experiment_args(experiment_id="E088", description=__doc__, argv=argv)
-    setup_logging(config=LoggingConfig(verbose=args.verbose))
+
+    run_log = infer_run_log_file(out_dir=args.out_dir, experiment_slug="e088")
+    setup_logging(config=LoggingConfig(verbose=args.verbose, log_file=run_log.log_file))
     logger = get_logger(__name__)
     set_global_seed(args.seed)
 
