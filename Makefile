@@ -237,7 +237,7 @@ ifeq ($(IS_WINDOWS),1)
 		}"
 else
 	@bash -lc "set -euo pipefail; \
-		exps=\"$$( $(UV_RUN_DEV) python -c 'from pathlib import Path; exps=sorted(p.stem for p in Path(\"mathxlab/experiments\").glob(\"e[0-9][0-9][0-9].py\")); print(\" \".join(exps))' )\"; \
+		exps=\"$$( $(UV_RUN_DEV) python -c 'from pathlib import Path; exps = sorted(p.stem for p in Path(\"mathxlab/experiments\").glob(\"e[0-9][0-9][0-9].py\")); print(\" \".join(exps))' )\"; \
 		for exp in $$exps; do \
 			echo \"== RUN $$exp ==\"; \
 			$(MAKE) _run_core EXP=$$exp ARGS='$(ARGS)'; \

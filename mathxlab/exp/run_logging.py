@@ -3,11 +3,11 @@
 The repository's ``make run EXP=e###`` workflow typically prints a log file path
 like::
 
-    out/e094/logs/run_e094_YYYYMMDD_HHMMSS.log
+    out/e094/logs/run_e094.log
 
 Depending on how the Makefile is implemented, stdout/stderr may or may not be
 redirected to that file. To make experiment logging robust across platforms and
-shells, we attempt to *reuse* the freshest ``run_<exp>_*.log`` file in
+shells, we attempt to *reuse* the freshest ``run_<exp>.log`` file in
 ``out_dir/logs/`` if it exists, otherwise we create a new one.
 
 This module is intentionally tiny and dependency-free.
@@ -16,7 +16,6 @@ This module is intentionally tiny and dependency-free.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime
 from pathlib import Path
 
 
@@ -38,6 +37,14 @@ class RunLogDiscovery:
 def infer_run_log_file(*, out_dir: Path, experiment_slug: str) -> RunLogDiscovery:
     """Infer the run log file for an experiment.
 
+    The Makefile convention is a single deterministic log file per experiment::
+
+        out/e094/logs/run_e094.log
+
+    This makes it easy to diff runs and avoids leaking timestamps into filenames.
+    The file is created if missing. It may be overwritten by the Makefile (e.g. the
+    initial header lines), so experiments should treat it as an *optional* sink.
+
     Args:
         out_dir: Output directory for the experiment (e.g. ``out/e094``).
         experiment_slug: Experiment slug used by the Makefile (e.g. ``"e094"``).
@@ -49,15 +56,9 @@ def infer_run_log_file(*, out_dir: Path, experiment_slug: str) -> RunLogDiscover
     logs_dir.mkdir(parents=True, exist_ok=True)
 
     slug = experiment_slug.lower()
-    candidates = sorted(
-        logs_dir.glob(f"run_{slug}_*.log"),
-        key=lambda p: p.stat().st_mtime,
-        reverse=True,
-    )
-    if candidates:
-        return RunLogDiscovery(log_file=candidates[0], was_created=False)
+    path = logs_dir / f"run_{slug}.log"
+    if path.exists():
+        return RunLogDiscovery(log_file=path, was_created=False)
 
-    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    path = logs_dir / f"run_{slug}_{stamp}.log"
     path.write_text("", encoding="utf-8")
     return RunLogDiscovery(log_file=path, was_created=True)
