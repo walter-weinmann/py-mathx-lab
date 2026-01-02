@@ -15,6 +15,7 @@ background/dirichlet-eta-function
 background/dirichlet-l-functions
 background/divisor-functions
 background/euler-totient-function
+background/eulers-prime-generating-polynomial
 background/explicit-formula-and-chebyshev
 background/exploratory-visualizations
 background/fermat-numbers
@@ -22,6 +23,7 @@ background/gauss-sums
 background/gram-points-and-zero-counting
 background/hardy-z-function
 background/jordan-totient-function
+background/landaus-problems
 background/liouville-function
 background/mersenne-primes
 background/mobius-and-mertens
@@ -34,6 +36,7 @@ background/prime-number-races
 background/prime-numbers
 background/primes-in-arithmetic-progressions
 background/primorials
+background/quadratic-polynomials
 background/riemann-zeta-function
 background/semiprimes
 background/taylor-series
