@@ -1,7 +1,8 @@
 # Minimal Makefile (Windows + Linux/macOS), same functionality
 
 .DEFAULT_GOAL := help
-.PHONY: clean \
+.PHONY: _run_core \
+        clean \
         clean-venv \
         docs \
         docs-clean \
@@ -20,6 +21,7 @@
         install-docs \
         lint \
         mypy \
+        out \
         perf \
         perf-compare \
         perf-release \
@@ -108,6 +110,25 @@ endef
 endif
 
 # --- targets -----------------------------------------------------------------
+_run_core:
+ifeq ($(IS_WINDOWS),1)
+	@if "$(EXP)"=="" (echo ERROR: Please provide EXP, e.g. make run EXP=e001 & exit /b 1)
+else
+	@test -n "$(EXP)" || (echo "ERROR: Please provide EXP, e.g. make run EXP=e001" && exit 1)
+endif
+ifeq ($(IS_WINDOWS),1)
+	@powershell -NoProfile -ExecutionPolicy Bypass -Command "$$exp='$(EXP)'; $$out='out/$(EXP)'; $$logDir=Join-Path $$out 'logs'; New-Item -ItemType Directory -Force -Path $$logDir | Out-Null; $$ts=Get-Date -Format 'yyyyMMdd_HHmmss'; $$log=Join-Path $$logDir ('run_'+$$exp+'_'+$$ts+'.log'); $$cmd='$(UV_RUN_DEV) python -m mathxlab.experiments.'+$$exp+' --out '+$$out+' -v $(ARGS)'; Write-Host ('Logging to: ' + $$log); & { \"COMMAND: $$cmd`nSTART: $$(Get-Date -Format o)`n\"; & $(UV) run --extra dev python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS) 2>&1 } | Tee-Object -FilePath $$log; exit $$LASTEXITCODE"
+else
+	@bash -lc 'set -euo pipefail; \
+		mkdir -p "out/$(EXP)/logs"; \
+		ts="$$(date +%Y%m%d_%H%M%S)"; \
+		log="out/$(EXP)/logs/run_$(EXP)_$${ts}.log"; \
+		echo "COMMAND: $(UV_RUN_DEV) python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS)" | tee "$${log}"; \
+		echo "START: $$(date -Iseconds)" | tee -a "$${log}"; \
+		echo "Logging to: $${log}"; \
+		$(UV_RUN_DEV) python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS) 2>&1 | tee -a "$${log}"'
+endif
+
 clean:
 	$(call clean_artifacts)
 
@@ -169,6 +190,7 @@ help:
 	@echo   make lint          - ruff lint (check-only)
 	@echo   make lint-fix      - ruff lint
 	@echo   make mypy          - check typing
+	@echo   make out           - run all experiments (sequential)
 	@echo   make perf          - run performance suite for all experiments (dev snapshot)
 	@echo   make perf-compare  - compare two snapshots (make perf-compare A=vX B=vY)
 	@echo   make perf-release  - run performance suite and store results for current MVERSION
@@ -201,6 +223,26 @@ lint-fix: install-dev
 
 mypy: install-dev
 	$(UV_RUN_DEV) mypy mathxlab tests experiments
+
+out: install-dev
+ifeq ($(IS_WINDOWS),1)
+	@powershell -NoProfile -ExecutionPolicy Bypass -Command "$$ErrorActionPreference = 'Stop'; \
+		$$exps = Get-ChildItem -Path 'mathxlab/experiments' -Filter 'e???.py' | Sort-Object Name | ForEach-Object { $$_.BaseName }; \
+		foreach ($$e in $$exps) { \
+			if ($$e -and $$e -match '^e\d{3}$$') { \
+				Write-Host ('== RUN ' + $$e + ' =='); \
+				& $(MAKE) _run_core EXP=$$e ARGS=\"$(ARGS)\"; \
+				if ($$LASTEXITCODE -ne 0) { exit $$LASTEXITCODE } \
+			} \
+		}"
+else
+	@bash -lc "set -euo pipefail; \
+		exps=\"$$( $(UV_RUN_DEV) python -c 'from pathlib import Path; exps=sorted(p.stem for p in Path(\"mathxlab/experiments\").glob(\"e[0-9][0-9][0-9].py\")); print(\" \".join(exps))' )\"; \
+		for exp in $$exps; do \
+			echo \"== RUN $$exp ==\"; \
+			$(MAKE) _run_core EXP=$$exp ARGS='$(ARGS)'; \
+		done"
+endif
 
 perf: install-dev
 	$(UV_RUN_DEV) python mathxlab/tools/run_perf.py --mode dev --overwrite
@@ -246,24 +288,7 @@ pytest-xdist: install-dev
 python-check:
 	@python -c "import sys; req='$(PYTHON_MIN)'.split('.'); req=(int(req[0]), int(req[1])); v=sys.version_info; assert v[:2] >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"
 
-run: install-dev
-ifeq ($(IS_WINDOWS),1)
-	@if "$(EXP)"=="" (echo ERROR: Please provide EXP, e.g. make run EXP=e001 & exit /b 1)
-else
-	@test -n "$(EXP)" || (echo "ERROR: Please provide EXP, e.g. make run EXP=e001" && exit 1)
-endif
-ifeq ($(IS_WINDOWS),1)
-	@powershell -NoProfile -ExecutionPolicy Bypass -Command "$$exp='$(EXP)'; $$out='out/$(EXP)'; $$logDir=Join-Path $$out 'logs'; New-Item -ItemType Directory -Force -Path $$logDir | Out-Null; $$ts=Get-Date -Format 'yyyyMMdd_HHmmss'; $$log=Join-Path $$logDir ('run_'+$$exp+'_'+$$ts+'.log'); $$cmd='$(UV_RUN_DEV) python -m mathxlab.experiments.'+$$exp+' --out '+$$out+' -v $(ARGS)'; 'COMMAND: ' + $$cmd | Out-File -FilePath $$log -Encoding utf8; 'START: ' + (Get-Date -Format o) | Out-File -FilePath $$log -Append -Encoding utf8; Write-Host ('Logging to: ' + $$log); & $(UV) run --extra dev python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS) 2>&1 | Tee-Object -FilePath $$log -Append; exit $$LASTEXITCODE"
-else
-	@bash -lc 'set -euo pipefail; \
-		mkdir -p "out/$(EXP)/logs"; \
-		ts="$$(date +%Y%m%d_%H%M%S)"; \
-		log="out/$(EXP)/logs/run_$(EXP)_$${ts}.log"; \
-		echo "COMMAND: $(UV_RUN_DEV) python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS)" | tee "$${log}"; \
-		echo "START: $$(date -Iseconds)" | tee -a "$${log}"; \
-		echo "Logging to: $${log}"; \
-		$(UV_RUN_DEV) python -m mathxlab.experiments.$(EXP) --out out/$(EXP) -v $(ARGS) 2>&1 | tee -a "$${log}"'
-endif
+run: install-dev _run_core
 
 status: install-dev
 	$(UV_RUN_DEV) python mathxlab/tools/generate_experiment_status.py

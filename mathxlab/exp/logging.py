@@ -95,19 +95,29 @@ def setup_logging(*, config: LoggingConfig | None = None) -> None:
     if cfg.log_file is not None:
         cfg.log_file.parent.mkdir(parents=True, exist_ok=True)
 
-        fh_info = logging.FileHandler(cfg.log_file, mode="w", encoding="utf-8")
-        fh_info.setLevel(logging.INFO)
-        fh_info.setFormatter(fmt)
-        root.addHandler(fh_info)
+        try:
+            fh_info = logging.FileHandler(cfg.log_file, mode="w", encoding="utf-8")
+            fh_info.setLevel(logging.INFO)
+            fh_info.setFormatter(fmt)
+            root.addHandler(fh_info)
 
-        if cfg.verbose:
-            fh_dbg = logging.FileHandler(cfg.log_file, mode="a", encoding="utf-8")
-            fh_dbg.setLevel(logging.DEBUG)
-            fh_dbg.setFormatter(fmt)
-            fh_dbg.addFilter(
-                _PrefixAndExactLevelFilter(prefix=cfg.package_prefix, levelno=logging.DEBUG)
+            if cfg.verbose:
+                fh_dbg = logging.FileHandler(cfg.log_file, mode="a", encoding="utf-8")
+                fh_dbg.setLevel(logging.DEBUG)
+                fh_dbg.setFormatter(fmt)
+                fh_dbg.addFilter(
+                    _PrefixAndExactLevelFilter(prefix=cfg.package_prefix, levelno=logging.DEBUG)
+                )
+                root.addHandler(fh_dbg)
+        except (PermissionError, OSError):
+            # On Windows, if the file is already open by another process (e.g. Tee-Object in Makefile),
+            # opening it in "w" mode will raise PermissionError. We skip file logging in this case,
+            # as the external process is likely already capturing stdout/stderr.
+            root.warning(
+                "Could not open log file '%s' for writing (it might be in use). "
+                "Continuing with console logging only.",
+                cfg.log_file,
             )
-            root.addHandler(fh_dbg)
 
     # Keep typical noisy libraries at WARNING+ (defensive). This does not hide warnings/errors.
     for noisy in ("matplotlib", "PIL"):
