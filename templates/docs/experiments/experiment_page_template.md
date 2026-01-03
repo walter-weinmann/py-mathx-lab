@@ -1,13 +1,14 @@
 # EXXX: <Experiment title>
 
+**Status:** `stable`  <!-- stable | draft | wip -->
+
+**Deterministic:** `yes`  <!-- yes | no | partial -->
+
+
 ```{figure} ../_static/experiments/exxx_hero.png
 :width: 80%
 :alt: Preview figure for EXXX
 ```
-
-**Status:** `stable`  <!-- stable | draft | wip -->
-**Last run:** `YYYY-MM-DD`  <!-- optional; e.g. 2026-01-03 -->
-**Deterministic:** `yes`  <!-- yes | no | partial -->
 
 **Tags:** `number-theory`, `quantitative-exploration`, `visualization`  <!-- add more -->
 See: {doc}`../tags`. Do not introduce new tags without adding them to `docs/tags.md`.
