@@ -60,6 +60,10 @@ exclude_patterns = [
     "_build",
     "background/background_page_template.md",
     "experiments/experiment_page_template.md",
+    # Snapshots are included into experiment pages; they must not be treated as
+    # standalone documents (otherwise Sphinx emits toc.not_included warnings).
+    "reports/**",
+    "params/**",
 ]
 
 # Prefer Markdown as the primary source format.

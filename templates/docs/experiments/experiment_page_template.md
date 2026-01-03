@@ -81,19 +81,6 @@ Regenerate these snapshots after running the experiment:
 ```{literalinclude} ../params/exxx.json
 :language: json
 ```
-```
-
-## Figure LaTeX tips
-
-Most figures are generated with Matplotlib **mathtext**, not full LaTeX.
-Keep expressions simple and mathtext-compatible:
-
-- Prefer `$arphi(n)/n$`, `$\mu(n)$`, `$\Omega(n)$`, `$\sum_{k\le x}$`.
-- Avoid unsupported commands (e.g. `\pmod`, `\operatorname{...}`).
-- Use raw strings in Python: `title = r"$\varphi(n)/n$"`.
-
-If you need full LaTeX rendering, consider enabling `text.usetex=True`
-in the experiment code (but that adds external dependencies).
 
 ## References
 

@@ -1,298 +1,240 @@
-"""Sync experiment run snapshots into the documentation tree.
+"""Sync experiment snapshots from out/ into docs/params and docs/reports.
 
-This repository generates per-run artifacts under ``out/e###/`` (figures, params,
-report, logs). For a clean VCS history, it is often preferable to *publish* the
-stable textual artifacts (``params.json`` and ``report.md``) inside ``docs/``
-instead of committing the entire ``out/`` tree.
+This tool copies (or updates) per-experiment snapshot files produced under `out/<slug>/`:
 
-This tool copies (in a deterministic, idempotent way):
+- `params.json`  -> `docs/params/<slug>.json`
+- `report.md`    -> `docs/reports/<slug>.md`
 
-- ``out/e###/params.json`` -> ``docs/params/e###.json``
-- ``out/e###/report.md``  -> ``docs/reports/e###.md``
+It is designed to be **idempotent**:
+running it repeatedly should not change files if the inputs have not changed.
 
-Idempotency goals:
-
-- Re-running the tool with the same source inputs causes no filesystem changes.
-- JSON is normalized for stable diffs (sorted keys, consistent indentation).
-- Text files are normalized to LF newlines and end with a trailing newline.
-
-Typical usage:
-
-    uv run --extra dev python -m mathxlab.tools.sync_docs_snapshots --overwrite
-
+In addition to regular experiment slugs like `e001`, this script also syncs a small
+set of special slugs (e.g. `experiments_gallery`) if present in `out/`.
 """
 
 from __future__ import annotations
 
 import argparse
-import json
-from collections.abc import Iterable
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
+_EXPERIMENT_DIR_RE = re.compile(r"^e\d{3}$")
+_SPECIAL_SLUGS: set[str] = {"experiments_gallery"}
 
-@dataclass(frozen=True, slots=True)
+
+@dataclass(frozen=True)
 class SyncResult:
-    """Result of syncing one experiment."""
+    """Result summary for one run."""
 
-    experiment_slug: str
-    copied_params: bool
-    copied_report: bool
-
-
-def _iter_experiment_slugs(out_root: Path) -> list[str]:
-    """Discover experiment slugs under an ``out`` directory.
-
-    Args:
-        out_root: Root output directory (usually ``out``).
-
-    Returns:
-        Sorted list of experiment slugs like ``["e001", "e002", ...]``.
-    """
-    if not out_root.exists():
-        return []
-
-    slugs: list[str] = []
-    for p in out_root.iterdir():
-        if not p.is_dir():
-            continue
-        name = p.name.lower()
-        if len(name) == 4 and name[0] == "e" and name[1:].isdigit():
-            slugs.append(name)
-    return sorted(slugs)
+    changed: int
+    skipped: int
+    missing: int
 
 
-def _normalize_newlines(text: str) -> str:
-    """Normalize newlines to LF and ensure a trailing newline.
-
-    Args:
-        text: Input text.
-
-    Returns:
-        Normalized text.
-    """
-    normalized = text.replace("\r\n", "\n").replace("\r", "\n")
-    if not normalized.endswith("\n"):
-        normalized += "\n"
-    return normalized
-
-
-def _write_text_if_changed(path: Path, text: str, *, overwrite: bool) -> bool:
-    """Write text to a file only if the content differs.
-
-    Args:
-        path: Destination file path.
-        text: Text content to write.
-        overwrite: Whether to overwrite an existing destination file.
-
-    Returns:
-        True if the file was created/updated, otherwise False.
-    """
-    if path.exists() and not overwrite:
-        return False
-
-    path.parent.mkdir(parents=True, exist_ok=True)
-    new_bytes = text.encode("utf-8")
-
-    if path.exists():
-        old_bytes = path.read_bytes()
-        if old_bytes == new_bytes:
-            return False
-
-    path.write_bytes(new_bytes)
-    return True
-
-
-def _render_params_json(src: Path) -> str:
-    """Render ``params.json`` deterministically.
-
-    The function attempts to parse JSON and re-dump it in a canonical form.
-    If parsing fails, it falls back to raw file content (newline-normalized).
-
-    Args:
-        src: Source ``params.json`` path.
-
-    Returns:
-        Canonical JSON text.
-    """
-    raw = src.read_text(encoding="utf-8")
-    try:
-        obj = json.loads(raw)
-    except json.JSONDecodeError:
-        return _normalize_newlines(raw)
-
-    rendered = json.dumps(
-        obj,
-        ensure_ascii=False,
-        sort_keys=True,
-        indent=2,
-    )
-    return _normalize_newlines(rendered)
-
-
-def _render_report_md(src: Path) -> str:
-    """Render ``report.md`` deterministically.
-
-    Args:
-        src: Source ``report.md`` path.
-
-    Returns:
-        Normalized markdown text.
-    """
-    return _normalize_newlines(src.read_text(encoding="utf-8"))
-
-
-def sync_one(
-    *,
-    out_root: Path,
-    docs_root: Path,
-    experiment_slug: str,
-    overwrite: bool,
-) -> SyncResult:
-    """Sync snapshots for a single experiment.
-
-    Args:
-        out_root: Root output directory (usually ``out``).
-        docs_root: Documentation root directory (usually ``docs``).
-        experiment_slug: Experiment slug like ``e013``.
-        overwrite: Whether to overwrite existing snapshot files.
-
-    Returns:
-        A ``SyncResult`` describing what was copied.
-    """
-    out_dir = out_root / experiment_slug
-    src_params = out_dir / "params.json"
-    src_report = out_dir / "report.md"
-
-    dst_params = docs_root / "params" / f"{experiment_slug}.json"
-    dst_report = docs_root / "reports" / f"{experiment_slug}.md"
-
-    copied_params = False
-    if src_params.exists():
-        params_text = _render_params_json(src_params)
-        copied_params = _write_text_if_changed(dst_params, params_text, overwrite=overwrite)
-
-    copied_report = False
-    if src_report.exists():
-        report_text = _render_report_md(src_report)
-        copied_report = _write_text_if_changed(dst_report, report_text, overwrite=overwrite)
-
-    return SyncResult(
-        experiment_slug=experiment_slug,
-        copied_params=copied_params,
-        copied_report=copied_report,
-    )
-
-
-def sync_many(
-    *,
-    out_root: Path,
-    docs_root: Path,
-    experiment_slugs: Iterable[str],
-    overwrite: bool,
-) -> list[SyncResult]:
-    """Sync snapshots for multiple experiments.
-
-    Args:
-        out_root: Root output directory (usually ``out``).
-        docs_root: Documentation root directory (usually ``docs``).
-        experiment_slugs: Iterable of experiment slugs like ``["e001", ...]``.
-        overwrite: Whether to overwrite existing snapshot files.
-
-    Returns:
-        List of results in the input order.
-    """
-    return [
-        sync_one(out_root=out_root, docs_root=docs_root, experiment_slug=slug, overwrite=overwrite)
-        for slug in experiment_slugs
-    ]
-
-
-def _parse_args(argv: list[str] | None) -> argparse.Namespace:
-    """Parse CLI arguments.
-
-    Args:
-        argv: Optional argv list, excluding the program name.
-
-    Returns:
-        Parsed argument namespace.
-    """
-    parser = argparse.ArgumentParser(
-        prog="sync_docs_snapshots",
-        description="Sync out/e### snapshots (params.json + report.md) into docs/.",
-    )
+def _parse_args() -> argparse.Namespace:
+    """Parse CLI arguments."""
+    parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--out-root",
         type=Path,
         default=Path("out"),
-        help="Root output directory (default: out).",
+        help="Root directory that contains per-experiment output folders (default: out/).",
     )
     parser.add_argument(
         "--docs-root",
         type=Path,
         default=Path("docs"),
-        help="Documentation root directory (default: docs).",
+        help="Docs root directory containing params/ and reports/ (default: docs/).",
     )
     parser.add_argument(
-        "--ids",
-        type=str,
-        default="",
-        help=(
-            "Comma-separated experiment ids to sync (e.g. e013,e024). "
-            "If empty, auto-discover under out-root."
-        ),
-    )
-    parser.add_argument(
-        "--overwrite",
+        "--quiet",
         action="store_true",
-        help="Overwrite existing snapshot files in docs/.",
+        help="Suppress non-error output.",
     )
-    return parser.parse_args(argv)
+    return parser.parse_args()
 
 
-def main(argv: list[str] | None = None) -> int:
-    """CLI entry point.
+def _is_valid_slug(name: str) -> bool:
+    """Return True if the directory name is an experiment slug we should sync."""
+    return bool(_EXPERIMENT_DIR_RE.match(name)) or name in _SPECIAL_SLUGS
+
+
+def _find_slug_dirs(out_root: Path) -> list[Path]:
+    """Find all slug directories under out_root that should be synced.
 
     Args:
-        argv: Optional argv list, excluding the program name.
+        out_root: Root directory containing per-experiment output subfolders.
 
     Returns:
-        Process exit code (0 for success).
+        List of directories (paths) sorted by slug name.
     """
-    ns = _parse_args(argv)
-    out_root: Path = ns.out_root
-    docs_root: Path = ns.docs_root
-    overwrite: bool = bool(ns.overwrite)
+    if not out_root.exists():
+        return []
 
-    if ns.ids:
-        slugs = [s.strip().lower() for s in str(ns.ids).split(",") if s.strip()]
-    else:
-        slugs = _iter_experiment_slugs(out_root)
+    dirs: list[Path] = []
+    for p in out_root.iterdir():
+        if p.is_dir() and _is_valid_slug(p.name):
+            dirs.append(p)
 
-    if not slugs:
-        print(f"No experiments found under: {out_root}")
-        return 0
+    return sorted(dirs, key=lambda x: x.name)
 
-    results = sync_many(
-        out_root=out_root,
-        docs_root=docs_root,
-        experiment_slugs=slugs,
-        overwrite=overwrite,
+
+def _read_text(path: Path) -> str:
+    """Read UTF-8 text, replacing invalid bytes."""
+    return path.read_text(encoding="utf-8", errors="replace")
+
+
+def _write_text_if_changed(path: Path, content: str) -> bool:
+    """Write text only if content differs.
+
+    Args:
+        path: Destination file path.
+        content: Text to write.
+
+    Returns:
+        True if a write occurred, otherwise False.
+    """
+    if path.exists():
+        existing = _read_text(path)
+        if existing == content:
+            return False
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8", newline="\n")
+    return True
+
+
+def _read_bytes(path: Path) -> bytes:
+    """Read bytes."""
+    return path.read_bytes()
+
+
+def _write_bytes_if_changed(path: Path, data: bytes) -> bool:
+    """Write bytes only if data differs."""
+    if path.exists():
+        existing = _read_bytes(path)
+        if existing == data:
+            return False
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(data)
+    return True
+
+
+def _wrap_report(slug: str, report_md: str) -> str:
+    """Ensure the report file has a top-level heading.
+
+    This prevents Sphinx/MyST warnings when reports are built as standalone pages.
+
+    Args:
+        slug: Experiment slug (e.g. "e001").
+        report_md: Raw report markdown from out/<slug>/report.md.
+
+    Returns:
+        Markdown content with a leading H1 title.
+    """
+    stripped = report_md.lstrip()
+    if stripped.startswith("# "):
+        return report_md
+
+    title = f"# {slug}\n\n"
+    auto = f"<!-- AUTO-GENERATED: do not edit manually. Source: out/{slug}/report.md -->\n\n"
+    return title + auto + report_md.lstrip("\n")
+
+
+def _cleanup_legacy_filenames(docs_root: Path, slug: str) -> None:
+    """Remove legacy double-extension snapshot files if they exist.
+
+    Older versions of the sync script could produce files like `e001.md.md`.
+    Those trigger Sphinx warnings and should not be kept.
+
+    Args:
+        docs_root: Docs root directory.
+        slug: Experiment slug.
+    """
+    legacy_report = docs_root / "reports" / f"{slug}.md.md"
+    if legacy_report.exists():
+        legacy_report.unlink()
+
+    legacy_params = docs_root / "params" / f"{slug}.json.json"
+    if legacy_params.exists():
+        legacy_params.unlink()
+
+
+def sync_docs_snapshots(out_root: Path, docs_root: Path, quiet: bool) -> SyncResult:
+    """Sync snapshots for all discovered experiment slugs.
+
+    Args:
+        out_root: Root directory that contains per-experiment output folders.
+        docs_root: Docs root containing params/ and reports/ directories.
+        quiet: If True, suppress informational output.
+
+    Returns:
+        Summary counters for the run.
+    """
+    slug_dirs = _find_slug_dirs(out_root)
+    if not slug_dirs:
+        if not quiet:
+            print("No experiment output folders found under:", out_root)
+        return SyncResult(changed=0, skipped=0, missing=0)
+
+    changed = 0
+    skipped = 0
+    missing = 0
+
+    for slug_dir in slug_dirs:
+        slug = slug_dir.name
+        _cleanup_legacy_filenames(docs_root, slug)
+
+        src_params = slug_dir / "params.json"
+        src_report = slug_dir / "report.md"
+
+        if not src_params.exists() or not src_report.exists():
+            missing += 1
+            if not quiet:
+                missing_parts = []
+                if not src_params.exists():
+                    missing_parts.append("params.json")
+                if not src_report.exists():
+                    missing_parts.append("report.md")
+                print(f"Skipping {slug}: missing {', '.join(missing_parts)} in {slug_dir}")
+            continue
+
+        # params.json -> docs/params/<slug>.json
+        dst_params = docs_root / "params" / f"{slug}.json"
+        did_params = _write_bytes_if_changed(dst_params, _read_bytes(src_params))
+
+        # report.md -> docs/reports/<slug>.md (with H1 wrapper)
+        dst_report = docs_root / "reports" / f"{slug}.md"
+        wrapped_report = _wrap_report(slug, _read_text(src_report))
+        did_report = _write_text_if_changed(dst_report, wrapped_report)
+
+        if did_params or did_report:
+            changed += 1
+        else:
+            skipped += 1
+
+    if not quiet:
+        if changed == 0 and missing == 0:
+            print("Nothing changed.")
+        else:
+            print(f"Synced snapshots: changed={changed}, skipped={skipped}, missing={missing}")
+
+    return SyncResult(changed=changed, skipped=skipped, missing=missing)
+
+
+def main() -> int:
+    """CLI entrypoint."""
+    args = _parse_args()
+    result = sync_docs_snapshots(
+        out_root=args.out_root,
+        docs_root=args.docs_root,
+        quiet=args.quiet,
     )
-
-    copied_any = False
-    for r in results:
-        if r.copied_params or r.copied_report:
-            copied_any = True
-        status = []
-        status.append("params" if r.copied_params else "-")
-        status.append("report" if r.copied_report else "-")
-        print(f"{r.experiment_slug}: {', '.join(status)}")
-
-    if not copied_any:
-        print("Nothing changed (already up to date, files missing, or overwrite disabled).")
-
-    return 0
+    # Non-zero exit on missing inputs is usually too strict for local dev.
+    # Sphinx will still fail later if required includes are missing.
+    return 0 if (result.changed >= 0) else 1
 
 
 if __name__ == "__main__":

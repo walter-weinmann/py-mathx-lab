@@ -149,6 +149,7 @@ endif
 
 docs-html: docs-deps
 	@echo Building HTML docs...
+	@$(UV_RUN_DEV) python -m mathxlab.tools.sync_docs_snapshots --quiet
 	@$(UV_RUN_DOCS) python -m sphinx -q -W -b html $(DOCS_DIR) $(DOCS_HTML_DIR)
 
 docs-pdf: docs-deps
@@ -276,7 +277,7 @@ python-check:
 run: install-dev _run_core
 
 snapshots: install-dev
-	$(UV_RUN_DEV) python -m mathxlab.tools.sync_docs_snapshots --overwrite --out-root "$(OUT_ROOT)" --docs-root "$(DOCS_ROOT)" $(if $(IDS),--ids $(IDS),)
+	$(UV_RUN_DEV) python -m mathxlab.tools.sync_docs_snapshots --out-root "$(OUT_ROOT)" --docs-root "$(DOCS_ROOT)" $(if $(IDS),--ids $(IDS),)
 
 status: install-dev
 	$(UV_RUN_DEV) python mathxlab/tools/generate_experiment_status.py
