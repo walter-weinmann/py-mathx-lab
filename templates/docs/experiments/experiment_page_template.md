@@ -5,93 +5,105 @@
 :alt: Preview figure for EXXX
 ```
 
+**Status:** `stable`  <!-- stable | draft | wip -->
+**Last run:** `YYYY-MM-DD`  <!-- optional; e.g. 2026-01-03 -->
+**Deterministic:** `yes`  <!-- yes | no | partial -->
+
 **Tags:** `number-theory`, `quantitative-exploration`, `visualization`  <!-- add more -->
 See: {doc}`../tags`. Do not introduce new tags without adding them to `docs/tags.md`.
 
 ## Highlights
 
-- 2–4 bullets: what is visually interesting or surprising?
-- Prefer concrete outcomes (plots, thresholds, record values, counterexamples).
-- Keep it short: the gallery uses this section as “why click?”
+* 2–4 bullets: what is visually interesting or surprising?
+* Prefer concrete outcomes (plots, thresholds, record values, counterexamples).
+* Keep it short: the gallery uses this section as “why click?”
 
-## Goal
-
-State in 2–4 sentences what the experiment tries to learn or test.
-
-Prefer verbs like **estimate**, **search**, **compare**, **visualize**, **stress-test**.
-
-## Background (quick refresher)
+## Background
 
 Link to lightweight background pages for the key math concept(s):
 
-- {doc}`../background/<topic>`
+* {doc}`../background/<topic>`
 
 ## Research question
 
-State the **single** main question your experiment tries to answer.
+State the **single** main question your experiment tries to answer (2–5 sentences).
 
-- What object or model do you study?
-- What is varied (parameters)?
-- What is observed/measured?
-- What would count as an interesting outcome?
+* Object/model:
+* What varies (parameters):
+* What is observed/measured:
+* What would count as an interesting outcome:
 
 ## Method
 
-- Bullet list the computational steps.
-- Note the parameter ranges and sampling choices.
-- Mention complexity notes if relevant.
+**Inputs**
+
+* Key parameters and ranges:
+* Sampling / truncation choices:
+
+**Procedure**
+
+* Bullet list the computational steps:
+* Complexity notes if relevant:
+
+**Metrics / observables**
+
+* What exactly is plotted / measured / compared:
 
 ## How to run
 
-- `make run EXP=exxx`
-- `uv run python -m mathxlab.experiments.exxx`
+* Recommended: `make run EXP=exxx`
+* Direct: `uv run --extra dev python -m mathxlab.experiments.exxx`
+
+Optional arguments:
+
+* `make run EXP=exxx ARGS="--seed 123 --n 200000"`
 
 ## Outputs
 
 This experiment follows the standard output contract:
 
-- `out/exxx/figures/` — generated figures (PNG)
-- `out/exxx/report.md` — short narrative report
-- `out/exxx/params.json` — run parameters (stable JSON)
-- `out/exxx/logs/` — run logs (created by the runner/Makefile)
+* `out/exxx/figures/` — generated figures (PNG)
+* `out/exxx/report.md` — short narrative report
+* `out/exxx/params.json` — run parameters (stable JSON)
+* `out/exxx/logs/` — run logs (created by the runner/Makefile)
 
-## Published run snapshot
-
-To keep version control clean, the **published** documentation embeds a stable snapshot of
-the most important textual outputs:
-
-- `docs/reports/exxx.md` — snapshot of `out/exxx/report.md`
-- `docs/params/exxx.json` — snapshot of `out/exxx/params.json`
-
-Regenerate these snapshots after running the experiment:
-
-- `make run EXP=exxx`
-- `make snapshots`
-
-```{dropdown} report.md (snapshot)
 :open:
+If this experiment is included in the docs gallery, sync artifacts into `docs/`:
 
-```{include} ../reports/exxx.md
+* run the experiment, producing `out/exxx/…`
+* sync snapshots: `make snapshots IDS="exxx"`
+* confirm the hero image exists at: `docs/_static/experiments/exxx_hero.png`
+
+If useful, include the implementation for quick review:
+
+```{literalinclude} ../../mathxlab/experiments/exxx.py
+:language: python
+:linenos:
 ```
 
-```{dropdown} params.json (snapshot)
-:open:
+## Interpretation (optional)
 
-```{literalinclude} ../params/exxx.json
-:language: json
-```
+- 3–6 sentences: what do the results mean, and what is the key takeaway?
+
+## Caveats (optional)
+
+- Finite N / truncation bias:
+- Numeric stability / precision:
+- Performance limits:
 
 ## References
 
-Use Sphinx bibtex citations:
+Use Sphinx bibtex citations.
 
-- See {cite:t}`someKey`, {cite:t}`anotherKey`.
+- Primary: {cite:t}`someKey`, {cite:t}`anotherKey`
+- Background: {cite:t}`backgroundKey`
 
 ## Related experiments
 
-List a few experiments that are closely connected (ideally 3–6):
+List a few experiments that are closely connected (ideally 3–6).
+Keep reasons short (3–6 words).
 
-- {doc}`e0xx` (<short reason>)
-- {doc}`e0yy` (<short reason>)
-- {doc}`e0zz` (<short reason>)
-
+- {doc}`e0xx` — definition / baseline
+- {doc}`e0yy` — same metric, different regime
+- {doc}`e0zz` — visualization variant
+```

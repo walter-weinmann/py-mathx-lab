@@ -17,21 +17,28 @@ The Makefile is designed to work on:
 
 ## Quick start
 
-### Create / sync the venv
+### Create the venv and install dev dependencies
+
 ```bash
-make venv
+make install-dev
 ````
 
-### Run the full local “confidence chain”
+### Run the full local “confidence chain” (checks and auto-fixes)
 
 ```bash
 make final
 ```
 
-### Build documentation
+### Build documentation (HTML + optional PDF)
 
 ```bash
 make docs
+```
+
+### See all targets
+
+```bash
+make help
 ```
 
 ---
@@ -46,51 +53,57 @@ Dependencies are organized via `pyproject.toml` extras:
 
 ### What the Makefile does
 
-* Most dev targets run via:
+* Dev / QA targets run via:
 
   ```bash
   uv run --extra dev ...
   ```
+
 * Documentation targets run via:
 
   ```bash
   uv run --extra docs ...
   ```
 
-### Why this matters
-
-CI and local development can install only what they need:
-
-* fast “dev chain” (no docs):
+* The docs dependency target uses:
 
   ```bash
-  uv sync --extra dev
+  uv sync --all-extras
   ```
-* docs build:
 
-  ```bash
-  uv sync --extra docs
-  ```
+  (because `docs-html` also runs a small helper under the `dev` extra).
 
 ---
 
 ## Run logs and experiment runner
 
 Experiments live under `mathxlab/experiments/` and can be run either directly
-with Python or through Make targets (if available in your Makefile).
+with Python or through Make targets.
 
 ### Run an experiment module directly
 
 ```bash
-uv run python -m mathxlab.experiments.e001
+uv run --extra dev python -m mathxlab.experiments.e001
+```
+
+### Run an experiment via Make (with logs)
+
+```bash
+make run EXP=e001
+```
+
+Optional arguments:
+
+```bash
+make run EXP=e001 ARGS="--seed 123 --n 200000"
 ```
 
 ### Typical output locations (convention)
 
 Depending on the experiment runner implementation, outputs are usually placed in:
 
-* `out/e###/` (generated artifacts, figures, manifests)
-* `docs/reports/`, `docs/params/` (published snapshots)
+* `out/e###/` (generated artifacts, figures, manifests, logs)
+* `docs/reports/`, `docs/params/`, `docs/gallery/` (published snapshots)
 
 If you add new experiments, keep the numbering stable (`e001`, `e002`, …) so the
 gallery and documentation can remain consistent.
@@ -99,37 +112,84 @@ gallery and documentation can remain consistent.
 
 ## Common workflows
 
-| Task                   | Command                   |
-|------------------------|---------------------------|
-| Complete quality check | `make final`              |
-| Build HTML docs        | `make docs-html`          |
-| Run tests              | `make test`               |
-| Clean all artifacts    | `make clean`              |
-| Reset environment      | `make clean && make venv` |
+| Task                                | Command                                     |
+| ----------------------------------- | ------------------------------------------- |
+| Install dev dependencies            | `make install-dev`                          |
+| Complete quality check              | `make final`                                |
+| Apply auto-fixes (lint + format)    | `make fmt`                                  |
+| Build HTML docs                     | `make docs-html`                            |
+| Build HTML + optional PDF docs      | `make docs`                                 |
+| Run fast tests with coverage        | `make pytest`                               |
+| Run fast + slow tests with coverage | `make pytest-slow`                          |
+| Clean build artifacts               | `make clean`                                |
+| Reset environment                   | `make clean clean-venv && make install-dev` |
 
 ---
 
 ## Target overview (what each target does)
 
 > The exact set of targets is defined in the repository `Makefile`.
-> This page documents the intent of the standard targets used in this repo.
+> This page documents the intent of the targets used in this repo.
 
-| Target      | Purpose                                                                               |
-|-------------|---------------------------------------------------------------------------------------|
-| `venv`      | Create / reuse `.venv` (via `uv venv` / `uv sync`) and install required dependencies. |
-| `docs`      | Build docs HTML and then attempt PDF generation (if the toolchain is installed).      |
-| `docs-html` | Build Sphinx HTML into `docs/_build/html`.                                            |
-| `docs-pdf`  | Build Sphinx LaTeX + compile to PDF using `latexmk` (optional).                       |
-| `format`    | Run `ruff format` (may include `--check` in CI).                                      |
-| `lint`      | Run `ruff check`.                                                                     |
-| `type`      | Run `mypy`.                                                                           |
-| `test`      | Run `pytest`.                                                                         |
-| `final`     | Run the full chain: sync dev deps, format check, lint, type, tests, docs.             |
-| `clean`     | Remove build artifacts (e.g., `docs/_build`).                                         |
+Targets are listed in **alphabetical order**.
 
-### Notes on documentation targets
+| Target          | Purpose                                                                             |
+| --------------- |-------------------------------------------------------------------------------------|
+| `clean`         | Remove caches/build artifacts (docs build, mypy/pytest/ruff caches, etc.).          |
+| `clean-venv`    | Remove the virtual environment directory `.venv`.                                   |
+| `docs`          | Build docs: `status` + `tags-check` + `docs-html` + `docs-pdf`.                     |
+| `docs-clean`    | Remove `docs/_build`.                                                               |
+| `docs-deps`     | Install/update dependencies needed for docs builds (`uv sync --all-extras`).        |
+| `docs-html`     | Build Sphinx HTML into `docs/_build/html` (also syncs docs snapshots first).        |
+| `docs-pdf`      | Build PDF docs (optional): requires external LaTeX toolchain + `latexmk`.           |
+| `final`         | Full check chain: `format` + `lint-fix` + `mypy` + `pytest` + `docs`.               |
+| `final-slow`    | Full check chain: `format-check` + `lint` + `mypy` + `pytest` + `docs`.             |
+| `fmt`           | Developer helper: run `ruff check --fix .` and `ruff format .` (broad auto-fix).    |
+| `format`        | Apply formatting (`ruff format`) to selected paths.                                 |
+| `format-check`  | Check formatting only (`ruff format --check`) on selected paths.                    |
+| `help`          | Print the complete list of targets and short descriptions.                          |
+| `install`       | `pip install -e .` (editable install) after venv exists.                            |
+| `install-all`   | Install default dependencies (`uv sync`).                                           |
+| `install-dev`   | Install default + dev dependencies (`uv sync --extra dev`).                         |
+| `install-docs`  | Install default + docs dependencies (`uv sync --extra docs`).                       |
+| `lint`          | Ruff lint (check-only): `ruff check .`.                                             |
+| `lint-fix`      | Ruff lint with auto-fix: `ruff check --fix .`.                                      |
+| `mypy`          | Type-check: `mypy mathxlab tests experiments`.                                      |
+| `out`           | Run all experiments sequentially (`mathxlab/experiments/e###.py`).                  |
+| `perf`          | Run performance suite in “dev” mode.                                                |
+| `perf-compare`  | Compare two perf snapshots (`A=... B=...`).                                         |
+| `perf-release`  | Run performance suite in “release” mode.                                            |
+| `pytest`        | Run fast tests (`not slow`) with coverage.                                          |
+| `pytest-slow`   | Run fast tests then slow tests (`slow`) with coverage aggregation.                  |
+| `pytest-xdist`  | Run fast tests with xdist (`-n auto`).                                              |
+| `python-check`  | Verify `python` is at least `PYTHON_MIN`.                                           |
+| `run`           | Run a single experiment by id: `make run EXP=e001 [ARGS=...]`.                      |
+| `snapshots`     | Sync `out/*` snapshots (params/report/assets) into `docs/*` (optionally `IDS=...`). |
+| `status`        | Update `docs/experiment_status.md`.                                                 |
+| `tags-check`    | Validate doc tags against `docs/tags.md`.                                           |
+| `uv-check`      | Verify `uv` is installed and available on PATH.                                     |
+| `venv`          | Create `.venv` if missing (does not install deps by itself).                        |
+| `venv-recreate` | Remove and recreate `.venv` from scratch.                                           |
 
-* `docs-html` should always work if `--extra docs` installs successfully.
+---
+
+## Variables and parameters
+
+These are the most common knobs you can pass on the command line:
+
+* `EXP`: experiment id, e.g. `e001` (used by `run`)
+* `ARGS`: forwarded to the experiment module, e.g. `ARGS="--seed 1 --n 200000"`
+* `OUT_ROOT`: defaults to `out` (used by `snapshots`)
+* `DOCS_ROOT`: defaults to `docs` (used by `snapshots`)
+* `IDS`: optional list for `snapshots`, e.g. `IDS="e001 e002 e003"`
+* `A`, `B`: perf snapshot identifiers for `perf-compare`
+* `PYTHON_MIN`: minimum Python version required by `python-check`
+
+---
+
+## Notes on documentation targets
+
+* `docs-html` should work if `docs-deps` (or `install-dev` + `install-docs`) succeeds.
 * `docs-pdf` requires an external LaTeX toolchain:
 
   * `latexmk`
@@ -144,11 +204,13 @@ If LaTeX is not installed, `docs-pdf` should be treated as “best effort”.
 
 ### Sphinx “include start-after/end-before text not found”
 
-This means a `{include}` directive is looking for a marker string that does not
+This means an `{include}` directive is looking for a marker string that does not
 exist in the included file. Ensure this `docs/makefile.md` contains the headings
 exactly as expected (including capitalization and parentheses).
 
 ### CI shell errors in Make recipes
 
 GitHub Actions uses `/bin/sh` by default. Any recipe text containing shell
-metacharacters (e.g., `;`) must be quoted.
+metacharacters must be valid for POSIX shells.
+
+```
