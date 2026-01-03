@@ -73,7 +73,6 @@ Regenerate these snapshots after running the experiment:
 
 ```{include} ../reports/exxx.md
 ```
-```
 
 ```{dropdown} params.json (snapshot)
 :open:
