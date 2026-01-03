@@ -32,7 +32,7 @@ def _get_package_version(dist_name: str) -> str:
 
 project = "py-mathx-lab"
 author = "Walter Weinmann"
-copyright = "2025, Walter Weinmann"
+copyright = "2025-2026, Walter Weinmann"
 
 raw_release = _get_package_version("mathxlab")
 
@@ -92,6 +92,12 @@ myst_heading_anchors = 3
 
 # BibTeX settings
 bibtex_bibfiles = ["refs.bib"]
+
+# Make bibliography labels non-cryptic (numeric) and make inline cites readable (author-year)
+bibtex_default_style = "plain"          # numeric labels like [1], [2], ...
+bibtex_reference_style = "author_year"  # inline cites like "Titchmarsh (1986)"
+bibtex_tooltips = True                 # hover shows a short preview
+bibtex_tooltips_style = "plain"
 
 # Suppress known sphinx-design warnings that don't affect rendering
 suppress_warnings = ["design.grid"]
