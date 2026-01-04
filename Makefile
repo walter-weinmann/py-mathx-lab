@@ -59,6 +59,9 @@ PYTEST   = $(UV_RUN_DEV) pytest -o "cache_dir=temp_pytest_cache" --basetemp=temp
 PYTEST_XDIST_FAST ?=
 PYTEST_XDIST_SLOW ?= -n auto --dist=load
 
+# Use the project's virtualenv Python for version checks.
+PYTHON_CHECK_BIN ?= $(VENV_DIR)/bin/python
+
 # Coverage focuses on library code. Experiment scripts are excluded via
 # [tool.coverage.run].omit in pyproject.toml.
 COV_PKGS = --cov=mathxlab.exp --cov=mathxlab.nt --cov=mathxlab.num --cov=mathxlab.plots --cov=mathxlab.viz
@@ -175,9 +178,9 @@ format-check: install-dev
 	$(UV_RUN_DEV) ruff format --check mathxlab tests experiments scripts pyproject.toml
 
 help:
-	@echo Targets:
-	@echo   make clean            - remove caches/build artifacts
-	@echo   make clean-venv       - remove .venv
+	@echo "Targets:"
+	@echo "  make clean            - remove caches/build artifacts"
+	@echo "  make clean-venv       - remove .venv"
 	@echo "  make docs             - build docs (status, tags-check, HTML, optional PDF)"
 	@echo "  make docs-clean       - remove docs/_build"
 	@echo "  make docs-deps        - sync docs dependencies (uv sync --all-extras)"
@@ -185,32 +188,32 @@ help:
 	@echo "  make docs-pdf         - build PDF docs (optional; requires LaTeX toolchain)"
 	@echo "  make final            - run format + lint-fix + mypy + pytest + docs"
 	@echo "  make final-slow       - run format-check + lint + mypy + pytest-slow + docs"
-	@echo   make fmt              - apply ruff fixes + format (broad)
-	@echo   make format           - apply ruff formatting (selected paths)
-	@echo   make format-check     - check formatting only (no changes)
-	@echo   make help             - show this help
-	@echo   make install          - pip install -e . (after venv exists)
-	@echo   make install-all      - sync default dependencies
-	@echo   make install-dev      - sync default + dev dependencies
-	@echo   make install-docs     - sync default + docs dependencies
-	@echo   make lint             - ruff lint (check-only)
-	@echo   make lint-fix         - ruff lint with --fix
-	@echo   make mypy             - run mypy
-	@echo   make out              - run all experiments sequentially (ARGS=...)
-	@echo   make perf             - run performance suite (dev snapshot)
-	@echo   make perf-compare     - compare two snapshots (A=... B=...)
-	@echo   make perf-release     - run performance suite (release snapshot)
-	@echo   make pytest           - run fast tests with coverage
-	@echo   make pytest-slow      - run fast + slow tests with coverage
+	@echo "  make fmt              - apply ruff fixes + format (broad)"
+	@echo "  make format           - apply ruff formatting (selected paths)"
+	@echo "  make format-check     - check formatting only (no changes)"
+	@echo "  make help             - show this help"
+	@echo "  make install          - pip install -e . (after venv exists)"
+	@echo "  make install-all      - sync default dependencies"
+	@echo "  make install-dev      - sync default + dev dependencies"
+	@echo "  make install-docs     - sync default + docs dependencies"
+	@echo "  make lint             - ruff lint (check-only)"
+	@echo "  make lint-fix         - ruff lint with --fix"
+	@echo "  make mypy             - run mypy"
+	@echo "  make out              - run all experiments sequentially (ARGS=...)"
+	@echo "  make perf             - run performance suite (dev snapshot)"
+	@echo "  make perf-compare     - compare two snapshots (A=... B=...)"
+	@echo "  make perf-release     - run performance suite (release snapshot)"
+	@echo "  make pytest           - run fast tests with coverage"
+	@echo "  make pytest-slow      - run fast + slow tests with coverage"
 	@echo "  make pytest-xdist     - run fast tests with xdist (-n auto)"
-	@echo   make python-check     - verify Python >= PYTHON_MIN
+	@echo "  make python-check     - verify Python >= PYTHON_MIN"
 	@echo "  make run EXP=e001     - run an experiment by id (ARGS=...)"
-	@echo   make snapshots        - sync out/* snapshots into docs/*
-	@echo   make status           - update docs/experiment_status.md
-	@echo   make tags-check       - validate docs tags against docs/tags.md
-	@echo   make uv-check         - verify uv is available
-	@echo   make venv             - create .venv (if missing)
-	@echo   make venv-recreate    - recreate .venv from scratch
+	@echo "  make snapshots        - sync out/* snapshots into docs/*"
+	@echo "  make status           - update docs/experiment_status.md"
+	@echo "  make tags-check       - validate docs tags against docs/tags.md"
+	@echo "  make uv-check         - verify uv is available"
+	@echo "  make venv             - create .venv (if missing)"
+	@echo "  make venv-recreate    - recreate .venv from scratch"
 
 install: venv
 	$(UV) pip install -e .
@@ -282,7 +285,7 @@ pytest-xdist: install-dev
 		$(COV_PKGS) --cov-report=term-missing --cov-fail-under=80
 
 python-check:
-	@python -c "import sys; req='$(PYTHON_MIN)'.split('.'); req=(int(req[0]), int(req[1])); v=sys.version_info; assert v[:2] >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"
+	@$(PYTHON_CHECK_BIN) -c "import sys; req=tuple(map(int,'$(PYTHON_MIN)'.split('.')[:2])); v=sys.version_info; assert (v.major, v.minor) >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"
 
 run: install-dev _run_core
 
