@@ -191,7 +191,7 @@ def _write_report(
         "make run EXP=e004",
         "```",
         "",
-        "## Parameters",
+        "### Parameters",
         f"- n_values: `{', '.join(str(int(x)) for x in n_vals)}`",
         f"- trials: `{params.trials}`",
         "",
@@ -204,7 +204,7 @@ def _write_report(
         speed = a / b if b > 0 else float("nan")
         lines.append(f"| {int(N)} | {a:.4f} | {b:.4f} | {speed:.2f} |")
     lines.append("")
-    lines.append("## Notes")
+    lines.append("### Notes")
     lines.append(
         "- Sieve computes all σ(1..N) at once; factorization recomputes structure per number."
     )

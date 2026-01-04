@@ -109,7 +109,7 @@ def _write_report(*, report_path: Path, params: Params) -> None:
         "make run EXP=e007",
         "```",
         "",
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         f"- stride: `{params.stride}`",
         "",
@@ -122,7 +122,7 @@ def _write_report(*, report_path: Path, params: Params) -> None:
         lines.append(f"| {nn} | {dd} | {nn} |")
     lines += [
         "",
-        "## Notes",
+        "### Notes",
         "- For n ≥ 1, the bit-length of M_n is exactly n.",
         "- digits(M_n) can be computed via floor(n·log10(2)) + 1 without building M_n.",
         "",

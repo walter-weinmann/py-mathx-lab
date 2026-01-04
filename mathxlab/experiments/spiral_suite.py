@@ -164,11 +164,11 @@ def run_e124(
 
     lines = _basic_report_header("E124", "Klauber triangle", "e124")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- rows: `{params.rows}`",
         f"- n_max: `{n_max}` (numbers 1..n_max)",
         "",
-        "## Notes",
+        "### Notes",
         "- Row m contains integers from (m-1)^2+1 to m^2 (inclusive).",
         "- The run is deterministic; `seed` is accepted for interface consistency.",
         "",
@@ -231,10 +231,10 @@ def run_e125(
 
     lines = _basic_report_header("E125", "Sacks spiral", "e125")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}` (numbers 1..n_max)",
         "",
-        "## Notes",
+        "### Notes",
         "- Coordinates: r=√n, θ=2π√n, plotted as (r cos θ, r sin θ).",
         "- This run plots primes only (composites omitted).",
         "- The run is deterministic; `seed` is accepted for interface consistency.",
@@ -363,11 +363,11 @@ def run_e126(
 
     lines = _basic_report_header("E126", "Hexagonal number spiral", "e126")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- rings: `{params.rings}`",
         f"- total: `{total}` (numbers 1..total)",
         "",
-        "## Notes",
+        "### Notes",
         "- The spiral enumerates hexagonal rings around the origin on an axial grid.",
         "- This run plots primes only (composites omitted).",
         "- The run is deterministic; `seed` is accepted for interface consistency.",

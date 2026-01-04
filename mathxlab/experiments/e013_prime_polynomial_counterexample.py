@@ -308,7 +308,7 @@ def _write_report(
         "make run EXP=e013",
         "```",
         "",
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         f"- max_listed: `{params.max_listed}`",
         "",
@@ -334,7 +334,7 @@ def _write_report(
 
     lines += [
         "",
-        "## Notes",
+        "### Notes",
         "- Euler's polynomial f(n)=n^2+n+41 is prime for n=0..39, but f(40)=41^2 is composite.",
         "- Quadratics can look 'prime-rich' on small ranges, which is a classic trap for intuition.",
         "- This experiment focuses on the *first* visible failure (counterexample) for each polynomial.",

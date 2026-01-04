@@ -134,7 +134,7 @@ def main() -> int:
     lines: list[str] = [
         "# E066 — Character partial sums: cancellation profiles",
         "",
-        "## Parameters",
+        "### Parameters",
         f"- q: {params.q}",
         f"- N_max: {params.n_max}",
         f"- include_principal: {params.include_principal}",

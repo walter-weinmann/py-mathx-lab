@@ -148,7 +148,7 @@ def _write_report(
         "make run EXP=e128",
         "```",
         "",
-        "## Parameters",
+        "### Parameters",
         f"- a: `{params.a}`",
         f"- b: `{params.b}`",
         f"- p_max: `{params.p_max}`",

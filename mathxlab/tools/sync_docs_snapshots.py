@@ -86,14 +86,14 @@ def _read_text(path: Path) -> str:
 
 
 def _write_text_if_changed(path: Path, content: str) -> bool:
-    """Write text only if content differs.
+    """Write text only if the content differs.
 
     Args:
         path: Destination file path.
         content: Text to write.
 
     Returns:
-        True if a write occurred, otherwise False.
+        True if a writing occurred, otherwise False.
     """
     if path.exists():
         existing = _read_text(path)
@@ -123,24 +123,42 @@ def _write_bytes_if_changed(path: Path, data: bytes) -> bool:
 
 
 def _wrap_report(slug: str, report_md: str) -> str:
-    """Ensure the report file has a top-level heading.
+    """Ensure the report file has a top-level heading and include markers.
 
-    This prevents Sphinx/MyST warnings when reports are built as standalone pages.
+    This prevents Sphinx/MyST warnings when reports are built as standalone pages,
+    and allows selective inclusion in experiment pages via markers.
+
+    The markers should wrap only the report *content*, excluding any H1 header,
+    to avoid repeating the header when included in experiment pages.
 
     Args:
         slug: Experiment slug (e.g. "e001").
-        report_md: Raw report markdown from out/<slug>/report.md.
+        report_md: Raw report Markdown from out/<slug>/report.md.
 
     Returns:
-        Markdown content with a leading H1 title.
+        Markdown content with a leading H1 title and markers.
     """
-    stripped = report_md.lstrip()
-    if stripped.startswith("# "):
+    stripped = report_md.strip()
+
+    # If it already has markers, don't wrap it again
+    if "<!-- REPORT:BEGIN -->" in stripped and "<!-- REPORT:END -->" in stripped:
         return report_md
 
+    markers_begin = "<!-- REPORT:BEGIN -->\n"
+    markers_end = "\n<!-- REPORT:END -->"
+
+    if stripped.startswith("# "):
+        # If it already has an H1, keep it outside (above) the markers.
+        # We find the first newline after the H1 line.
+        lines = stripped.splitlines()
+        h1 = lines[0]
+        content = "\n".join(lines[1:]).strip()
+        return h1 + "\n\n" + markers_begin + content + markers_end + "\n"
+
+    # No H1 header: add one and keep it outside the markers
     title = f"# {slug}\n\n"
     auto = f"<!-- AUTO-GENERATED: do not edit manually. Source: out/{slug}/report.md -->\n\n"
-    return title + auto + report_md.lstrip("\n")
+    return title + auto + markers_begin + stripped + markers_end + "\n"
 
 
 def _cleanup_legacy_filenames(docs_root: Path, slug: str) -> None:

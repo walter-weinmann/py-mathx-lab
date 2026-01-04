@@ -79,19 +79,19 @@ def _write_report(*, report_path: Path, params: Params) -> None:
 make run EXP=exxx ARGS="--out out/exxx --seed {params.seed}"
 ```
 
-## Parameters
+### Parameters
 
 - seed: `{params.seed}`
 - n_max: `{params.n_max}`
 - num_points: `{params.num_points}`
 
-## Outputs
+### Outputs
 
 - `figures/fig_01_*.png`
 - `params.json`
 - `report.md`
 
-## Notes
+### Notes
 
 - Add 3–8 sentences describing what you observed in this run.
 - Mention any surprising behavior, numerical caveats, or limitations.

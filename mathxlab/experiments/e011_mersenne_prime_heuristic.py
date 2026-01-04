@@ -132,7 +132,7 @@ def _write_report(
         "make run EXP=e011",
         "```",
         "",
-        "## Parameters",
+        "### Parameters",
         f"- p_max: `{params.p_max}`",
         f"- max_tests: `{params.max_tests}`",
         "",
@@ -150,7 +150,7 @@ def _write_report(
         lines.append("_none in this range (or max_tests too small)_")
     lines += [
         "",
-        "## Notes",
+        "### Notes",
         "- The heuristic probability is ~ 1/(p·ln 2) for prime p.",
         "- This is not a theorem; it is a back-of-the-envelope model for rarity.",
         "",

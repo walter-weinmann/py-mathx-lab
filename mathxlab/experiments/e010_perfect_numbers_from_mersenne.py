@@ -163,7 +163,7 @@ def _write_report(
         "make run EXP=e010",
         "```",
         "",
-        "## Parameters",
+        "### Parameters",
         f"- p_max: `{params.p_max}`",
         f"- max_tests: `{params.max_tests}`",
         "",
@@ -187,7 +187,7 @@ def _write_report(
 
     lines += [
         "",
-        "## Notes",
+        "### Notes",
         "- N = 2^(p-1)·(2^p-1) is perfect iff M_p is prime (Euclid–Euler).",
         "- For large p, we avoid constructing N explicitly and report its size (digits).",
         "",

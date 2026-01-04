@@ -176,7 +176,7 @@ def _write_report(
         "make run EXP=e009",
         "```",
         "",
-        "## Parameters",
+        "### Parameters",
         f"- p_max: `{params.p_max}`",
         f"- max_tests: `{params.max_tests}`",
         f"- q_max: `{params.q_max}`",
@@ -195,7 +195,7 @@ def _write_report(
         lines.append(f"| {p} | {q} |")
     lines += [
         "",
-        "## Notes",
+        "### Notes",
         "- The congruence filter q ≡ 1 (mod 2p) is necessary but not sufficient.",
         "- A found q certifies M_p is composite; it does not factor M_p completely.",
         "",

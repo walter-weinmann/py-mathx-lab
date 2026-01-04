@@ -116,7 +116,7 @@ Mersenne prime exponents used in this run:
 - `figures/fig_03_log10_error_vs_p.png`
 - `params.json`
 
-## Notes
+### Notes
 
 - Growth is extreme: both digits and bit length scale roughly linearly in `p`.
 - The log-approximation error stays bounded and illustrates why `N(p)` behaves like `2^(2p)` up to a small correction.
