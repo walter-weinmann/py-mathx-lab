@@ -2,8 +2,8 @@
 
 This page tracks the generation and manual editing status of experiment pages.
 
-| Experiment                                | Generated  | Last edited | Notes |
-|:------------------------------------------|:-----------|:------------|:------|
+| Experiment                                | Generated  | Last edited  | Notes  |
+|:------------------------------------------|:-----------|:-------------|:-------|
 | e001_taylor_error_landscapes | 31.12.2025 |  |  |
 | e002_even_perfect_growth | 31.12.2025 |  |  |
 | e003_abundancy_index_landscape | 31.12.2025 |  |  |
