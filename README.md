@@ -48,7 +48,7 @@ make docs
 
 Docs output is written to:
 
-* `docs/_build/html`
+* `docs/_build/`
 
 ### Run an experiment
 
