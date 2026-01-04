@@ -289,7 +289,19 @@ pytest-xdist: install-dev
 		$(COV_PKGS) --cov-report=term-missing --cov-fail-under=80
 
 python-check:
-	@$(PYTHON_CHECK_BIN) -c "import sys; req=tuple(map(int,'$(PYTHON_MIN)'.split('.')[:2])); v=sys.version_info; assert (v.major, v.minor) >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"
+ifeq ($(IS_WINDOWS),1)
+	@if exist "$(PYTHON_CHECK_BIN)" ( \
+		"$(PYTHON_CHECK_BIN)" -c "import sys; req=tuple(map(int,'$(PYTHON_MIN)'.split('.')[:2])); v=sys.version_info; assert (v.major, v.minor) >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'" \
+	) else ( \
+		python -c "import sys; req=tuple(map(int,'$(PYTHON_MIN)'.split('.')[:2])); v=sys.version_info; assert (v.major, v.minor) >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'" \
+	)
+else
+	@if [ -f "$(PYTHON_CHECK_BIN)" ]; then \
+		"$(PYTHON_CHECK_BIN)" -c "import sys; req=tuple(map(int,'$(PYTHON_MIN)'.split('.')[:2])); v=sys.version_info; assert (v.major, v.minor) >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"; \
+	else \
+		python3 -c "import sys; req=tuple(map(int,'$(PYTHON_MIN)'.split('.')[:2])); v=sys.version_info; assert (v.major, v.minor) >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"; \
+	fi
+endif
 
 run: install-dev _run_core
 
