@@ -39,6 +39,15 @@
 	venv \
 	venv-recreate
 
+# --- OS detection ------------------------------------------------------------
+ifeq ($(OS),Windows_NT)
+IS_WINDOWS := 1
+SHELL := cmd.exe
+.SHELLFLAGS := /C
+else
+IS_WINDOWS := 0
+endif
+
 PYTHON_MIN := 3.14
 CLEAN_DIRS := .mypy_cache .pytest_cache .ruff_cache build dist docs/_build temp_pytest temp_pytest_cache
 VENV_DIR   := .venv
@@ -60,7 +69,11 @@ PYTEST_XDIST_FAST ?=
 PYTEST_XDIST_SLOW ?= -n auto --dist=load
 
 # Use the project's virtualenv Python for version checks.
+ifeq ($(IS_WINDOWS),1)
+PYTHON_CHECK_BIN ?= $(VENV_DIR)\Scripts\python.exe
+else
 PYTHON_CHECK_BIN ?= $(VENV_DIR)/bin/python
+endif
 
 # Coverage focuses on library code. Experiment scripts are excluded via
 # [tool.coverage.run].omit in pyproject.toml.
@@ -69,15 +82,6 @@ COV_PKGS = --cov=mathxlab.exp --cov=mathxlab.nt --cov=mathxlab.num --cov=mathxla
 # Optional: silence uv "Failed to hardlink files" warning on multi-drive setups (common on Windows).
 # You can also set this globally via environment instead of here.
 export UV_LINK_MODE ?= copy
-
-# --- OS detection ------------------------------------------------------------
-ifeq ($(OS),Windows_NT)
-	IS_WINDOWS := 1
-	SHELL := cmd.exe
-	.SHELLFLAGS := /C
-else
-	IS_WINDOWS := 0
-endif
 
 # --- small helpers -----------------------------------------------------------
 ifeq ($(IS_WINDOWS),1)
