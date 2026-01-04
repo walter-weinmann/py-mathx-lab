@@ -157,7 +157,7 @@ docs-html: docs-deps
 	@$(UV_RUN_DOCS) python -m sphinx -q -W -b html $(DOCS_DIR) $(DOCS_HTML_DIR)
 
 docs-pdf: docs-deps
-	@echo Building PDF docs (optional; requires LaTeX toolchain + latexmk)...
+	@echo "Building PDF docs (optional; requires LaTeX toolchain + latexmk)..."
 	@$(UV_RUN_DOCS) python -m mathxlab.tools.docs_pdf --quiet
 
 final: format lint-fix mypy pytest docs
@@ -178,13 +178,13 @@ help:
 	@echo Targets:
 	@echo   make clean            - remove caches/build artifacts
 	@echo   make clean-venv       - remove .venv
-	@echo   make docs             - build docs (status, tags-check, HTML, optional PDF)
-	@echo   make docs-clean       - remove docs/_build
-	@echo   make docs-deps        - sync docs dependencies (uv sync --all-extras)
-	@echo   make docs-html        - build Sphinx HTML into docs/_build/html
-	@echo   make docs-pdf         - build PDF docs (optional; requires LaTeX toolchain)
-	@echo   make final            - run format + lint-fix + mypy + pytest + docs
-	@echo   make final-slow       - run format-check + lint + mypy + pytest-slow + docs
+	@echo "  make docs             - build docs (status, tags-check, HTML, optional PDF)"
+	@echo "  make docs-clean       - remove docs/_build"
+	@echo "  make docs-deps        - sync docs dependencies (uv sync --all-extras)"
+	@echo "  make docs-html        - build Sphinx HTML into docs/_build/html"
+	@echo "  make docs-pdf         - build PDF docs (optional; requires LaTeX toolchain)"
+	@echo "  make final            - run format + lint-fix + mypy + pytest + docs"
+	@echo "  make final-slow       - run format-check + lint + mypy + pytest-slow + docs"
 	@echo   make fmt              - apply ruff fixes + format (broad)
 	@echo   make format           - apply ruff formatting (selected paths)
 	@echo   make format-check     - check formatting only (no changes)
@@ -202,9 +202,9 @@ help:
 	@echo   make perf-release     - run performance suite (release snapshot)
 	@echo   make pytest           - run fast tests with coverage
 	@echo   make pytest-slow      - run fast + slow tests with coverage
-	@echo   make pytest-xdist     - run fast tests with xdist (-n auto)
+	@echo "  make pytest-xdist     - run fast tests with xdist (-n auto)"
 	@echo   make python-check     - verify Python >= PYTHON_MIN
-	@echo   make run EXP=e001     - run an experiment by id (ARGS=...)
+	@echo "  make run EXP=e001     - run an experiment by id (ARGS=...)"
 	@echo   make snapshots        - sync out/* snapshots into docs/*
 	@echo   make status           - update docs/experiment_status.md
 	@echo   make tags-check       - validate docs tags against docs/tags.md
