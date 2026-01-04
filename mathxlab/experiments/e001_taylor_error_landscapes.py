@@ -95,7 +95,7 @@ make run EXP=e001_taylor_error_landscapes
 
 **Seed:** `{seed}`
 
-## Parameters
+### Parameters
 
 - Domain: `[x_min, x_max] = [{params.x_min}, {params.x_max}]`
 - num_points: `{params.num_points}`
@@ -107,7 +107,7 @@ make run EXP=e001_taylor_error_landscapes
 - `figures/fig_01_sin_and_taylor_center_*.png` — overlay of sin(x) and Taylor polynomials for one center
 - `figures/fig_02_error_landscape_center_*.png` — absolute error curves for each center, overlaid by degree
 
-## Notes
+### Notes
 
 - Taylor approximations are *local*: accuracy is highest near the expansion center and generally degrades away from it.
 - If you increase degrees or the domain size, floating-point roundoff may become visible.

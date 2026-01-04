@@ -242,7 +242,7 @@ def _write_report(
     lines: list[str] = []
     lines.append("# E051 — Semiprimes: balanced vs unbalanced factorization timing")
     lines.append("")
-    lines.append("## Parameters")
+    lines.append("### Parameters")
     lines.append("")
     lines.append(f"- sample_count: {params.sample_count}")
     lines.append(f"- balanced_bits: {params.balanced_bits}")

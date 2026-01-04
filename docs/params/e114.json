@@ -1,0 +1,11 @@
+{
+  "eval_dps": 50,
+  "n_terms_values": [
+    100,
+    200,
+    400
+  ],
+  "ref_dps": 70,
+  "t_max": 30.0,
+  "t_steps": 61
+}

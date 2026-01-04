@@ -94,7 +94,7 @@ def _write_report(*, report_path: Path, params: Params, count_perfect: int) -> N
 make run EXP=e003
 ```
 
-## Parameters
+### Parameters
 
 - N: `{params.n_max}`
 - scatter stride: `{params.stride_scatter}`
@@ -112,7 +112,7 @@ make run EXP=e003
 
 - Perfect numbers found (≤ N): `{count_perfect}`
 
-## Notes
+### Notes
 
 - Compare perfection using integers: σ(n) == 2n.
 - For plotting, floats are acceptable, but classification should not depend on float rounding.

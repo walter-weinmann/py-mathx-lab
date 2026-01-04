@@ -142,36 +142,48 @@ def _extract_gallery_tags(gallery_text: str) -> list[str]:
     - visible tag pills like: <span class="... tag ...">tag</span>
     - backticked tokens: `tag`
 
+    Only tokens that match the canonical tag format (lowercase [a-z0-9-]) are
+    returned. Experiment IDs like e106 are ignored.
+
     Args:
         gallery_text: Markdown/HTML content of experiments_gallery.md.
 
     Returns:
-        List of raw tag strings found (not filtered by regex).
+        List of tag strings found.
     """
     found: list[str] = []
+
+    def _maybe_add(token: str) -> None:
+        """Add a token if it looks like a tag and is not an experiment id."""
+        t = token.strip()
+        if not t:
+            return
+        if re.fullmatch(r"e\d{3,4}", t):
+            return
+        if _TAG_RE.fullmatch(t) is None:
+            return
+        found.append(t)
 
     for m in re.finditer(r'data-tags\s*=\s*"([^"]+)"', gallery_text):
         raw = m.group(1)
         parts = re.split(r"[\s,]+", raw)
-        found.extend([p.strip() for p in parts if p.strip()])
+        for p in parts:
+            _maybe_add(p)
 
     for m in re.finditer(r'data-tag\s*=\s*"([^"]+)"', gallery_text):
-        found.append(m.group(1).strip())
+        _maybe_add(m.group(1))
 
     for m in re.finditer(
         r'<[^>]*class="[^"]*\btag\b[^"]*"[^>]*>([^<]+)</',
         gallery_text,
         flags=re.IGNORECASE,
     ):
-        found.append(m.group(1).strip())
+        _maybe_add(m.group(1))
 
     for m in re.finditer(r"`([^`]+)`", gallery_text):
-        tag = m.group(1).strip()
-        # Filter out experiment IDs like e106, e013, etc.
-        if not re.fullmatch(r"e\d{3,4}", tag):
-            found.append(tag)
+        _maybe_add(m.group(1))
 
-    return [t for t in found if t]
+    return found
 
 
 def _format_failure(result: TagValidationResult) -> str:

@@ -177,7 +177,7 @@ def _write_report(
         "make run EXP=e005",
         "```",
         "",
-        "## Parameters",
+        "### Parameters",
         f"- N: `{params.n_max}`",
         "",
         "## Survival table",
@@ -188,7 +188,7 @@ def _write_report(
     for s, c in zip(stages, counts, strict=True):
         lines.append(f"| {s} | {int(c)} |")
     lines.append("")
-    lines.append("## Notes")
+    lines.append("### Notes")
     lines.append(
         "- These are necessary conditions only; surviving candidates are *not* perfect by implication."
     )

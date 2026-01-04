@@ -1,0 +1,9 @@
+{
+  "mp_dps": 70,
+  "n_sigma": 25,
+  "n_t": 31,
+  "sigma_max": 2.0,
+  "sigma_min": -1.0,
+  "t_max": 15.0,
+  "t_min": -15.0
+}

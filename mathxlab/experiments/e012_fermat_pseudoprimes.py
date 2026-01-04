@@ -257,7 +257,7 @@ def _write_report(
         f'make run EXP=e012 ARGS="--seed {params.seed}"',
         "```",
         "",
-        "## Parameters",
+        "### Parameters",
         f"- seed: `{params.seed}`",
         f"- n_max: `{params.n_max}`",
         f"- base a: `{params.base}`",
@@ -287,7 +287,7 @@ def _write_report(
 
     lines += [
         "",
-        "## Notes",
+        "### Notes",
         "- Fermat's test is one-way: primes pass, but some composites also pass.",
         "- Carmichael numbers are the strongest counterexamples: they pass for all coprime bases.",
         "- Detection here uses Korselt's criterion (squarefree + divisibility conditions).",

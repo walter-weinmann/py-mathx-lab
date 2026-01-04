@@ -231,7 +231,7 @@ def _write_report(
         "make run EXP=e127",
         "```",
         "",
-        "## Parameters",
+        "### Parameters",
         f"- a range: `[{params.a_min}, {params.a_max}]`",
         f"- b range: `[{params.b_min}, {params.b_max}]`",
         f"- n_run_max: `{params.n_run_max}` (test n=0..n_run_max)",

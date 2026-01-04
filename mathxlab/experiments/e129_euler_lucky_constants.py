@@ -207,7 +207,7 @@ def _write_report(
         "```bash\n",
         "make run EXP=e129\n",
         "```\n",
-        "## Parameters\n",
+        "### Parameters\n",
         f"- n_max: `{params.n_max}`\n",
         f"- b_values: `{b_sorted}`\n",
         "\n",
@@ -226,7 +226,7 @@ def _write_report(
 
     lines += [
         "\n",
-        "## Notes\n",
+        "### Notes\n",
         "- Many quadratics look prime-rich on small ranges; a short streak does not imply a deep theorem.\n",
         "- For any fixed b, there are always modular obstructions (e.g. the b-multiple subsequence for n=bk when b is prime).\n",
         "\n",

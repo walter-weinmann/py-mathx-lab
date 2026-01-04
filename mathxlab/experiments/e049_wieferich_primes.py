@@ -143,12 +143,12 @@ def _write_report(*, report_path: Path, params: Params, hits: list[int]) -> None
     lines: list[str] = []
     lines.append("# E049 — Wieferich primes (base 2)")
     lines.append("")
-    lines.append("## Parameters")
+    lines.append("### Parameters")
     lines.append("")
     lines.append(f"- p_max: {params.p_max}")
     lines.append(f"- base: {params.base}")
     lines.append("")
-    lines.append("## Hits")
+    lines.append("### Hits")
     lines.append("")
     if hits:
         lines.append("Wieferich primes found within the scan bound:")

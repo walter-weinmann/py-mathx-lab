@@ -15,7 +15,6 @@ dist/
 docs/_build/
 htmlcov/
 out/
-perf/results/.gitkeep
 perf/results/dev_*.json
 perf/work/
 temp*/

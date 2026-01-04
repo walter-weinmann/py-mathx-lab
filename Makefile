@@ -1,39 +1,52 @@
 # Minimal Makefile (Windows + Linux/macOS), same functionality
 
 .DEFAULT_GOAL := help
-.PHONY: _run_core \
-        clean \
-        clean-venv \
-        docs \
-        docs-clean \
-        docs-deps \
-        docs-html \
-        docs-pdf \
-        final \
-        final-slow \
-        fmt \
-        format \
-        format-check \
-        help \
-        install \
-        install-all \
-        install-dev \
-        install-docs \
-        lint \
-        mypy \
-        out \
-        perf \
-        perf-compare \
-        perf-release \
-        pytest \
-        pytest-slow \
-        python-check \
-        run \
-        status \
-        tags-check \
-        uv-check \
-        venv \
-        venv-recreate
+
+.PHONY: \
+	clean \
+	clean-venv \
+	docs \
+	docs-clean \
+	docs-deps \
+	docs-html \
+	docs-pdf \
+	final \
+	final-slow \
+	fmt \
+	format \
+	format-check \
+	help \
+	install \
+	install-all \
+	install-dev \
+	install-docs \
+	lint \
+	lint-fix \
+	mypy \
+	out \
+	perf \
+	perf-compare \
+	perf-release \
+	pytest \
+	pytest-slow \
+	pytest-xdist \
+	python-check \
+	run \
+	snapshots \
+	status \
+	tags-check \
+	uv-check \
+	venv \
+	venv-recreate
+
+# --- OS detection ------------------------------------------------------------
+ifeq ($(OS),Windows_NT)
+IS_WINDOWS := 1
+SHELL := cmd.exe
+.SHELLFLAGS := /C
+else
+IS_WINDOWS := 0
+endif
 
 PYTHON_MIN := 3.14
 CLEAN_DIRS := .mypy_cache .pytest_cache .ruff_cache build dist docs/_build temp_pytest temp_pytest_cache
@@ -42,6 +55,9 @@ VENV_DIR   := .venv
 DOCS_DIR        := docs
 DOCS_BUILD_DIR  := $(DOCS_DIR)/_build
 DOCS_HTML_DIR   := $(DOCS_BUILD_DIR)/html
+DOCS_ROOT       ?= docs
+
+OUT_ROOT ?= out
 
 UV         ?= uv
 UV_RUN      = $(UV) run
@@ -51,23 +67,21 @@ UV_RUN_DOCS = $(UV) run --extra docs
 PYTEST   = $(UV_RUN_DEV) pytest -o "cache_dir=temp_pytest_cache" --basetemp=temp_pytest
 PYTEST_XDIST_FAST ?=
 PYTEST_XDIST_SLOW ?= -n auto --dist=load
+
+# Use the project's virtualenv Python for version checks.
+ifeq ($(IS_WINDOWS),1)
+PYTHON_CHECK_BIN ?= $(VENV_DIR)\Scripts\python.exe
+else
+PYTHON_CHECK_BIN ?= $(VENV_DIR)/bin/python
+endif
+
 # Coverage focuses on library code. Experiment scripts are excluded via
 # [tool.coverage.run].omit in pyproject.toml.
 COV_PKGS = --cov=mathxlab.exp --cov=mathxlab.nt --cov=mathxlab.num --cov=mathxlab.plots --cov=mathxlab.viz
-COV_OPTS = $(COV_PKGS) --cov-report=term-missing --cov-fail-under=80
 
 # Optional: silence uv "Failed to hardlink files" warning on multi-drive setups (common on Windows).
 # You can also set this globally via environment instead of here.
 export UV_LINK_MODE ?= copy
-
-# --- OS detection ------------------------------------------------------------
-ifeq ($(OS),Windows_NT)
-	IS_WINDOWS := 1
-	SHELL := cmd.exe
-	.SHELLFLAGS := /C
-else
-	IS_WINDOWS := 0
-endif
 
 # --- small helpers -----------------------------------------------------------
 ifeq ($(IS_WINDOWS),1)
@@ -110,6 +124,7 @@ endef
 endif
 
 # --- targets -----------------------------------------------------------------
+
 _run_core:
 ifeq ($(IS_WINDOWS),1)
 	@if "$(EXP)"=="" (echo ERROR: Please provide EXP, e.g. make run EXP=e001 & exit /b 1)
@@ -141,10 +156,11 @@ ifeq ($(IS_WINDOWS),1)
 	)
 endif
 	@echo Syncing docs dependencies...
-	@uv sync --all-extras
+	@$(UV) sync --all-extras
 
 docs-html: docs-deps
 	@echo Building HTML docs...
+	@$(UV_RUN_DEV) python -m mathxlab.tools.sync_docs_snapshots --quiet
 	@$(UV_RUN_DOCS) python -m sphinx -q -W -b html $(DOCS_DIR) $(DOCS_HTML_DIR)
 
 docs-pdf: docs-deps
@@ -153,46 +169,55 @@ docs-pdf: docs-deps
 
 final: format lint-fix mypy pytest docs
 
-final-slow: format lint mypy pytest-slow docs
+final-slow: format-check lint mypy pytest-slow docs
 
 fmt: install-dev
 	$(UV_RUN_DEV) ruff check --fix .
 	$(UV_RUN_DEV) ruff format .
 
-# Check-only formatting (used by CI and by final)
 format: install-dev
 	$(UV_RUN_DEV) ruff format mathxlab tests experiments scripts pyproject.toml
 
-format-check:
+format-check: install-dev
 	$(UV_RUN_DEV) ruff format --check mathxlab tests experiments scripts pyproject.toml
 
 help:
-	@echo Targets:
-	@echo   make clean         - remove caches/build artifacts
-	@echo   make clean-venv    - remove .venv
-	@echo   make docs          - build Sphinx HTML docs
-	@echo   make docs-clean    - remove docs/_build
-	@echo   make final         - run format-check + lint + mypy + pytest      + docs
-	@echo   make final-slow    - run format-check + lint + mypy + pytest-slow + docs
-	@echo   make fmt           - apply ruff fixes + format (local developer helper)
-	@echo   make format        - check formatting (ruff format --check)
-	@echo   make install       - install package editable
-	@echo   make install-all   - sync default        deps
-	@echo   make install-dev   - sync default + dev  deps
-	@echo   make install-docs  - sync default + docs deps
-	@echo   make lint          - ruff lint (check-only)
-	@echo   make lint-fix      - ruff lint
-	@echo   make mypy          - check typing
-	@echo   make out           - run all experiments (sequential)
-	@echo   make perf          - run performance suite for all experiments (dev snapshot)
-	@echo   make perf-compare  - compare two snapshots (make perf-compare A=vX B=vY)
-	@echo   make perf-release  - run performance suite and store results for current MVERSION
-	@echo   make pytest        - run fast tests with coverage
-	@echo   make pytest-slow   - run slow tests with coverage
-	@echo   make run EXP=e001  - run an experiment by id
-	@echo   make status        - update docs/experiment_status.md (append new experiments)
-	@echo   make tags-check    - validate docs tags against docs/tags.md
-	@echo   make venv          - create/update virtual environment
+	@echo "Targets:"
+	@echo "  make clean            - remove caches/build artifacts"
+	@echo "  make clean-venv       - remove .venv"
+	@echo "  make docs             - build docs (status, tags-check, HTML, optional PDF)"
+	@echo "  make docs-clean       - remove docs/_build"
+	@echo "  make docs-deps        - sync docs dependencies (uv sync --all-extras)"
+	@echo "  make docs-html        - build Sphinx HTML into docs/_build/html"
+	@echo "  make docs-pdf         - build PDF docs (optional; requires LaTeX toolchain)"
+	@echo "  make final            - run format + lint-fix + mypy + pytest + docs"
+	@echo "  make final-slow       - run format-check + lint + mypy + pytest-slow + docs"
+	@echo "  make fmt              - apply ruff fixes + format (broad)"
+	@echo "  make format           - apply ruff formatting (selected paths)"
+	@echo "  make format-check     - check formatting only (no changes)"
+	@echo "  make help             - show this help"
+	@echo "  make install          - pip install -e . (after venv exists)"
+	@echo "  make install-all      - sync default dependencies"
+	@echo "  make install-dev      - sync default + dev dependencies"
+	@echo "  make install-docs     - sync default + docs dependencies"
+	@echo "  make lint             - ruff lint (check-only)"
+	@echo "  make lint-fix         - ruff lint with --fix"
+	@echo "  make mypy             - run mypy"
+	@echo "  make out              - run all experiments sequentially (ARGS=...)"
+	@echo "  make perf             - run performance suite (dev snapshot)"
+	@echo "  make perf-compare     - compare two snapshots (A=... B=...)"
+	@echo "  make perf-release     - run performance suite (release snapshot)"
+	@echo "  make pytest           - run fast tests with coverage"
+	@echo "  make pytest-slow      - run fast + slow tests with coverage"
+	@echo "  make pytest-xdist     - run fast tests with xdist (-n auto)"
+	@echo "  make python-check     - verify Python >= PYTHON_MIN"
+	@echo "  make run EXP=e001     - run an experiment by id (ARGS=...)"
+	@echo "  make snapshots        - sync out/* snapshots into docs/*"
+	@echo "  make status           - update docs/experiment_status.md"
+	@echo "  make tags-check       - validate docs tags against docs/tags.md"
+	@echo "  make uv-check         - verify uv is available"
+	@echo "  make venv             - create .venv (if missing)"
+	@echo "  make venv-recreate    - recreate .venv from scratch"
 
 install: venv
 	$(UV) pip install -e .
@@ -206,11 +231,9 @@ install-dev: uv-check python-check venv
 install-docs: uv-check python-check venv
 	$(UV) sync --extra docs
 
-# Check-only lint (used by CI and by final)
 lint: install-dev
 	$(UV_RUN_DEV) ruff check .
 
-# Check-only lint (used by final)
 lint-fix: install-dev
 	$(UV_RUN_DEV) ruff check --fix .
 
@@ -266,9 +289,12 @@ pytest-xdist: install-dev
 		$(COV_PKGS) --cov-report=term-missing --cov-fail-under=80
 
 python-check:
-	@python -c "import sys; req='$(PYTHON_MIN)'.split('.'); req=(int(req[0]), int(req[1])); v=sys.version_info; assert v[:2] >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"
+	@$(PYTHON_CHECK_BIN) -c "import sys; req=tuple(map(int,'$(PYTHON_MIN)'.split('.')[:2])); v=sys.version_info; assert (v.major, v.minor) >= req, f'Need Python >= {req[0]}.{req[1]}, got {v.major}.{v.minor}'"
 
 run: install-dev _run_core
+
+snapshots: install-dev
+	$(UV_RUN_DEV) python -m mathxlab.tools.sync_docs_snapshots --out-root "$(OUT_ROOT)" --docs-root "$(DOCS_ROOT)" $(if $(IDS),--ids $(IDS),)
 
 status: install-dev
 	$(UV_RUN_DEV) python mathxlab/tools/generate_experiment_status.py

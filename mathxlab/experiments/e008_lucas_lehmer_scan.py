@@ -135,7 +135,7 @@ def _write_report(
         "make run EXP=e008",
         "```",
         "",
-        "## Parameters",
+        "### Parameters",
         f"- p_max: `{params.p_max}`",
         f"- max_tests: `{params.max_tests}`",
         "",
@@ -152,7 +152,7 @@ def _write_report(
         lines.append("_none in this range (or max_tests too small)_")
     lines += [
         "",
-        "## Notes",
+        "### Notes",
         "- LLT is a deterministic primality test specialized to M_p = 2^p - 1.",
         "- Only prime exponents p need to be tested: if 2^n-1 is prime, then n must be prime.",
         "",

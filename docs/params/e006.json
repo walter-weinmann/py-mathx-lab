@@ -1,0 +1,5 @@
+{
+  "n_max": 300000,
+  "stride_scatter": 10,
+  "top_k": 50
+}

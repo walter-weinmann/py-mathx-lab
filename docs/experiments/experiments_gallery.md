@@ -1952,8 +1952,3 @@ e127
 e128
 e129
 :::
-
-## Related experiments
-
-- {doc}`e106` (E106 — Character gallery: real vs. complex)
-

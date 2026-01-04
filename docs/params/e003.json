@@ -1,0 +1,6 @@
+{
+  "bins": 250,
+  "n_max": 300000,
+  "near_band": 0.02,
+  "stride_scatter": 10
+}

@@ -156,7 +156,7 @@ def run_e014(
 
     lines = _basic_report_header("E014", "Primorial ± 1 counterexamples", "e014")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- k_max: `{params.k_max}`",
         "",
         "## First composite examples",
@@ -172,7 +172,7 @@ def run_e014(
         lines += [f"- first composite primorial(k)-1 at k={first_minus}: `{n}` = {fac}"]
     lines += [
         "",
-        "## Notes",
+        "### Notes",
         "- Euclid's proof uses the idea `P+1` (where P is a product of primes) to show *some* new prime exists.",
         "- It does **not** imply `P±1` is itself prime; composites appear very early.",
         "",
@@ -231,10 +231,10 @@ def run_e015(
         "E015", "Wilson test infeasibility (runtime counterexample)", "e015"
     )
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_values: `{params.n_values}`",
         "",
-        "## Notes",
+        "### Notes",
         "- Wilson's theorem says (n-1)! ≡ -1 (mod n) iff n is prime.",
         "- This is a beautiful characterization, but computing (n-1)! mod n is linear-time in n and becomes impractical fast.",
         "",
@@ -319,11 +319,11 @@ def run_e016(
 
     lines = _basic_report_header("E016", "Trial division vs Miller–Rabin scaling", "e016")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- bit_sizes: `{params.bit_sizes}`",
         f"- samples_per_size: `{params.samples_per_size}`",
         "",
-        "## Notes",
+        "### Notes",
         "- Trial division is fine for small n, but runtime grows quickly with sqrt(n).",
         "- Miller–Rabin stays fast and is the practical default for big integers.",
         "",
@@ -377,11 +377,11 @@ def run_e017(
 
     lines = _basic_report_header("E017", "Sieve memory blow-up vs segmented sieve", "e017")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_values: `{params.n_values}`",
         f"- segment_size: `{params.segment_size}`",
         "",
-        "## Notes",
+        "### Notes",
         "- A full sieve uses O(N) memory and can become the limiting factor.",
         "- A segmented sieve keeps memory roughly constant by processing windows [L, R].",
         "",
@@ -439,10 +439,10 @@ def run_e018(
 
     lines = _basic_report_header("E018", "Miller–Rabin base choice counterexamples", "e018")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         "",
-        "## Notes",
+        "### Notes",
         "- Miller–Rabin is reliable when you use enough bases (or a deterministic base set for bounded ranges).",
         "- Using too few bases creates rare-but-real false positives (strong pseudoprimes).",
         "",
@@ -498,10 +498,10 @@ def run_e019(
 
     lines = _basic_report_header("E019", "Prime density and PNT visualization", "e019")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         "",
-        "## Notes",
+        "### Notes",
         r"- The Prime Number Theorem suggests $\pi(x) ~ x/\log(x)$.",
         "- The error curve shows the approximation improves overall but wiggles persist.",
         "",
@@ -575,11 +575,11 @@ def run_e020(
 
     lines = _basic_report_header("E020", r"Compare $\pi(x)$ to $li(x)$ numerically", "e020")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         f"- step: `{params.step}`",
         "",
-        "## Notes",
+        "### Notes",
         r"- li(x) is defined by an integral of 1/log t and often tracks $\pi(x)$ more closely than $x/\log(x)$.",
         "- Here we use a coarse trapezoidal approximation (good enough for a visual experiment).",
         "",
@@ -629,10 +629,10 @@ def run_e021(
 
     lines = _basic_report_header("E021", "Explicit bounds sanity checks", "e021")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         "",
-        "## Notes",
+        "### Notes",
         r"- Many explicit inequalities for $\pi(x)$ have *starting points* (valid only for $x ≥ x_0$).",
         "- Experiments should always verify the assumptions before using a bound as a 'test oracle'.",
         "",
@@ -675,10 +675,10 @@ def run_e022(
 
     lines = _basic_report_header("E022", "Prime race modulo 4", "e022")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- $n_max$: `{params.n_max}`",
         "",
-        "## Notes",
+        "### Notes",
         r"- Dirichlet's theorem implies each residue class (1 and 3 $\mod 4$) gets infinitely many primes.",
         "- Yet finite ranges show biases (the 'prime race' phenomenon).",
         "",
@@ -725,11 +725,11 @@ def run_e023(
 
     lines = _basic_report_header("E023", r"Residue class distribution $\mod {params.q}$", "e023")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         f"- q: `{params.q}`",
         "",
-        "## Notes",
+        "### Notes",
         "- In the limit, reduced residue classes should balance, but finite ranges can show visible drift.",
         "",
     ]
@@ -794,10 +794,10 @@ def run_e024(
 
     lines = _basic_report_header("E024", "Ulam spiral structure", "e024")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- size: `{params.size}`",
         "",
-        "## Notes",
+        "### Notes",
         "- Diagonal streaks correspond to quadratic polynomials that produce many primes for small n.",
         "- This is a visual 'pattern trap': structure is real, but it does not imply a simple rule for primes.",
         "",
@@ -837,10 +837,10 @@ def run_e025(
 
     lines = _basic_report_header("E025", "Prime gaps are not monotone", "e025")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         "",
-        "## Notes",
+        "### Notes",
         "- Even though the *typical* gap near x is about log x, gaps fluctuate wildly.",
         "- This plot is a quick antidote to monotonic thinking.",
         "",
@@ -882,11 +882,11 @@ def run_e026(
 
     lines = _basic_report_header("E026", "Normalized prime gaps", "e026")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         f"- bins: `{params.bins}`",
         "",
-        "## Notes",
+        "### Notes",
         "- Normalization lets you compare gap statistics across different magnitudes of p.",
         "",
     ]
@@ -938,10 +938,10 @@ def run_e027(
 
     lines = _basic_report_header("E027", r"Record prime gaps vs $\log^2$ heuristic", "e027")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         "",
-        "## Notes",
+        "### Notes",
         r"- Cramér-style heuristics suggest maximal gaps around $x$ scale like $O(\log^2 x$).",
         r"- This experiment is empirical: we compare record gaps to $\log(p)^2$ on a finite range.",
         "",
@@ -998,12 +998,12 @@ def run_e028(
 
     lines = _basic_report_header("E028", "Jumping champions (most frequent gaps)", "e028")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         f"- window: `{params.window}` gaps",
         f"- step: `{params.step}` gaps",
         "",
-        "## Notes",
+        "### Notes",
         "- The most frequent gap tends to be a small primorial-related number (often 6 for quite a while).",
         "- This is a fun example of 'typical behavior' that changes slowly with scale.",
         "",
@@ -1058,10 +1058,10 @@ def run_e029(
 
     lines = _basic_report_header("E029", "Twin primes: observed vs heuristic", "e029")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         "",
-        "## Notes",
+        "### Notes",
         "- The heuristic curve is not a theorem; it's an asymptotic guess from prime k-tuple heuristics.",
         "- The point is to compare shapes and scaling, not to expect perfect agreement at small x.",
         "",
@@ -1112,11 +1112,11 @@ def run_e030(
 
     lines = _basic_report_header("E030", "Cousin and sexy prime pairs", "e030")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         f"- d_values: `{params.d_values}`",
         "",
-        "## Notes",
+        "### Notes",
         "- Prime pairs with fixed even gap d are all instances of prime constellations.",
         "- Different $d$ values have different 'local obstructions' (mod constraints) and different constants.",
         "",
@@ -1176,7 +1176,7 @@ def run_e031(
 
     lines = _basic_report_header("E031", "Admissibility and modular obstructions", "e031")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- max_mod: `{params.max_mod}`",
         "",
         "## Results",
@@ -1185,7 +1185,7 @@ def run_e031(
         lines.append(f"- {name}: {'admissible' if ok else 'NOT admissible'}")
     lines += [
         "",
-        "## Notes",
+        "### Notes",
         "- A pattern must be admissible (no modulus p blocks it completely) to have any chance of occurring infinitely often.",
         "- This is a crisp 'counterexample filter' for naive prime-pattern claims.",
         "",
@@ -1249,10 +1249,10 @@ def run_e032(
 
     lines = _basic_report_header("E032", "Prime triplets and quadruplets", "e032")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         "",
-        "## Notes",
+        "### Notes",
         "- These patterns are rare; counts grow slowly.",
         "- The plot helps compare how quickly different constellations appear in the same range.",
         "",
@@ -1300,11 +1300,11 @@ def run_e033(
 
     lines = _basic_report_header("E033", "Bounded gaps vs twin primes (not the same)", "e033")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         f"- threshold: `{params.threshold}`",
         "",
-        "## Notes",
+        "### Notes",
         "- Seeing many small gaps does not imply the smallest gap (2) occurs infinitely often.",
         "- This is not a proof statement, just a numerical 'intuition guardrail'.",
         "",
@@ -1356,12 +1356,12 @@ def run_e034(
 
     lines = _basic_report_header("E034", "Twin primes in sliding windows", "e034")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         f"- window: `{params.window}`",
         f"- step: `{params.step}`",
         "",
-        "## Notes",
+        "### Notes",
         "- Even if a heuristic gives an average density, local counts in windows vary a lot.",
         "- This is a counterexample to 'smoothness' assumptions when eyeballing primes.",
         "",
@@ -1415,11 +1415,11 @@ def run_e035(
         "E035", f"Primes in arithmetic progressions mod {params.q}", "e035"
     )
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- $n_max$: `{params.n_max}`",
         f"- $q$: `{params.q}`",
         "",
-        "## Notes",
+        "### Notes",
         "- Dirichlet's theorem guarantees infinitely many primes in each reduced residue class.",
         "- Finite ranges show biases and slow convergence to equal proportions.",
         "",
@@ -1487,11 +1487,11 @@ def run_e036(
 
     lines = _basic_report_header("E036", "Prime arithmetic progressions (small search)", "e036")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         f"- max_d: `{params.max_d}`",
         "",
-        "## Notes",
+        "### Notes",
         "- This is a finite search for short APs, not a proof of existence for arbitrary lengths.",
         "- Even small ranges contain many 3-term APs; 4-term APs are rarer but still appear.",
         "",
@@ -1545,10 +1545,10 @@ def run_e037(
 
     lines = _basic_report_header("E037", "Prime-free intervals via factorial construction", "e037")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_values: `{params.n_values}`",
         "",
-        "## Notes",
+        "### Notes",
         "- For each n, the numbers n!+2, n!+3, ..., n!+n are divisible by 2,3,...,n respectively.",
         "- This provides explicit long runs of composites (a counterexample to 'primes appear regularly').",
         "",
@@ -1592,10 +1592,10 @@ def run_e038(
         "E038", "Bertrand's postulate (computational verification)", "e038"
     )
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         "",
-        "## Notes",
+        "### Notes",
         "- Bertrand's postulate is a theorem; this experiment is a quick computational sanity check.",
         "- It's also a useful 'prime existence oracle' for constructing examples.",
         "",
@@ -1656,10 +1656,10 @@ def run_e039(
 
     lines = _basic_report_header("E039", "Sophie Germain and safe primes", "e039")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         "",
-        "## Notes",
+        "### Notes",
         "- These prime families matter in cryptography and in prime pattern heuristics.",
         "- Counts grow slowly; local fluctuations are visible at moderate x.",
         "",
@@ -1729,11 +1729,11 @@ def run_e040(
     candidates = [p for p, ok in zip(even_len_pal, even_len_prime, strict=True) if ok == 1]
     lines = _basic_report_header("E040", "Palindromic primes and the '11 trap'", "e040")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- digits_max: `{params.digits_max}`",
         f"- limit: `{params.limit}`",
         "",
-        "## Notes",
+        "### Notes",
         "- Every even-length base-10 palindrome is divisible by 11, hence composite (except 11 itself).",
         f"- Even-length palindromic primes found in this scan: `{candidates[:10]}`",
         "",
@@ -1790,7 +1790,7 @@ def run_e041(
         "E041", "Fermat numbers: prime for m<=4, composite afterwards", "e041"
     )
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- m_max: `{params.m_max}`",
         "",
         "## Table",
@@ -1802,7 +1802,7 @@ def run_e041(
         lines.append(f"| {m} | {v} | {ok} | {fac} |")
     lines += [
         "",
-        "## Notes",
+        "### Notes",
         "- Fermat conjectured all F_m are prime; F5 is famously composite.",
         "- This experiment provides a clean counterexample table and factors (via rho).",
         "",
@@ -1851,10 +1851,10 @@ def run_e042(
 
     lines = _basic_report_header("E042", "Repunit primes (small k scan)", "e042")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- k_max: `{params.k_max}`",
         "",
-        "## Notes",
+        "### Notes",
         "- Repunit numbers grow fast; this experiment uses Miller–Rabin for a probable-prime indicator.",
         "- Many k values produce composites; prime k is necessary (but not sufficient) for R_k to be prime.",
         "",
@@ -1912,11 +1912,11 @@ def run_e043(
 
     lines = _basic_report_header("E043", "Pollard rho runtime variability", "e043")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- samples: `{params.samples}`",
         f"- bits: `{params.bits}`",
         "",
-        "## Notes",
+        "### Notes",
         "- Factoring difficulty depends on structure (e.g., closeness of factors), not just bit size.",
         "- Rho is stochastic; variance is expected and is a useful experimental feature.",
         "",
@@ -1977,12 +1977,12 @@ def run_e044(
 
     lines = _basic_report_header("E044", "Solovay–Strassen vs Miller–Rabin (liars)", "e044")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- samples: `{params.samples}`",
         f"- bits: `{params.bits}`",
         f"- bases: `{params.bases}`",
         "",
-        "## Notes",
+        "### Notes",
         "- Both tests are probabilistic; liar rates depend on bases and on the composite distribution.",
         "- In practice, Miller–Rabin with strong base sets is often preferred.",
         "",
@@ -2045,11 +2045,11 @@ def run_e045(
 
     lines = _basic_report_header("E045", "Deterministic 64-bit MR base sets", "e045")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- samples: `{params.samples}`",
         f"- bits: `{params.bits}`",
         "",
-        "## Notes",
+        "### Notes",
         "- For n < 2^64, the 12-base set (2..37 primes) is deterministic.",
         "- Smaller base sets are faster but allow some composites through (rare, but real).",
         "",
@@ -2115,7 +2115,7 @@ def run_e046(
 
     lines = _basic_report_header("E046", "Prime-testing pipeline and tuning pitfalls", "e046")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- n_max: `{params.n_max}`",
         f"- mr_bases: `{params.mr_bases}`",
         "",
@@ -2130,7 +2130,7 @@ def run_e046(
         lines.append("_none in this range_")
     lines += [
         "",
-        "## Notes",
+        "### Notes",
         "- Pipelines are great for speed, but correctness depends on parameters.",
         "- This experiment intentionally uses too few MR bases to produce counterexamples.",
         "",
@@ -2221,10 +2221,10 @@ def run_e124(
 
     lines = _basic_report_header("E124", "Klauber triangle structure", "e124")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- size: `{params.size}` (odd); visualizes integers `1..{n_max}`.",
         "",
-        "## Notes",
+        "### Notes",
         "- The triangle arranges row n as `(n-1)^2+1 .. n^2` (row length `2n-1`).",
         "- Prime-rich lines are linked to quadratic polynomials, similar to the Ulam spiral.",
         "- This experiment is deterministic; `seed` does not change the output.",
@@ -2293,10 +2293,10 @@ def run_e125(
 
     lines = _basic_report_header("E125", "Sacks spiral structure", "e125")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- size: `{params.size}` (odd); visualizes integers `1..{n_max}`.",
         "",
-        "## Notes",
+        "### Notes",
         "- Construction: `r = sqrt(n)`, `θ = 2π sqrt(n)` so squares align on a ray.",
         "- Prime-rich curves correspond to quadratic polynomials under this embedding.",
         "- This experiment is deterministic; `seed` does not change the output.",
@@ -2422,10 +2422,10 @@ def run_e126(
 
     lines = _basic_report_header("E126", "Hexagonal number spiral structure", "e126")
     lines += [
-        "## Parameters",
+        "### Parameters",
         f"- size: `{params.size}` (odd); visualizes integers `1..{n_max}`.",
         "",
-        "## Notes",
+        "### Notes",
         "- Integers are placed by walking concentric hexagonal rings around the origin.",
         "- Prime-rich lines/curves are expected analogues of the Ulam spiral phenomena.",
         "- This experiment is deterministic; `seed` does not change the output.",

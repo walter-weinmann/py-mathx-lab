@@ -1,0 +1,11 @@
+{
+  "log_grid": true,
+  "n_points": 1000,
+  "residues": [
+    1,
+    3,
+    5,
+    7
+  ],
+  "x_max": 3000000
+}

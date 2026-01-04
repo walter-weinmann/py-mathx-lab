@@ -88,7 +88,7 @@ def _write_report(
         "make run EXP=e006",
         "```",
         "",
-        "## Parameters",
+        "### Parameters",
         f"- N: `{params.n_max}`",
         f"- top_k: `{params.top_k}`",
         "",
@@ -100,7 +100,7 @@ def _write_report(
     for n, s, d1, d2 in top:
         lines.append(f"| {n} | {s} | {d1} | {d2:.6g} |")
     lines.append("")
-    lines.append("## Notes")
+    lines.append("### Notes")
     lines.append(
         "- Ranking is primarily by absolute deviation |σ(n)-2n|, with relative deviation reported for context."
     )
