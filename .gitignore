@@ -8,6 +8,7 @@
 .pytest_cache/
 .pytest_tmp/
 .ruff_cache/
+.venv/
 __ARCHIVE__/
 __pycache__/
 build/
