@@ -59,12 +59,13 @@ DOCS_ROOT       ?= docs
 
 OUT_ROOT ?= out
 
-UV         ?= uv
-UV_RUN      = $(UV) run
-UV_RUN_DEV  = $(UV) run --extra dev
-UV_RUN_DOCS = $(UV) run --extra docs
+UV           ?= uv
+UV_RUN        = $(UV) run
+UV_RUN_DEV    = $(UV) run --extra dev
+UV_RUN_DOCS   = $(UV) run --extra docs
+UV_VENV_CLEAR = 1
 
-PYTEST   = $(UV_RUN_DEV) pytest -o "cache_dir=temp_pytest_cache" --basetemp=temp_pytest
+PYTEST             = $(UV_RUN_DEV) pytest -o "cache_dir=temp_pytest_cache" --basetemp=temp_pytest
 PYTEST_XDIST_FAST ?=
 PYTEST_XDIST_SLOW ?= -n auto --dist=load
 
@@ -148,13 +149,7 @@ docs: status tags-check docs-html docs-pdf
 docs-clean:
 	$(call rmdir_if_exists,$(DOCS_BUILD_DIR))
 
-docs-deps:
-ifeq ($(IS_WINDOWS),1)
-	@if exist "$(VENV_DIR)\lib64" ( \
-		echo Detected stale lib64 symlink, cleaning to avoid Access Denied... & \
-		rmdir /s /q "$(VENV_DIR)\lib64" \
-	)
-endif
+docs-deps: venv
 	@echo Syncing docs dependencies...
 	@$(UV) sync --all-extras
 
@@ -319,6 +314,10 @@ uv-check:
 
 venv: python-check uv-check
 ifeq ($(IS_WINDOWS),1)
+	@if exist "$(VENV_DIR)\lib64" ( \
+		echo Detected stale lib64 symlink, cleaning to avoid Access Denied... & \
+		rmdir /s /q "$(VENV_DIR)\lib64" \
+	)
 	@if exist "$(VENV_DIR)\Scripts\python.exe" (echo Using existing venv at $(VENV_DIR)) else ($(UV) venv --python $(PYTHON_MIN))
 else
 	@test -d "$(VENV_DIR)" || $(UV) venv --python $(PYTHON_MIN)
