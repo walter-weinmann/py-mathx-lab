@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import sys
-import textwrap
 from pathlib import Path
 
 try:
@@ -85,10 +84,10 @@ def make_social_preview(out_path: Path) -> Path:
 
     # Number theory motif (instead of the sum formula)
     ax.text(
-        0.08,
+        0.15,
         0.53,
         # Heegner numbers
-        r"$d \in \{1, 2, 3, 7, 11, 19, 43, 67, 163\}$",
+        r"1,2,3,7,11,19,43,67,163",
         transform=ax.transAxes,
         fontsize=18,
         color="#a7f3d0",

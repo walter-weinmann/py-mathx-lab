@@ -75,21 +75,6 @@ source_suffix = {
 # Autosummary (optional but useful once you add API pages)
 autosummary_generate = True
 
-# Napoleon for Google-style docstrings
-napoleon_google_docstring = True
-napoleon_numpy_docstring = False
-
-# MyST settings
-myst_enable_extensions = [
-    "amsmath",
-    "colon_fence",
-    "deflist",
-    "dollarmath",
-    "fieldlist",
-    "substitution",
-]
-myst_heading_anchors = 3
-
 # BibTeX settings
 bibtex_bibfiles = ["refs.bib"]
 
@@ -137,13 +122,7 @@ html_theme_options = {
     "dark_logo": "social-preview.png",
 }
 
-# MyST math configuration
-myst_dmath_double_inline = True
-
 # -- Options for LaTeX / PDF output -----------------------------------------
-
-# Produce a stable PDF filename when running the LaTeX builder.
-latex_engine = "xelatex"
 
 latex_documents = [
     (
@@ -154,6 +133,9 @@ latex_documents = [
         "manual",
     ),
 ]
+
+# Produce a stable PDF filename when running the LaTeX builder.
+latex_engine = "xelatex"
 
 # Keep the PDF readable and avoid excessive wide tables.
 latex_elements = {
@@ -168,9 +150,44 @@ latex_elements = {
     "preamble": r"\usepackage{xurl}",
 }
 
+# LaTeX/PDF logo (shown on the PDF title page)
+latex_logo = "_static/social-preview.png"
+
+
+# Make the PDF title-page logo smaller
+latex_elements = latex_elements if "latex_elements" in globals() else {}
+latex_elements.setdefault("preamble", "")
+latex_elements["preamble"] += r"""
+\AtBeginDocument{%
+  \providecommand{\sphinxlogo}{}%
+  \renewcommand{\sphinxlogo}{%
+    \includegraphics[height=2.0cm]{social-preview.png}\par
+  }%
+}
+"""
+
 mathjax3_config = {
     "tex": {
         "inlineMath": [["$", "$"], ["\\(", "\\)"]],
         "displayMath": [["$$", "$$"], ["\\[", "\\]"]],
     }
 }
+
+# MyST math configuration
+myst_dmath_double_inline = True
+
+# MyST settings
+myst_enable_extensions = [
+    "amsmath",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "fieldlist",
+    "substitution",
+]
+
+myst_heading_anchors = 3
+
+# Napoleon for Google-style docstrings
+napoleon_google_docstring = True
+napoleon_numpy_docstring = False
