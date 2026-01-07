@@ -98,6 +98,41 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         help="Print a progress line every N tests (default: 10).",
     )
 
+    group.addoption(
+        "--perf-factor",
+        action="store",
+        type=float,
+        default=1.25,
+        help="Allowed slowdown factor vs baseline (default: 1.25).",
+    )
+    group.addoption(
+        "--perf-min-sample-seconds",
+        action="store",
+        type=float,
+        default=0.20,
+        help="Target minimum duration per measured sample (default: 0.20s).",
+    )
+    group.addoption(
+        "--perf-warmup",
+        action="store",
+        type=int,
+        default=2,
+        help="Warmup samples for perf tests (default: 2).",
+    )
+    group.addoption(
+        "--perf-samples",
+        action="store",
+        type=int,
+        default=7,
+        help="Measured samples for perf tests (default: 7).",
+    )
+    group.addoption(
+        "--perf-update-baseline",
+        action="store_true",
+        default=False,
+        help="Update perf baseline JSON with current measurements.",
+    )
+
 
 def pytest_configure(config: pytest.Config) -> None:
     """Configure global test environment.
@@ -106,6 +141,11 @@ def pytest_configure(config: pytest.Config) -> None:
         config: Pytest config.
     """
     matplotlib.use("Agg", force=True)
+
+    config.addinivalue_line(
+        "markers",
+        "perf: performance microbenchmarks (not run by default).",
+    )
 
     # With xdist: only enable on the controller node to avoid duplicated output.
     if hasattr(config, "workerinput"):

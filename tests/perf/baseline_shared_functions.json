@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "note": "Run `make pytest-perf-baseline` to populate this file on your machine."
+  },
+  "cases": {}
+}

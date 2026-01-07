@@ -218,7 +218,7 @@ install: venv
 	$(UV) pip install -e .
 
 install-all: uv-check python-check venv
-	$(UV) sync
+	$(UV) sync --all-extras --all-groups
 
 install-dev: uv-check python-check venv
 	$(UV) sync --extra dev
@@ -259,8 +259,26 @@ perf-release: install-dev
 	$(UV_RUN_DEV) python mathxlab/tools/run_perf.py --mode release --overwrite
 
 pytest: install-dev
-	$(PYTEST) -q $(PYTEST_XDIST_FAST) -m "not slow" \
+	$(PYTEST) -q $(PYTEST_XDIST_FAST) -m "not slow and not perf" \
 		$(COV_PKGS) --cov-report=term-missing --cov-fail-under=80
+
+pytest-perf: install-dev
+ifeq ($(IS_WINDOWS),1)
+	set OMP_NUM_THREADS=1 && set MKL_NUM_THREADS=1 && set OPENBLAS_NUM_THREADS=1 && set NUMEXPR_NUM_THREADS=1 && \
+		$(PYTEST) -q -m "perf" --progress --progress-every=1
+else
+	OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 \
+		$(PYTEST) -q -m "perf" --progress --progress-every=1
+endif
+
+pytest-perf-baseline: install-dev
+ifeq ($(IS_WINDOWS),1)
+	set OMP_NUM_THREADS=1 && set MKL_NUM_THREADS=1 && set OPENBLAS_NUM_THREADS=1 && set NUMEXPR_NUM_THREADS=1 && \
+		$(PYTEST) -q -m "perf" --perf-update-baseline --progress --progress-every=1
+else
+	OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 \
+		$(PYTEST) -q -m "perf" --perf-update-baseline --progress --progress-every=1
+endif
 
 pytest-slow: install-dev
 ifeq ($(IS_WINDOWS),1)
@@ -269,18 +287,18 @@ else
 	@rm -f .coverage
 endif
 ifeq ($(IS_WINDOWS),1)
-	$(PYTEST) -q -m "not slow" \
+	$(PYTEST) -q -m "not slow and not perf" \
 		$(COV_PKGS) --cov-report=term || exit /b 0
 else
-	$(PYTEST) -q -m "not slow" \
+	$(PYTEST) -q -m "not slow and not perf" \
 		$(COV_PKGS) --cov-report=term || true
 endif
-	$(PYTEST) -q $(PYTEST_XDIST_SLOW) -m "slow" \
+	$(PYTEST) -q $(PYTEST_XDIST_SLOW) -m "slow and not perf" \
 		$(COV_PKGS) --cov-append --cov-report=term-missing --cov-fail-under=80 \
 		--progress --progress-every=1
 
 pytest-xdist: install-dev
-	$(PYTEST) -q -n auto --dist=load -m "not slow" \
+	$(PYTEST) -q -n auto --dist=load -m "not slow and not perf" \
 		$(COV_PKGS) --cov-report=term-missing --cov-fail-under=80
 
 python-check:

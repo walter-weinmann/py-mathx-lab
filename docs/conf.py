@@ -129,7 +129,12 @@ html_context = {
 }
 
 html_theme_options = {
-    "sidebar_hide_name": False,
+    # Hide the project name text in the sidebar header.
+    # With a logo configured, this effectively replaces "py-mathx-lab" with the image.
+    "sidebar_hide_name": True,
+    # Furo expects these filenames to be relative to html_static_path (docs/_static).
+    "light_logo": "social-preview.png",
+    "dark_logo": "social-preview.png",
 }
 
 # MyST math configuration

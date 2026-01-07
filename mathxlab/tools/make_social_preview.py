@@ -1,10 +1,16 @@
 from __future__ import annotations
 
+import sys
 import textwrap
 from pathlib import Path
 
-import matplotlib.pyplot as plt
-import numpy as np
+try:
+    import matplotlib.pyplot as plt
+    import numpy as np
+except ImportError:
+    print("Error: matplotlib and numpy are required to run this script.")
+    print("Please install them using: pip install matplotlib numpy")
+    sys.exit(1)
 
 
 # ------------------------------------------------------------------------------
@@ -94,8 +100,8 @@ def make_social_preview(out_path: Path) -> Path:
     ax.text(
         0.08,
         0.53,
-        # Perfect numbers
-        "6, 28, 496, 8128, 33550336, …",
+        # Heegner numbers
+        r"$d \in \{1, 2, 3, 7, 11, 19, 43, 67, 163\}$",
         transform=ax.transAxes,
         fontsize=15,
         color="#a7f3d0",
@@ -139,7 +145,7 @@ def make_social_preview(out_path: Path) -> Path:
 # ------------------------------------------------------------------------------
 def main() -> None:
     """CLI entry point."""
-    out_path = Path("assets") / "social-preview.png"
+    out_path = Path("docs/_static") / "social-preview.png"
     written = make_social_preview(out_path=out_path)
     print(f"Wrote: {written.as_posix()}")
 
