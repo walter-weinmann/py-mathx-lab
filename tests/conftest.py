@@ -10,6 +10,7 @@ Use:
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Any
 
 import matplotlib
 import pytest
@@ -27,13 +28,15 @@ class _ProgressState:
 class _ProgressPlugin:
     """A tiny pytest plugin that prints a progress line every N tests."""
 
-    def __init__(self, state: _ProgressState) -> None:
+    def __init__(self, state: _ProgressState, config: pytest.Config) -> None:
         """Create the plugin.
 
         Args:
             state: Shared progress state.
+            config: Pytest config (needed to access terminal reporter).
         """
         self._state = state
+        self._config = config
 
     def pytest_collection_modifyitems(
         self, session: pytest.Session, config: pytest.Config, items: list[pytest.Item]
@@ -66,8 +69,7 @@ class _ProgressPlugin:
         if (self._state.done % self._state.every) != 0 and self._state.done != self._state.total:
             return
 
-        config = report.config  # pytest sets this attribute on reports
-        terminal = config.pluginmanager.getplugin("terminalreporter")
+        terminal: Any = self._config.pluginmanager.getplugin("terminalreporter")
         msg = f"[progress] {self._state.done}/{self._state.total} ({(100.0 * self._state.done / self._state.total):.1f}%) {report.nodeid}"
 
         if terminal is not None:
@@ -98,6 +100,41 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         help="Print a progress line every N tests (default: 10).",
     )
 
+    group.addoption(
+        "--perf-factor",
+        action="store",
+        type=float,
+        default=1.25,
+        help="Allowed slowdown factor vs baseline (default: 1.25).",
+    )
+    group.addoption(
+        "--perf-min-sample-seconds",
+        action="store",
+        type=float,
+        default=0.20,
+        help="Target minimum duration per measured sample (default: 0.20s).",
+    )
+    group.addoption(
+        "--perf-warmup",
+        action="store",
+        type=int,
+        default=2,
+        help="Warmup samples for perf tests (default: 2).",
+    )
+    group.addoption(
+        "--perf-samples",
+        action="store",
+        type=int,
+        default=7,
+        help="Measured samples for perf tests (default: 7).",
+    )
+    group.addoption(
+        "--perf-update-baseline",
+        action="store_true",
+        default=False,
+        help="Update perf baseline JSON with current measurements.",
+    )
+
 
 def pytest_configure(config: pytest.Config) -> None:
     """Configure global test environment.
@@ -107,6 +144,11 @@ def pytest_configure(config: pytest.Config) -> None:
     """
     matplotlib.use("Agg", force=True)
 
+    config.addinivalue_line(
+        "markers",
+        "perf: performance microbenchmarks (not run by default).",
+    )
+
     # With xdist: only enable on the controller node to avoid duplicated output.
     if hasattr(config, "workerinput"):
         return
@@ -114,4 +156,4 @@ def pytest_configure(config: pytest.Config) -> None:
     if config.getoption("--progress"):
         every = max(1, int(config.getoption("--progress-every")))
         state = _ProgressState(every=every)
-        config.pluginmanager.register(_ProgressPlugin(state), name="mathxlab-progress")
+        config.pluginmanager.register(_ProgressPlugin(state, config), name="mathxlab-progress")

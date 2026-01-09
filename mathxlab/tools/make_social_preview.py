@@ -1,10 +1,15 @@
 from __future__ import annotations
 
-import textwrap
+import sys
 from pathlib import Path
 
-import matplotlib.pyplot as plt
-import numpy as np
+try:
+    import matplotlib.pyplot as plt
+    import numpy as np
+except ImportError:
+    print("Error: matplotlib and numpy are required to run this script.")
+    print("Please install them using: pip install matplotlib numpy")
+    sys.exit(1)
 
 
 # ------------------------------------------------------------------------------
@@ -26,8 +31,8 @@ def make_social_preview(out_path: Path) -> Path:
 
     # --- Figure: 1280x640 px ---
     dpi: int = 160
-    width_px: int = 1280
-    height_px: int = 640
+    width_px: int = 800
+    height_px: int = 300
     fig_w_in: float = width_px / dpi
     fig_h_in: float = height_px / dpi
 
@@ -64,11 +69,9 @@ def make_social_preview(out_path: Path) -> Path:
 
     # Title / tagline (Fix 2: top-aligned + left-column width via wrapping)
     title = "py-mathx-lab"
-    tagline = "A gallery of numerical experiments: conjectures, counterexamples, and code."
-    tagline_wrapped = textwrap.fill(tagline, width=45)
 
     ax.text(
-        0.08,
+        0.06,
         0.92,
         title,
         transform=ax.transAxes,
@@ -78,26 +81,15 @@ def make_social_preview(out_path: Path) -> Path:
         va="top",
         ha="left",
     )
-    ax.text(
-        0.08,
-        0.73,
-        tagline_wrapped,
-        transform=ax.transAxes,
-        fontsize=18,
-        color="#c7d2fe",
-        va="top",
-        ha="left",
-        linespacing=1.15,
-    )
 
     # Number theory motif (instead of the sum formula)
     ax.text(
-        0.08,
+        0.15,
         0.53,
-        # Perfect numbers
-        "6, 28, 496, 8128, 33550336, …",
+        # Heegner numbers
+        r"1,2,3,7,11,19,43,67,163",
         transform=ax.transAxes,
-        fontsize=15,
+        fontsize=18,
         color="#a7f3d0",
         va="top",
         ha="left",
@@ -111,8 +103,8 @@ def make_social_preview(out_path: Path) -> Path:
 
     # Accent badge
     ax.text(
-        0.08,
-        0.30,
+        0.35,
+        0.22,
         "EXPERIMENTS",
         transform=ax.transAxes,
         fontsize=14,
@@ -139,7 +131,7 @@ def make_social_preview(out_path: Path) -> Path:
 # ------------------------------------------------------------------------------
 def main() -> None:
     """CLI entry point."""
-    out_path = Path("assets") / "social-preview.png"
+    out_path = Path("docs/_static") / "social-preview.png"
     written = make_social_preview(out_path=out_path)
     print(f"Wrote: {written.as_posix()}")
 

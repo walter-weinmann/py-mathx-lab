@@ -8,6 +8,7 @@
 .pytest_cache/
 .pytest_tmp/
 .ruff_cache/
+.venv/
 __ARCHIVE__/
 __pycache__/
 build/
@@ -15,6 +16,6 @@ dist/
 docs/_build/
 htmlcov/
 out/
-perf/results/dev_*.json
+perf/results/
 perf/work/
 temp*/

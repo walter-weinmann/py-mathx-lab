@@ -1,3 +1,5 @@
+<img src="docs/_static/social-preview.png" alt="py-mathx-lab social preview" align="right" width="260" />
+
 [![CI](https://github.com/walter-weinmann/py-mathx-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/walter-weinmann/py-mathx-lab/actions/workflows/ci.yml)
 [![Docs](https://github.com/walter-weinmann/py-mathx-lab/actions/workflows/docs.yml/badge.svg)](https://github.com/walter-weinmann/py-mathx-lab/actions/workflows/docs.yml)
 

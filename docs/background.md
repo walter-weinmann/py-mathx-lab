@@ -22,6 +22,7 @@ background/fermat-numbers
 background/gauss-sums
 background/gram-points-and-zero-counting
 background/hardy-z-function
+background/heegner-numbers
 background/jordan-totient-function
 background/landaus-problems
 background/liouville-function

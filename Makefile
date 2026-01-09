@@ -59,12 +59,13 @@ DOCS_ROOT       ?= docs
 
 OUT_ROOT ?= out
 
-UV         ?= uv
-UV_RUN      = $(UV) run
-UV_RUN_DEV  = $(UV) run --extra dev
-UV_RUN_DOCS = $(UV) run --extra docs
+UV           ?= uv
+UV_RUN        = $(UV) run
+UV_RUN_DEV    = $(UV) run --extra dev
+UV_RUN_DOCS   = $(UV) run --extra docs
+UV_VENV_CLEAR = 1
 
-PYTEST   = $(UV_RUN_DEV) pytest -o "cache_dir=temp_pytest_cache" --basetemp=temp_pytest
+PYTEST             = $(UV_RUN_DEV) pytest -o "cache_dir=temp_pytest_cache" --basetemp=temp_pytest
 PYTEST_XDIST_FAST ?=
 PYTEST_XDIST_SLOW ?= -n auto --dist=load
 
@@ -148,13 +149,7 @@ docs: status tags-check docs-html docs-pdf
 docs-clean:
 	$(call rmdir_if_exists,$(DOCS_BUILD_DIR))
 
-docs-deps:
-ifeq ($(IS_WINDOWS),1)
-	@if exist "$(VENV_DIR)\lib64" ( \
-		echo Detected stale lib64 symlink, cleaning to avoid Access Denied... & \
-		rmdir /s /q "$(VENV_DIR)\lib64" \
-	)
-endif
+docs-deps: venv
 	@echo Syncing docs dependencies...
 	@$(UV) sync --all-extras
 
@@ -223,7 +218,7 @@ install: venv
 	$(UV) pip install -e .
 
 install-all: uv-check python-check venv
-	$(UV) sync
+	$(UV) sync --all-extras --all-groups
 
 install-dev: uv-check python-check venv
 	$(UV) sync --extra dev
@@ -264,8 +259,26 @@ perf-release: install-dev
 	$(UV_RUN_DEV) python mathxlab/tools/run_perf.py --mode release --overwrite
 
 pytest: install-dev
-	$(PYTEST) -q $(PYTEST_XDIST_FAST) -m "not slow" \
+	$(PYTEST) -q $(PYTEST_XDIST_FAST) -m "not slow and not perf" \
 		$(COV_PKGS) --cov-report=term-missing --cov-fail-under=80
+
+pytest-perf: install-dev
+ifeq ($(IS_WINDOWS),1)
+	set OMP_NUM_THREADS=1 && set MKL_NUM_THREADS=1 && set OPENBLAS_NUM_THREADS=1 && set NUMEXPR_NUM_THREADS=1 && \
+		$(PYTEST) -q -m "perf" --progress --progress-every=1
+else
+	OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 \
+		$(PYTEST) -q -m "perf" --progress --progress-every=1
+endif
+
+pytest-perf-baseline: install-dev
+ifeq ($(IS_WINDOWS),1)
+	set OMP_NUM_THREADS=1 && set MKL_NUM_THREADS=1 && set OPENBLAS_NUM_THREADS=1 && set NUMEXPR_NUM_THREADS=1 && \
+		$(PYTEST) -q -m "perf" --perf-update-baseline --progress --progress-every=1
+else
+	OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 \
+		$(PYTEST) -q -m "perf" --perf-update-baseline --progress --progress-every=1
+endif
 
 pytest-slow: install-dev
 ifeq ($(IS_WINDOWS),1)
@@ -274,18 +287,18 @@ else
 	@rm -f .coverage
 endif
 ifeq ($(IS_WINDOWS),1)
-	$(PYTEST) -q -m "not slow" \
+	$(PYTEST) -q -m "not slow and not perf" \
 		$(COV_PKGS) --cov-report=term || exit /b 0
 else
-	$(PYTEST) -q -m "not slow" \
+	$(PYTEST) -q -m "not slow and not perf" \
 		$(COV_PKGS) --cov-report=term || true
 endif
-	$(PYTEST) -q $(PYTEST_XDIST_SLOW) -m "slow" \
+	$(PYTEST) -q $(PYTEST_XDIST_SLOW) -m "slow and not perf" \
 		$(COV_PKGS) --cov-append --cov-report=term-missing --cov-fail-under=80 \
 		--progress --progress-every=1
 
 pytest-xdist: install-dev
-	$(PYTEST) -q -n auto --dist=load -m "not slow" \
+	$(PYTEST) -q -n auto --dist=load -m "not slow and not perf" \
 		$(COV_PKGS) --cov-report=term-missing --cov-fail-under=80
 
 python-check:
@@ -319,6 +332,10 @@ uv-check:
 
 venv: python-check uv-check
 ifeq ($(IS_WINDOWS),1)
+	@if exist "$(VENV_DIR)\lib64" ( \
+		echo Detected stale lib64 symlink, cleaning to avoid Access Denied... & \
+		rmdir /s /q "$(VENV_DIR)\lib64" \
+	)
 	@if exist "$(VENV_DIR)\Scripts\python.exe" (echo Using existing venv at $(VENV_DIR)) else ($(UV) venv --python $(PYTHON_MIN))
 else
 	@test -d "$(VENV_DIR)" || $(UV) venv --python $(PYTHON_MIN)

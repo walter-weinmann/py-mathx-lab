@@ -50,14 +50,7 @@ This summary is included from the Makefile documentation:
 
 ```{include} makefile.md
 :start-after: "## Run logs and experiment runner"
-:end-before: "## Common workflows"
-```
-
-### Common workflows
-
-```{include} makefile.md
-:start-after: "## Common workflows"
-:end-before: "## Target overview (what each target does)"
+:end-before: "## Snapshots: syncing experiment outputs into docs"
 ```
 
 ### Full reference
