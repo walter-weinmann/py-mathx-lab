@@ -5,8 +5,12 @@ This section documents the **reusable library code** in `mathxlab` (the parts yo
 :::{admonition} Public API only
 :class: note
 
-Each module page documents only the names listed in that module's `__all__` (if present).
-Sphinx autodoc treats `__all__` as the definition of a module's public members.
+These pages aim to document only the public surface.
+
+- If a module defines `__all__`, the docs follow it.
+- Otherwise, "public" means "not starting with `_`".
+
+If you want strict control, add `__all__ = [...]` to each public module.
 :::
 
 ::::{grid} 2

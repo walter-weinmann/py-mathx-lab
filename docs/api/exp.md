@@ -1,10 +1,7 @@
 # Experiment framework (`mathxlab.exp`)
-
 Module-level documentation pages (public API only).
-
 :::{toctree}
 :maxdepth: 1
-
 exp/cli
 exp/io
 exp/logging

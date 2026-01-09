@@ -1,23 +1,17 @@
-/* API layout tweaks: reduce whitespace + make autodoc blocks easier to scan. */
+/* API layout tweaks: reduce whitespace + make reference pages easier to scan. */
 
 @media (min-width: 67em) {
-  /* Reduce the "white ocean" on wide monitors */
-  .article-container {
-    max-width: 96rem;
-  }
+  .article-container { max-width: 96rem; }
 }
 
-/* Tighter headings */
 article h1 { margin-top: 0.8rem; margin-bottom: 0.8rem; }
 article h2 { margin-top: 1.3rem; margin-bottom: 0.6rem; }
 article h3 { margin-top: 1.0rem; margin-bottom: 0.4rem; }
 
-/* Autodoc blocks: less vertical spacing */
 dl.py { margin-top: 0.8rem; margin-bottom: 1.0rem; }
 dl.py > dd { margin-top: 0.35rem; }
 
-/* Function/class signatures: slightly denser */
 .sig { line-height: 1.35; }
 
-/* Reduce indentation of docutils field lists (keeps things readable even if some remain) */
-dl.field-list > dd { margin-left: 1.2rem; }
+/* Make list-tables more compact */
+table.docutils td, table.docutils th { padding: 0.35rem 0.6rem; }
