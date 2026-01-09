@@ -8,8 +8,16 @@ and uses the Furo theme.
 
 from __future__ import annotations
 
+import sys
 from importlib.metadata import PackageNotFoundError
 from importlib.metadata import version as get_version
+from pathlib import Path
+
+# ------------------------------------------------------------------------------
+# Make the repository importable for autodoc without requiring an installed wheel.
+DOCS_DIR = Path(__file__).resolve().parent
+REPO_ROOT = DOCS_DIR.parent
+sys.path.insert(0, str(REPO_ROOT))
 
 
 # ------------------------------------------------------------------------------
@@ -72,8 +80,16 @@ source_suffix = {
     ".rst": "restructuredtext",
 }
 
-# Autosummary (optional but useful once you add API pages)
+# Autosummary
 autosummary_generate = True
+
+# Autodoc settings (API docs)
+autodoc_typehints = "description"
+autodoc_member_order = "bysource"
+autodoc_default_options = {
+    "members": True,
+    "show-inheritance": True,
+}
 
 # BibTeX settings
 bibtex_bibfiles = ["refs.bib"]
@@ -139,20 +155,55 @@ latex_engine = "xelatex"
 
 # Keep the PDF readable and avoid excessive wide tables.
 latex_elements = {
-    "fontpkg": r"""
-    \usepackage{fontspec}
-    \setmainfont{Latin Modern Roman}
-    \setsansfont{Latin Modern Sans}
-    \setmonofont{Latin Modern Mono}
-    """,
     "papersize": "a4paper",
     "pointsize": "10pt",
-    "preamble": r"\usepackage{xurl}",
+    "preamble": r"""
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+
+% --- Better Unicode handling in text sources (MyST/Markdown) ------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{newunicodechar}
+
+% Blackboard bold (very common in number theory)
+\newunicodechar{ℕ}{\ensuremath{\mathbb{N}}}
+\newunicodechar{ℤ}{\ensuremath{\mathbb{Z}}}
+\newunicodechar{ℚ}{\ensuremath{\mathbb{Q}}}
+\newunicodechar{ℝ}{\ensuremath{\mathbb{R}}}
+\newunicodechar{ℂ}{\ensuremath{\mathbb{C}}}
+\newunicodechar{ℙ}{\ensuremath{\mathbb{P}}}
+
+% Common relations/operators that often appear as Unicode in Markdown
+\newunicodechar{≤}{\ensuremath{\le}}
+\newunicodechar{≥}{\ensuremath{\ge}}
+\newunicodechar{≠}{\ensuremath{\neq}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≡}{\ensuremath{\equiv}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{∉}{\ensuremath{\notin}}
+\newunicodechar{→}{\ensuremath{\to}}
+\newunicodechar{↦}{\ensuremath{\mapsto}}
+\newunicodechar{×}{\ensuremath{\times}}
+
+% Emoji-like symbols (map to math glyphs)
+\newunicodechar{✅}{\ensuremath{\checkmark}}
+\newunicodechar{❌}{\ensuremath{\times}}
+
+% Extra Unicode math symbols sometimes present in Markdown text
+\newunicodechar{±}{\ensuremath{\pm}}
+\newunicodechar{↔}{\ensuremath{\leftrightarrow}}
+\newunicodechar{∑}{\ensuremath{\sum}}
+\newunicodechar{∏}{\ensuremath{\prod}}
+\newunicodechar{√}{\ensuremath{\surd}}
+
+% Unicode minus (U+2212) shows up a lot when copy/pasting formulas
+\newunicodechar{−}{\ensuremath{-}}
+""",
 }
 
 # LaTeX/PDF logo (shown on the PDF title page)
 latex_logo = "_static/social-preview.png"
-
 
 # Make the PDF title-page logo smaller
 latex_elements = latex_elements if "latex_elements" in globals() else {}
