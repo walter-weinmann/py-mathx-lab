@@ -44,8 +44,22 @@ experiments/experiments_gallery
 getting-started
 development
 background
-api/index
 pdf
 experiment_status
 references
+```
+
+```{toctree}
+:hidden:
+:caption: API
+:maxdepth: 2
+
+api/index
+api/exp
+api/experiments
+api/nt
+api/num
+api/plots
+api/utils
+api/viz
 ```

@@ -1,7 +1,14 @@
 # API Reference
 
 This section documents the **reusable library code** in `mathxlab` (the parts you would import and build upon).
-It intentionally keeps the **runnable experiment scripts** out of the API surface.
+
+It intentionally excludes:
+
+- `mathxlab/tools/**` (repo tooling scripts)
+- `mathxlab/experiments/_*.py` (private helper modules)
+- `mathxlab/experiments/e001*.py` … `mathxlab/experiments/e999*.py` (runnable experiment scripts)
+
+The runnable experiments are documented in the **Experiment Gallery**; the API reference focuses on stable, reusable modules.
 
 ```{grid} 2
 :gutter: 2
@@ -10,49 +17,49 @@ It intentionally keeps the **runnable experiment scripts** out of the API surfac
 :link: exp
 :link-type: doc
 
-CLI helpers, deterministic seeding, logging, reporting, and experiment I/O.
+`mathxlab.exp` — CLI helpers, seeding, logging, and report writing.
+```
+
+```{grid-item-card} Experiment suites
+:link: experiments
+:link-type: doc
+
+`mathxlab.experiments` — suite runners and registry helpers (excluding `e###` scripts).
 ```
 
 ```{grid-item-card} Number theory
 :link: nt
 :link-type: doc
 
-Reusable number-theory building blocks (arithmetic, Dirichlet, zeta, …).
+`mathxlab.nt` — arithmetic, Dirichlet machinery, and zeta/L-related utilities.
 ```
 
 ```{grid-item-card} Numerics
 :link: num
 :link-type: doc
 
-Numerical series helpers and small numerical utilities.
+`mathxlab.num` — numerical series helpers.
 ```
 
 ```{grid-item-card} Plotting
 :link: plots
 :link-type: doc
 
-Plotting helpers used by experiments and reports.
+`mathxlab.plots` — plotting helpers used across experiments and reports.
 ```
 
 ```{grid-item-card} Utilities
 :link: utils
 :link-type: doc
 
-Shared utility modules.
+`mathxlab.utils` — shared utilities.
 ```
 
 ```{grid-item-card} Visualization backends
 :link: viz
 :link-type: doc
 
-Visualization backend wrappers (Matplotlib).
-```
-
-```{grid-item-card} Experiment registry & suites
-:link: experiments
-:link-type: doc
-
-Registry helpers and suite-style runners (excludes e001–e999 scripts and private `_*.py` helpers).
+`mathxlab.viz` — visualization backend wrappers (Matplotlib).
 ```
 
 ```
@@ -62,10 +69,10 @@ Registry helpers and suite-style runners (excludes e001–e999 scripts and priva
 :maxdepth: 2
 
 exp
+experiments
 nt
 num
 plots
 utils
 viz
-experiments
 ```

@@ -188,17 +188,6 @@ latex_elements = {
 
 % Unicode minus (U+2212) shows up a lot when copy/pasting formulas
 \newunicodechar{−}{\ensuremath{-}}
-
-% Emoji-like symbols used in docs/reports (map to math glyphs)
-\newunicodechar{✅}{\ensuremath{\checkmark}}
-\newunicodechar{❌}{\ensuremath{\times}}
-
-% Additional math symbols that may appear as Unicode in Markdown text
-\newunicodechar{±}{\ensuremath{\pm}}
-\newunicodechar{↔}{\ensuremath{\leftrightarrow}}
-\newunicodechar{∑}{\ensuremath{\sum}}
-\newunicodechar{∏}{\ensuremath{\prod}}
-\newunicodechar{√}{\ensuremath{\surd}}
 """,
 }
 

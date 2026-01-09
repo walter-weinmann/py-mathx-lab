@@ -1,22 +1,55 @@
-# Experiment registry and suites (`mathxlab.experiments`)
+# Experiment suites (`mathxlab.experiments`)
 
-This page documents the *reusable* entry points under `mathxlab.experiments`.
+The `mathxlab.experiments` package contains:
 
-Excluded on purpose:
+- many **runnable experiment scripts** (`e001...e999...`), documented in the Experiment Gallery
+- a few **suite runner modules** intended for reuse (documented here)
 
-- Private helper modules: `_*.py`
-- Runnable experiment scripts: `e001*.py` … `e999*.py`
+```{admonition} Exclusion rule for API docs
+:class: note
 
-Included:
+This API section documents only:
 
-- The experiment registry (`mathxlab.experiments`)
-- Suite-style runners (non-`e###` modules)
+- `mathxlab.experiments.number_theory_suite`
+- `mathxlab.experiments.prime_suite`
+- `mathxlab.experiments.spiral_suite`
 
-```{autosummary}
-:toctree: generated/experiments
+and **excludes** all modules matching:
 
-mathxlab.experiments
-mathxlab.experiments.number_theory_suite
-mathxlab.experiments.prime_suite
-mathxlab.experiments.spiral_suite
+- `mathxlab.experiments._*.py`
+- `mathxlab.experiments.e[0-9][0-9][0-9]*.py`
+```
+
+## Suite runners
+
+```{tab-set}
+
+```{tab-item} number_theory_suite
+```{automodule} mathxlab.experiments.number_theory_suite
+:members:
+:show-inheritance:
+```
+```
+
+```{tab-item} prime_suite
+```{automodule} mathxlab.experiments.prime_suite
+:members:
+:show-inheritance:
+```
+```
+
+```{tab-item} spiral_suite
+```{automodule} mathxlab.experiments.spiral_suite
+:members:
+:show-inheritance:
+```
+```
+
+```
+
+## Registry helpers
+
+```{automodule} mathxlab.experiments
+:members: ExperimentSpec, iter_experiments, list_experiment_ids, get_experiment_module
+:show-inheritance:
 ```
