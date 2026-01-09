@@ -1,7 +1,9 @@
 # Utilities (`mathxlab.utils`)
 
-```{autosummary}
-:toctree: generated/utils
+Module-level documentation pages (public API only).
 
-mathxlab.utils.plotting
-```
+:::{toctree}
+:maxdepth: 1
+
+utils/plotting
+:::

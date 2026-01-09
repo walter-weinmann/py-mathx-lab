@@ -1,7 +1,9 @@
 # Numerics (`mathxlab.num`)
 
-```{autosummary}
-:toctree: generated/num
+Module-level documentation pages (public API only).
 
-mathxlab.num.series
-```
+:::{toctree}
+:maxdepth: 1
+
+num/series
+:::

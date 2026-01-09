@@ -1,7 +1,9 @@
 # Plotting helpers (`mathxlab.plots`)
 
-```{autosummary}
-:toctree: generated/plots
+Module-level documentation pages (public API only).
 
-mathxlab.plots.helpers
-```
+:::{toctree}
+:maxdepth: 1
+
+plots/helpers
+:::

@@ -84,7 +84,7 @@ source_suffix = {
 autosummary_generate = True
 
 # Autodoc settings (API docs)
-autodoc_typehints = "description"
+autodoc_typehints = "signature"
 autodoc_member_order = "bysource"
 autodoc_default_options = {
     "members": True,
@@ -107,6 +107,7 @@ suppress_warnings = ["design.grid"]
 
 html_css_files = [
     "gallery.css",
+    "api.css",
 ]
 
 
@@ -160,6 +161,12 @@ latex_elements = {
     "preamble": r"""
 \usepackage{fontspec}
 \setmainfont{Latin Modern Roman}
+
+% --- Increase nesting limits for lists ----------------------------------------
+\usepackage{enumitem}
+\setlistdepth{20}
+\renewlist{description}{description}{20}
+\setlist[description]{style=unboxed,leftmargin=\leftmargin,labelindent=\labelindent}
 
 % --- Better Unicode handling in text sources (MyST/Markdown) ------------------
 \usepackage{amsmath}
@@ -231,3 +238,7 @@ myst_heading_anchors = 3
 # Napoleon for Google-style docstrings
 napoleon_google_docstring = True
 napoleon_numpy_docstring = False
+
+# Keep Google-style docstrings readable (avoid deep field-list indentation).
+napoleon_use_param = False
+napoleon_use_rtype = False

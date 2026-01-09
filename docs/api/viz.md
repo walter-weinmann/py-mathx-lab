@@ -1,7 +1,9 @@
 # Visualization backends (`mathxlab.viz`)
 
-```{autosummary}
-:toctree: generated/viz
+Module-level documentation pages (public API only).
 
-mathxlab.viz.mpl
-```
+:::{toctree}
+:maxdepth: 1
+
+viz/mpl
+:::

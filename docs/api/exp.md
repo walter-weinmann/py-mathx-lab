@@ -1,17 +1,16 @@
 # Experiment framework (`mathxlab.exp`)
 
-High-level infrastructure for running experiments: CLI plumbing, deterministic seeding, logging, report writing,
-and I/O helpers.
+Module-level documentation pages (public API only).
 
-```{autosummary}
-:toctree: generated/exp
+:::{toctree}
+:maxdepth: 1
 
-mathxlab.exp.cli
-mathxlab.exp.io
-mathxlab.exp.logging
-mathxlab.exp.logging_setup
-mathxlab.exp.random
-mathxlab.exp.reporting
-mathxlab.exp.run_logging
-mathxlab.exp.seeding
-```
+exp/cli
+exp/io
+exp/logging
+exp/logging_setup
+exp/random
+exp/reporting
+exp/run_logging
+exp/seeding
+:::
