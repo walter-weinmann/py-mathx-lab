@@ -1,6 +1,7 @@
 # Numerics (`mathxlab.num`)
 
-```{automodule} mathxlab.num.series
-:members:
-:show-inheritance:
+```{autosummary}
+:toctree: generated/num
+
+mathxlab.num.series
 ```

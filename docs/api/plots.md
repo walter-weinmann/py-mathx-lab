@@ -1,6 +1,7 @@
 # Plotting helpers (`mathxlab.plots`)
 
-```{automodule} mathxlab.plots.helpers
-:members:
-:show-inheritance:
+```{autosummary}
+:toctree: generated/plots
+
+mathxlab.plots.helpers
 ```

@@ -1,6 +1,7 @@
 # Utilities (`mathxlab.utils`)
 
-```{automodule} mathxlab.utils.plotting
-:members:
-:show-inheritance:
+```{autosummary}
+:toctree: generated/utils
+
+mathxlab.utils.plotting
 ```
