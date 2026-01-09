@@ -35,6 +35,24 @@ from ._prime_utils import prime_mask_up_to
 
 
 # ------------------------------------------------------------------------------
+def _axial_to_xy(q: np.ndarray, r: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """Convert axial hex coordinates to 2D Cartesian coordinates.
+
+    Uses a pointy-top axial layout.
+
+    Args:
+        q: Axial q coordinates.
+        r: Axial r coordinates.
+
+    Returns:
+        (x, y) Cartesian coordinates.
+    """
+    x = math.sqrt(3.0) * (q.astype(float) + 0.5 * r.astype(float))
+    y = 1.5 * r.astype(float)
+    return x, y
+
+
+# ------------------------------------------------------------------------------
 def _basic_report_header(eid: str, title: str, reproduce_exp: str) -> list[str]:
     """Return standard report header lines.
 
@@ -59,6 +77,53 @@ def _basic_report_header(eid: str, title: str, reproduce_exp: str) -> list[str]:
 
 
 # ------------------------------------------------------------------------------
+def _hex_spiral_axial_coords(rings: int) -> tuple[np.ndarray, np.ndarray]:
+    """Generate axial (q, r) coordinates for a centered hex spiral.
+
+    The sequence starts at (0, 0) for n=1 and then enumerates rings 1..rings
+    around the origin on an axial hex grid (pointy-top layout).
+
+    Implementation notes:
+    - For ring k, we start at the axial corner (-k, k) and walk k steps in each
+      of the 6 axial directions.
+    - The construction is deterministic and produces exactly
+      1 + 3*rings*(rings + 1) coordinates.
+
+    Args:
+        rings: Number of rings (>= 0).
+
+    Returns:
+        Two arrays (q, r) of equal length, one coordinate per integer.
+    """
+    if rings < 0:
+        raise ValueError("rings must be >= 0")
+
+    coords_q: list[int] = [0]
+    coords_r: list[int] = [0]
+
+    # Axial directions for a pointy-top layout.
+    directions: list[tuple[int, int]] = [
+        (1, 0),
+        (1, -1),
+        (0, -1),
+        (-1, 0),
+        (-1, 1),
+        (0, 1),
+    ]
+
+    for k in range(1, rings + 1):
+        q, r = -k, k  # start at a corner of the k-th ring
+        for dq, dr in directions:
+            for _ in range(k):
+                coords_q.append(q)
+                coords_r.append(r)
+                q += dq
+                r += dr
+
+    return np.asarray(coords_q, dtype=np.int64), np.asarray(coords_r, dtype=np.int64)
+
+
+# ------------------------------------------------------------------------------
 @dataclass(frozen=True, slots=True)
 class ParamsE124:
     """Parameters for E124 (Klauber triangle).
@@ -71,6 +136,7 @@ class ParamsE124:
     rows: int = 301
 
 
+# ------------------------------------------------------------------------------
 @dataclass(frozen=True, slots=True)
 class ParamsE125:
     """Parameters for E125 (Sacks spiral).
@@ -83,6 +149,7 @@ class ParamsE125:
     n_max: int = 250_000
 
 
+# ------------------------------------------------------------------------------
 @dataclass(frozen=True, slots=True)
 class ParamsE126:
     """Parameters for E126 (hexagonal number spiral).
@@ -246,69 +313,6 @@ def run_e125(
 
 
 # ------------------------------------------------------------------------------
-def _hex_spiral_axial_coords(rings: int) -> tuple[np.ndarray, np.ndarray]:
-    """Generate axial (q, r) coordinates for a centered hex spiral.
-
-    The sequence starts at (0, 0) for n=1 and then enumerates rings 1..rings
-    around the origin on an axial hex grid (pointy-top layout).
-
-    Implementation notes:
-    - For ring k, we start at the axial corner (-k, k) and walk k steps in each
-      of the 6 axial directions.
-    - The construction is deterministic and produces exactly
-      1 + 3*rings*(rings + 1) coordinates.
-
-    Args:
-        rings: Number of rings (>= 0).
-
-    Returns:
-        Two arrays (q, r) of equal length, one coordinate per integer.
-    """
-    if rings < 0:
-        raise ValueError("rings must be >= 0")
-
-    coords_q: list[int] = [0]
-    coords_r: list[int] = [0]
-
-    # Axial directions for a pointy-top layout.
-    directions: list[tuple[int, int]] = [
-        (1, 0),
-        (1, -1),
-        (0, -1),
-        (-1, 0),
-        (-1, 1),
-        (0, 1),
-    ]
-
-    for k in range(1, rings + 1):
-        q, r = -k, k  # start at a corner of the k-th ring
-        for dq, dr in directions:
-            for _ in range(k):
-                coords_q.append(q)
-                coords_r.append(r)
-                q += dq
-                r += dr
-
-    return np.asarray(coords_q, dtype=np.int64), np.asarray(coords_r, dtype=np.int64)
-
-
-def _axial_to_xy(q: np.ndarray, r: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
-    """Convert axial hex coordinates to 2D Cartesian coordinates.
-
-    Uses a pointy-top axial layout.
-
-    Args:
-        q: Axial q coordinates.
-        r: Axial r coordinates.
-
-    Returns:
-        (x, y) Cartesian coordinates.
-    """
-    x = math.sqrt(3.0) * (q.astype(float) + 0.5 * r.astype(float))
-    y = 1.5 * r.astype(float)
-    return x, y
-
-
 def run_e126(
     *,
     out_dir: Path,

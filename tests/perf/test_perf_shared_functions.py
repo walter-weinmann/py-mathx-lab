@@ -14,7 +14,7 @@ from the normal `make pytest` suite.
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -79,7 +79,9 @@ def test_perf_shared_function(case: PerfCase, request: pytest.FixtureRequest) ->
         baseline.setdefault("meta", {})
         baseline["meta"].update(
             {
-                "updated_utc": datetime.utcnow().isoformat(timespec="seconds") + "Z",
+                "updated_utc": datetime.now(UTC)
+                .isoformat(timespec="seconds")
+                .replace("+00:00", "Z"),
                 "note": "Updated by pytest --perf-update-baseline",
             }
         )
@@ -140,7 +142,7 @@ def _write_perf_snapshot(request: pytest.FixtureRequest) -> None:
 
         repo_root = repo_root_from_test_file(Path(__file__))
         out_dir = repo_root / "perf" / "results"
-        ts = datetime.utcnow().strftime("%Y%m%d_%H%M%SZ")
+        ts = datetime.now(UTC).strftime("%Y%m%d_%H%M%SZ")
         snapshot_path = out_dir / f"pytest_perf_shared_functions_{ts}.json"
 
         write_snapshot(snapshot_path, label="pytest-perf", results=_RESULTS)

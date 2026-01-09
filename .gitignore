@@ -16,6 +16,6 @@ dist/
 docs/_build/
 htmlcov/
 out/
-perf/results/dev_*.json
+perf/results/
 perf/work/
 temp*/

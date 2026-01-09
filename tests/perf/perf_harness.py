@@ -20,7 +20,7 @@ import json
 import platform
 from collections.abc import Callable
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
 from time import perf_counter
 from typing import Any
@@ -221,7 +221,7 @@ def write_snapshot(results_path: Path, *, label: str, results: list[CaseResult])
         "suite": {
             "kind": "pytest_perf_microbenchmarks",
             "label": label,
-            "created_utc": datetime.utcnow().isoformat(timespec="seconds") + "Z",
+            "created_utc": datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00", "Z"),
             "python": platform.python_version(),
             "platform": platform.platform(),
             "machine": platform.machine(),
