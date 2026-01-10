@@ -4,7 +4,7 @@ orphan: true
 
 # py-mathx-lab
 
-This is the **PDF / LaTeX root** document. It is intentionally **not linked** from the HTML navigation.
+<!-- This is the PDF / LaTeX root document. It is intentionally not linked from the HTML navigation. -->
 
 ```{toctree}
 :caption: Guide
