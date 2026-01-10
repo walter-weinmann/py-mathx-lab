@@ -2,8 +2,8 @@
 
 This page tracks the generation and manual editing status of experiment pages.
 
-| Experiment                                | Generated  | Last edited  | Notes  |
-|:------------------------------------------|:-----------|:-------------|:-------|
+| Experiment                                | Generated  | Last edited | Notes  |
+|:------------------------------------------|:-----------|:------------|:-------|
 | e001_taylor_error_landscapes | 31.12.2025 |  |  |
 | e002_even_perfect_growth | 31.12.2025 |  |  |
 | e003_abundancy_index_landscape | 31.12.2025 |  |  |
@@ -27,7 +27,7 @@ This page tracks the generation and manual editing status of experiment pages.
 | e021_pi_explicit_bounds_sanity | 31.12.2025 |  |  |
 | e022_prime_race_mod4 | 31.12.2025 |  |  |
 | e023_residue_classes_modq | 31.12.2025 |  |  |
-| e024_ulam_spiral | 31.12.2025 | 01.01.2026 |  |
+| e024_ulam_spiral | 31.12.2025 | 10.01.2026 |  |
 | e025_prime_gaps_nonmonotone | 31.12.2025 |  |  |
 | e026_normalized_prime_gaps | 31.12.2025 |  |  |
 | e027_record_gaps_vs_log2 | 31.12.2025 |  |  |

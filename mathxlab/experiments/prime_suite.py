@@ -784,13 +784,27 @@ def run_e024(
         step += 2
 
     prime_img = is_prime[grid]
+
+    # Plot using centered Cartesian coordinates:
+    # - x,y are integer coordinates with (0,0) at the grid center
+    # - y increases upward (Cartesian convention)
+    half = params.size // 2
+    extent = (-half - 0.5, half + 0.5, -half - 0.5, half + 0.5)
+
     fig_obj, ax = plt.subplots()
-    ax.imshow(prime_img, interpolation="nearest")
-    ax.set_title("Ulam spiral (primes = True)")
+    ax.imshow(
+        prime_img,
+        origin="lower",
+        extent=extent,
+        interpolation="nearest",
+    )
+    ax.set_aspect("equal")
+    ax.set_title(f"Ulam spiral (primes = True, size={params.size})")
     ax.set_xlabel("x")
     ax.set_ylabel("y")
     finalize_figure(fig_obj)
     save_figure(out_dir=figures_dir, name="fig_01_ulam_spiral", fig=fig_obj)
+    save_figure(out_dir=figures_dir, name="e024_hero_" + str(size), fig=fig_obj)
 
     lines = _basic_report_header("E024", "Ulam spiral structure", "e024")
     lines += [
@@ -2209,7 +2223,7 @@ def run_e124(
     k = (params.size - 1) // 2
     ax.imshow(
         img,
-        origin="upper",
+        origin="lower",
         extent=(-k - 0.5, k + 0.5, rows - 0.5, -0.5),
         interpolation="nearest",
     )

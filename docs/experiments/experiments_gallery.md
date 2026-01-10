@@ -323,7 +323,7 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </a>
   <a href="e024.html" class="gallery-card" data-title="E024 — Ulam spiral structure" data-tags="number-theory,quantitative-exploration,visualization,ulam" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
-    <img src="../_static/experiments/e024_hero.png" alt="E024 preview">
+    <img src="../_static/experiments/e024_hero_301.png" alt="E024 preview">
     <div class="gallery-card-body">
       <h3>E024 — Ulam spiral structure</h3>
       <p>Render an Ulam spiral and highlight primes on the spiral grid to make diagonal structure (prime-rich diagonals) visible, then compare how that structure changes as the spiral size increases.</p>
