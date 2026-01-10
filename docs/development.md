@@ -29,6 +29,7 @@ Remove the virtual environment (full reset):
 ```bash
 make clean-venv
 ```
+
 ## Makefile workflow
 
 The Makefile is the **single entry point** for development tasks (env setup, quality checks, docs builds, and running experiments).
@@ -84,6 +85,26 @@ When adding a new experiment:
 
    * add a short entry to {doc}`experiments/experiments_gallery`
    * optionally add a dedicated page under `docs/experiments/` later
+
+### Report contract for algorithmic experiments (Phase 2 and later)
+
+For experiments involving algorithms (primality tests, factorization, explicit bounds), the
+`out/e###/report.md` file is part of the experiment's *scientific contract*.
+
+It must state (when applicable):
+
+- **Deterministic vs probabilistic.** Always label this explicitly.
+- **Probability of error** for probabilistic methods (bases / repetitions).
+- **Correctness cross-checks** against a trusted reference for CI-safe ranges.
+- **Known counterexamples / failure modes** (e.g., Carmichael numbers for Fermat).
+- **Finite-range behavior** vs asymptotics (do not oversell small N).
+
+Use this drop-in template for report sections (copy/paste into `report.md` or generate it in code):
+
+```{include} experiments/report_section_template.md
+:start-after: "<!-- TEMPLATE:BEGIN -->"
+:end-before: "<!-- TEMPLATE:END -->"
+```
 
 ## Documentation
 

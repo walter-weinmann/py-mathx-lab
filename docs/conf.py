@@ -68,7 +68,8 @@ exclude_patterns = [
     "_build",
     "background/background_page_template.md",
     "experiments/experiment_page_template.md",
-    # Snapshots are included into experiment pages; they must not be treated as
+    "experiments/report_section_template.md",
+    # Snapshots are included in experiment pages; they must not be treated as
     # standalone documents (otherwise Sphinx emits toc.not_included warnings).
     "reports/**",
     "params/**",
@@ -97,7 +98,7 @@ bibtex_bibfiles = ["refs.bib"]
 # Make bibliography labels non-cryptic (numeric) and make inline cites readable (author-year)
 bibtex_default_style = "plain"          # numeric labels like [1], [2], ...
 bibtex_reference_style = "author_year"  # inline cites like "Titchmarsh (1986)"
-bibtex_tooltips = True                 # hover shows a short preview
+bibtex_tooltips = True                  # hover shows a short preview
 bibtex_tooltips_style = "plain"
 
 # Suppress known sphinx-design warnings that don't affect rendering
