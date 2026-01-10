@@ -16,6 +16,7 @@ dist/
 docs/_build/
 htmlcov/
 out/
-perf/results/
+perf/results/dev_*.json
+perf/results/pytest_*.json
 perf/work/
 temp*/
