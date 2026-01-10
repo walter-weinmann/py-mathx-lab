@@ -6,7 +6,7 @@ dependencies = [
   "sympy>=1.12",
 ]
 description = "A gallery of numerical experiments: conjectures, counterexamples, and code."
-version = "2.0.0"
+version = "2.1.0"
 name = "mathxlab"
 readme = "README.md"
 requires-python = ">=3.14"

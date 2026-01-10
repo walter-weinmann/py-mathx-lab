@@ -143,11 +143,11 @@ html_theme_options = {
 
 latex_documents = [
     (
-        "index",  # start doc
-        "py-mathx-lab.tex",  # target .tex name
+        "index_latex",          # start doc (your LaTeX root)
+        "py-mathx-lab.tex",     # target filename (MUST end with .tex)
         "py-mathx-lab Documentation",
-        author,
-        "manual",
+        "Walter Weinmann",      # author (4th!)
+        "manual",               # documentclass (5th!) -> must be 'manual' or 'howto'
     ),
 ]
 
@@ -156,6 +156,7 @@ latex_engine = "xelatex"
 
 # Keep the PDF readable and avoid excessive wide tables.
 latex_elements = {
+    "classoptions": ",oneside,openany",
     "papersize": "a4paper",
     "pointsize": "10pt",
     "preamble": r"""
