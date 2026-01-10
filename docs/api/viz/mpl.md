@@ -1,21 +1,34 @@
 # `mathxlab.viz.mpl`
 
-Apply consistent Matplotlib styling to the current figure.
+Reusable helpers for the `mathxlab` project.
 
-:::{contents} On this page
-:local:
-:depth: 2
+:::{admonition} Stability
+:class: note
+
+Status: **Experimental**.
+
+This project treats the documented names as the *public surface*, but details may still evolve.
+If you need strict API guarantees, add `__all__ = [...]` to each module and version releases accordingly.
 :::
 
-## Quickstart
+## Design notes
+- Keep figure styling consistent across experiments.
+- Prefer small helpers over copy/pasted plotting code.
+
+## Examples
+
+### Apply consistent styling to the current figure
 
 ```python
 from mathxlab.viz.mpl import finalize_figure
+finalize_figure("Prime density", "x", "y")
 ```
 
-:::{list-table} Public API
+## Public API
+
+:::{list-table}
 :header-rows: 1
-:widths: 20 10 70
+:widths: 22 10 68
 
 * - Name
   - Kind
@@ -24,7 +37,10 @@ from mathxlab.viz.mpl import finalize_figure
   - function
   - Apply consistent Matplotlib styling to the current figure.
 :::
-
 ## Reference
+
 ### Functions
-::{autofunction} mathxlab.viz.mpl.finalize_figure:::
+
+:::{autofunction} mathxlab.viz.mpl.finalize_figure
+:::
+

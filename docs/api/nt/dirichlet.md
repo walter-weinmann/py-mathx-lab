@@ -2,20 +2,34 @@
 
 Dirichlet characters and small numerical helpers.
 
-:::{contents} On this page
-:local:
-:depth: 2
+:::{admonition} Stability
+:class: note
+
+Status: **Experimental**.
+
+This project treats the documented names as the *public surface*, but details may still evolve.
+If you need strict API guarantees, add `__all__ = [...]` to each module and version releases accordingly.
 :::
 
-## Quickstart
+## Design notes
+- Functions are designed for experiment-scale inputs (not cryptographic workloads).
+- Prefer explicit parameters (e.g., `n_max`) for reproducibility.
+
+## Examples
+
+### Evaluate a Dirichlet character
 
 ```python
-from mathxlab.nt.dirichlet import euler_phi, reduced_residues, DirichletCharacter
+from mathxlab.nt.dirichlet import all_characters
+chi = all_characters(5)[1]
+print(chi(2))
 ```
 
-:::{list-table} Public API
+## Public API
+
+:::{list-table}
 :header-rows: 1
-:widths: 20 10 70
+:widths: 22 10 68
 
 * - Name
   - Kind
@@ -42,15 +56,33 @@ from mathxlab.nt.dirichlet import euler_phi, reduced_residues, DirichletCharacte
   - function
   - Compute the character orthogonality matrix for modulus q.
 :::
-
 ## Reference
+
 ### Classes
-::{autoclass} mathxlab.nt.dirichlet.DirichletCharacter:members::member-order: bysource:show-inheritance::::
+
+:::{autoclass} mathxlab.nt.dirichlet.DirichletCharacter
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
 
 ### Functions
-::{autofunction} mathxlab.nt.dirichlet.euler_phi:::
-::{autofunction} mathxlab.nt.dirichlet.reduced_residues:::
-::{autofunction} mathxlab.nt.dirichlet.all_characters:::
-::{autofunction} mathxlab.nt.dirichlet.character_table:::
-::{autofunction} mathxlab.nt.dirichlet.conductor:::
-::{autofunction} mathxlab.nt.dirichlet.orthogonality_matrix:::
+
+:::{autofunction} mathxlab.nt.dirichlet.euler_phi
+:::
+
+:::{autofunction} mathxlab.nt.dirichlet.reduced_residues
+:::
+
+:::{autofunction} mathxlab.nt.dirichlet.all_characters
+:::
+
+:::{autofunction} mathxlab.nt.dirichlet.character_table
+:::
+
+:::{autofunction} mathxlab.nt.dirichlet.conductor
+:::
+
+:::{autofunction} mathxlab.nt.dirichlet.orthogonality_matrix
+:::
+

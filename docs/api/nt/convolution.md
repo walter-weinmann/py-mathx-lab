@@ -2,20 +2,34 @@
 
 Dirichlet convolution helpers.
 
-:::{contents} On this page
-:local:
-:depth: 2
+:::{admonition} Stability
+:class: note
+
+Status: **Experimental**.
+
+This project treats the documented names as the *public surface*, but details may still evolve.
+If you need strict API guarantees, add `__all__ = [...]` to each module and version releases accordingly.
 :::
 
-## Quickstart
+## Design notes
+- Functions are designed for experiment-scale inputs (not cryptographic workloads).
+- Prefer explicit parameters (e.g., `n_max`) for reproducibility.
+
+## Examples
+
+### Dirichlet convolution on a prefix
 
 ```python
-from mathxlab.nt.convolution import dirichlet_convolution, epsilon, ConvolutionResult
+from mathxlab.nt.convolution import ones, identity, dirichlet_convolution
+res = dirichlet_convolution(ones(10), identity(10), n_max=10)
+print(res.values[1:6])
 ```
 
-:::{list-table} Public API
+## Public API
+
+:::{list-table}
 :header-rows: 1
-:widths: 20 10 70
+:widths: 22 10 68
 
 * - Name
   - Kind
@@ -36,13 +50,27 @@ from mathxlab.nt.convolution import dirichlet_convolution, epsilon, ConvolutionR
   - function
   - Return the identity arithmetic function id(n)=n.
 :::
-
 ## Reference
+
 ### Classes
-::{autoclass} mathxlab.nt.convolution.ConvolutionResult:members::member-order: bysource:show-inheritance::::
+
+:::{autoclass} mathxlab.nt.convolution.ConvolutionResult
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
 
 ### Functions
-::{autofunction} mathxlab.nt.convolution.dirichlet_convolution:::
-::{autofunction} mathxlab.nt.convolution.epsilon:::
-::{autofunction} mathxlab.nt.convolution.ones:::
-::{autofunction} mathxlab.nt.convolution.identity:::
+
+:::{autofunction} mathxlab.nt.convolution.dirichlet_convolution
+:::
+
+:::{autofunction} mathxlab.nt.convolution.epsilon
+:::
+
+:::{autofunction} mathxlab.nt.convolution.ones
+:::
+
+:::{autofunction} mathxlab.nt.convolution.identity
+:::
+

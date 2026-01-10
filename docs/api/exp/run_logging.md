@@ -2,20 +2,34 @@
 
 Utilities for run log file discovery.
 
-:::{contents} On this page
-:local:
-:depth: 2
+:::{admonition} Stability
+:class: note
+
+Status: **Experimental**.
+
+This project treats the documented names as the *public surface*, but details may still evolve.
+If you need strict API guarantees, add `__all__ = [...]` to each module and version releases accordingly.
 :::
 
-## Quickstart
+## Design notes
+- Keep experiment scripts small: delegate I/O, seeding, and logging here.
+- Aim for reproducible outputs (fixed seeds, stable file names).
+
+## Examples
+
+### Infer the run log file path
 
 ```python
-from mathxlab.exp.run_logging import infer_run_log_file, RunLogDiscovery
+from pathlib import Path
+from mathxlab.exp.run_logging import infer_run_log_file
+print(infer_run_log_file(out_dir=Path("out/e001"), experiment_slug="e001"))
 ```
 
-:::{list-table} Public API
+## Public API
+
+:::{list-table}
 :header-rows: 1
-:widths: 20 10 70
+:widths: 22 10 68
 
 * - Name
   - Kind
@@ -27,10 +41,18 @@ from mathxlab.exp.run_logging import infer_run_log_file, RunLogDiscovery
   - function
   - Infer the run log file for an experiment.
 :::
-
 ## Reference
+
 ### Classes
-::{autoclass} mathxlab.exp.run_logging.RunLogDiscovery:members::member-order: bysource:show-inheritance::::
+
+:::{autoclass} mathxlab.exp.run_logging.RunLogDiscovery
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
 
 ### Functions
-::{autofunction} mathxlab.exp.run_logging.infer_run_log_file:::
+
+:::{autofunction} mathxlab.exp.run_logging.infer_run_log_file
+:::
+

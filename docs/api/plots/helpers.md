@@ -1,21 +1,35 @@
 # `mathxlab.plots.helpers`
 
-Apply common axis styling.
+Reusable helpers for the `mathxlab` project.
 
-:::{contents} On this page
-:local:
-:depth: 2
+:::{admonition} Stability
+:class: note
+
+Status: **Experimental**.
+
+This project treats the documented names as the *public surface*, but details may still evolve.
+If you need strict API guarantees, add `__all__ = [...]` to each module and version releases accordingly.
 :::
 
-## Quickstart
+## Design notes
+- Keep figure styling consistent across experiments.
+- Prefer small helpers over copy/pasted plotting code.
+
+## Examples
+
+### Finalize a Matplotlib figure
 
 ```python
-from mathxlab.plots.helpers import apply_axis_style, configure_mathtext
+import matplotlib.pyplot as plt
+from mathxlab.plots.helpers import finalize_figure
+finalize_figure(plt.figure())
 ```
 
-:::{list-table} Public API
+## Public API
+
+:::{list-table}
 :header-rows: 1
-:widths: 20 10 70
+:widths: 22 10 68
 
 * - Name
   - Kind
@@ -30,9 +44,16 @@ from mathxlab.plots.helpers import apply_axis_style, configure_mathtext
   - function
   - Finalize a Matplotlib figure (layout + MathText config).
 :::
-
 ## Reference
+
 ### Functions
-::{autofunction} mathxlab.plots.helpers.apply_axis_style:::
-::{autofunction} mathxlab.plots.helpers.configure_mathtext:::
-::{autofunction} mathxlab.plots.helpers.finalize_figure:::
+
+:::{autofunction} mathxlab.plots.helpers.apply_axis_style
+:::
+
+:::{autofunction} mathxlab.plots.helpers.configure_mathtext
+:::
+
+:::{autofunction} mathxlab.plots.helpers.finalize_figure
+:::
+

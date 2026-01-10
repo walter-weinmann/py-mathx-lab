@@ -1,21 +1,34 @@
 # `mathxlab.nt.zeta`
 
-Settings for zeta-related numerical evaluations.
+Reusable helpers for the `mathxlab` project.
 
-:::{contents} On this page
-:local:
-:depth: 2
+:::{admonition} Stability
+:class: note
+
+Status: **Experimental**.
+
+This project treats the documented names as the *public surface*, but details may still evolve.
+If you need strict API guarantees, add `__all__ = [...]` to each module and version releases accordingly.
 :::
 
-## Quickstart
+## Design notes
+- Functions are designed for experiment-scale inputs (not cryptographic workloads).
+- Prefer explicit parameters (e.g., `n_max`) for reproducibility.
+
+## Examples
+
+### Approximate ζ(2) via a partial series
 
 ```python
-from mathxlab.nt.zeta import mp_workdps, zeta_series_partial, ZetaEvalSettings
+from mathxlab.nt.zeta import zeta_series_partial
+print(zeta_series_partial(2, 10_000))
 ```
 
-:::{list-table} Public API
+## Public API
+
+:::{list-table}
 :header-rows: 1
-:widths: 20 10 70
+:widths: 22 10 68
 
 * - Name
   - Kind
@@ -48,17 +61,39 @@ from mathxlab.nt.zeta import mp_workdps, zeta_series_partial, ZetaEvalSettings
   - function
   - Return the Riemann--von Mangoldt main term for N(T).
 :::
-
 ## Reference
+
 ### Classes
-::{autoclass} mathxlab.nt.zeta.ZetaEvalSettings:members::member-order: bysource:show-inheritance::::
+
+:::{autoclass} mathxlab.nt.zeta.ZetaEvalSettings
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
 
 ### Functions
-::{autofunction} mathxlab.nt.zeta.mp_workdps:::
-::{autofunction} mathxlab.nt.zeta.zeta_series_partial:::
-::{autofunction} mathxlab.nt.zeta.eta_series_partial:::
-::{autofunction} mathxlab.nt.zeta.zeta_via_eta:::
-::{autofunction} mathxlab.nt.zeta.euler_product_partial:::
-::{autofunction} mathxlab.nt.zeta.chi_factor:::
-::{autofunction} mathxlab.nt.zeta.hardy_Z:::
-::{autofunction} mathxlab.nt.zeta.riemann_von_mangoldt_count:::
+
+:::{autofunction} mathxlab.nt.zeta.mp_workdps
+:::
+
+:::{autofunction} mathxlab.nt.zeta.zeta_series_partial
+:::
+
+:::{autofunction} mathxlab.nt.zeta.eta_series_partial
+:::
+
+:::{autofunction} mathxlab.nt.zeta.zeta_via_eta
+:::
+
+:::{autofunction} mathxlab.nt.zeta.euler_product_partial
+:::
+
+:::{autofunction} mathxlab.nt.zeta.chi_factor
+:::
+
+:::{autofunction} mathxlab.nt.zeta.hardy_Z
+:::
+
+:::{autofunction} mathxlab.nt.zeta.riemann_von_mangoldt_count
+:::
+

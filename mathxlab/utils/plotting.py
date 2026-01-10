@@ -34,6 +34,13 @@ from dataclasses import dataclass
 
 import matplotlib as mpl
 
+__all__ = [
+    "LatexToolchainStatus",
+    "configure_matplotlib",
+    "detect_latex_toolchain",
+    "make_math_label",
+]
+
 # ------------------------------------------------------------------------------
 # A LaTeX-ish serif font preference stack.
 # Matplotlib will pick the first installed font available at runtime.
@@ -52,12 +59,17 @@ _LATEXISH_SERIF_STACK: list[str] = [
 # ------------------------------------------------------------------------------
 @dataclass(frozen=True, slots=True)
 class LatexToolchainStatus:
-    """Represents the availability of an external LaTeX toolchain.
+    """
+    Represents the availability of an external LaTeX toolchain.
 
     Args:
         latex: True if `latex` (or an alternative TeX engine) is available.
         dvipng: True if `dvipng` is available.
         dvisvgm: True if `dvisvgm` is available.
+
+    Examples:
+        >>> from mathxlab.utils.plotting import LatexToolchainStatus
+        >>> LatexToolchainStatus  # doctest: +SKIP
     """
 
     latex: bool
@@ -67,7 +79,8 @@ class LatexToolchainStatus:
 
 # ------------------------------------------------------------------------------
 def detect_latex_toolchain() -> LatexToolchainStatus:
-    """Detect whether an external LaTeX toolchain is available.
+    """
+    Detect whether an external LaTeX toolchain is available.
 
     Matplotlib's `text.usetex = True` typically requires:
       - `latex`
@@ -75,6 +88,10 @@ def detect_latex_toolchain() -> LatexToolchainStatus:
 
     Returns:
         A `LatexToolchainStatus` instance describing which tools were found.
+
+    Examples:
+        >>> from mathxlab.utils.plotting import detect_latex_toolchain
+        >>> detect_latex_toolchain  # doctest: +SKIP
     """
     latex = shutil.which("latex") is not None
     dvipng = shutil.which("dvipng") is not None
@@ -106,7 +123,8 @@ def configure_matplotlib(
     font_family: str = "serif",
     rcparams: Mapping[str, object] | None = None,
 ) -> bool:
-    """Configure Matplotlib defaults for experiments.
+    """
+    Configure Matplotlib defaults for experiments.
 
     This sets stable, portable defaults and optionally enables true LaTeX
     rendering for math labels.
@@ -131,6 +149,13 @@ def configure_matplotlib(
 
     Returns:
         True if LaTeX rendering was enabled; False if mathtext is used.
+
+    Notes:
+        Call this once near the start of an experiment to keep all figures consistent across HTML and PDF builds.
+
+    Examples:
+        >>> from mathxlab.utils.plotting import configure_matplotlib
+        >>> configure_matplotlib()  # portable defaults for docs/CI
     """
     # Stable defaults that work well across platforms.
     #
@@ -182,7 +207,8 @@ def configure_matplotlib(
 
 # ------------------------------------------------------------------------------
 def make_math_label(expr: str) -> str:
-    """Wrap an expression in `$...$` for math rendering.
+    """
+    Wrap an expression in `$...$` for math rendering.
 
     Args:
         expr: A LaTeX/mathtext expression (without surrounding `$`).
@@ -195,6 +221,11 @@ def make_math_label(expr: str) -> str:
             ax.set_title(rf"Prime counting: {make_math_label('\\pi(x)')}")
 
         This helper keeps figure code consistent and avoids duplicated `$`.
+
+    Examples:
+        >>> from mathxlab.utils.plotting import make_math_label
+        >>> make_math_label(r"\\pi(x) \\sim x/\\log x")
+        '$\\pi(x) \\sim x/\\log x$'
     """
     inner = expr.strip()
     if inner.startswith("$") and inner.endswith("$"):

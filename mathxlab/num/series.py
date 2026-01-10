@@ -2,10 +2,15 @@ from __future__ import annotations
 
 import numpy as np
 
+__all__ = [
+    "taylor_sin",
+]
+
 
 # ------------------------------------------------------------------------------
 def taylor_sin(x: np.ndarray, x0: float, degree: int) -> np.ndarray:
-    """Compute the Taylor polynomial approximation of sin(x) around x0.
+    """
+    Compute the Taylor polynomial approximation of sin(x) around x0.
 
     Uses a direct series expansion:
         sin(x) = sum_k (-1)^k (x-x0)^(2k+1) / (2k+1)!  (about x0 for shifted variable)
@@ -20,6 +25,11 @@ def taylor_sin(x: np.ndarray, x0: float, degree: int) -> np.ndarray:
 
     Returns:
         Array of Taylor approximation values at x.
+
+    Examples:
+        >>> import numpy as np
+        >>> from mathxlab.num.series import taylor_sin
+        >>> float(taylor_sin(np.array([0.1]), 0.0, 5)[0])
     """
     if degree < 0:
         raise ValueError("degree must be >= 0")

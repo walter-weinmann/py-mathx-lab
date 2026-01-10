@@ -1,3 +1,14 @@
+"""Logging utilities for experiment runs.
+
+The logging policy is tuned for interactive experimentation:
+
+- INFO+ from all libraries (progress, warnings)
+- DEBUG only from this repository's loggers (by prefix), enabled via `verbose`
+
+This keeps third-party debug output (e.g. Matplotlib) from overwhelming logs
+while still allowing deep debugging for `mathxlab.*`.
+"""
+
 from __future__ import annotations
 
 import contextlib
@@ -8,16 +19,27 @@ from pathlib import Path
 from types import TracebackType
 from typing import override
 
+__all__ = [
+    "LoggingConfig",
+    "get_logger",
+    "setup_logging",
+]
+
 
 # ------------------------------------------------------------------------------
 @dataclass(frozen=True, slots=True)
 class LoggingConfig:
-    """Configuration for experiment logging.
+    """
+    Configuration for experiment logging.
 
     Args:
         package_prefix: Logger name prefix considered "our code" (default: "mathxlab").
         verbose: If True, emit DEBUG logs for package_prefix only.
         log_file: Optional file path for logs (UTF-8). The file is overwritten each run.
+
+    Examples:
+        >>> from mathxlab.exp.logging import LoggingConfig
+        >>> LoggingConfig  # doctest: +SKIP
     """
 
     package_prefix: str = "mathxlab"
@@ -42,7 +64,8 @@ class _PrefixAndExactLevelFilter(logging.Filter):
 
 # ------------------------------------------------------------------------------
 def setup_logging(*, config: LoggingConfig | None = None) -> None:
-    """Set up logging for experiment runs.
+    """
+    Set up logging for experiment runs.
 
     Design goal:
         - Show INFO+ from all libraries (progress + warnings).
@@ -53,6 +76,11 @@ def setup_logging(*, config: LoggingConfig | None = None) -> None:
 
     Args:
         config: Logging configuration. If omitted, defaults are used.
+
+    Examples:
+        >>> from mathxlab.exp.logging import LoggingConfig, setup_logging
+        >>> setup_logging(config=LoggingConfig(verbose=True))
+        >>> import logging; logging.getLogger("mathxlab").debug("debug enabled")
     """
     cfg = config or LoggingConfig()
 
@@ -137,12 +165,17 @@ def setup_logging(*, config: LoggingConfig | None = None) -> None:
 
 # ------------------------------------------------------------------------------
 def get_logger(name: str) -> logging.Logger:
-    """Get a logger for a specific module.
+    """
+    Get a logger for a specific module.
 
     Args:
         name: Name of the module.
 
     Returns:
         A logging.Logger instance.
+
+    Examples:
+        >>> from mathxlab.exp.logging import get_logger
+        >>> get_logger  # doctest: +SKIP
     """
     return logging.getLogger(name)

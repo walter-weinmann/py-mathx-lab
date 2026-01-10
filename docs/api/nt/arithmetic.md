@@ -2,20 +2,34 @@
 
 Arithmetic functions and factor-sieve helpers.
 
-:::{contents} On this page
-:local:
-:depth: 2
+:::{admonition} Stability
+:class: note
+
+Status: **Experimental**.
+
+This project treats the documented names as the *public surface*, but details may still evolve.
+If you need strict API guarantees, add `__all__ = [...]` to each module and version releases accordingly.
 :::
 
-## Quickstart
+## Design notes
+- Functions are designed for experiment-scale inputs (not cryptographic workloads).
+- Prefer explicit parameters (e.g., `n_max`) for reproducibility.
+
+## Examples
+
+### Factorize using a smallest-prime-factor sieve
 
 ```python
-from mathxlab.nt.arithmetic import build_factor_sieve, factorize, FactorSieve
+from mathxlab.nt.arithmetic import build_factor_sieve, factorize
+sieve = build_factor_sieve(100)
+print(factorize(84, sieve=sieve))
 ```
 
-:::{list-table} Public API
+## Public API
+
+:::{list-table}
 :header-rows: 1
-:widths: 20 10 70
+:widths: 22 10 68
 
 * - Name
   - Kind
@@ -69,24 +83,60 @@ from mathxlab.nt.arithmetic import build_factor_sieve, factorize, FactorSieve
   - function
   - Compute Chebyshev's ψ(x) for x=0..n_max.
 :::
-
 ## Reference
+
 ### Classes
-::{autoclass} mathxlab.nt.arithmetic.FactorSieve:members::member-order: bysource:show-inheritance::::
+
+:::{autoclass} mathxlab.nt.arithmetic.FactorSieve
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
 
 ### Functions
-::{autofunction} mathxlab.nt.arithmetic.build_factor_sieve:::
-::{autofunction} mathxlab.nt.arithmetic.factorize:::
-::{autofunction} mathxlab.nt.arithmetic.lcm:::
-::{autofunction} mathxlab.nt.arithmetic.compute_phi:::
-::{autofunction} mathxlab.nt.arithmetic.compute_mobius:::
-::{autofunction} mathxlab.nt.arithmetic.compute_omega:::
-::{autofunction} mathxlab.nt.arithmetic.compute_big_omega:::
-::{autofunction} mathxlab.nt.arithmetic.compute_tau_sigma:::
-::{autofunction} mathxlab.nt.arithmetic.liouville:::
-::{autofunction} mathxlab.nt.arithmetic.carmichael_lambda_for_prime_power:::
-::{autofunction} mathxlab.nt.arithmetic.carmichael_lambda:::
-::{autofunction} mathxlab.nt.arithmetic.jordan_totient:::
-::{autofunction} mathxlab.nt.arithmetic.compute_von_mangoldt:::
-::{autofunction} mathxlab.nt.arithmetic.von_mangoldt:::
-::{autofunction} mathxlab.nt.arithmetic.chebyshev_psi:::
+
+:::{autofunction} mathxlab.nt.arithmetic.build_factor_sieve
+:::
+
+:::{autofunction} mathxlab.nt.arithmetic.factorize
+:::
+
+:::{autofunction} mathxlab.nt.arithmetic.lcm
+:::
+
+:::{autofunction} mathxlab.nt.arithmetic.compute_phi
+:::
+
+:::{autofunction} mathxlab.nt.arithmetic.compute_mobius
+:::
+
+:::{autofunction} mathxlab.nt.arithmetic.compute_omega
+:::
+
+:::{autofunction} mathxlab.nt.arithmetic.compute_big_omega
+:::
+
+:::{autofunction} mathxlab.nt.arithmetic.compute_tau_sigma
+:::
+
+:::{autofunction} mathxlab.nt.arithmetic.liouville
+:::
+
+:::{autofunction} mathxlab.nt.arithmetic.carmichael_lambda_for_prime_power
+:::
+
+:::{autofunction} mathxlab.nt.arithmetic.carmichael_lambda
+:::
+
+:::{autofunction} mathxlab.nt.arithmetic.jordan_totient
+:::
+
+:::{autofunction} mathxlab.nt.arithmetic.compute_von_mangoldt
+:::
+
+:::{autofunction} mathxlab.nt.arithmetic.von_mangoldt
+:::
+
+:::{autofunction} mathxlab.nt.arithmetic.chebyshev_psi
+:::
+

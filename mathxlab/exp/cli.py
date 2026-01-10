@@ -15,16 +15,28 @@ import argparse
 from dataclasses import dataclass
 from pathlib import Path
 
+__all__ = [
+    "ExperimentArgs",
+    "ExperimentArgsWithSize",
+    "parse_experiment_args",
+    "parse_experiment_args_with_size",
+]
+
 
 # ------------------------------------------------------------------------------
 @dataclass(frozen=True)
 class ExperimentArgs:
-    """Parsed command-line arguments for an experiment run.
+    """
+    Parsed command-line arguments for an experiment run.
 
     Attributes:
         out_dir: Output directory where all artifacts will be written.
         seed: Deterministic seed for randomness.
         verbose: Enable verbose logging.
+
+    Examples:
+        >>> from mathxlab.exp.cli import ExperimentArgs
+        >>> ExperimentArgs  # doctest: +SKIP
     """
 
     out_dir: Path
@@ -35,13 +47,18 @@ class ExperimentArgs:
 # ------------------------------------------------------------------------------
 @dataclass(frozen=True)
 class ExperimentArgsWithSize:
-    """Parsed command-line arguments for an experiment run with a `size` parameter.
+    """
+    Parsed command-line arguments for an experiment run with a `size` parameter.
 
     Attributes:
         out_dir: Output directory where all artifacts will be written.
         seed: Deterministic seed for reproducibility.
         verbose: Enable verbose logging.
         size: Grid size parameter (meaning depends on experiment).
+
+    Examples:
+        >>> from mathxlab.exp.cli import ExperimentArgsWithSize
+        >>> ExperimentArgsWithSize  # doctest: +SKIP
     """
 
     out_dir: Path
@@ -59,7 +76,8 @@ def parse_experiment_args_with_size(
     size_default: int = 301,
     size_help: str = "Grid size parameter (must be positive and odd).",
 ) -> ExperimentArgsWithSize:
-    """Parse standard experiment CLI arguments plus a `--size` option.
+    """
+    Parse standard experiment CLI arguments plus a `--size` option.
 
     This helper keeps new experiments consistent with the standard template while
     allowing a common `--size` knob for grid-based visualizations.
@@ -79,6 +97,12 @@ def parse_experiment_args_with_size(
         TypeError: If argv is passed both positionally and as a keyword, or if the
             positional argv is invalid.
         SystemExit: If size is non-positive or even.
+
+    Examples:
+        >>> from mathxlab.exp.cli import parse_experiment_args_with_size
+        >>> args = parse_experiment_args_with_size(argv=["--out", "out/e124", "--size", "401"])
+        >>> args.size
+        401
     """
     # Backward/forward compatibility (match parse_experiment_args):
     if args:
@@ -154,7 +178,8 @@ def parse_experiment_args(
     description: str | None = None,
     argv: list[str] | None = None,
 ) -> ExperimentArgs:
-    """Parse standard experiment CLI arguments.
+    """
+    Parse standard experiment CLI arguments.
 
     Args:
         experiment_id: Optional program name for help.
@@ -164,6 +189,12 @@ def parse_experiment_args(
 
     Returns:
         Parsed ExperimentArgs.
+
+    Examples:
+        >>> from mathxlab.exp.cli import parse_experiment_args
+        >>> args = parse_experiment_args(argv=["--out", "out/e001", "--seed", "7"])
+        >>> args.out_dir.name
+        'e001'
     """
     # Backward/forward compatibility:
     # Some experiments may call this as parse_experiment_args(argv)

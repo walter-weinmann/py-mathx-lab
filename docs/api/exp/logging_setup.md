@@ -1,21 +1,34 @@
 # `mathxlab.exp.logging_setup`
 
-Backward-compatible wrapper around :func:`mathxlab.exp.logging.setup_logging`.
+Reusable helpers for the `mathxlab` project.
 
-:::{contents} On this page
-:local:
-:depth: 2
+:::{admonition} Stability
+:class: note
+
+Status: **Experimental**.
+
+This project treats the documented names as the *public surface*, but details may still evolve.
+If you need strict API guarantees, add `__all__ = [...]` to each module and version releases accordingly.
 :::
 
-## Quickstart
+## Design notes
+- Keep experiment scripts small: delegate I/O, seeding, and logging here.
+- Aim for reproducible outputs (fixed seeds, stable file names).
+
+## Examples
+
+### Backwards-compatible logging setup
 
 ```python
 from mathxlab.exp.logging_setup import configure_logging
+configure_logging()
 ```
 
-:::{list-table} Public API
+## Public API
+
+:::{list-table}
 :header-rows: 1
-:widths: 20 10 70
+:widths: 22 10 68
 
 * - Name
   - Kind
@@ -24,7 +37,10 @@ from mathxlab.exp.logging_setup import configure_logging
   - function
   - Backward-compatible wrapper around :func:`mathxlab.exp.logging.setup_logging`.
 :::
-
 ## Reference
+
 ### Functions
-::{autofunction} mathxlab.exp.logging_setup.configure_logging:::
+
+:::{autofunction} mathxlab.exp.logging_setup.configure_logging
+:::
+

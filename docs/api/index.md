@@ -23,11 +23,11 @@ If you want strict control, add `__all__ = [...]` to each public module.
 `mathxlab.exp` — CLI helpers, seeding, logging, and report writing.
 :::
 
-:::{grid-item-card} Experiment suites
+:::{grid-item-card} Experiment registry
 :link: experiments
 :link-type: doc
 
-`mathxlab.experiments` — suite runners and registry helpers (excluding `e####` scripts).
+`mathxlab.experiments` — stable registry for enumerating experiments.
 :::
 
 :::{grid-item-card} Number theory

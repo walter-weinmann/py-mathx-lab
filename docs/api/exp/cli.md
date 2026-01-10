@@ -2,20 +2,34 @@
 
 Command-line helpers for experiments.
 
-:::{contents} On this page
-:local:
-:depth: 2
+:::{admonition} Stability
+:class: note
+
+Status: **Experimental**.
+
+This project treats the documented names as the *public surface*, but details may still evolve.
+If you need strict API guarantees, add `__all__ = [...]` to each module and version releases accordingly.
 :::
 
-## Quickstart
+## Design notes
+- Keep experiment scripts small: delegate I/O, seeding, and logging here.
+- Aim for reproducible outputs (fixed seeds, stable file names).
+
+## Examples
+
+### Parse standard CLI arguments
 
 ```python
-from mathxlab.exp.cli import parse_experiment_args_with_size, parse_experiment_args, ExperimentArgs
+from mathxlab.exp.cli import parse_experiment_args
+args = parse_experiment_args(argv=["--out", "out/e001", "--seed", "1"])
+print(args.out_dir)
 ```
 
-:::{list-table} Public API
+## Public API
+
+:::{list-table}
 :header-rows: 1
-:widths: 20 10 70
+:widths: 22 10 68
 
 * - Name
   - Kind
@@ -33,12 +47,27 @@ from mathxlab.exp.cli import parse_experiment_args_with_size, parse_experiment_a
   - function
   - Parse standard experiment CLI arguments.
 :::
-
 ## Reference
+
 ### Classes
-::{autoclass} mathxlab.exp.cli.ExperimentArgs:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.exp.cli.ExperimentArgsWithSize:members::member-order: bysource:show-inheritance::::
+
+:::{autoclass} mathxlab.exp.cli.ExperimentArgs
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.exp.cli.ExperimentArgsWithSize
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
 
 ### Functions
-::{autofunction} mathxlab.exp.cli.parse_experiment_args_with_size:::
-::{autofunction} mathxlab.exp.cli.parse_experiment_args:::
+
+:::{autofunction} mathxlab.exp.cli.parse_experiment_args_with_size
+:::
+
+:::{autofunction} mathxlab.exp.cli.parse_experiment_args
+:::
+

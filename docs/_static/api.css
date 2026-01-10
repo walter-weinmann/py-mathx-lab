@@ -13,5 +13,5 @@ dl.py > dd { margin-top: 0.35rem; }
 
 .sig { line-height: 1.35; }
 
-/* Make list-tables more compact */
+/* Make doc tables more compact */
 table.docutils td, table.docutils th { padding: 0.35rem 0.6rem; }

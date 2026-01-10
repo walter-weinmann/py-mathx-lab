@@ -2,20 +2,34 @@
 
 Shared plotting utilities for py-mathx-lab.
 
-:::{contents} On this page
-:local:
-:depth: 2
+:::{admonition} Stability
+:class: note
+
+Status: **Experimental**.
+
+This project treats the documented names as the *public surface*, but details may still evolve.
+If you need strict API guarantees, add `__all__ = [...]` to each module and version releases accordingly.
 :::
 
-## Quickstart
+## Design notes
+- Keep figure styling consistent across experiments.
+- Prefer small helpers over copy/pasted plotting code.
+
+## Examples
+
+### Configure Matplotlib and build math labels
 
 ```python
-from mathxlab.utils.plotting import detect_latex_toolchain, configure_matplotlib, LatexToolchainStatus
+from mathxlab.utils.plotting import configure_matplotlib, make_math_label
+configure_matplotlib()
+print(make_math_label(r"\pi(x) \sim x/\log x"))
 ```
 
-:::{list-table} Public API
+## Public API
+
+:::{list-table}
 :header-rows: 1
-:widths: 20 10 70
+:widths: 22 10 68
 
 * - Name
   - Kind
@@ -33,12 +47,24 @@ from mathxlab.utils.plotting import detect_latex_toolchain, configure_matplotlib
   - function
   - Wrap an expression in `$...$` for math rendering.
 :::
-
 ## Reference
+
 ### Classes
-::{autoclass} mathxlab.utils.plotting.LatexToolchainStatus:members::member-order: bysource:show-inheritance::::
+
+:::{autoclass} mathxlab.utils.plotting.LatexToolchainStatus
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
 
 ### Functions
-::{autofunction} mathxlab.utils.plotting.detect_latex_toolchain:::
-::{autofunction} mathxlab.utils.plotting.configure_matplotlib:::
-::{autofunction} mathxlab.utils.plotting.make_math_label:::
+
+:::{autofunction} mathxlab.utils.plotting.detect_latex_toolchain
+:::
+
+:::{autofunction} mathxlab.utils.plotting.configure_matplotlib
+:::
+
+:::{autofunction} mathxlab.utils.plotting.make_math_label
+:::
+

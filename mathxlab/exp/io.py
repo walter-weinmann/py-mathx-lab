@@ -1,3 +1,15 @@
+"""Filesystem and serialization helpers for experiment runs.
+
+This module standardizes where experiments write their artifacts:
+
+- figures/            (PNG images)
+- report.md           (human-readable summary)
+- params.json         (machine-readable parameters)
+
+It is intentionally small and dependency-light so experiments can import it
+without pulling in heavy tooling.
+"""
+
 from __future__ import annotations
 
 import json
@@ -11,6 +23,15 @@ import numpy as np
 
 from mathxlab.plots.helpers import finalize_figure
 
+__all__ = [
+    "RunPaths",
+    "json_default",
+    "prepare_out_dir",
+    "save_figure",
+    "write_json",
+    "write_text",
+]
+
 # ------------------------------------------------------------------------------
 logger = logging.getLogger(__name__)
 
@@ -21,7 +42,13 @@ type JsonDict = dict[str, Any]
 # ------------------------------------------------------------------------------
 @dataclass(frozen=True)
 class RunPaths:
-    """Standard output paths for an experiment run."""
+    """
+    Standard output paths for an experiment run.
+
+    Examples:
+        >>> from mathxlab.exp.io import RunPaths
+        >>> RunPaths  # doctest: +SKIP
+    """
 
     root: Path
     figures_dir: Path
@@ -31,13 +58,19 @@ class RunPaths:
 
 # ------------------------------------------------------------------------------
 def prepare_out_dir(*, out_dir: Path) -> RunPaths:
-    """Prepare the output directory structure.
+    """
+    Prepare the output directory structure.
 
     Args:
         out_dir: The root output directory for the experiment.
 
     Returns:
         A RunPaths object containing the paths to standard artifacts.
+
+    Examples:
+        >>> from pathlib import Path
+        >>> from mathxlab.exp.io import prepare_out_dir
+        >>> paths = prepare_out_dir(out_dir=Path("out/e001"))
     """
     logger.info("Preparing output directory: %s", out_dir)
     figures_dir = out_dir / "figures"
@@ -60,7 +93,8 @@ def save_figure(
     dpi: int = 160,
     finalize: bool = True,
 ) -> Path:
-    """Save a Matplotlib figure to disk.
+    """
+    Save a Matplotlib figure to disk.
 
     Args:
         out_dir: Directory to save the figure in.
@@ -72,6 +106,14 @@ def save_figure(
 
     Returns:
         The path where the figure was saved.
+
+    Notes:
+        When `finalize=True`, the function applies shared layout and math-text configuration before saving.
+
+    Examples:
+        >>> import matplotlib.pyplot as plt
+        >>> from mathxlab.exp.io import save_figure
+        >>> fig = plt.figure(); _ = save_figure(out_dir=Path("out/e001/figures"), name="demo", fig=fig)
     """
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / f"{name}.png"
@@ -84,7 +126,8 @@ def save_figure(
 
 # ------------------------------------------------------------------------------
 def json_default(obj: Any) -> Any:
-    """Default JSON encoder for math objects.
+    """
+    Default JSON encoder for math objects.
 
     Args:
         obj: Object to encode.
@@ -94,6 +137,10 @@ def json_default(obj: Any) -> Any:
 
     Raises:
         TypeError: If the object type is not supported.
+
+    Examples:
+        >>> from mathxlab.exp.io import json_default
+        >>> json_default  # doctest: +SKIP
     """
     if isinstance(obj, complex):
         return {"real": obj.real, "imag": obj.imag}
@@ -108,11 +155,20 @@ def json_default(obj: Any) -> Any:
 
 # ------------------------------------------------------------------------------
 def write_json(path: Path, data: JsonDict) -> None:
-    """Write a dictionary to a JSON file with stable formatting.
+    """
+    Write a dictionary to a JSON file with stable formatting.
 
     Args:
         path: Path to the JSON file.
         data: Dictionary to write.
+
+    Notes:
+        The parent directory is not created automatically. Use `prepare_out_dir()` first, or create the directory yourself.
+
+    Examples:
+        >>> from pathlib import Path
+        >>> from mathxlab.exp.io import write_json
+        >>> write_json(Path("out/e001/params.json"), {"seed": 1, "n": 100})
     """
     logger.info("Writing JSON to: %s", path)
     path.write_text(
@@ -122,12 +178,18 @@ def write_json(path: Path, data: JsonDict) -> None:
 
 # ------------------------------------------------------------------------------
 def write_text(path: Path, text: str, encoding: str = "utf-8") -> None:
-    """Write text to a file.
+    """
+    Write text to a file.
 
     Args:
         path: Path to the file.
         text: Text to write.
         encoding: Text encoding.
+
+    Examples:
+        >>> from pathlib import Path
+        >>> from mathxlab.exp.io import write_text
+        >>> write_text(Path("out/e001/report.md"), "# Report\n")
     """
     logger.info("Writing text to: %s", path)
     path.write_text(text, encoding=encoding)

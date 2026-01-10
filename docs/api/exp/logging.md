@@ -1,21 +1,34 @@
 # `mathxlab.exp.logging`
 
-Configuration for experiment logging.
+Reusable helpers for the `mathxlab` project.
 
-:::{contents} On this page
-:local:
-:depth: 2
+:::{admonition} Stability
+:class: note
+
+Status: **Experimental**.
+
+This project treats the documented names as the *public surface*, but details may still evolve.
+If you need strict API guarantees, add `__all__ = [...]` to each module and version releases accordingly.
 :::
 
-## Quickstart
+## Design notes
+- Keep experiment scripts small: delegate I/O, seeding, and logging here.
+- Aim for reproducible outputs (fixed seeds, stable file names).
+
+## Examples
+
+### Enable verbose logging for mathxlab code
 
 ```python
-from mathxlab.exp.logging import setup_logging, get_logger, LoggingConfig
+from mathxlab.exp.logging import LoggingConfig, setup_logging
+setup_logging(config=LoggingConfig(verbose=True))
 ```
 
-:::{list-table} Public API
+## Public API
+
+:::{list-table}
 :header-rows: 1
-:widths: 20 10 70
+:widths: 22 10 68
 
 * - Name
   - Kind
@@ -30,11 +43,21 @@ from mathxlab.exp.logging import setup_logging, get_logger, LoggingConfig
   - function
   - Get a logger for a specific module.
 :::
-
 ## Reference
+
 ### Classes
-::{autoclass} mathxlab.exp.logging.LoggingConfig:members::member-order: bysource:show-inheritance::::
+
+:::{autoclass} mathxlab.exp.logging.LoggingConfig
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
 
 ### Functions
-::{autofunction} mathxlab.exp.logging.setup_logging:::
-::{autofunction} mathxlab.exp.logging.get_logger:::
+
+:::{autofunction} mathxlab.exp.logging.setup_logging
+:::
+
+:::{autofunction} mathxlab.exp.logging.get_logger
+:::
+
