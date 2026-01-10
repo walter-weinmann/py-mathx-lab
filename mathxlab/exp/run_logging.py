@@ -22,16 +22,26 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Final
 
+__all__ = [
+    "RunLogDiscovery",
+    "infer_run_log_file",
+]
+
 
 # ------------------------------------------------------------------------------
 @dataclass(frozen=True, slots=True)
 class RunLogDiscovery:
-    """Result of run log discovery.
+    """
+    Result of run log discovery.
 
     Attributes:
         log_file: The discovered or newly created log file path.
         was_created: True if the deterministic log file did not exist and was created
             (or migrated) by discovery.
+
+    Examples:
+        >>> from mathxlab.exp.run_logging import RunLogDiscovery
+        >>> RunLogDiscovery  # doctest: +SKIP
     """
 
     log_file: Path
@@ -40,7 +50,8 @@ class RunLogDiscovery:
 
 # ------------------------------------------------------------------------------
 def infer_run_log_file(*, out_dir: Path, experiment_slug: str) -> RunLogDiscovery:
-    """Infer the run log file for an experiment.
+    """
+    Infer the run log file for an experiment.
 
     Args:
         out_dir: Output directory for the experiment (e.g. ``out/e094``).
@@ -48,6 +59,11 @@ def infer_run_log_file(*, out_dir: Path, experiment_slug: str) -> RunLogDiscover
 
     Returns:
         A :class:`RunLogDiscovery` with the deterministic log file path.
+
+    Examples:
+        >>> from pathlib import Path
+        >>> from mathxlab.exp.run_logging import infer_run_log_file
+        >>> info = infer_run_log_file(out_dir=Path("out/e001"), experiment_slug="e001")
     """
     logs_dir = out_dir / "logs"
     logs_dir.mkdir(parents=True, exist_ok=True)

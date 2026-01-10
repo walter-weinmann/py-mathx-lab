@@ -22,17 +22,41 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 
+__all__ = [
+    "FactorSieve",
+    "build_factor_sieve",
+    "carmichael_lambda",
+    "carmichael_lambda_for_prime_power",
+    "chebyshev_psi",
+    "compute_big_omega",
+    "compute_mobius",
+    "compute_omega",
+    "compute_phi",
+    "compute_tau_sigma",
+    "compute_von_mangoldt",
+    "factorize",
+    "jordan_totient",
+    "lcm",
+    "liouville",
+    "von_mangoldt",
+]
+
 
 # ------------------------------------------------------------------------------
 @dataclass(frozen=True)
 class FactorSieve:
-    """Factor-sieve data for fast integer arithmetic.
+    """
+    Factor-sieve data for fast integer arithmetic.
 
     Attributes:
         n_max: Maximum integer covered by the sieve.
         spf: Smallest prime factor for every n in [0..n_max]. For n < 2, the
             value is 0.
         primes: List of primes up to n_max.
+
+    Examples:
+        >>> from mathxlab.nt.arithmetic import FactorSieve
+        >>> FactorSieve  # doctest: +SKIP
     """
 
     n_max: int
@@ -42,7 +66,8 @@ class FactorSieve:
 
 # ------------------------------------------------------------------------------
 def build_factor_sieve(n_max: int) -> FactorSieve:
-    """Build a linear-time smallest-prime-factor sieve.
+    """
+    Build a linear-time smallest-prime-factor sieve.
 
     Args:
         n_max: Maximum integer to cover (inclusive). Must be >= 2.
@@ -52,6 +77,12 @@ def build_factor_sieve(n_max: int) -> FactorSieve:
 
     Raises:
         ValueError: If n_max < 2.
+
+    Examples:
+        >>> from mathxlab.nt.arithmetic import build_factor_sieve
+        >>> sieve = build_factor_sieve(100)
+        >>> sieve.primes[:5]
+        [2, 3, 5, 7, 11]
     """
     if n_max < 2:
         raise ValueError("n_max must be >= 2")
@@ -77,7 +108,8 @@ def build_factor_sieve(n_max: int) -> FactorSieve:
 
 # ------------------------------------------------------------------------------
 def factorize(n: int, *, sieve: FactorSieve) -> list[tuple[int, int]]:
-    """Factorize n into prime powers using the SPF sieve.
+    """
+    Factorize n into prime powers using the SPF sieve.
 
     Args:
         n: Integer to factorize (>= 1).
@@ -88,6 +120,12 @@ def factorize(n: int, *, sieve: FactorSieve) -> list[tuple[int, int]]:
 
     Raises:
         ValueError: If n is out of bounds for the sieve or n < 1.
+
+    Examples:
+        >>> from mathxlab.nt.arithmetic import build_factor_sieve, factorize
+        >>> sieve = build_factor_sieve(1000)
+        >>> factorize(360, sieve=sieve)
+        [(2, 3), (3, 2), (5, 1)]
     """
     if n < 1:
         raise ValueError("n must be >= 1")
@@ -108,7 +146,8 @@ def factorize(n: int, *, sieve: FactorSieve) -> list[tuple[int, int]]:
 
 # ------------------------------------------------------------------------------
 def lcm(a: int, b: int) -> int:
-    """Compute the least common multiple.
+    """
+    Compute the least common multiple.
 
     Args:
         a: First integer.
@@ -116,6 +155,10 @@ def lcm(a: int, b: int) -> int:
 
     Returns:
         lcm(a, b) with lcm(0, b) == 0.
+
+    Examples:
+        >>> from mathxlab.nt.arithmetic import lcm
+        >>> lcm  # doctest: +SKIP
     """
     if a == 0 or b == 0:
         return 0
@@ -124,7 +167,8 @@ def lcm(a: int, b: int) -> int:
 
 # ------------------------------------------------------------------------------
 def compute_phi(n_max: int, *, sieve: FactorSieve) -> list[int]:
-    """Compute φ(n) for 0..n_max via dynamic SPF recurrence.
+    """
+    Compute φ(n) for 0..n_max via dynamic SPF recurrence.
 
     Args:
         n_max: Maximum n to compute (<= sieve.n_max).
@@ -132,6 +176,12 @@ def compute_phi(n_max: int, *, sieve: FactorSieve) -> list[int]:
 
     Returns:
         List phi where phi[n] = φ(n). phi[0] = 0, phi[1] = 1.
+
+    Examples:
+        >>> from mathxlab.nt.arithmetic import build_factor_sieve, compute_phi
+        >>> sieve = build_factor_sieve(20)
+        >>> compute_phi(10, sieve=sieve)[1:6]
+        [1, 1, 2, 2, 4]
     """
     if n_max > sieve.n_max:
         raise ValueError("n_max exceeds sieve")
@@ -149,7 +199,8 @@ def compute_phi(n_max: int, *, sieve: FactorSieve) -> list[int]:
 
 # ------------------------------------------------------------------------------
 def compute_mobius(n_max: int, *, sieve: FactorSieve) -> list[int]:
-    """Compute μ(n) for 0..n_max using SPF recurrence.
+    """
+    Compute μ(n) for 0..n_max using SPF recurrence.
 
     Args:
         n_max: Maximum n to compute (<= sieve.n_max).
@@ -157,6 +208,12 @@ def compute_mobius(n_max: int, *, sieve: FactorSieve) -> list[int]:
 
     Returns:
         List mu where mu[n] = μ(n). mu[0]=0, mu[1]=1.
+
+    Examples:
+        >>> from mathxlab.nt.arithmetic import build_factor_sieve, compute_mobius
+        >>> sieve = build_factor_sieve(20)
+        >>> compute_mobius(10, sieve=sieve)[1:11]
+        [1, -1, -1, 0, -1, 1, -1, 0, 0, 1]
     """
     if n_max > sieve.n_max:
         raise ValueError("n_max exceeds sieve")
@@ -174,7 +231,8 @@ def compute_mobius(n_max: int, *, sieve: FactorSieve) -> list[int]:
 
 # ------------------------------------------------------------------------------
 def compute_omega(n_max: int, *, sieve: FactorSieve) -> list[int]:
-    """Compute ω(n): number of distinct prime factors of n.
+    """
+    Compute ω(n): number of distinct prime factors of n.
 
     Args:
         n_max: Maximum n to compute (<= sieve.n_max).
@@ -182,6 +240,10 @@ def compute_omega(n_max: int, *, sieve: FactorSieve) -> list[int]:
 
     Returns:
         List omega with omega[0]=0, omega[1]=0.
+
+    Examples:
+        >>> from mathxlab.nt.arithmetic import compute_omega
+        >>> compute_omega  # doctest: +SKIP
     """
     if n_max > sieve.n_max:
         raise ValueError("n_max exceeds sieve")
@@ -195,7 +257,8 @@ def compute_omega(n_max: int, *, sieve: FactorSieve) -> list[int]:
 
 # ------------------------------------------------------------------------------
 def compute_big_omega(n_max: int, *, sieve: FactorSieve) -> list[int]:
-    """Compute Ω(n): number of prime factors of n with multiplicity.
+    """
+    Compute Ω(n): number of prime factors of n with multiplicity.
 
     Args:
         n_max: Maximum n to compute (<= sieve.n_max).
@@ -203,6 +266,10 @@ def compute_big_omega(n_max: int, *, sieve: FactorSieve) -> list[int]:
 
     Returns:
         List big_omega with big_omega[0]=0, big_omega[1]=0.
+
+    Examples:
+        >>> from mathxlab.nt.arithmetic import compute_big_omega
+        >>> compute_big_omega  # doctest: +SKIP
     """
     if n_max > sieve.n_max:
         raise ValueError("n_max exceeds sieve")
@@ -215,7 +282,8 @@ def compute_big_omega(n_max: int, *, sieve: FactorSieve) -> list[int]:
 
 # ------------------------------------------------------------------------------
 def compute_tau_sigma(n_max: int, *, sieve: FactorSieve) -> tuple[list[int], list[int]]:
-    """Compute τ(n) and σ(n) for 0..n_max using SPF recurrences.
+    """
+    Compute τ(n) and σ(n) for 0..n_max using SPF recurrences.
 
     Args:
         n_max: Maximum n to compute (<= sieve.n_max).
@@ -225,6 +293,10 @@ def compute_tau_sigma(n_max: int, *, sieve: FactorSieve) -> tuple[list[int], lis
         (tau, sigma) where:
             tau[n] = number of divisors of n (τ(n)),
             sigma[n] = sum of divisors of n (σ(n)).
+
+    Examples:
+        >>> from mathxlab.nt.arithmetic import compute_tau_sigma
+        >>> compute_tau_sigma  # doctest: +SKIP
     """
     if n_max > sieve.n_max:
         raise ValueError("n_max exceeds sieve")
@@ -270,20 +342,26 @@ def compute_tau_sigma(n_max: int, *, sieve: FactorSieve) -> tuple[list[int], lis
 
 # ------------------------------------------------------------------------------
 def liouville(big_omega_n: int) -> int:
-    """Compute Liouville function λ(n) from Ω(n).
+    """
+    Compute Liouville function λ(n) from Ω(n).
 
     Args:
         big_omega_n: Ω(n).
 
     Returns:
         λ(n) = (-1)^{Ω(n)} as +1 or -1.
+
+    Examples:
+        >>> from mathxlab.nt.arithmetic import liouville
+        >>> liouville  # doctest: +SKIP
     """
     return -1 if (big_omega_n % 2 == 1) else 1
 
 
 # ------------------------------------------------------------------------------
 def carmichael_lambda_for_prime_power(p: int, e: int) -> int:
-    """Compute Carmichael's λ(p^e).
+    """
+    Compute Carmichael's λ(p^e).
 
     Args:
         p: Prime.
@@ -291,6 +369,10 @@ def carmichael_lambda_for_prime_power(p: int, e: int) -> int:
 
     Returns:
         λ(p^e) as integer.
+
+    Examples:
+        >>> from mathxlab.nt.arithmetic import carmichael_lambda_for_prime_power
+        >>> carmichael_lambda_for_prime_power  # doctest: +SKIP
     """
     if e < 1:
         raise ValueError("e must be >= 1")
@@ -308,7 +390,8 @@ def carmichael_lambda_for_prime_power(p: int, e: int) -> int:
 
 # ------------------------------------------------------------------------------
 def carmichael_lambda(n: int, *, sieve: FactorSieve) -> int:
-    """Compute Carmichael's lambda function λ(n).
+    """
+    Compute Carmichael's lambda function λ(n).
 
     Args:
         n: Integer to evaluate (>= 1).
@@ -319,6 +402,10 @@ def carmichael_lambda(n: int, *, sieve: FactorSieve) -> int:
 
     Raises:
         ValueError: If n out of range.
+
+    Examples:
+        >>> from mathxlab.nt.arithmetic import carmichael_lambda
+        >>> carmichael_lambda  # doctest: +SKIP
     """
     factors = factorize(n, sieve=sieve)
     lam = 1
@@ -329,7 +416,8 @@ def carmichael_lambda(n: int, *, sieve: FactorSieve) -> int:
 
 # ------------------------------------------------------------------------------
 def jordan_totient(n: int, k: int, *, sieve: FactorSieve) -> int:
-    """Compute Jordan's totient function J_k(n).
+    """
+    Compute Jordan's totient function J_k(n).
 
     J_k(n) = n^k ∏_{p|n} (1 - 1/p^k)
 
@@ -340,6 +428,10 @@ def jordan_totient(n: int, k: int, *, sieve: FactorSieve) -> int:
 
     Returns:
         J_k(n).
+
+    Examples:
+        >>> from mathxlab.nt.arithmetic import jordan_totient
+        >>> jordan_totient  # doctest: +SKIP
     """
     if k < 1:
         raise ValueError("k must be >= 1")
@@ -355,7 +447,8 @@ def jordan_totient(n: int, k: int, *, sieve: FactorSieve) -> int:
 
 # ------------------------------------------------------------------------------
 def compute_von_mangoldt(n_max: int, *, sieve: FactorSieve) -> list[float]:
-    """Compute Λ(n) for n=0..n_max.
+    """
+    Compute Λ(n) for n=0..n_max.
 
     Λ(n) = log p if n is a prime power p^k (k>=1), else 0.
 
@@ -365,6 +458,10 @@ def compute_von_mangoldt(n_max: int, *, sieve: FactorSieve) -> list[float]:
 
     Returns:
         List lam where lam[n] = Λ(n) as float.
+
+    Examples:
+        >>> from mathxlab.nt.arithmetic import compute_von_mangoldt
+        >>> compute_von_mangoldt  # doctest: +SKIP
     """
     if n_max > sieve.n_max:
         raise ValueError("n_max exceeds sieve")
@@ -384,7 +481,8 @@ def compute_von_mangoldt(n_max: int, *, sieve: FactorSieve) -> list[float]:
 
 # ------------------------------------------------------------------------------
 def von_mangoldt(n: int, *, sieve: FactorSieve) -> float:
-    """Compute the von Mangoldt function Λ(n).
+    """
+    Compute the von Mangoldt function Λ(n).
 
     Λ(n) = log p if n is a prime power p^k (k>=1), else 0.
 
@@ -394,6 +492,10 @@ def von_mangoldt(n: int, *, sieve: FactorSieve) -> float:
 
     Returns:
         Λ(n) as float (natural logarithm).
+
+    Examples:
+        >>> from mathxlab.nt.arithmetic import von_mangoldt
+        >>> von_mangoldt  # doctest: +SKIP
     """
     if n <= 1:
         return 0.0
@@ -406,7 +508,8 @@ def von_mangoldt(n: int, *, sieve: FactorSieve) -> float:
 
 # ------------------------------------------------------------------------------
 def chebyshev_psi(n_max: int, *, sieve: FactorSieve) -> list[float]:
-    """Compute Chebyshev's ψ(x) for x=0..n_max.
+    """
+    Compute Chebyshev's ψ(x) for x=0..n_max.
 
     ψ(x) = ∑_{n<=x} Λ(n)
 
@@ -416,6 +519,10 @@ def chebyshev_psi(n_max: int, *, sieve: FactorSieve) -> list[float]:
 
     Returns:
         List psi where psi[x] = ψ(x).
+
+    Examples:
+        >>> from mathxlab.nt.arithmetic import chebyshev_psi
+        >>> chebyshev_psi  # doctest: +SKIP
     """
     lam = compute_von_mangoldt(n_max, sieve=sieve)
     psi = [0.0] * (n_max + 1)

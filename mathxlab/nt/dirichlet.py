@@ -27,6 +27,16 @@ from typing import cast
 
 import numpy as np
 
+__all__ = [
+    "DirichletCharacter",
+    "all_characters",
+    "character_table",
+    "conductor",
+    "euler_phi",
+    "orthogonality_matrix",
+    "reduced_residues",
+]
+
 
 # ------------------------------------------------------------------------------
 def _factor_prime_powers(n: int) -> list[tuple[int, int, int]]:
@@ -60,13 +70,18 @@ def _factor_prime_powers(n: int) -> list[tuple[int, int, int]]:
 
 # ------------------------------------------------------------------------------
 def euler_phi(n: int) -> int:
-    """Compute Euler's totient φ(n) by prime factorization.
+    """
+    Compute Euler's totient φ(n) by prime factorization.
 
     Args:
         n: Positive integer.
 
     Returns:
         φ(n).
+
+    Examples:
+        >>> from mathxlab.nt.dirichlet import euler_phi
+        >>> euler_phi  # doctest: +SKIP
     """
     if n < 1:
         raise ValueError("n must be >= 1")
@@ -80,13 +95,18 @@ def euler_phi(n: int) -> int:
 
 # ------------------------------------------------------------------------------
 def reduced_residues(q: int) -> list[int]:
-    """Return the reduced residue system modulo ``q`` (sorted).
+    """
+    Return the reduced residue system modulo ``q`` (sorted).
 
     Args:
         q: Modulus (>= 1).
 
     Returns:
         List of ``a`` in ``[1, q]`` with ``gcd(a, q) = 1``.
+
+    Examples:
+        >>> from mathxlab.nt.dirichlet import reduced_residues
+        >>> reduced_residues  # doctest: +SKIP
     """
     if q < 1:
         raise ValueError("q must be >= 1")
@@ -302,13 +322,18 @@ def _build_components(q: int) -> list[_Component]:
 # ------------------------------------------------------------------------------
 @dataclass(frozen=True, slots=True)
 class DirichletCharacter:
-    """Dirichlet character modulo q.
+    """
+    Dirichlet character modulo q.
 
     The character is stored as a product of prime-power component characters.
 
     Attributes:
         modulus: Modulus q.
         params: Parameter tuples, one per prime-power component.
+
+    Examples:
+        >>> from mathxlab.nt.dirichlet import DirichletCharacter
+        >>> DirichletCharacter  # doctest: +SKIP
     """
 
     modulus: int
@@ -369,13 +394,20 @@ class DirichletCharacter:
 
 # ------------------------------------------------------------------------------
 def all_characters(q: int) -> list[DirichletCharacter]:
-    """Enumerate all Dirichlet characters modulo q.
+    """
+    Enumerate all Dirichlet characters modulo q.
 
     Args:
         q: Modulus (>= 1).
 
     Returns:
         List of DirichletCharacter objects of length φ(q).
+
+    Examples:
+        >>> from mathxlab.nt.dirichlet import all_characters
+        >>> chars = all_characters(5)
+        >>> len(chars)
+        4
     """
     if q < 1:
         raise ValueError("q must be >= 1")
@@ -391,7 +423,8 @@ def all_characters(q: int) -> list[DirichletCharacter]:
 
 # ------------------------------------------------------------------------------
 def character_table(q: int) -> np.ndarray:
-    """Return the full character table as a matrix.
+    """
+    Return the full character table as a matrix.
 
     Args:
         q: Modulus.
@@ -399,6 +432,10 @@ def character_table(q: int) -> np.ndarray:
     Returns:
         Complex matrix of shape (φ(q), q) where rows are characters and columns
         are residues 0..q-1.
+
+    Examples:
+        >>> from mathxlab.nt.dirichlet import character_table
+        >>> character_table  # doctest: +SKIP
     """
     chars = all_characters(q)
     return np.vstack([c.table() for c in chars])
@@ -406,7 +443,8 @@ def character_table(q: int) -> np.ndarray:
 
 # ------------------------------------------------------------------------------
 def conductor(chi: DirichletCharacter) -> int:
-    """Compute the conductor of a character by brute-force divisor checks.
+    """
+    Compute the conductor of a character by brute-force divisor checks.
 
     The conductor is the smallest f | q such that χ(n) depends only on n mod f.
 
@@ -417,6 +455,10 @@ def conductor(chi: DirichletCharacter) -> int:
 
     Returns:
         The conductor f.
+
+    Examples:
+        >>> from mathxlab.nt.dirichlet import conductor
+        >>> conductor  # doctest: +SKIP
     """
     q = chi.modulus
     # Enumerate divisors.
@@ -443,7 +485,8 @@ def conductor(chi: DirichletCharacter) -> int:
 
 # ------------------------------------------------------------------------------
 def orthogonality_matrix(q: int) -> np.ndarray:
-    """Compute the character orthogonality matrix for modulus q.
+    """
+    Compute the character orthogonality matrix for modulus q.
 
     The matrix entries are:
         M[i,j] = (1/φ(q)) * ∑_{a mod q, gcd(a,q)=1} χ_i(a) conj(χ_j(a))
@@ -455,6 +498,10 @@ def orthogonality_matrix(q: int) -> np.ndarray:
 
     Returns:
         Complex matrix of shape (φ(q), φ(q)).
+
+    Examples:
+        >>> from mathxlab.nt.dirichlet import orthogonality_matrix
+        >>> orthogonality_matrix  # doctest: +SKIP
     """
     chars = all_characters(q)
     rr = reduced_residues(q)

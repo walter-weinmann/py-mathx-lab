@@ -13,15 +13,28 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+__all__ = [
+    "ConvolutionResult",
+    "dirichlet_convolution",
+    "epsilon",
+    "identity",
+    "ones",
+]
+
 
 # ------------------------------------------------------------------------------
 @dataclass(frozen=True)
 class ConvolutionResult:
-    """Result of a Dirichlet convolution computed on a prefix.
+    """
+    Result of a Dirichlet convolution computed on a prefix.
 
     Attributes:
         n_max: Maximum n (inclusive).
         values: List where values[n] = (f*g)(n) for 0..n_max.
+
+    Examples:
+        >>> from mathxlab.nt.convolution import ConvolutionResult
+        >>> ConvolutionResult  # doctest: +SKIP
     """
 
     n_max: int
@@ -30,7 +43,8 @@ class ConvolutionResult:
 
 # ------------------------------------------------------------------------------
 def dirichlet_convolution(f: list[int], g: list[int], *, n_max: int) -> ConvolutionResult:
-    """Compute the Dirichlet convolution (f*g)(n) for n <= n_max.
+    """
+    Compute the Dirichlet convolution (f*g)(n) for n <= n_max.
 
     The inputs are expected to be lists indexed by n with at least n_max+1 entries.
 
@@ -44,6 +58,12 @@ def dirichlet_convolution(f: list[int], g: list[int], *, n_max: int) -> Convolut
 
     Raises:
         ValueError: If input lists are too short.
+
+    Examples:
+        >>> from mathxlab.nt.convolution import ones, identity, dirichlet_convolution
+        >>> f = ones(10); g = identity(10)
+        >>> dirichlet_convolution(f, g).values[1:6]
+        [1, 3, 4, 7, 6]
     """
     if len(f) <= n_max or len(g) <= n_max:
         raise ValueError("Input lists must have length >= n_max+1")
@@ -60,7 +80,8 @@ def dirichlet_convolution(f: list[int], g: list[int], *, n_max: int) -> Convolut
 
 # ------------------------------------------------------------------------------
 def epsilon(n_max: int) -> list[int]:
-    """Return the identity element ε for Dirichlet convolution on [0..n_max].
+    """
+    Return the identity element ε for Dirichlet convolution on [0..n_max].
 
     ε(1) = 1, ε(n)=0 for n != 1.
 
@@ -69,6 +90,10 @@ def epsilon(n_max: int) -> list[int]:
 
     Returns:
         List eps with eps[1]=1.
+
+    Examples:
+        >>> from mathxlab.nt.convolution import epsilon
+        >>> epsilon  # doctest: +SKIP
     """
     eps = [0] * (n_max + 1)
     if n_max >= 1:
@@ -78,13 +103,18 @@ def epsilon(n_max: int) -> list[int]:
 
 # ------------------------------------------------------------------------------
 def ones(n_max: int) -> list[int]:
-    """Return the constant-one function 1(n)=1 for n>=1.
+    """
+    Return the constant-one function 1(n)=1 for n>=1.
 
     Args:
         n_max: Maximum n.
 
     Returns:
         List one with one[n]=1 for n>=1.
+
+    Examples:
+        >>> from mathxlab.nt.convolution import ones
+        >>> ones  # doctest: +SKIP
     """
     one = [0] * (n_max + 1)
     for n in range(1, n_max + 1):
@@ -94,13 +124,18 @@ def ones(n_max: int) -> list[int]:
 
 # ------------------------------------------------------------------------------
 def identity(n_max: int) -> list[int]:
-    """Return the identity arithmetic function id(n)=n.
+    """
+    Return the identity arithmetic function id(n)=n.
 
     Args:
         n_max: Maximum n.
 
     Returns:
         List id with id[n]=n.
+
+    Examples:
+        >>> from mathxlab.nt.convolution import identity
+        >>> identity  # doctest: +SKIP
     """
     out = [0] * (n_max + 1)
     for n in range(1, n_max + 1):

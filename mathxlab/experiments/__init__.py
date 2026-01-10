@@ -16,12 +16,17 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True, slots=True)
 class ExperimentSpec:
-    """Lightweight metadata about an experiment.
+    """
+    Lightweight metadata about an experiment.
 
     Args:
         experiment_id: The experiment id, e.g. "e001".
         title: Human-readable title (used in listings).
         module: Import path of the experiment entry point module.
+
+    Examples:
+        >>> from mathxlab.experiments.__init__ import ExperimentSpec
+        >>> ExperimentSpec  # doctest: +SKIP
     """
 
     experiment_id: str
@@ -680,25 +685,38 @@ _EXPERIMENTS: tuple[ExperimentSpec, ...] = (
 
 
 def iter_experiments() -> Iterable[ExperimentSpec]:
-    """Iterate over known experiments.
+    """
+    Iterate over known experiments.
 
     Returns:
         An iterable of ExperimentSpec items in ascending experiment id order.
+
+    Examples:
+        >>> from mathxlab.experiments.__init__ import iter_experiments
+        >>> iter_experiments  # doctest: +SKIP
     """
     return _EXPERIMENTS
 
 
 def list_experiment_ids() -> tuple[str, ...]:
-    """Return all known experiment ids.
+    """
+    Return all known experiment ids.
 
     Returns:
         Tuple of ids like ("e001", "e002", ...).
+
+    Examples:
+        >>> from mathxlab.experiments import list_experiment_ids
+        >>> ids = list_experiment_ids()
+        >>> ids[0].startswith("e")
+        True
     """
     return tuple(e.experiment_id for e in _EXPERIMENTS)
 
 
 def get_experiment_module(experiment_id: str) -> str:
-    """Return the module import path for a given experiment id.
+    """
+    Return the module import path for a given experiment id.
 
     Args:
         experiment_id: The experiment id, e.g. "e003".
@@ -708,6 +726,10 @@ def get_experiment_module(experiment_id: str) -> str:
 
     Raises:
         KeyError: If the experiment id is unknown.
+
+    Examples:
+        >>> from mathxlab.experiments.__init__ import get_experiment_module
+        >>> get_experiment_module  # doctest: +SKIP
     """
     for e in _EXPERIMENTS:
         if e.experiment_id == experiment_id:
