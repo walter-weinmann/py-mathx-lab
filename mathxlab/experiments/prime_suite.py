@@ -2221,7 +2221,6 @@ def run_e124(
 
     fig_obj, ax = plt.subplots()
 
-
     # Coordinate conventions:
     # - x is the integer column offset from the center column (0 at center)
     # - y is the row index n with n=1 at the top
@@ -2241,7 +2240,7 @@ def run_e124(
     ax.set_ylabel(r"row $n$ (top = 1)")
     finalize_figure(fig_obj)
     save_figure(out_dir=figures_dir, name="fig_01_klauber_triangle", fig=fig_obj)
-    save_figure(out_dir=figures_dir, name="e124_hero_"+str(size), fig=fig_obj)
+    save_figure(out_dir=figures_dir, name="e124_hero_" + str(size), fig=fig_obj)
 
     lines = _basic_report_header("E124", "Klauber triangle structure", "e124")
     lines += [
@@ -2308,12 +2307,13 @@ def run_e125(
 
     fig_obj, ax = plt.subplots()
     ax.scatter(x, y, s=2)
-    ax.set_title("Sacks spiral (primes)")
-    ax.set_xlabel(r"$x$")
-    ax.set_ylabel(r"$y$")
+    ax.set_title(f"Sacks spiral (primes, n≤{n_max:,}, size={params.size})")
+    ax.set_xlabel(r"$x=\sqrt{n}\cos(2\pi\sqrt{n})$")
+    ax.set_ylabel(r"$y=\sqrt{n}\sin(2\pi\sqrt{n})$")
     ax.set_aspect("equal")
     finalize_figure(fig_obj)
     save_figure(out_dir=figures_dir, name="fig_01_sacks_spiral", fig=fig_obj)
+    save_figure(out_dir=figures_dir, name="e125_hero_" + str(size), fig=fig_obj)
 
     lines = _basic_report_header("E125", "Sacks spiral structure", "e125")
     lines += [
@@ -2437,12 +2437,13 @@ def run_e126(
 
     fig_obj, ax = plt.subplots()
     ax.scatter(x, y, s=2)
-    ax.set_title("Hexagonal number spiral (primes)")
-    ax.set_xlabel(r"$x$")
-    ax.set_ylabel(r"$y$")
+    ax.set_title(f"Hexagonal number spiral (primes, n≤{n_max:,}, size={params.size})")
+    ax.set_xlabel(r"$x = q + \frac{1}{2}r$")
+    ax.set_ylabel(r"$y = \frac{\sqrt{3}}{2}r$")
     ax.set_aspect("equal")
     finalize_figure(fig_obj)
     save_figure(out_dir=figures_dir, name="fig_01_hex_spiral", fig=fig_obj)
+    save_figure(out_dir=figures_dir, name="e126_hero_" + str(size), fig=fig_obj)
 
     lines = _basic_report_header("E126", "Hexagonal number spiral structure", "e126")
     lines += [
