@@ -481,6 +481,10 @@ def run_e019(
     approx = x / np.log(x.astype(np.float64))
     err = pi[x].astype(np.float64) - approx
 
+    # A relative view: if the two curves nearly overlap on a linear scale,
+    # this ratio makes the deviation visible.
+    ratio = pi[x].astype(np.float64) / approx
+
     fig1 = _plot_series(
         x=x,
         ys=[
@@ -502,7 +506,17 @@ def run_e019(
         ylab="error",
     )
     save_figure(out_dir=figures_dir, name="fig_02_pi_minus_x_logx", fig=fig2)
-    save_figure(out_dir=figures_dir, name="e019_hero_2_" + str(n_max), fig=fig1)
+    save_figure(out_dir=figures_dir, name="e019_hero_2_" + str(n_max), fig=fig2)
+
+    fig3 = _plot_series(
+        x=x,
+        ys=[(r"$\pi(x) / (x/\log(x))$", ratio)],
+        title=r"Ratio: $\pi(x) / (x/\log(x))$",
+        xlab=r"$x$",
+        ylab="ratio",
+    )
+    save_figure(out_dir=figures_dir, name="fig_03_pi_over_x_logx_ratio", fig=fig3)
+    save_figure(out_dir=figures_dir, name="e019_hero_3_" + str(n_max), fig=fig3)
 
     lines = _basic_report_header("E019", "Prime density and PNT visualization", "e019")
     lines += [
@@ -512,6 +526,7 @@ def run_e019(
         "### Notes",
         r"- The Prime Number Theorem suggests $\pi(x) ~ x/\log(x)$.",
         "- The error curve shows the approximation improves overall but wiggles persist.",
+        r"- Ratio view: $\pi(x) / (x/\log(x))$ highlights relative deviation.",
         "",
     ]
     _write_lines(report_path, lines)
