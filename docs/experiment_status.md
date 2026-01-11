@@ -22,7 +22,7 @@ This page tracks the generation and manual editing status of experiment pages.
 | e016_trial_division_vs_mr | 31.12.2025 |  |  |
 | e017_sieve_memory_segmented | 31.12.2025 |  |  |
 | e018_mr_base_choice_counterexamples | 31.12.2025 |  |  |
-| e019_prime_density_pnt | 31.12.2025 |  |  |
+| e019_prime_density_pnt | 31.12.2025 | 11.01.2026 |  |
 | e020_pi_vs_li_numeric | 31.12.2025 |  |  |
 | e021_pi_explicit_bounds_sanity | 31.12.2025 |  |  |
 | e022_prime_race_mod4 | 31.12.2025 |  |  |

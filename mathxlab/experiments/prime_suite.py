@@ -463,10 +463,16 @@ class ParamsE019:
 
 
 def run_e019(
-    *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
+    *,
+    out_dir: Path,
+    seed: int,
+    figures_dir: Path,
+    report_path: Path,
+    params_path: Path,
+    n_max: int = 2_000_000,
 ) -> None:
     """E019: Prime density: pi(x) vs x/log x and error curve."""
-    params = ParamsE019(n_max=2_000_000)
+    params = ParamsE019(n_max=n_max)
 
     is_prime = prime_mask_up_to(params.n_max)
     pi = pi_array_from_mask(is_prime)
@@ -486,6 +492,7 @@ def run_e019(
         ylab="value",
     )
     save_figure(out_dir=figures_dir, name="fig_01_pi_vs_x_logx", fig=fig1)
+    save_figure(out_dir=figures_dir, name="e019_hero_" + str(n_max), fig=fig1)
 
     fig2 = _plot_series(
         x=x,
@@ -495,6 +502,7 @@ def run_e019(
         ylab="error",
     )
     save_figure(out_dir=figures_dir, name="fig_02_pi_minus_x_logx", fig=fig2)
+    save_figure(out_dir=figures_dir, name="e019_hero_2_" + str(n_max), fig=fig1)
 
     lines = _basic_report_header("E019", "Prime density and PNT visualization", "e019")
     lines += [
@@ -535,10 +543,16 @@ def _li_approx(n_max: int, step: int) -> tuple[np.ndarray, np.ndarray]:
 
 
 def run_e020(
-    *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
+    *,
+    out_dir: Path,
+    seed: int,
+    figures_dir: Path,
+    report_path: Path,
+    params_path: Path,
+    n_max: int = 3_000_000,
 ) -> None:
     """E020: li(x) is often a better approximation than x/log x (visual counterexample)."""
-    params = ParamsE020(n_max=3_000_000, step=2000)
+    params = ParamsE020(n_max=n_max, step=2000)
 
     is_prime = prime_mask_up_to(params.n_max)
     pi = pi_array_from_mask(is_prime)
@@ -600,10 +614,16 @@ class ParamsE021:
 
 
 def run_e021(
-    *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
+    *,
+    out_dir: Path,
+    seed: int,
+    figures_dir: Path,
+    report_path: Path,
+    params_path: Path,
+    n_max: int = 2_000_000,
 ) -> None:
     """E021: Explicit inequality sanity checks (conditions matter)."""
-    params = ParamsE021(n_max=2_000_000)
+    params = ParamsE021(n_max=n_max)
 
     is_prime = prime_mask_up_to(params.n_max)
     pi = pi_array_from_mask(is_prime)

@@ -70,6 +70,37 @@ What to report (minimum):
 
 See also: {doc}`prime-counting-approximations`, {doc}`prime-counting-bounds`, {doc}`exploratory-visualizations`.
 
+## Prime counting function π(x)
+
+The **prime counting function** $\pi(x)$ counts how many primes are $\le x$.
+
+- If $x$ is an integer: $\pi(x)=\#\{p\ \text{prime} : p\le x\}$.
+- In experiments with an upper bound $\text{n}_{\max}$, the endpoint value is $\pi(\text{n}_{\max})$.
+
+Why it matters in this lab:
+
+- Many plots compare $\pi(x)$ to analytic approximations.
+- Always state the finite range (e.g. $2\le x\le \text{n}_{\max}$) to avoid “asymptotic overclaiming”.
+
+See also: {doc}`prime-counting-approximations`, {doc}`prime-counting-bounds`.
+
+
+## Prime counting approximations (x/log(x), li(x))
+
+A common first approximation to $\pi(x)$ is
+$$\frac{x}{\log(x)}$$
+(where $\log$ is the **natural logarithm**).
+
+A more accurate classic approximation is the **logarithmic integral** $\operatorname{li}(x)$.
+
+Plot/report checklist:
+
+- Say explicitly what you plot: $\pi(x)$ vs $x/\log(x)$ (or vs $\operatorname{li}(x)$).
+- Clarify whether the “error” is **absolute** ($\pi(x)-x/\log(x)$) or **relative**.
+- For finite ranges, label statements as “finite-range behavior”.
+
+See also: {doc}`prime-counting-approximations`.
+
 ## Prime definition
 
 A **prime number** is an integer $p>1$ whose only positive divisors are $1$ and $p$.
