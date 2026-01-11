@@ -3,6 +3,52 @@
 Quick, experiment-oriented reminders of core concepts and common pitfalls.
 Entries are kept **alphabetical by title** so this page stays easy to scan.
 
+## Congruent integers
+
+Two integers $a$ and $b$ are **congruent modulo** $m$ (with $m\ge 2$) if they leave the **same remainder**
+when divided by $m$.
+
+Equivalent definition:
+
+- $a \equiv b \pmod m$  **iff**  $m$ divides $a-b$ (written $m\mid(a-b)$).
+
+Examples:
+
+- $17 \equiv 2 \pmod 5$ because $17-2=15$ is divisible by $5$.
+- $12 \equiv 17 \pmod 5$ because $12-17=-5$ is divisible by $5$ (so they are in the same residue class mod $5$).
+- $29 \equiv 1 \pmod 7$ because $29-1=28$ is divisible by $7$.
+- Negative numbers work the same: $-3 \equiv 4 \pmod 7$ because $-3-4=-7$ is divisible by $7$.
+
+Why it matters in this lab:
+
+- “Prime races” / residue class counts use statements like $p \equiv a \pmod q$.
+- Many “obstructions” are modular: e.g. $n^2+1 \not\equiv 0 \pmod 4$ for any integer $n$.
+- Always record the modulus and the representative set you use (e.g. residues $0,1,\dots,q-1$).
+
+See also: {doc}`prime-numbers`.
+
+
+## Modulo
+
+Working **modulo** $m$ means we consider integers only up to their remainder upon division by $m$ (with $m\ge 2$).
+
+Two closely related notations:
+
+- **Remainder value:** $a \bmod m$ is the remainder when dividing $a$ by $m$ (often taken in $\{0,1,\dots,m-1\}$).
+- **Congruence relation:** $a \equiv b \pmod m$ means $a$ and $b$ have the same remainder mod $m$, equivalently $m\mid(a-b)$.
+
+Examples:
+
+- $17 \bmod 5 = 2$
+- $12 \equiv 17 \pmod 5$
+
+Why it matters in this lab:
+
+- Most “residue class” plots and counts are statements about values modulo $m$.
+- Always record the modulus $m$ and the chosen representative set (e.g. residues $0,1,\dots,m-1$).
+
+See also: {doc}`prime-numbers`.
+
 ## Plot caveats (finite N)
 
 Most plots in this lab visualize **finite** data (a finite cut-off $N$) even when the underlying theory is asymptotic.
@@ -57,6 +103,31 @@ Common refinements (when $N$ grows):
 - **Segmented sieve:** sieve in blocks when $N$ is too large to hold a full mask in memory.
 
 See also: {doc}`primality-testing`, {doc}`factorization-pipelines`, {doc}`prime-numbers`.
+
+## Residue class
+
+A **residue class** (also called a **congruence class**) modulo $m$ is the set of all integers that are congruent to a given integer $a$.
+
+Definition:
+
+- $$[a]_m = \{\,a + km \mid k\in\mathbb{Z}\,\}.$$
+
+Key facts:
+
+- There are exactly $m$ residue classes modulo $m$: $[0]_m,[1]_m,\dots,[m-1]_m$.
+- $$a \equiv b \pmod m \iff a\in[b]_m \iff b\in[a]_m.$$
+
+Example (mod $5$):
+
+- $$[2]_5 = \{\dots,-8,-3,2,7,12,17,22,\dots\}$$
+- So $2$, $12$, and $17$ are all in the same residue class modulo $5$.
+
+Why it matters in this lab:
+
+- Counting primes in arithmetic progressions is counting primes in residue classes, e.g. $p \equiv a \pmod q$.
+- “Modular obstructions” are statements that a polynomial cannot hit certain residue classes.
+
+See also: {doc}`prime-numbers`.
 
 ## Sampling choices (linear vs log)
 
