@@ -27,7 +27,7 @@ This page tracks the generation and manual editing status of experiment pages.
 | e021_pi_explicit_bounds_sanity | 31.12.2025 |  |  |
 | e022_prime_race_mod4 | 31.12.2025 |  |  |
 | e023_residue_classes_modq | 31.12.2025 |  |  |
-| e024_ulam_spiral | 31.12.2025 | 10.01.2026 |  |
+| e024_ulam_spiral | 31.12.2025 | 11.01.2026 |  |
 | e025_prime_gaps_nonmonotone | 31.12.2025 |  |  |
 | e026_normalized_prime_gaps | 31.12.2025 |  |  |
 | e027_record_gaps_vs_log2 | 31.12.2025 |  |  |
@@ -127,7 +127,7 @@ This page tracks the generation and manual editing status of experiment pages.
 | e121_multiplicativity_stress_tests | 31.12.2025 |  |  |
 | e122_arithmetic_function_atlas | 31.12.2025 |  |  |
 | e123_arithmetic_correlation_matrix | 31.12.2025 |  |  |
-| e124_klauber_triangle | 01.01.2026 | 10.01.2026 |  |
+| e124_klauber_triangle | 01.01.2026 | 11.01.2026 |  |
 | e125_sacks_spiral | 01.01.2026 | 11.01.2026 |  |
 | e126_hexagonal_number_spiral | 01.01.2026 | 11.01.2026 |  |
 | e127_quadratic_prime_streak_atlas | 02.01.2026 | 02.01.2026 |  |
