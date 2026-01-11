@@ -5,6 +5,8 @@ This section provides mathematical foundations for the experiments.
 ```{toctree}
  :maxdepth: 1
 
+background/cheat-sheet
+
 background/arithmetic-functions
 background/average-orders-and-erdos-kac
 background/carmichael-lambda-function

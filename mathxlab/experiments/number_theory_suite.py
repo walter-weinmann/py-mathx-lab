@@ -519,7 +519,7 @@ class ParamsE101:
 def run_e101(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E101 — Reduced residues: (Z/qZ)^× as a concrete set."""
+    """E101: Reduced residues: (Z/qZ)^× as a concrete set."""
     params = ParamsE101()
     write_json(params_path, asdict(params))
 
@@ -545,7 +545,7 @@ def run_e101(
     examples = {int(q): reduced_residues(int(q))[:15] for q in q_vals}
 
     lines: list[str] = []
-    lines.append("# E101 — Reduced residues: (Z/qZ)^× as a concrete set")
+    lines.append("# E101: Reduced residues: (Z/qZ)^× as a concrete set")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_reduced_residues_sizes.png")
@@ -1082,14 +1082,14 @@ class ParamsE111:
 def run_e111(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E111 — Euler product vs Dirichlet series for L(s,χ)."""
+    """E111: Euler product vs Dirichlet series for L(s,χ)."""
     params = ParamsE111()
     write_json(params_path, asdict(params))
 
     q = int(params.q)
     chars = [chi for chi in all_characters(q) if not chi.is_principal]
     if not chars:
-        _write_report(report_path=report_path, lines=["# E111 — no nonprincipal characters found"])
+        _write_report(report_path=report_path, lines=["# E111: no nonprincipal characters found"])
         return
     chi = chars[0]
     s = complex(params.s_re, 0.0)
@@ -1122,7 +1122,7 @@ def run_e111(
     best = float(min(errs)) if errs else float("nan")
 
     lines: list[str] = []
-    lines.append("# E111 — Euler product vs Dirichlet series for L(s,χ)")
+    lines.append("# E111: Euler product vs Dirichlet series for L(s,χ)")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_euler_product_error.png")
@@ -1712,7 +1712,7 @@ class ParamsE121:
 def run_e121(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E121 — Multiplicativity stress tests (random coprime pairs)."""
+    """E121: Multiplicativity stress tests (random coprime pairs)."""
     params = ParamsE121()
     write_json(params_path, asdict(params))
 
@@ -1773,7 +1773,7 @@ def run_e121(
     plt.close(fig)
 
     lines: list[str] = []
-    lines.append("# E121 — Multiplicativity stress tests (random coprime pairs)")
+    lines.append("# E121: Multiplicativity stress tests (random coprime pairs)")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_multiplicativity_failures.png")

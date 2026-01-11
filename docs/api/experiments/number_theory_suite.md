@@ -67,7 +67,7 @@ from mathxlab.experiments.number_theory_suite import run_e094, run_e095, ParamsE
   - Parameters for E101.
 * - `run_e101`
   - function
-  - E101 — Reduced residues: (Z/qZ)^× as a concrete set.
+  - E101: Reduced residues: (Z/qZ)^× as a concrete set.
 * - `ParamsE102`
   - class
   - Parameters for E102.
@@ -127,7 +127,7 @@ from mathxlab.experiments.number_theory_suite import run_e094, run_e095, ParamsE
   - Parameters for E111.
 * - `run_e111`
   - function
-  - E111 — Euler product vs Dirichlet series for L(s,χ).
+  - E111: Euler product vs Dirichlet series for L(s,χ).
 * - `ParamsE112`
   - class
   - Parameters for E112.
@@ -187,7 +187,7 @@ from mathxlab.experiments.number_theory_suite import run_e094, run_e095, ParamsE
   - Parameters for E121.
 * - `run_e121`
   - function
-  - E121 — Multiplicativity stress tests (random coprime pairs).
+  - E121: Multiplicativity stress tests (random coprime pairs).
 * - `ParamsE122`
   - class
   - Parameters for E122.

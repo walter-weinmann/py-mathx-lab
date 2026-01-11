@@ -1,4 +1,4 @@
-"""E111 — Euler product vs Dirichlet series for L(s,χ).
+"""E111: Euler product vs Dirichlet series for L(s,χ).
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

@@ -1,4 +1,4 @@
-"""E061 — von Mangoldt Λ(n) and Chebyshev ψ(x): jumps at prime powers.
+"""E061: von Mangoldt Λ(n) and Chebyshev ψ(x): jumps at prime powers.
 
 The von Mangoldt function is:
 - Λ(n) = log p if n is a prime power p^k,
@@ -123,7 +123,7 @@ def main() -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_02_psi_minus_x", fig=fig2)
 
     lines = [
-        "# E061 — Chebyshev ψ(x)",
+        "# E061: Chebyshev ψ(x)",
         "",
         f"- n_max: {params.n_max}",
         f"- ψ(n_max) - n_max: {psi[params.n_max] - params.n_max:+.3f}",

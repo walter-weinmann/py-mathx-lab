@@ -24,10 +24,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
 </noscript>
 
 <div class="gallery-grid" data-gallery="experiments">
-  <a href="e001.html" class="gallery-card" data-title="E001 — Taylor error landscapes" data-tags="analysis,quantitative-exploration,visualization,taylor" data-desc="Truncation error, convergence behavior, and error landscapes for Taylor approximations.">
+  <a href="e001.html" class="gallery-card" data-title="E001: Taylor error landscapes" data-tags="analysis,quantitative-exploration,visualization,taylor" data-desc="Truncation error, convergence behavior, and error landscapes for Taylor approximations.">
     <img src="../_static/experiments/e001_hero.png" alt="E001 preview">
     <div class="gallery-card-body">
-      <h3>E001 — Taylor error landscapes</h3>
+      <h3>E001: Taylor error landscapes</h3>
       <p>Truncation error, convergence behavior, and error landscapes for Taylor approximations.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">analysis</span>
@@ -153,10 +153,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e011.html" class="gallery-card" data-title="E011 — Heuristic rarity" data-tags="number-theory,quantitative-exploration,visualization,heuristics" data-desc="Compare observed Mersenne-prime counts to a simple heuristic expectation curve.">
+  <a href="e011.html" class="gallery-card" data-title="E011: Heuristic rarity" data-tags="number-theory,quantitative-exploration,visualization,heuristics" data-desc="Compare observed Mersenne-prime counts to a simple heuristic expectation curve.">
     <img src="../_static/experiments/e011_hero.png" alt="E011 preview">
     <div class="gallery-card-body">
-      <h3>E011 — Heuristic rarity</h3>
+      <h3>E011: Heuristic rarity</h3>
       <p>Compare observed Mersenne-prime counts to a simple heuristic expectation curve.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -283,10 +283,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e021.html" class="gallery-card" data-title="E021 — Explicit bounds sanity checks" data-tags="number-theory,quantitative-exploration,visualization,bounds" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
+  <a href="e021.html" class="gallery-card" data-title="E021: Explicit bounds sanity checks" data-tags="number-theory,quantitative-exploration,visualization,bounds" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
     <img src="../_static/experiments/e021_hero.png" alt="E021 preview">
     <div class="gallery-card-body">
-      <h3>E021 — Explicit bounds sanity checks</h3>
+      <h3>E021: Explicit bounds sanity checks</h3>
       <p>This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -413,10 +413,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e031.html" class="gallery-card" data-title="E031 — Admissibility and modular obstructions" data-tags="number-theory,quantitative-exploration,visualization,primes" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
+  <a href="e031.html" class="gallery-card" data-title="E031: Admissibility and modular obstructions" data-tags="number-theory,quantitative-exploration,visualization,primes" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
     <img src="../_static/experiments/e031_hero.png" alt="E031 preview">
     <div class="gallery-card-body">
-      <h3>E031 — Admissibility and modular obstructions</h3>
+      <h3>E031: Admissibility and modular obstructions</h3>
       <p>This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -543,10 +543,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e041.html" class="gallery-card" data-title="E041 — Fermat numbers: not all prime" data-tags="number-theory,quantitative-exploration,visualization,primes" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
+  <a href="e041.html" class="gallery-card" data-title="E041: Fermat numbers: not all prime" data-tags="number-theory,quantitative-exploration,visualization,primes" data-desc="This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…">
     <img src="../_static/experiments/e041_hero.png" alt="E041 preview">
     <div class="gallery-card-body">
-      <h3>E041 — Fermat numbers: not all prime</h3>
+      <h3>E041: Fermat numbers: not all prime</h3>
       <p>This is a thin wrapper that follows the standard experiment template and delegates the actual computation to…</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -676,10 +676,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e051.html" class="gallery-card" data-title="E051 — Semiprimes: balanced vs. unbalanced factoring" data-tags="number-theory,quantitative-exploration,visualization,factorization,semiprime" data-desc="Generate small semiprimes and compare Pollard-rho factorization timings for balanced vs. unbalanced cases.">
+  <a href="e051.html" class="gallery-card" data-title="E051: Semiprimes: balanced vs. unbalanced factoring" data-tags="number-theory,quantitative-exploration,visualization,factorization,semiprime" data-desc="Generate small semiprimes and compare Pollard-rho factorization timings for balanced vs. unbalanced cases.">
     <img src="../_static/experiments/e051_hero.png" alt="E051 preview">
     <div class="gallery-card-body">
-      <h3>E051 — Semiprimes: balanced vs. unbalanced factoring</h3>
+      <h3>E051: Semiprimes: balanced vs. unbalanced factoring</h3>
       <p>Generate small semiprimes and compare Pollard-rho factorization timings for balanced vs. unbalanced cases.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -828,10 +828,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
     </div>
   </div>
 </a>
-  <a href="e061.html" class="gallery-card" data-title="E061 — Chebyshev ψ(x) and prime powers" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,mangoldt,pnt,summatory" data-desc="Compute \psi(x)=\sum_{n\le x}\Lambda(n) and compare to x">
+  <a href="e061.html" class="gallery-card" data-title="E061: Chebyshev ψ(x) and prime powers" data-tags="number-theory,quantitative-exploration,visualization,arithmetic-functions,mangoldt,pnt,summatory" data-desc="Compute \psi(x)=\sum_{n\le x}\Lambda(n) and compare to x">
   <img src="../_static/experiments/e061_hero.png" alt="E061 preview">
   <div class="gallery-card-body">
-    <h3>E061 — Chebyshev ψ(x) and prime powers</h3>
+    <h3>E061: Chebyshev ψ(x) and prime powers</h3>
     <p>Compute \psi(x)=\sum_{n\le x}\Lambda(n) and compare to x</p>
     <div class="gallery-tags">
       <span class="tag tag-primary">number-theory</span>
@@ -967,10 +967,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e071.html" class="gallery-card" data-title="E071 — PNT(AP) numerics: pi(x;q,a) minus Li(x)/phi(q)" data-tags="number-theory,quantitative-exploration,visualization,aps" data-desc="Compare prime counts in arithmetic progressions to the PNT(AP) main term Li(x)/phi(q).">
+  <a href="e071.html" class="gallery-card" data-title="E071: PNT(AP) numerics: pi(x;q,a) minus Li(x)/phi(q)" data-tags="number-theory,quantitative-exploration,visualization,aps" data-desc="Compare prime counts in arithmetic progressions to the PNT(AP) main term Li(x)/phi(q).">
     <img src="../_static/experiments/e071_hero.png" alt="E071 preview">
     <div class="gallery-card-body">
-      <h3>E071 — PNT(AP) numerics: pi(x;q,a) minus Li(x)/phi(q)</h3>
+      <h3>E071: PNT(AP) numerics: pi(x;q,a) minus Li(x)/phi(q)</h3>
       <p>Compare prime counts in arithmetic progressions to the PNT(AP) main term Li(x)/phi(q).</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -1102,10 +1102,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e081.html" class="gallery-card" data-title="E081 — Prime race sign changes: first crossings table" data-tags="number-theory,quantitative-exploration,visualization,prime-races" data-desc="Track sign changes of a prime race difference D(x) and record early crossing points in a compact table.">
+  <a href="e081.html" class="gallery-card" data-title="E081: Prime race sign changes: first crossings table" data-tags="number-theory,quantitative-exploration,visualization,prime-races" data-desc="Track sign changes of a prime race difference D(x) and record early crossing points in a compact table.">
     <img src="../_static/experiments/e081_hero.png" alt="E081 preview">
     <div class="gallery-card-body">
-      <h3>E081 — Prime race sign changes: first crossings table</h3>
+      <h3>E081: Prime race sign changes: first crossings table</h3>
       <p>Track sign changes of a prime race difference D(x) and record early crossing points in a compact table.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -1255,10 +1255,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e091.html" class="gallery-card" data-title="E091 — Parti...on the critical line" data-tags="analysis,quantitative-exploration,visualization,riemann-zeta,dirichlet-series,numerics" data-desc="Compare ζ(1/2+it) to partial Euler products as the prime cutoff grows.">
+  <a href="e091.html" class="gallery-card" data-title="E091: Parti...on the critical line" data-tags="analysis,quantitative-exploration,visualization,riemann-zeta,dirichlet-series,numerics" data-desc="Compare ζ(1/2+it) to partial Euler products as the prime cutoff grows.">
     <img src="../_static/experiments/e091_hero.png" alt="E091 hero">
     <div class="gallery-card-body">
-      <h3>E091 — Partial Euler products on the critical line</h3>
+      <h3>E091: Partial Euler products on the critical line</h3>
       <p>Compare ζ(1/2+it) to partial Euler products as the prime cutoff grows.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">analysis</span>
@@ -1402,10 +1402,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e101.html" class="gallery-card" data-title="E101 — Reduced residues modulo q: concrete structure" data-tags="number-theory,dirichlet-characters,model-checking,visualization,totient" data-desc="List reduced residues mod q, verify count=φ(q), and summarize simple structure checks.">
+  <a href="e101.html" class="gallery-card" data-title="E101: Reduced residues modulo q: concrete structure" data-tags="number-theory,dirichlet-characters,model-checking,visualization,totient" data-desc="List reduced residues mod q, verify count=φ(q), and summarize simple structure checks.">
     <img src="../_static/experiments/e101_hero.png" alt="E101 hero">
     <div class="gallery-card-body">
-      <h3>E101 — Reduced residues modulo q: concrete structure</h3>
+      <h3>E101: Reduced residues modulo q: concrete structure</h3>
       <p>List reduced residues mod q, verify count=φ(q), and summarize simple structure checks.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -1544,10 +1544,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e111.html" class="gallery-card" data-title="E111 — Euler product vs. Dirichlet series for L(s,χ)" data-tags="number-theory,l-functions,model-checking,visualization,dirichlet-series,numerics" data-desc="Compare truncated Euler products and truncated series for L(s,χ).">
+  <a href="e111.html" class="gallery-card" data-title="E111: Euler product vs. Dirichlet series for L(s,χ)" data-tags="number-theory,l-functions,model-checking,visualization,dirichlet-series,numerics" data-desc="Compare truncated Euler products and truncated series for L(s,χ).">
     <img src="../_static/experiments/e111_hero.png" alt="E111 hero">
     <div class="gallery-card-body">
-      <h3>E111 — Euler product vs. Dirichlet series for L(s,χ)</h3>
+      <h3>E111: Euler product vs. Dirichlet series for L(s,χ)</h3>
       <p>Compare truncated Euler products and truncated series for L(s,χ).</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>
@@ -1690,10 +1690,10 @@ A compact, image-first overview of the experiments in **py-mathx-lab**.
       </div>
     </div>
   </a>
-  <a href="e121.html" class="gallery-card" data-title="E121 — Möbius inversion as convolution undo" data-tags="number-theory,model-checking,visualization,dirichlet-convolution,mobius,multiplicative" data-desc="Recover a function from its Dirichlet convolution with 1 via Möbius inversion.">
+  <a href="e121.html" class="gallery-card" data-title="E121: Möbius inversion as convolution undo" data-tags="number-theory,model-checking,visualization,dirichlet-convolution,mobius,multiplicative" data-desc="Recover a function from its Dirichlet convolution with 1 via Möbius inversion.">
     <img src="../_static/experiments/e121_hero.png" alt="E121 hero">
     <div class="gallery-card-body">
-      <h3>E121 — Möbius inversion as convolution undo</h3>
+      <h3>E121: Möbius inversion as convolution undo</h3>
       <p>Recover a function from its Dirichlet convolution with 1 via Möbius inversion.</p>
       <div class="gallery-tags">
         <span class="tag tag-primary">number-theory</span>

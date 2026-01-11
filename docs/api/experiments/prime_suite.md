@@ -70,7 +70,7 @@ from mathxlab.experiments.prime_suite import run_e014, run_e015, CommonParams
   - Parameters for E021.
 * - `run_e021`
   - function
-  - E021 — Explicit inequality sanity checks (conditions matter).
+  - E021: Explicit inequality sanity checks (conditions matter).
 * - `ParamsE022`
   - class
   - Parameters for E022.
@@ -130,7 +130,7 @@ from mathxlab.experiments.prime_suite import run_e014, run_e015, CommonParams
   - Parameters for E031.
 * - `run_e031`
   - function
-  - E031 — Prime k-tuple admissibility: mod obstructions are real counterexamples.
+  - E031: Prime k-tuple admissibility: mod obstructions are real counterexamples.
 * - `ParamsE032`
   - class
   - Parameters for E032.
@@ -190,7 +190,7 @@ from mathxlab.experiments.prime_suite import run_e014, run_e015, CommonParams
   - Parameters for E041.
 * - `run_e041`
   - function
-  - E041 — Fermat numbers: not all are prime (counterexample at F5).
+  - E041: Fermat numbers: not all are prime (counterexample at F5).
 * - `ParamsE042`
   - class
   - Parameters for E042.

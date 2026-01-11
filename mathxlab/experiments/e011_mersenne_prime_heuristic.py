@@ -1,4 +1,4 @@
-"""E011 — Heuristic vs observed counts of Mersenne primes.
+"""E011: Heuristic vs observed counts of Mersenne primes.
 
 A common heuristic says that for prime exponents p, the probability that
 M_p = 2^p - 1 is prime is about 1 / (p * ln 2).
@@ -124,7 +124,7 @@ def _write_report(
         found_p: Exponents found where M_p is prime.
     """
     lines = [
-        "# E011 — Heuristic vs observed counts of Mersenne primes",
+        "# E011: Heuristic vs observed counts of Mersenne primes",
         "",
         "**Reproduce:**",
         "",

@@ -1,4 +1,4 @@
-"""E081 — Prime race sign changes: first crossings table.
+"""E081: Prime race sign changes: first crossings table.
 
 A prime race difference D(x) only changes when x passes a prime. We can track
 sign changes by iterating primes in order.
@@ -138,7 +138,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_mod4_diff_on_primes", fig=fig1)
 
     lines = [
-        "# E081 — Prime race sign changes",
+        "# E081: Prime race sign changes",
         "",
         f"- x_max (search): {params.x_max}",
         f"- max_changes: {params.max_changes}",

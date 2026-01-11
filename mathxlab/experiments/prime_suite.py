@@ -602,7 +602,7 @@ class ParamsE021:
 def run_e021(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E021 — Explicit inequality sanity checks (conditions matter)."""
+    """E021: Explicit inequality sanity checks (conditions matter)."""
     params = ParamsE021(n_max=2_000_000)
 
     is_prime = prime_mask_up_to(params.n_max)
@@ -1162,7 +1162,7 @@ def _is_admissible(offsets: list[int], primes_small: list[int]) -> bool:
 def run_e031(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E031 — Prime k-tuple admissibility: mod obstructions are real counterexamples."""
+    """E031: Prime k-tuple admissibility: mod obstructions are real counterexamples."""
     params = ParamsE031(max_mod=29)
     primes_small = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 
@@ -1770,7 +1770,7 @@ class ParamsE041:
 def run_e041(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E041 — Fermat numbers: not all are prime (counterexample at F5)."""
+    """E041: Fermat numbers: not all are prime (counterexample at F5)."""
     params = ParamsE041(m_max=6)
 
     ms: list[int] = []
