@@ -91,7 +91,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_log_derivative_series", fig=fig)
     write_json(paths.params_path, data=asdict(params))
 
-    report = """# E093 — Logarithmic derivative series
+    report = """# E093: Logarithmic derivative series
 
 We approximate -zeta'(s)/zeta(s) by partial sums of the von Mangoldt Dirichlet series.
 """

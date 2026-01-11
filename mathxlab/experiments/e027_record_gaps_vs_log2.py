@@ -1,4 +1,4 @@
-"""E027 — Record prime gaps vs log^2 heuristic.
+"""E027: Record prime gaps vs log^2 heuristic.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.prime_suite`.

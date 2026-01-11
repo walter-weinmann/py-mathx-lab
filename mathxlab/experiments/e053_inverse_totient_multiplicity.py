@@ -1,4 +1,4 @@
-"""E053 — Inverse totient: multiplicities of values φ(n)=m in a prefix.
+"""E053: Inverse totient: multiplicities of values φ(n)=m in a prefix.
 
 The map n -> φ(n) is many-to-one. For a fixed bound N, we can count how many
 n <= N share the same totient value.
@@ -123,7 +123,7 @@ def main() -> int:
     top10 = top[:10]
 
     lines: list[str] = []
-    lines.append("# E053 — Inverse totient multiplicities")
+    lines.append("# E053: Inverse totient multiplicities")
     lines.append("")
     lines.append(f"- n_max: {params.n_max}")
     lines.append("")

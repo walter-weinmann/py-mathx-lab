@@ -1,4 +1,4 @@
-"""E096 — τ(n) record-holders.
+"""E096: τ(n) record-holders.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

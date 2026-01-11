@@ -1,4 +1,4 @@
-"""E077 — Indicator via character orthogonality (sanity check).
+"""E077: Indicator via character orthogonality (sanity check).
 
 A standard identity expresses an indicator of a residue class using Dirichlet
 characters. For gcd(a,q)=1 and gcd(n,q)=1:
@@ -99,7 +99,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_indicator_error", fig=fig1)
 
     lines = [
-        "# E077 — Indicator via character orthogonality",
+        "# E077: Indicator via character orthogonality",
         "",
         f"- q: {params.q}",
         f"- a_target: {params.a_target}",

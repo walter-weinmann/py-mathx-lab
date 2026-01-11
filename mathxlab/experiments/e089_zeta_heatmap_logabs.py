@@ -83,7 +83,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_logabs_heatmap", fig=fig)
     write_json(paths.params_path, data=asdict(params))
 
-    report = """# E089 — Heatmap of log|zeta(s)|
+    report = """# E089: Heatmap of log|zeta(s)|
 
 We plot log10|zeta(s)| on a coarse grid in the (sigma, t) plane. The pole at s=1 manifests as a bright region near sigma=1, t=0.
 """

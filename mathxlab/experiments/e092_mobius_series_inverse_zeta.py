@@ -86,7 +86,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_mobius_series_inverse_zeta", fig=fig)
     write_json(paths.params_path, data=asdict(params))
 
-    report = """# E092 — Möbius series for 1/zeta(s)
+    report = """# E092: Möbius series for 1/zeta(s)
 
 We approximate 1/zeta(s) via the Dirichlet series sum mu(n)/n^s, which converges for Re(s) > 1.
 """

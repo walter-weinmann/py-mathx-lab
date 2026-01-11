@@ -1,4 +1,4 @@
-"""E007 — Mersenne number growth.
+"""E007: Mersenne number growth.
 
 This experiment visualizes how fast M_n = 2^n - 1 grows with n, using
 cheap analytic formulas for bit-length and decimal digit count.
@@ -101,7 +101,7 @@ def _write_report(*, report_path: Path, params: Params) -> None:
     n = np.array([1, 2, 3, 5, 10, 100, 1_000, 10_000], dtype=np.int64)
     digits = _mersenne_digits(n)
     lines = [
-        "# E007 — Mersenne number growth",
+        "# E007: Mersenne number growth",
         "",
         "**Reproduce:**",
         "",

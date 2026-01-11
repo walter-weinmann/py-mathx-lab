@@ -1,4 +1,4 @@
-"""E080 — Chebyshev bias: leader fraction vs x.
+"""E080: Chebyshev bias: leader fraction vs x.
 
 For the mod 4 race D(x)=π(x;4,3)-π(x;4,1), define the empirical leader fraction:
 
@@ -86,7 +86,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_bias_fraction", fig=fig1)
 
     lines = [
-        "# E080 — Chebyshev bias fraction curve",
+        "# E080: Chebyshev bias fraction curve",
         "",
         f"- x_max: {params.x_max}",
         f"- n_points: {params.n_points}",

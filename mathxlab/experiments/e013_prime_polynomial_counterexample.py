@@ -1,4 +1,4 @@
-"""E013 — Prime-polynomial counterexamples (Euler's n^2 + n + 41).
+"""E013: Prime-polynomial counterexamples (Euler's n^2 + n + 41).
 
 Euler's famous polynomial
 
@@ -300,7 +300,7 @@ def _write_report(
         results: Per-polynomial result dictionaries.
     """
     lines: list[str] = [
-        "# E013 — Prime-polynomial counterexamples (Euler's n^2 + n + 41)",
+        "# E013: Prime-polynomial counterexamples (Euler's n^2 + n + 41)",
         "",
         "**Reproduce:**",
         "",

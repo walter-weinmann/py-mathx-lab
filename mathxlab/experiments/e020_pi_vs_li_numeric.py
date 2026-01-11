@@ -1,4 +1,4 @@
-"""E020 — Compare pi(x) to li(x) numerically.
+"""E020: Compare pi(x) to li(x) numerically.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.prime_suite`.

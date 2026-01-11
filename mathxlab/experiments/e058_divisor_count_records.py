@@ -1,4 +1,4 @@
-"""E058 — Divisor count τ(n): record values and highly composite behavior.
+"""E058: Divisor count τ(n): record values and highly composite behavior.
 
 The divisor-counting function τ(n) counts the number of divisors of n.
 Record values of τ(n) are attained at "highly composite"-like integers with many
@@ -106,7 +106,7 @@ def main() -> int:
     n_best = tau[1:].index(best) + 1
 
     lines = [
-        "# E058 — Divisor count records",
+        "# E058: Divisor count records",
         "",
         f"- n_max: {params.n_max}",
         f"- max τ(n) in range: {best} at n={n_best}",

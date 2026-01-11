@@ -1,4 +1,4 @@
-"""E029 — Twin primes: observed vs heuristic.
+"""E029: Twin primes: observed vs heuristic.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.prime_suite`.

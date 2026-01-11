@@ -1,4 +1,4 @@
-"""E043 — Pollard rho runtime variability.
+"""E043: Pollard rho runtime variability.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.prime_suite`.

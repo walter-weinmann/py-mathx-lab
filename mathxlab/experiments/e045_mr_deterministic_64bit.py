@@ -1,4 +1,4 @@
-"""E045 — Deterministic 64-bit MR base sets.
+"""E045: Deterministic 64-bit MR base sets.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.prime_suite`.

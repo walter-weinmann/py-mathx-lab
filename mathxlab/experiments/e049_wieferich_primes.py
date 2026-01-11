@@ -1,4 +1,4 @@
-"""E049 — Wieferich primes (base 2): rare congruence hits.
+"""E049: Wieferich primes (base 2): rare congruence hits.
 
 A Wieferich prime (base 2) is a prime p such that:
 
@@ -141,7 +141,7 @@ def _write_report(*, report_path: Path, params: Params, hits: list[int]) -> None
         hits: Wieferich primes found.
     """
     lines: list[str] = []
-    lines.append("# E049 — Wieferich primes (base 2)")
+    lines.append("# E049: Wieferich primes (base 2)")
     lines.append("")
     lines.append("### Parameters")
     lines.append("")

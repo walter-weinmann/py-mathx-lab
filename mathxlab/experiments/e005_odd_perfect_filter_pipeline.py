@@ -1,4 +1,4 @@
-"""E005 — Odd perfect numbers: constraint filter pipeline.
+"""E005: Odd perfect numbers: constraint filter pipeline.
 
 Odd perfect numbers are an open problem: it is unknown whether any exist.
 
@@ -169,7 +169,7 @@ def _write_report(
 ) -> None:
     """Write a short Markdown report."""
     lines = [
-        "# E005 — Odd perfect numbers: constraint filter pipeline",
+        "# E005: Odd perfect numbers: constraint filter pipeline",
         "",
         "**Reproduce:**",
         "",

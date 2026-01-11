@@ -1,4 +1,4 @@
-"""E124 — Klauber triangle structure.
+"""E124: Klauber triangle structure.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.prime_suite`.
@@ -35,7 +35,7 @@ def main() -> int:
     """
     args = parse_experiment_args_with_size(
         experiment_id="e124",
-        description="E124 — Klauber triangle structure.",
+        description="E124: Klauber triangle structure.",
         size_default=301,
         size_help="Grid size parameter (odd). The experiment visualizes integers 1..size^2.",
     )

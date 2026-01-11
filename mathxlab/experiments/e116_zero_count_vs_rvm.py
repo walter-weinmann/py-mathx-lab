@@ -1,4 +1,4 @@
-"""E116 — Zero count proxy vs Riemann–von Mangoldt.
+"""E116: Zero count proxy vs Riemann–von Mangoldt.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

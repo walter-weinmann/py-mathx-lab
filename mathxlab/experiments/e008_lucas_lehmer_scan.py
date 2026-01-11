@@ -1,4 +1,4 @@
-"""E008 — Lucas–Lehmer scan for Mersenne primes.
+"""E008: Lucas–Lehmer scan for Mersenne primes.
 
 This experiment applies the Lucas–Lehmer test (LLT) to M_p = 2^p - 1
 for prime exponents p up to a chosen bound.
@@ -127,7 +127,7 @@ def _write_report(
     """
     found = [p for p, ok in zip(tested_p, is_mp_prime, strict=True) if ok]
     lines = [
-        "# E008 — Lucas–Lehmer scan for Mersenne primes",
+        "# E008: Lucas–Lehmer scan for Mersenne primes",
         "",
         "**Reproduce:**",
         "",

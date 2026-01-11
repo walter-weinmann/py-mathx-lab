@@ -1,4 +1,4 @@
-"""E103 — Chebyshev ψ(x): prime powers.
+"""E103: Chebyshev ψ(x): prime powers.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

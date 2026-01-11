@@ -28,43 +28,43 @@ from mathxlab.experiments.prime_suite import run_e014, run_e015, CommonParams
   - Parameters for E014.
 * - `run_e014`
   - function
-  - E014 — Primorial ± 1: "Euclid numbers are prime" fails quickly.
+  - E014: Primorial ± 1: "Euclid numbers are prime" fails quickly.
 * - `ParamsE015`
   - class
   - Parameters for E015.
 * - `run_e015`
   - function
-  - E015 — Wilson's theorem is true, but the naive 'test' is unusable at scale.
+  - E015: Wilson's theorem is true, but the naive 'test' is unusable at scale.
 * - `ParamsE016`
   - class
   - Parameters for E016.
 * - `run_e016`
   - function
-  - E016 — Trial division collapses with size; MR stays fast (counterexample to 'simple is fine').
+  - E016: Trial division collapses with size; MR stays fast (counterexample to 'simple is fine').
 * - `ParamsE017`
   - class
   - Parameters for E017.
 * - `run_e017`
   - function
-  - E017 — Full sieve memory vs segmented sieve (counterexample to 'O(N) is fine').
+  - E017: Full sieve memory vs segmented sieve (counterexample to 'O(N) is fine').
 * - `ParamsE018`
   - class
   - Parameters for E018.
 * - `run_e018`
   - function
-  - E018 — Strong pseudoprimes: too few MR bases yields false positives (counterexample).
+  - E018: Strong pseudoprimes: too few MR bases yields false positives (counterexample).
 * - `ParamsE019`
   - class
   - Parameters for E019.
 * - `run_e019`
   - function
-  - E019 — Prime density: pi(x) vs x/log x and error curve.
+  - E019: Prime density: pi(x) vs x/log x and error curve.
 * - `ParamsE020`
   - class
   - Parameters for E020.
 * - `run_e020`
   - function
-  - E020 — li(x) is often a better approximation than x/log x (visual counterexample).
+  - E020: li(x) is often a better approximation than x/log x (visual counterexample).
 * - `ParamsE021`
   - class
   - Parameters for E021.
@@ -76,55 +76,55 @@ from mathxlab.experiments.prime_suite import run_e014, run_e015, CommonParams
   - Parameters for E022.
 * - `run_e022`
   - function
-  - E022 — Prime race: pi(x;4,1) vs pi(x;4,3).
+  - E022: Prime race: pi(x;4,1) vs pi(x;4,3).
 * - `ParamsE023`
   - class
   - Parameters for E023.
 * - `run_e023`
   - function
-  - E023 — Distribution of primes across residue classes mod q (finite-range bias).
+  - E023: Distribution of primes across residue classes mod q (finite-range bias).
 * - `ParamsE024`
   - class
   - Parameters for E024.
 * - `run_e024`
   - function
-  - E024 — Ulam spiral: primes in a spiral show diagonal structure.
+  - E024: Ulam spiral: primes in a spiral show diagonal structure.
 * - `ParamsE025`
   - class
   - Parameters for E025.
 * - `run_e025`
   - function
-  - E025 — Prime gaps are not monotone (counterexample to naive 'gaps always grow').
+  - E025: Prime gaps are not monotone (counterexample to naive 'gaps always grow').
 * - `ParamsE026`
   - class
   - Parameters for E026.
 * - `run_e026`
   - function
-  - E026 — Gap normalization: g/log p helps compare scales.
+  - E026: Gap normalization: g/log p helps compare scales.
 * - `ParamsE027`
   - class
   - Parameters for E027.
 * - `run_e027`
   - function
-  - E027 — Record prime gaps vs log^2 heuristic (Cramér-style scaling).
+  - E027: Record prime gaps vs log^2 heuristic (Cramér-style scaling).
 * - `ParamsE028`
   - class
   - Parameters for E028.
 * - `run_e028`
   - function
-  - E028 — Jumping champions: most frequent gap in sliding windows.
+  - E028: Jumping champions: most frequent gap in sliding windows.
 * - `ParamsE029`
   - class
   - Parameters for E029.
 * - `run_e029`
   - function
-  - E029 — Twin prime counts vs simple Hardy–Littlewood-style heuristic.
+  - E029: Twin prime counts vs simple Hardy–Littlewood-style heuristic.
 * - `ParamsE030`
   - class
   - Parameters for E030.
 * - `run_e030`
   - function
-  - E030 — Cousin and sexy primes: compare counts of prime pairs.
+  - E030: Cousin and sexy primes: compare counts of prime pairs.
 * - `ParamsE031`
   - class
   - Parameters for E031.
@@ -136,55 +136,55 @@ from mathxlab.experiments.prime_suite import run_e014, run_e015, CommonParams
   - Parameters for E032.
 * - `run_e032`
   - function
-  - E032 — Count small prime constellations (triplets/quadruplets) up to N.
+  - E032: Count small prime constellations (triplets/quadruplets) up to N.
 * - `ParamsE033`
   - class
   - Parameters for E033.
 * - `run_e033`
   - function
-  - E033 — Small gaps exist often, but that doesn't make them twins (data-only counterexample).
+  - E033: Small gaps exist often, but that doesn't make them twins (data-only counterexample).
 * - `ParamsE034`
   - class
   - Parameters for E034.
 * - `run_e034`
   - function
-  - E034 — Twin prime counts vary strongly across windows (variance counterexample).
+  - E034: Twin prime counts vary strongly across windows (variance counterexample).
 * - `ParamsE035`
   - class
   - Parameters for E035.
 * - `run_e035`
   - function
-  - E035 — Primes in arithmetic progressions: empirical counts in reduced residues.
+  - E035: Primes in arithmetic progressions: empirical counts in reduced residues.
 * - `ParamsE036`
   - class
   - Parameters for E036.
 * - `run_e036`
   - function
-  - E036 — Small arithmetic progressions of primes (3-term and 4-term) in ranges.
+  - E036: Small arithmetic progressions of primes (3-term and 4-term) in ranges.
 * - `ParamsE037`
   - class
   - Parameters for E037.
 * - `run_e037`
   - function
-  - E037 — Prime-free intervals exist: n!+2,...,n!+n are all composite.
+  - E037: Prime-free intervals exist: n!+2,...,n!+n are all composite.
 * - `ParamsE038`
   - class
   - Parameters for E038.
 * - `run_e038`
   - function
-  - E038 — Bertrand's postulate: for n>1 there is a prime in (n, 2n).
+  - E038: Bertrand's postulate: for n>1 there is a prime in (n, 2n).
 * - `ParamsE039`
   - class
   - Parameters for E039.
 * - `run_e039`
   - function
-  - E039 — Sophie Germain primes and safe primes (counts in range).
+  - E039: Sophie Germain primes and safe primes (counts in range).
 * - `ParamsE040`
   - class
   - Parameters for E040.
 * - `run_e040`
   - function
-  - E040 — Palindromic primes: even-length palindromes are divisible by 11 (counterexample).
+  - E040: Palindromic primes: even-length palindromes are divisible by 11 (counterexample).
 * - `ParamsE041`
   - class
   - Parameters for E041.
@@ -196,49 +196,49 @@ from mathxlab.experiments.prime_suite import run_e014, run_e015, CommonParams
   - Parameters for E042.
 * - `run_e042`
   - function
-  - E042 — Repunit primes: many k are forced composite (counterexamples).
+  - E042: Repunit primes: many k are forced composite (counterexamples).
 * - `ParamsE043`
   - class
   - Parameters for E043.
 * - `run_e043`
   - function
-  - E043 — Pollard rho runtime varies wildly (counterexample to 'same size => same effort').
+  - E043: Pollard rho runtime varies wildly (counterexample to 'same size => same effort').
 * - `ParamsE044`
   - class
   - Parameters for E044.
 * - `run_e044`
   - function
-  - E044 — Solovay–Strassen vs Miller–Rabin (liar rates on random composites).
+  - E044: Solovay–Strassen vs Miller–Rabin (liar rates on random composites).
 * - `ParamsE045`
   - class
   - Parameters for E045.
 * - `run_e045`
   - function
-  - E045 — Deterministic 64-bit MR: 12 bases vs small subsets (counterexample).
+  - E045: Deterministic 64-bit MR: 12 bases vs small subsets (counterexample).
 * - `ParamsE046`
   - class
   - Parameters for E046.
 * - `run_e046`
   - function
-  - E046 — A practical prime-testing pipeline (and how it can fail if tuned badly).
+  - E046: A practical prime-testing pipeline (and how it can fail if tuned badly).
 * - `ParamsE124`
   - class
   - Parameters for E124.
 * - `run_e124`
   - function
-  - E124 — Klauber triangle: prime patterns on a triangular array.
+  - E124: Klauber triangle: prime patterns on a triangular array.
 * - `ParamsE125`
   - class
   - Parameters for E125.
 * - `run_e125`
   - function
-  - E125 — Sacks spiral: primes on an Archimedean spiral (one square per turn).
+  - E125: Sacks spiral: primes on an Archimedean spiral (one square per turn).
 * - `ParamsE126`
   - class
   - Parameters for E126.
 * - `run_e126`
   - function
-  - E126 — Hexagonal number spiral: primes on a hexagonal lattice spiral.
+  - E126: Hexagonal number spiral: primes on a hexagonal lattice spiral.
 :::
 
 ## Reference

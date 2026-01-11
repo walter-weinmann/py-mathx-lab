@@ -1,4 +1,4 @@
-"""E017 — Sieve memory blow-up vs segmented sieve.
+"""E017: Sieve memory blow-up vs segmented sieve.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.prime_suite`.

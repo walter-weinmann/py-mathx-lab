@@ -1,4 +1,4 @@
-"""E127 — Quadratic prime-run atlas for f(n)=n^2 + a n + b.
+"""E127: Quadratic prime-run atlas for f(n)=n^2 + a n + b.
 
 This experiment sweeps a small grid of integer parameters (a, b) for the
 quadratic polynomial
@@ -223,7 +223,7 @@ def _write_report(
         euler_run = int(run_len[bi, ai])
 
     lines: list[str] = [
-        "# E127 — Quadratic prime-run atlas (n^2 + a n + b)",
+        "# E127: Quadratic prime-run atlas (n^2 + a n + b)",
         "",
         "**Reproduce:**",
         "",

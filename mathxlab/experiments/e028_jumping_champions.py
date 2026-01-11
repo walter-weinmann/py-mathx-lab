@@ -1,4 +1,4 @@
-"""E028 — Jumping champions (most frequent gaps).
+"""E028: Jumping champions (most frequent gaps).
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.prime_suite`.

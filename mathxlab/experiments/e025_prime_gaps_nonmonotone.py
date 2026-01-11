@@ -1,4 +1,4 @@
-"""E025 — Prime gaps are not monotone.
+"""E025: Prime gaps are not monotone.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.prime_suite`.

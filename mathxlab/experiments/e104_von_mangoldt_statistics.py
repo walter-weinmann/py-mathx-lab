@@ -1,4 +1,4 @@
-"""E104 — Von Mangoldt Λ(n) statistics.
+"""E104: Von Mangoldt Λ(n) statistics.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

@@ -1,4 +1,4 @@
-"""E128 — Modular obstructions for Euler-type quadratic prime polynomials.
+"""E128: Modular obstructions for Euler-type quadratic prime polynomials.
 
 Euler's polynomial
 
@@ -140,7 +140,7 @@ def _write_report(
         roots_by_p: Mapping p -> list of roots modulo p.
     """
     lines: list[str] = [
-        "# E128 — Modular obstructions for quadratic prime polynomials",
+        "# E128: Modular obstructions for quadratic prime polynomials",
         "",
         "**Reproduce:**",
         "",

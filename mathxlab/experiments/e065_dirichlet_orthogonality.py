@@ -1,4 +1,4 @@
-"""E065 — Orthogonality matrix for Dirichlet characters.
+"""E065: Orthogonality matrix for Dirichlet characters.
 
 For characters χ_i modulo q, orthogonality says:
 
@@ -84,7 +84,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_orthogonality_error", fig=fig1)
 
     lines = [
-        "# E065 — Dirichlet orthogonality",
+        "# E065: Dirichlet orthogonality",
         "",
         f"- q: {params.q}",
         f"- phi(q): {euler_phi(params.q)}",

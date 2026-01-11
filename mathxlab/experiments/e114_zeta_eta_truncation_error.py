@@ -1,4 +1,4 @@
-"""E114 — ζ via η: stability map on critical line.
+"""E114: ζ via η: stability map on critical line.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

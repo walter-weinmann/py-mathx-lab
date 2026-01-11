@@ -67,7 +67,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_Z_near_zeros", fig=fig)
     write_json(paths.params_path, data=asdict(params))
 
-    report = """# E086 — Hardy Z(t) near zeros
+    report = """# E086: Hardy Z(t) near zeros
 
 We locate the first few imaginary parts of non-trivial zeros (via mpmath) and sample Hardy's Z(t)
 in a small window around each zero.

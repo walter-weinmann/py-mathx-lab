@@ -63,7 +63,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_critical_line_magnitude", fig=fig)
     write_json(paths.params_path, data=asdict(params))
 
-    report = """# E084 — |zeta(1/2 + i t)|
+    report = """# E084: |zeta(1/2 + i t)|
 
 We sample the magnitude of zeta(s) along the critical line s = 1/2 + i t on a moderate t-range.
 """

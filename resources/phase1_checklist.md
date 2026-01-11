@@ -3,11 +3,11 @@
 This checklist is the **Definition of Done** for Phase 1 experiments.
 
 **Scope (Phase 1 experiments):**
-- E024 — Ulam spiral
-- E124 — Klauber triangle
-- E125 — Sacks spiral
-- E126 — Hexagonal number spiral
-- E019 — Prime density (PNT-style visualization; Phase-1 sanity level)
+- E024: Ulam spiral
+- E124: Klauber triangle
+- E125: Sacks spiral
+- E126: Hexagonal number spiral
+- E019: Prime density (PNT-style visualization; Phase-1 sanity level)
 
 **Goal:** Ensure each experiment reliably produces correct artifacts, readable figures, and a short but complete report — **before** deep math work.
 

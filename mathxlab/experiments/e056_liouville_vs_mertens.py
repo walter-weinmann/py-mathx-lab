@@ -1,4 +1,4 @@
-"""E056 — Liouville vs Möbius: two ±1 walks built from prime factors.
+"""E056: Liouville vs Möbius: two ±1 walks built from prime factors.
 
 Liouville's function is:
 
@@ -120,7 +120,7 @@ def main() -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_walks", fig=fig1)
 
     lines = [
-        "# E056 — Liouville vs Möbius",
+        "# E056: Liouville vs Möbius",
         "",
         f"- n_max: {params.n_max}",
         f"- M(n_max) = {M[params.n_max]}",

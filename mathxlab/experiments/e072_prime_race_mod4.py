@@ -1,4 +1,4 @@
-"""E072 — Prime race mod 4: pi(x;4,3) vs pi(x;4,1).
+"""E072: Prime race mod 4: pi(x;4,3) vs pi(x;4,1).
 
 A classical "prime race" compares how often one residue class leads another in
 prime counts. The most famous is mod 4:
@@ -99,7 +99,7 @@ def main(argv: list[str] | None = None) -> int:
 
     n_changes = _count_sign_changes(diff)
     lines = [
-        "# E072 — Prime race mod 4",
+        "# E072: Prime race mod 4",
         "",
         f"- x_max: {params.x_max}",
         f"- n_points: {params.n_points}",

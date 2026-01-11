@@ -1,4 +1,4 @@
-"""E095 — Squarefree filter: ω(n)=Ω(n) when μ(n)≠0.
+"""E095: Squarefree filter: ω(n)=Ω(n) when μ(n)≠0.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

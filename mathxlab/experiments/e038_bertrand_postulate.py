@@ -1,4 +1,4 @@
-"""E038 — Bertrand's postulate (computational verification).
+"""E038: Bertrand's postulate (computational verification).
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.prime_suite`.

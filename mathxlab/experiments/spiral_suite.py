@@ -172,7 +172,7 @@ def run_e124(
     params_path: Path,
     rows: int = 301,
 ) -> None:
-    """E124 — Klauber triangle: primes in a square-to-square triangle.
+    """E124: Klauber triangle: primes in a square-to-square triangle.
 
     In the Klauber triangle, row m contains the integers:
 
@@ -255,7 +255,7 @@ def run_e125(
     params_path: Path,
     n_max: int = 250_000,
 ) -> None:
-    """E125 — Sacks spiral: primes on r=sqrt(n), θ=2π sqrt(n).
+    """E125: Sacks spiral: primes on r=sqrt(n), θ=2π sqrt(n).
 
     Args:
         out_dir: Experiment output directory.
@@ -322,7 +322,7 @@ def run_e126(
     params_path: Path,
     rings: int = 150,
 ) -> None:
-    """E126 — Hexagonal number spiral: primes on a hex grid spiral.
+    """E126: Hexagonal number spiral: primes on a hex grid spiral.
 
     Args:
         out_dir: Experiment output directory.

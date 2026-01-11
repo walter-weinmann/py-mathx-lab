@@ -31,13 +31,13 @@ from mathxlab.experiments.spiral_suite import run_e124, run_e125, ParamsE124
   - Parameters for E126 (hexagonal number spiral).
 * - `run_e124`
   - function
-  - E124 — Klauber triangle: primes in a square-to-square triangle.
+  - E124: Klauber triangle: primes in a square-to-square triangle.
 * - `run_e125`
   - function
-  - E125 — Sacks spiral: primes on r=sqrt(n), θ=2π sqrt(n).
+  - E125: Sacks spiral: primes on r=sqrt(n), θ=2π sqrt(n).
 * - `run_e126`
   - function
-  - E126 — Hexagonal number spiral: primes on a hex grid spiral.
+  - E126: Hexagonal number spiral: primes on a hex grid spiral.
 :::
 
 ## Reference

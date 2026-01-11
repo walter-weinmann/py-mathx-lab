@@ -1,4 +1,4 @@
-"""E073 — Prime race mod 3: pi(x;3,2) vs pi(x;3,1).
+"""E073: Prime race mod 3: pi(x;3,2) vs pi(x;3,1).
 
 Another small prime race compares the two reduced residue classes modulo 3:
 
@@ -81,7 +81,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_race_mod3_diff", fig=fig1)
 
     lines = [
-        "# E073 — Prime race mod 3",
+        "# E073: Prime race mod 3",
         "",
         f"- x_max: {params.x_max}",
         f"- n_points: {params.n_points}",

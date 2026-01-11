@@ -1,4 +1,4 @@
-"""E076 — Chebyshev θ(x;q,a): weighted prime counts in progressions.
+"""E076: Chebyshev θ(x;q,a): weighted prime counts in progressions.
 
 Define the Chebyshev theta function in a residue class:
 
@@ -117,7 +117,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_theta_ratios", fig=fig1)
 
     lines = [
-        "# E076 — Chebyshev theta in progressions",
+        "# E076: Chebyshev theta in progressions",
         "",
         f"- q: {params.q}",
         f"- residues: {list(params.residues)}",

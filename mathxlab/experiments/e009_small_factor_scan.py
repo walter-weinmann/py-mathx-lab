@@ -1,4 +1,4 @@
-"""E009 — Small-factor scan for Mersenne numbers.
+"""E009: Small-factor scan for Mersenne numbers.
 
 Before running Lucas–Lehmer, many M_p are quickly ruled out by finding a
 small prime factor q of M_p = 2^p - 1.
@@ -168,7 +168,7 @@ def _write_report(
     """
     found = [(p, q) for p, q in zip(tested_p, factor_q, strict=True) if q is not None]
     lines = [
-        "# E009 — Small-factor scan for Mersenne numbers",
+        "# E009: Small-factor scan for Mersenne numbers",
         "",
         "**Reproduce:**",
         "",

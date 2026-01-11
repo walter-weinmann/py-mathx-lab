@@ -1,4 +1,4 @@
-"""E078 — Max partial sums across characters.
+"""E078: Max partial sums across characters.
 
 For each Dirichlet character χ modulo q, define
 
@@ -86,7 +86,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_max_sums_hist", fig=fig1)
 
     lines = [
-        "# E078 — Max partial sums across characters",
+        "# E078: Max partial sums across characters",
         "",
         f"- q: {params.q}",
         f"- phi(q): {euler_phi(params.q)}",

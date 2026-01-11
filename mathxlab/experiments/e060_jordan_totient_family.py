@@ -1,4 +1,4 @@
-"""E060 — Jordan totients J_k(n): normalized landscapes for k=1..3.
+"""E060: Jordan totients J_k(n): normalized landscapes for k=1..3.
 
 Jordan's totient function generalizes Euler's totient:
 
@@ -98,7 +98,7 @@ def main() -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_jordan_normalized", fig=fig1)
 
     lines = [
-        "# E060 — Jordan totients",
+        "# E060: Jordan totients",
         "",
         f"- n_max: {params.n_max}",
         "",

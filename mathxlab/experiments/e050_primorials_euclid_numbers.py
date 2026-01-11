@@ -1,4 +1,4 @@
-"""E050 — Primorials and Euclid numbers: p# ± 1 are usually composite.
+"""E050: Primorials and Euclid numbers: p# ± 1 are usually composite.
 
 The primorial of the k-th prime is:
 
@@ -169,7 +169,7 @@ def _write_report(
         rows: (k, n_plus, pp_plus, fac_plus, n_minus, pp_minus, fac_minus).
     """
     lines: list[str] = []
-    lines.append("# E050 — Primorials and Euclid numbers (p# ± 1)")
+    lines.append("# E050: Primorials and Euclid numbers (p# ± 1)")
     lines.append("")
     lines.append("### Parameters")
     lines.append("")

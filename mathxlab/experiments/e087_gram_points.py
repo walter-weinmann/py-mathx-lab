@@ -68,7 +68,7 @@ def main(argv: list[str] | None = None) -> int:
     write_json(paths.params_path, data=asdict(params))
 
     sign_changes = int(np.sum(z_vals[:-1] * z_vals[1:] < 0))
-    report = f"""# E087 — Gram points
+    report = f"""# E087: Gram points
 
 We computed Gram points g_n for n in [{params.n_start}, {params.n_end}] and sampled Hardy Z(g_n).
 

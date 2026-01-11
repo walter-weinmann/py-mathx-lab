@@ -1,4 +1,4 @@
-"""E055 — Mertens function walk: M(x)=∑_{n≤x} μ(n).
+"""E055: Mertens function walk: M(x)=∑_{n≤x} μ(n).
 
 The Mertens function is the summatory Möbius function:
 
@@ -146,7 +146,7 @@ def main() -> int:
 
     mx = max(abs(v) for v in M[1:])
     lines = [
-        "# E055 — Mertens function walk",
+        "# E055: Mertens function walk",
         "",
         f"- n_max: {params.n_max}",
         f"- max |M(x)| in range: {mx}",

@@ -96,7 +96,7 @@ class ParamsE094:
 def run_e094(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E094 — ω(n) vs Ω(n): Erdős–Kac side-by-side."""
+    """E094: ω(n) vs Ω(n): Erdős–Kac side-by-side."""
     params = ParamsE094()
     write_json(params_path, asdict(params))
 
@@ -124,7 +124,7 @@ def run_e094(
     ll = math.log(math.log(params.n_max)) if params.n_max > 2 else float("nan")
 
     lines: list[str] = []
-    lines.append("# E094 — ω(n) vs Ω(n): Erdős–Kac side-by-side")
+    lines.append("# E094: ω(n) vs Ω(n): Erdős–Kac side-by-side")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_omega_vs_bigomega_hist.png")
@@ -154,7 +154,7 @@ class ParamsE095:
 def run_e095(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E095 — Squarefree filter: ω(n)=Ω(n) when μ(n)≠0."""
+    """E095: Squarefree filter: ω(n)=Ω(n) when μ(n)≠0."""
     params = ParamsE095()
     write_json(params_path, asdict(params))
 
@@ -183,7 +183,7 @@ def run_e095(
     plt.close(fig)
 
     lines: list[str] = []
-    lines.append("# E095 — Squarefree filter: ω(n)=Ω(n) when μ(n)≠0")
+    lines.append("# E095: Squarefree filter: ω(n)=Ω(n) when μ(n)≠0")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_bigomega_minus_omega.png")
@@ -215,7 +215,7 @@ class ParamsE096:
 def run_e096(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E096 — Record-holders for τ(n)."""
+    """E096: Record-holders for τ(n)."""
     params = ParamsE096()
     write_json(params_path, asdict(params))
 
@@ -245,7 +245,7 @@ def run_e096(
     top = list(zip(record_ns[-10:], record_vals[-10:], strict=False))
 
     lines: list[str] = []
-    lines.append("# E096 — Record-holders for τ(n)")
+    lines.append("# E096: Record-holders for τ(n)")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_tau_records.png")
@@ -277,7 +277,7 @@ class ParamsE097:
 def run_e097(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E097 — σ(n)/n landscape: deficient, perfect, abundant."""
+    """E097: σ(n)/n landscape: deficient, perfect, abundant."""
     params = ParamsE097()
     write_json(params_path, asdict(params))
 
@@ -305,7 +305,7 @@ def run_e097(
     perfect_list = perfect_ns[:20].tolist()
 
     lines: list[str] = []
-    lines.append("# E097 — σ(n)/n landscape: deficient, perfect, abundant")
+    lines.append("# E097: σ(n)/n landscape: deficient, perfect, abundant")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_sigma_over_n_scatter.png")
@@ -339,7 +339,7 @@ class ParamsE098:
 def run_e098(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E098 — Extremals of σ(n)/n^α across α."""
+    """E098: Extremals of σ(n)/n^α across α."""
     params = ParamsE098()
     write_json(params_path, asdict(params))
 
@@ -372,7 +372,7 @@ def run_e098(
             last = n_star
 
     lines: list[str] = []
-    lines.append("# E098 — Extremals of σ(n)/n^α across α")
+    lines.append("# E098: Extremals of σ(n)/n^α across α")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_argmax_vs_alpha.png")
@@ -404,7 +404,7 @@ class ParamsE099:
 def run_e099(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E099 — Jordan totients J_k: atlas and identities."""
+    """E099: Jordan totients J_k: atlas and identities."""
     params = ParamsE099()
     write_json(params_path, asdict(params))
 
@@ -435,7 +435,7 @@ def run_e099(
     plt.close(fig)
 
     lines: list[str] = []
-    lines.append("# E099 — Jordan totients J_k: atlas and identities")
+    lines.append("# E099: Jordan totients J_k: atlas and identities")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_jordan_ratios.png")
@@ -467,7 +467,7 @@ class ParamsE100:
 def run_e100(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E100 — Carmichael λ(n) vs Euler φ(n)."""
+    """E100: Carmichael λ(n) vs Euler φ(n)."""
     params = ParamsE100()
     write_json(params_path, asdict(params))
 
@@ -491,7 +491,7 @@ def run_e100(
     max_ratio = float(np.max(ratio))
 
     lines: list[str] = []
-    lines.append("# E100 — Carmichael λ(n) vs Euler φ(n)")
+    lines.append("# E100: Carmichael λ(n) vs Euler φ(n)")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_lambda_over_phi_hist.png")
@@ -575,7 +575,7 @@ class ParamsE102:
 def run_e102(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E102 — Dirichlet convolution identity zoo."""
+    """E102: Dirichlet convolution identity zoo."""
     params = ParamsE102()
     write_json(params_path, asdict(params))
 
@@ -611,7 +611,7 @@ def run_e102(
     plt.close(fig)
 
     lines: list[str] = []
-    lines.append("# E102 — Dirichlet convolution identity zoo")
+    lines.append("# E102: Dirichlet convolution identity zoo")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_convolution_identity_errors.png")
@@ -640,7 +640,7 @@ class ParamsE103:
 def run_e103(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E103 — Chebyshev ψ(x): prime powers drive the jumps."""
+    """E103: Chebyshev ψ(x): prime powers drive the jumps."""
     params = ParamsE103()
     write_json(params_path, asdict(params))
 
@@ -663,7 +663,7 @@ def run_e103(
     nonzero = int(sum(1 for v in lam[1 : params.n_max + 1] if v != 0.0))
 
     lines: list[str] = []
-    lines.append("# E103 — Chebyshev ψ(x): prime powers drive the jumps")
+    lines.append("# E103: Chebyshev ψ(x): prime powers drive the jumps")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_psi_minus_x.png")
@@ -692,7 +692,7 @@ class ParamsE104:
 def run_e104(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E104 — Von Mangoldt Λ: support and statistics."""
+    """E104: Von Mangoldt Λ: support and statistics."""
     params = ParamsE104()
     write_json(params_path, asdict(params))
 
@@ -711,7 +711,7 @@ def run_e104(
     unique = sorted({round(float(x), 8) for x in vals})
 
     lines: list[str] = []
-    lines.append("# E104 — Von Mangoldt Λ: support and statistics")
+    lines.append("# E104: Von Mangoldt Λ: support and statistics")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_lambda_hist.png")
@@ -740,7 +740,7 @@ class ParamsE105:
 def run_e105(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E105 — Mertens function M(x): scaling views."""
+    """E105: Mertens function M(x): scaling views."""
     params = ParamsE105()
     write_json(params_path, asdict(params))
 
@@ -772,7 +772,7 @@ def run_e105(
     max_abs = float(np.max(np.abs(M)))
 
     lines: list[str] = []
-    lines.append("# E105 — Mertens function M(x): scaling views")
+    lines.append("# E105: Mertens function M(x): scaling views")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_mertens_M.png")
@@ -800,7 +800,7 @@ class ParamsE106:
 def run_e106(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E106 — Real vs complex Dirichlet characters (small moduli)."""
+    """E106: Real vs complex Dirichlet characters (small moduli)."""
     params = ParamsE106()
     write_json(params_path, asdict(params))
 
@@ -831,7 +831,7 @@ def run_e106(
     plt.close(fig)
 
     lines: list[str] = []
-    lines.append("# E106 — Real vs complex Dirichlet characters (small moduli)")
+    lines.append("# E106: Real vs complex Dirichlet characters (small moduli)")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_real_character_counts.png")
@@ -859,7 +859,7 @@ class ParamsE107:
 def run_e107(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E107 — Conductor distribution for characters."""
+    """E107: Conductor distribution for characters."""
     params = ParamsE107()
     write_json(params_path, asdict(params))
 
@@ -878,7 +878,7 @@ def run_e107(
     nontrivial = int(sum(1 for chi in chars if not chi.is_principal))
 
     lines: list[str] = []
-    lines.append("# E107 — Conductor distribution for characters")
+    lines.append("# E107: Conductor distribution for characters")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_conductor_hist.png")
@@ -906,7 +906,7 @@ class ParamsE108:
 def run_e108(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E108 — Character orthogonality matrix heatmap."""
+    """E108: Character orthogonality matrix heatmap."""
     params = ParamsE108()
     write_json(params_path, asdict(params))
 
@@ -928,7 +928,7 @@ def run_e108(
     )
 
     lines: list[str] = []
-    lines.append("# E108 — Character orthogonality matrix heatmap")
+    lines.append("# E108: Character orthogonality matrix heatmap")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_orthogonality_abs.png")
@@ -958,7 +958,7 @@ class ParamsE109:
 def run_e109(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E109 — Gauss sums τ(χ) for prime modulus."""
+    """E109: Gauss sums τ(χ) for prime modulus."""
     params = ParamsE109()
     write_json(params_path, asdict(params))
 
@@ -984,7 +984,7 @@ def run_e109(
     rel_err = float(np.max(np.abs(mags_np - math.sqrt(q))))
 
     lines: list[str] = []
-    lines.append("# E109 — Gauss sums τ(χ) for prime modulus")
+    lines.append("# E109: Gauss sums τ(χ) for prime modulus")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_gauss_sum_magnitudes.png")
@@ -1018,14 +1018,14 @@ class ParamsE110:
 def run_e110(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E110 — Dirichlet L-series partial sums (toy)."""
+    """E110: Dirichlet L-series partial sums (toy)."""
     params = ParamsE110()
     write_json(params_path, asdict(params))
 
     q = int(params.q)
     chars = [chi for chi in all_characters(q) if not chi.is_principal]
     if not chars:
-        _write_report(report_path=report_path, lines=["# E110 — no nonprincipal characters found"])
+        _write_report(report_path=report_path, lines=["# E110: no nonprincipal characters found"])
         return
     chi = chars[0]
     s = complex(params.s_re, 0.0)
@@ -1046,7 +1046,7 @@ def run_e110(
     final_val = partial_np[-1]
 
     lines: list[str] = []
-    lines.append("# E110 — Dirichlet L-series partial sums (toy)")
+    lines.append("# E110: Dirichlet L-series partial sums (toy)")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_L_partial_magnitude.png")
@@ -1156,7 +1156,7 @@ class ParamsE112:
 def run_e112(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E112 — Prime race π(x;q,a) − π(x;q,b)."""
+    """E112: Prime race π(x;q,a) − π(x;q,b)."""
     params = ParamsE112()
     write_json(params_path, asdict(params))
 
@@ -1179,7 +1179,7 @@ def run_e112(
     lead = int(diff[-1]) if diff.size else 0
 
     lines: list[str] = []
-    lines.append("# E112 — Prime race π(x;q,a) − π(x;q,b)")
+    lines.append("# E112: Prime race π(x;q,a) − π(x;q,b)")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_prime_race_diff.png")
@@ -1208,7 +1208,7 @@ class ParamsE113:
 def run_e113(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E113 — First prime in each reduced residue class."""
+    """E113: First prime in each reduced residue class."""
     params = ParamsE113()
     write_json(params_path, asdict(params))
 
@@ -1237,7 +1237,7 @@ def run_e113(
     missing = [a for a, v in first.items() if v == 0]
 
     lines: list[str] = []
-    lines.append("# E113 — First prime in each reduced residue class")
+    lines.append("# E113: First prime in each reduced residue class")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_first_prime_per_residue.png")
@@ -1273,7 +1273,7 @@ class ParamsE114:
 def run_e114(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E114 — ζ(1/2+it) via η-series: truncation error curves."""
+    """E114: ζ(1/2+it) via η-series: truncation error curves."""
     params = ParamsE114()
     write_json(params_path, asdict(params))
 
@@ -1309,7 +1309,7 @@ def run_e114(
     max_err = {n: float(np.max(err)) for n, err in errors.items()}
 
     lines: list[str] = []
-    lines.append("# E114 — ζ(1/2+it) via η-series: truncation error curves")
+    lines.append("# E114: ζ(1/2+it) via η-series: truncation error curves")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_eta_truncation_errors.png")
@@ -1342,7 +1342,7 @@ class ParamsE115:
 def run_e115(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E115 — Hardy Z(t): sign-change scan near low zeros."""
+    """E115: Hardy Z(t): sign-change scan near low zeros."""
     params = ParamsE115()
     write_json(params_path, asdict(params))
 
@@ -1362,7 +1362,7 @@ def run_e115(
     plt.close(fig)
 
     lines: list[str] = []
-    lines.append("# E115 — Hardy Z(t): sign-change scan near low zeros")
+    lines.append("# E115: Hardy Z(t): sign-change scan near low zeros")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_hardy_Z_scan.png")
@@ -1393,7 +1393,7 @@ class ParamsE116:
 def run_e116(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E116 — Zero-count proxy vs Riemann–von Mangoldt main term."""
+    """E116: Zero-count proxy vs Riemann–von Mangoldt main term."""
     params = ParamsE116()
     write_json(params_path, asdict(params))
 
@@ -1420,7 +1420,7 @@ def run_e116(
     final_rvm = float(rvm[-1]) if rvm.size else 0.0
 
     lines: list[str] = []
-    lines.append("# E116 — Zero-count proxy vs Riemann–von Mangoldt main term")
+    lines.append("# E116: Zero-count proxy vs Riemann–von Mangoldt main term")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_zero_count_vs_rvm.png")
@@ -1456,7 +1456,7 @@ class ParamsE117:
 def run_e117(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E117 — Functional equation check: ζ(s) ≈ χ(s) ζ(1−s)."""
+    """E117: Functional equation check: ζ(s) ≈ χ(s) ζ(1−s)."""
     params = ParamsE117()
     write_json(params_path, asdict(params))
 
@@ -1484,7 +1484,7 @@ def run_e117(
     max_rel = float(np.max(rel)) if rel.size else float("nan")
 
     lines: list[str] = []
-    lines.append("# E117 — Functional equation check: ζ(s) ≈ χ(s) ζ(1−s)")
+    lines.append("# E117: Functional equation check: ζ(s) ≈ χ(s) ζ(1−s)")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_functional_equation_residual.png")
@@ -1519,7 +1519,7 @@ class ParamsE118:
 def run_e118(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E118 — Euler product approximation vs ζ(s): where it degrades."""
+    """E118: Euler product approximation vs ζ(s): where it degrades."""
     params = ParamsE118()
     write_json(params_path, asdict(params))
 
@@ -1551,7 +1551,7 @@ def run_e118(
     best = {k: float(min(v)) for k, v in errs_by_s.items()}
 
     lines: list[str] = []
-    lines.append("# E118 — Euler product approximation vs ζ(s): where it degrades")
+    lines.append("# E118: Euler product approximation vs ζ(s): where it degrades")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_euler_product_breakdown.png")
@@ -1586,7 +1586,7 @@ class ParamsE119:
 def run_e119(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E119 — ψ(x)−x with simple smoothing."""
+    """E119: ψ(x)−x with simple smoothing."""
     params = ParamsE119()
     write_json(params_path, asdict(params))
 
@@ -1614,7 +1614,7 @@ def run_e119(
     max_smooth = float(np.max(np.abs(smooth)))
 
     lines: list[str] = []
-    lines.append("# E119 — ψ(x)−x with simple smoothing")
+    lines.append("# E119: ψ(x)−x with simple smoothing")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_psi_minus_x_smoothed.png")
@@ -1644,7 +1644,7 @@ class ParamsE120:
 def run_e120(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E120 — Pretentious distance toy: sum_{p<=x} (1−Re χ(p))/p."""
+    """E120: Pretentious distance toy: sum_{p<=x} (1−Re χ(p))/p."""
     params = ParamsE120()
     write_json(params_path, asdict(params))
 
@@ -1653,7 +1653,7 @@ def run_e120(
     chi0 = next((c for c in chars if c.is_principal), None)
     chi1 = next((c for c in chars if not c.is_principal), None)
     if chi0 is None or chi1 is None:
-        _write_report(report_path=report_path, lines=["# E120 — insufficient characters"])
+        _write_report(report_path=report_path, lines=["# E120: insufficient characters"])
         return
     primes = primes_up_to(int(params.p_max)).astype(int)
     # ignore p=2 when q even to avoid chi(p)=0 spikes dominating
@@ -1680,7 +1680,7 @@ def run_e120(
     end1 = float(d1[-1]) if d1.size else 0.0
 
     lines: list[str] = []
-    lines.append("# E120 — Pretentious distance toy: sum_{p <= x} (1−Re χ(p))/p")
+    lines.append("# E120: Pretentious distance toy: sum_{p <= x} (1−Re χ(p))/p")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_pretentious_distance_proxy.png")
@@ -1801,7 +1801,7 @@ class ParamsE122:
 def run_e122(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E122 — Arithmetic function atlas: μ(n), ω(n), φ(n)/n heatmaps."""
+    """E122: Arithmetic function atlas: μ(n), ω(n), φ(n)/n heatmaps."""
     params = ParamsE122()
     write_json(params_path, asdict(params))
 
@@ -1845,7 +1845,7 @@ def run_e122(
     plt.close(fig)
 
     lines: list[str] = []
-    lines.append("# E122 — Arithmetic function atlas: μ(n), ω(n), φ(n)/n heatmaps")
+    lines.append("# E122: Arithmetic function atlas: μ(n), ω(n), φ(n)/n heatmaps")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_mu_atlas.png")
@@ -1878,7 +1878,7 @@ class ParamsE123:
 def run_e123(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E123 — Correlation matrix: arithmetic functions on 1..N."""
+    """E123: Correlation matrix: arithmetic functions on 1..N."""
     params = ParamsE123()
     write_json(params_path, asdict(params))
 
@@ -1918,7 +1918,7 @@ def run_e123(
     top_pairs = [(a, b, round(v, 4)) for v, a, b in pairs[:8]]
 
     lines: list[str] = []
-    lines.append("# E123 — Correlation matrix: arithmetic functions on 1..N")
+    lines.append("# E123: Correlation matrix: arithmetic functions on 1..N")
     lines.append("")
     lines.append("## Artifacts")
     lines.append("- figures/fig_01_correlation_matrix.png")
