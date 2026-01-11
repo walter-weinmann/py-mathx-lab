@@ -2220,18 +2220,28 @@ def run_e124(
     img = np.ma.masked_where(~valid, img)  # type: ignore[no-untyped-call]
 
     fig_obj, ax = plt.subplots()
-    k = (params.size - 1) // 2
+
+
+    # Coordinate conventions:
+    # - x is the integer column offset from the center column (0 at center)
+    # - y is the row index n with n=1 at the top
+    half_x = cols // 2
+    extent = (-half_x - 0.5, half_x + 0.5, rows + 0.5, 0.5)
+
     ax.imshow(
         img,
-        origin="lower",
-        extent=(-k - 0.5, k + 0.5, rows - 0.5, -0.5),
+        origin="upper",
+        extent=extent,
         interpolation="nearest",
     )
+
+    ax.set_aspect("equal")
     ax.set_title("Klauber triangle (primes = 1)")
     ax.set_xlabel(r"$x$ (column offset from center)")
     ax.set_ylabel(r"row $n$ (top = 1)")
     finalize_figure(fig_obj)
     save_figure(out_dir=figures_dir, name="fig_01_klauber_triangle", fig=fig_obj)
+    save_figure(out_dir=figures_dir, name="e124_hero_"+str(size), fig=fig_obj)
 
     lines = _basic_report_header("E124", "Klauber triangle structure", "e124")
     lines += [
