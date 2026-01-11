@@ -27,10 +27,10 @@ A primality test can have different guarantees:
 ## Fermat probable prime test (FPP)
 
 For odd $n>2$ and a base $a$ with $\gcd(a,n)=1$, Fermat’s congruence says:
-\[
+$$
 a^{n-1}\equiv 1\pmod n
 \quad\text{for prime } n.
-\]
+$$
 
 If the congruence fails, $n$ is composite (a **witness** was found).  
 If it passes, $n$ is a **Fermat probable prime** to base $a$.
@@ -51,9 +51,9 @@ See {doc}`carmichael-numbers`.
 ## Miller–Rabin (strong probable prime test)
 
 Write
-\[
+$$
 n-1=d\,2^s\quad (d\text{ odd}).
-\]
+$$
 For a chosen base $a$, Miller–Rabin tests a short chain of squarings modulo $n$ and returns:
 
 - **composite** (a witness was found), or
@@ -63,9 +63,9 @@ For a chosen base $a$, Miller–Rabin tests a short chain of squarings modulo $n
 
 For any odd composite $n$, at most one quarter of bases $a\in\{2,\dots,n-2\}$ can make $n$
 look prime to the Miller–Rabin test. Therefore, if you test $k$ **independent random bases**,
-\[
+$$
 \Pr(\text{composite passes all }k\text{ rounds})\le 4^{-k}.
-\]
+$$
 This is the classical Rabin bound. {cite:p}`rabin1980probabilisticalgorithmprimality`
 
 ### Practical “deterministic” statements

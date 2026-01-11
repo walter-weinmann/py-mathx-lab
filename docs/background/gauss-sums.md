@@ -7,25 +7,25 @@ show up naturally in functional equations and explicit evaluations of certain $L
 ## Core definitions
 
 Let $\chi$ be a Dirichlet character modulo $q$ and write
-\[
+$$
 e_q(a)=\exp\!\left(\frac{2\pi i a}{q}\right).
-\]
+$$
 The (normalized) **Gauss sum** is
-\[
+$$
 \tau(\chi)=\sum_{a=1}^{q} \chi(a)\,e_q(a).
-\]
+$$
 
 For a **primitive** character $\chi$ modulo $q$, one has the fundamental magnitude law
-\[
+$$
 |\tau(\chi)|=\sqrt{q}.
-\]
+$$
 (For imprimitive characters, the behavior is more subtle and often smaller.)
 
 A key identity connecting Gauss sums to character orthogonality is:
-\[
+$$
 \sum_{a \bmod q} \chi(a)\,e_q(an)=\overline{\chi}(n)\,\tau(\chi)
 \quad (\gcd(n,q)=1),
-\]
+$$
 and it vanishes when $\gcd(n,q)>1$.
 
 ## What experiments usually visualize or measure

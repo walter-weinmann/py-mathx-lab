@@ -2,9 +2,9 @@
 
 A Carmichael number is a composite $n$ such that
 
-\[
+$$
 a^{n-1} \equiv 1 \pmod{n}
-\]
+$$
 
 for every integer $a$ coprime to $n$. They are **absolute Fermat pseudoprimes**, so they defeat the naive Fermat primality test. {cite:p}`WikipediaContributors2025CarmichaelNumber,PrimePagesGlossary2025CarmichaelNumber`
 

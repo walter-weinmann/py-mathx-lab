@@ -1,18 +1,18 @@
 # Prime number races refresher
 
 A **prime number race** compares prime counts in different residue classes, e.g.
-\[
+$$
 \pi(x;4,3)\ \text{vs.}\ \pi(x;4,1).
-\]
+$$
 
 Although $\pi(x;q,a)\sim \mathrm{Li}(x)/\varphi(q)$ suggests “no long-term winner,” finite ranges often show persistent preferences (biases).
 
 ## The classic example: Chebyshev’s bias mod 4
 
 Empirically, for many ranges of $x$ one observes
-\[
+$$
 \pi(x;4,3) > \pi(x;4,1),
-\]
+$$
 even though both are asymptotically equal.
 
 Rubinstein–Sarnak analyze this phenomenon via the distribution of zeros of relevant $L$-functions (under standard hypotheses).

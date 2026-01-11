@@ -3,9 +3,9 @@
 A **Gram point** is (informally) a value \(t\) where the Riemann--Siegel theta function \(\theta(t)\) hits an integer multiple of \(\pi\). These points are useful landmarks when visualizing \(Z(t)\) and tracking sign changes.
 
 The **Riemann--von Mangoldt formula** gives the asymptotic count of nontrivial zeros up to height \(T\):
-\[
+$$
 N(T)=\frac{T}{2\pi}\log\!\left(\frac{T}{2\pi}\right)-\frac{T}{2\pi}+O(\log T)\quad (T\to\infty),
-\]
+$$
 with refinements that include the argument of ζ on the critical line.
 
 ## Key ideas

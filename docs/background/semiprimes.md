@@ -2,9 +2,9 @@
 
 A semiprime is an integer that is the product of two primes (not necessarily distinct), i.e.
 
-\[
+$$
 n = pq \quad (p, q \text{ prime}).
-\]
+$$
 
 Semiprimes sit at the center of practical factorization hardness and are the basic objects behind RSA-style moduli. {cite:p}`RivestShamirAdleman1978RSA,OEISFoundationInc2025A001358Semiprimes`
 

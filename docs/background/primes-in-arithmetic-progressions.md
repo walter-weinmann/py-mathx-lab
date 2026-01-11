@@ -1,9 +1,9 @@
 # Primes in arithmetic progressions refresher
 
 For integers $q\ge 1$ and $a$, define
-\[
+$$
 \pi(x;q,a) := \#\{p \le x : p \text{ prime and } p \equiv a \pmod q\}.
-\]
+$$
 
 ## Core statements
 
@@ -14,9 +14,9 @@ If $\gcd(a,q)=1$, then there are infinitely many primes $p \equiv a \pmod q$.
 ### Prime number theorem in arithmetic progressions (equidistribution)
 
 For fixed $q$ and $\gcd(a,q)=1$,
-\[
+$$
 \pi(x;q,a) \sim \frac{\mathrm{Li}(x)}{\varphi(q)} \quad (x\to\infty).
-\]
+$$
 
 So, asymptotically, primes split evenly among the reduced residue classes.
 

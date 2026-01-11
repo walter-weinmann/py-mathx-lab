@@ -2,9 +2,9 @@
 
 Fermat numbers are the integers
 
-\[
+$$
 F_n = 2^{2^n} + 1 \quad (n \ge 0).
-\]
+$$
 
 They grow extremely quickly and are central to a classic “counterexample” story:
 Fermat conjectured that all $F_n$ are prime, but $F_5$ is composite (Euler). {cite:p}`KrizekLucaSomer2013LecturesOnFermatNumbers,WikipediaContributors2025FermatNumber`

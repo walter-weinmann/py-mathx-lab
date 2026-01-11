@@ -27,31 +27,32 @@ We call $a$ and $b$ **coprime** if $\gcd(a,b)=1$.
 
 ### Bézout identity (extended gcd)
 
-There exist integers $x,y$ such that
-\[
+There exist integers $x,y$ such that 
+$$
 \gcd(a,b)=ax+by.
-\]
+$$
 
 This identity is what enables **modular inverses** and appears directly in many algorithms
-(e.g. computing inverses for modular division).
+(e.g., computing inverses for modular division).
 
 ### Euclidean algorithm
 
-If $a=bq+r$ with $0\le r<|b|$, then
-\[
+If $a=bq+r$ with $0\le r<|b|$, then 
+$$
 \gcd(a,b)=\gcd(b,r).
-\]
+$$
+
 Repeatedly applying this step gives the Euclidean algorithm, which runs in time
 polynomial in the number of digits of the input.
 
 ## Congruences and residue classes
 
 For integers $a,b$ and modulus $m\ge 1$,
-\[
+$$
 a\equiv b\pmod m
 \quad\Longleftrightarrow\quad
 m\mid (a-b).
-\]
+$$
 
 This is an equivalence relation; its equivalence classes are called the
 **residue classes modulo $m$**.
@@ -71,13 +72,14 @@ So addition and multiplication “mod $m$” are well-defined.
 ## Units and modular inverses
 
 An integer $a$ has a multiplicative inverse modulo $m$ if and only if
-\[
+$$
 \gcd(a,m)=1.
-\]
+$$
+
 In that case, there exists $a^{-1}$ such that
-\[
+$$
 aa^{-1}\equiv 1\pmod m.
-\]
+$$
 
 In code, compute $a^{-1}$ via the extended Euclidean algorithm
 (Bézout coefficients).
@@ -89,18 +91,19 @@ is not defined.
 
 Let $\varphi(m)$ be the number of integers in $\{1,\dots,m\}$ that are coprime to $m$.
 Then **Euler’s theorem** states:
-\[
+$$
 \gcd(a,m)=1 \;\Rightarrow\; a^{\varphi(m)}\equiv 1\pmod m.
-\]
+$$
+
 This generalizes Fermat’s little theorem (below) and is a conceptual bridge between
 congruences and multiplicative structure.
 
 ## Fermat’s little theorem (FLT)
 
 If $p$ is prime and $p\nmid a$, then
-\[
+$$
 a^{p-1}\equiv 1\pmod p.
-\]
+$$
 
 FLT motivates Fermat-style primality tests, but there are composite numbers that can still
 pass such tests (pseudoprimes, especially Carmichael numbers). See {doc}`carmichael-numbers`.
@@ -123,9 +126,10 @@ Practical checklist for implementations:
 
 If $m$ and $n$ are coprime, then for any residues $a\pmod m$ and $b\pmod n$,
 there exists a unique residue $x\pmod{mn}$ such that
-\[
+$$
 x\equiv a\pmod m,\qquad x\equiv b\pmod n.
-\]
+$$
+
 Equivalently, the ring $\mathbb{Z}/(mn)\mathbb{Z}$ “splits” into
 $\mathbb{Z}/m\mathbb{Z}\times \mathbb{Z}/n\mathbb{Z}$ when $\gcd(m,n)=1$.
 

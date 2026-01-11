@@ -28,6 +28,146 @@ Why it matters in this lab:
 See also: {doc}`prime-numbers`.
 
 
+## Extended Euclidean algorithm (egcd)
+
+The **extended Euclidean algorithm** computes integers $(g, x, y)$ such that
+
+$$g = \gcd(a,b) \quad\text{and}\quad ax + by = g.$$
+
+Key use:
+
+- If $\gcd(a,m)=1$, then $ax + my = 1$, so $ax \equiv 1 \pmod m$ and **$x$ is the modular inverse of $a$ mod $m$**.
+
+Practical notes:
+
+- The coefficient $x$ is not unique, but $x \bmod m$ is the unique inverse in $\{0,\dots,m-1\}$.
+- Always reduce: `inv = x % m`.
+
+See also: {doc}`primality-testing`, {doc}`factorization-pipelines` (many algorithms rely on gcd/egcd steps).
+
+
+## Failure cases (common pitfalls)
+
+Typical situations where modular routines or number-theory experiments fail or produce misleading results.
+
+**Inverse does not exist:**
+
+- $a^{-1} \pmod m$ exists **iff** $\gcd(a,m)=1$.
+- If $\gcd(a,m)\ne 1$, there is **no** multiplicative inverse.
+- In Python, `pow(a, -1, m)` raises `ValueError` when the inverse does not exist.
+
+**Bad modulus:**
+
+- Most modular arithmetic assumes $m\ge 2$.
+- In Python, `pow(a, e, m)` requires `m != 0` and (in practice) `m > 0`; otherwise you get an exception.
+
+**Exponent sign mistakes:**
+
+- Modular exponentiation uses $e\ge 0$.
+- `pow(a, e, m)` with a **negative** `e` is not allowed, except for the special case `pow(a, -1, m)` (inverse).
+
+**Residue class counting pitfalls:**
+
+- Always fix your representative set (usually $0,1,\dots,m-1$).
+- When counting primes mod $q$, decide whether you count:
+  - all residues (including $0$), or
+  - only the **reduced residue system** (residues $a$ with $\gcd(a,q)=1$).
+- Remember: primes dividing $q$ land in residue $0 \pmod q$ (and can distort “prime race” plots if not handled explicitly).
+
+**Silent “visual” failures:**
+
+- Many claims “look true” at small $N$ but change at larger $N$.
+- Always record finite cutoffs and use caution language (“finite-range behavior”).
+
+See also: {doc}`exploratory-visualizations`.
+
+
+## Greatest common divisor (gcd)
+
+The **greatest common divisor** $\gcd(a,b)$ is the largest positive integer dividing both $a$ and $b$.
+
+Core facts:
+
+- $\gcd(a,b)=\gcd(b, a\bmod b)$ (Euclid’s algorithm).
+- $\gcd(a,0)=|a|$.
+- $\gcd(a,m)=1$ is exactly the condition “$a$ is invertible modulo $m$”.
+
+Why it matters in this lab:
+
+- Modular inverses, CRT steps, and many “failure modes” are just $\gcd\ne 1$.
+- Factorization pipelines often discover non-trivial factors via gcd computations.
+
+Practical tip:
+
+- Compute gcd early and explicitly when you rely on inverses or division mod $m$.
+
+See also: {doc}`factorization-pipelines`.
+
+
+## Modular exponentiation (pow, square-and-multiply)
+
+Goal: compute
+
+$$a^e \bmod m$$
+
+efficiently, without ever forming the huge integer $a^e$.
+
+**Best practice in Python:**
+
+- Use the built-in: `pow(a, e, m)`
+- Complexity is $O(\log e)$ modular multiplications (fast exponentiation under the hood).
+
+**Square-and-multiply idea (binary exponentiation):**
+
+Write $e$ in binary. Repeatedly square, and multiply in when the current bit is 1.
+
+Sketch:
+
+- Initialize `result = 1`, `base = a % m`, `exp = e`
+- While `exp > 0`:
+  - If `exp` is odd: `result = (result * base) % m`
+  - `base = (base * base) % m`
+  - `exp //= 2`
+
+Why it matters in this lab:
+
+- Primality tests (e.g. Fermat/Miller–Rabin) are dominated by modular exponentiation.
+- Efficient modular exponentiation makes “large N” experiments feasible.
+
+See also: {doc}`primality-testing`.
+
+
+## Modular inverse (gcd/egcd → inverse)
+
+The **modular inverse** of $a$ modulo $m$ is an integer $a^{-1}$ such that
+
+$$a\cdot a^{-1} \equiv 1 \pmod m.$$
+
+Existence and uniqueness:
+
+- An inverse exists **iff** $\gcd(a,m)=1$.
+- If it exists, it is unique modulo $m$.
+
+How to compute:
+
+1) **Extended Euclid (theory-first):**  
+   If egcd gives $ax + my = 1$, then $x \bmod m$ is the inverse.
+
+2) **Python shortcut (recommended):**  
+   `pow(a, -1, m)` returns the inverse if it exists (and raises `ValueError` otherwise).
+
+Sanity check:
+
+- After computing `inv`, verify `(a * inv) % m == 1`.
+
+Common mistakes:
+
+- Forgetting to reduce the result to a standard representative: use `inv % m`.
+- Attempting inversion when $\gcd(a,m)\ne 1$ (no inverse).
+
+See also: {doc}`prime-numbers` (units mod $m$), {doc}`factorization-pipelines`.
+
+
 ## Modulo
 
 Working **modulo** $m$ means we consider integers only up to their remainder upon division by $m$ (with $m\ge 2$).
@@ -48,6 +188,7 @@ Why it matters in this lab:
 - Always record the modulus $m$ and the chosen representative set (e.g. residues $0,1,\dots,m-1$).
 
 See also: {doc}`prime-numbers`.
+
 
 ## Plot caveats (finite N)
 
@@ -70,20 +211,6 @@ What to report (minimum):
 
 See also: {doc}`prime-counting-approximations`, {doc}`prime-counting-bounds`, {doc}`exploratory-visualizations`.
 
-## Prime counting function π(x)
-
-The **prime counting function** $\pi(x)$ counts how many primes are $\le x$.
-
-- If $x$ is an integer: $\pi(x)=\#\{p\ \text{prime} : p\le x\}$.
-- In experiments with an upper bound $\text{n}_{\max}$, the endpoint value is $\pi(\text{n}_{\max})$.
-
-Why it matters in this lab:
-
-- Many plots compare $\pi(x)$ to analytic approximations.
-- Always state the finite range (e.g. $2\le x\le \text{n}_{\max}$) to avoid “asymptotic overclaiming”.
-
-See also: {doc}`prime-counting-approximations`, {doc}`prime-counting-bounds`.
-
 
 ## Prime counting approximations (x/log(x), li(x))
 
@@ -101,6 +228,22 @@ Plot/report checklist:
 
 See also: {doc}`prime-counting-approximations`.
 
+
+## Prime counting function π(x)
+
+The **prime counting function** $\pi(x)$ counts how many primes are $\le x$.
+
+- If $x$ is an integer: $\pi(x)=\#\{p\ \text{prime} : p\le x\}$.
+- In experiments with an upper bound $\text{n}_{\max}$, the endpoint value is $\pi(\text{n}_{\max})$.
+
+Why it matters in this lab:
+
+- Many plots compare $\pi(x)$ to analytic approximations.
+- Always state the finite range (e.g. $2\le x\le \text{n}_{\max}$) to avoid “asymptotic overclaiming”.
+
+See also: {doc}`prime-counting-approximations`, {doc}`prime-counting-bounds`.
+
+
 ## Prime definition
 
 A **prime number** is an integer $p>1$ whose only positive divisors are $1$ and $p$.
@@ -112,6 +255,7 @@ Key reminders:
 - In computational experiments, “prime” typically means “prime in $\mathbb{Z}$”.
 
 See also: {doc}`prime-numbers`.
+
 
 ## Prime mask / sieve idea
 
@@ -134,6 +278,7 @@ Common refinements (when $N$ grows):
 - **Segmented sieve:** sieve in blocks when $N$ is too large to hold a full mask in memory.
 
 See also: {doc}`primality-testing`, {doc}`factorization-pipelines`, {doc}`prime-numbers`.
+
 
 ## Residue class
 
@@ -159,6 +304,7 @@ Why it matters in this lab:
 - “Modular obstructions” are statements that a polynomial cannot hit certain residue classes.
 
 See also: {doc}`prime-numbers`.
+
 
 ## Sampling choices (linear vs log)
 

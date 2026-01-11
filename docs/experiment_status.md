@@ -2,8 +2,8 @@
 
 This page tracks the generation and manual editing status of experiment pages.
 
-| Experiment                                | Generated  | Last edited | Notes  |
-|:------------------------------------------|:-----------|:------------|:-------|
+| Experiment                                | Generated  | Last edited | Notes |
+|:------------------------------------------|:-----------|:------------|:------|
 | e001_taylor_error_landscapes | 31.12.2025 |  |  |
 | e002_even_perfect_growth | 31.12.2025 |  |  |
 | e003_abundancy_index_landscape | 31.12.2025 |  |  |
@@ -130,6 +130,6 @@ This page tracks the generation and manual editing status of experiment pages.
 | e124_klauber_triangle | 01.01.2026 | 11.01.2026 |  |
 | e125_sacks_spiral | 01.01.2026 | 11.01.2026 |  |
 | e126_hexagonal_number_spiral | 01.01.2026 | 11.01.2026 |  |
-| e127_quadratic_prime_streak_atlas | 02.01.2026 | 02.01.2026 |  |
-| e128_quadratic_modular_obstructions | 02.01.2026 | 02.01.2026 |  |
-| e129_euler_lucky_constants | 02.01.2026 | 02.01.2026 |  |
+| e127_quadratic_prime_streak_atlas | 02.01.2026 |  |  |
+| e128_quadratic_modular_obstructions | 02.01.2026 |  |  |
+| e129_euler_lucky_constants | 02.01.2026 |  |  |

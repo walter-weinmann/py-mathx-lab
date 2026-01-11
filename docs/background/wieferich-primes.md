@@ -2,9 +2,9 @@
 
 A Wieferich prime (base 2) is a prime $p$ such that
 
-\[
+$$
 2^{p-1} \equiv 1 \pmod{p^2}.
-\]
+$$
 
 Only two are currently known: $1093$ and $3511$. {cite:p}`OEISFoundationInc2025A001220WieferichPrimes,WikipediaContributors2025WieferichPrime`
 
