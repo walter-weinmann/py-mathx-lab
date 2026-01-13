@@ -85,7 +85,8 @@ source_suffix = {
 autosummary_generate = True
 
 # Autodoc settings (API docs)
-autodoc_typehints = "signature"
+# "none" allows Napoleon to handle types in the docstring without interference.
+autodoc_typehints = "none"
 autodoc_member_order = "bysource"
 autodoc_default_options = {
     "members": True,
@@ -241,6 +242,11 @@ myst_heading_anchors = 3
 napoleon_google_docstring = True
 napoleon_numpy_docstring = False
 
-# Keep Google-style docstrings readable (avoid deep field-list indentation).
+# Stable defaults: definition lists are more robust than field lists
 napoleon_use_param = False
 napoleon_use_rtype = False
+napoleon_use_ivar = False
+napoleon_attr_annotations = False
+napoleon_use_admonition_for_examples = True
+napoleon_use_admonition_for_notes = True
+napoleon_use_admonition_for_references = True

@@ -243,78 +243,333 @@ from mathxlab.experiments.prime_suite import run_e014, run_e015, CommonParams
 
 ## Reference
 ### Classes
-::{autoclass} mathxlab.experiments.prime_suite.CommonParams:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE014:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE015:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE016:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE017:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE018:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE019:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE020:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE021:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE022:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE023:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE024:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE025:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE026:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE027:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE028:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE029:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE030:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE031:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE032:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE033:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE034:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE035:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE036:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE037:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE038:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE039:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE040:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE041:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE042:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE043:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE044:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE045:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE046:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE124:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE125:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.prime_suite.ParamsE126:members::member-order: bysource:show-inheritance::::
+:::{autoclass} mathxlab.experiments.prime_suite.CommonParams
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE014
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE015
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE016
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE017
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE018
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE019
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE020
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE021
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE022
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE023
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE024
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE025
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE026
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE027
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE028
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE029
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE030
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE031
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE032
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE033
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE034
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE035
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE036
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE037
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE038
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE039
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE040
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE041
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE042
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE043
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE044
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE045
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE046
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE124
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE125
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.prime_suite.ParamsE126
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
 
 ### Functions
-::{autofunction} mathxlab.experiments.prime_suite.run_e014:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e015:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e016:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e017:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e018:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e019:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e020:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e021:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e022:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e023:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e024:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e025:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e026:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e027:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e028:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e029:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e030:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e031:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e032:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e033:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e034:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e035:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e036:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e037:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e038:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e039:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e040:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e041:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e042:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e043:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e044:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e045:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e046:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e124:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e125:::
-::{autofunction} mathxlab.experiments.prime_suite.run_e126:::
+:::{autofunction} mathxlab.experiments.prime_suite.run_e014
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e015
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e016
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e017
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e018
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e019
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e020
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e021
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e022
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e023
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e024
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e025
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e026
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e027
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e028
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e029
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e030
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e031
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e032
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e033
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e034
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e035
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e036
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e037
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e038
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e039
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e040
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e041
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e042
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e043
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e044
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e045
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e046
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e124
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e125
+:::
+
+:::{autofunction} mathxlab.experiments.prime_suite.run_e126
+:::

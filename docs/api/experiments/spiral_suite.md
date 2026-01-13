@@ -42,11 +42,30 @@ from mathxlab.experiments.spiral_suite import run_e124, run_e125, ParamsE124
 
 ## Reference
 ### Classes
-::{autoclass} mathxlab.experiments.spiral_suite.ParamsE124:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.spiral_suite.ParamsE125:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.spiral_suite.ParamsE126:members::member-order: bysource:show-inheritance::::
+:::{autoclass} mathxlab.experiments.spiral_suite.ParamsE124
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.spiral_suite.ParamsE125
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.spiral_suite.ParamsE126
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
 
 ### Functions
-::{autofunction} mathxlab.experiments.spiral_suite.run_e124:::
-::{autofunction} mathxlab.experiments.spiral_suite.run_e125:::
-::{autofunction} mathxlab.experiments.spiral_suite.run_e126:::
+:::{autofunction} mathxlab.experiments.spiral_suite.run_e124
+:::
+
+:::{autofunction} mathxlab.experiments.spiral_suite.run_e125
+:::
+
+:::{autofunction} mathxlab.experiments.spiral_suite.run_e126
+:::

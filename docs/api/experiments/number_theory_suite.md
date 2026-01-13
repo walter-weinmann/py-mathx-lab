@@ -204,65 +204,273 @@ from mathxlab.experiments.number_theory_suite import run_e094, run_e095, ParamsE
 
 ## Reference
 ### Classes
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE094:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE095:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE096:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE097:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE098:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE099:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE100:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE101:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE102:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE103:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE104:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE105:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE106:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE107:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE108:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE109:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE110:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE111:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE112:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE113:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE114:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE115:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE116:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE117:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE118:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE119:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE120:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE121:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE122:members::member-order: bysource:show-inheritance::::
-::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE123:members::member-order: bysource:show-inheritance::::
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE094
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE095
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE096
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE097
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE098
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE099
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE100
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE101
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE102
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE103
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE104
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE105
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE106
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE107
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE108
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE109
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE110
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE111
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE112
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE113
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE114
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE115
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE116
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE117
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE118
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE119
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE120
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE121
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE122
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
+
+:::{autoclass} mathxlab.experiments.number_theory_suite.ParamsE123
+:members:
+:member-order: bysource
+:show-inheritance:
+:::
 
 ### Functions
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e094:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e095:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e096:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e097:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e098:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e099:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e100:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e101:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e102:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e103:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e104:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e105:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e106:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e107:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e108:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e109:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e110:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e111:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e112:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e113:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e114:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e115:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e116:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e117:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e118:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e119:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e120:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e121:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e122:::
-::{autofunction} mathxlab.experiments.number_theory_suite.run_e123:::
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e094
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e095
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e096
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e097
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e098
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e099
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e100
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e101
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e102
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e103
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e104
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e105
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e106
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e107
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e108
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e109
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e110
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e111
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e112
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e113
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e114
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e115
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e116
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e117
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e118
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e119
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e120
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e121
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e122
+:::
+
+:::{autofunction} mathxlab.experiments.number_theory_suite.run_e123
+:::
