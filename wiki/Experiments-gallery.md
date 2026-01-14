@@ -16,3 +16,7 @@ Typical commands:
 Related:
 - [Getting started](Getting-started)
 - [The “Check & Refine” workflow](The-Check-&-Refine-workflow)
+
+See also:
+- [Output quality rubric](Output-quality-rubric.md)
+- [Experiments gallery](Experiments-gallery.md)

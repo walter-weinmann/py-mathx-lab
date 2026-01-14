@@ -20,6 +20,5 @@ This page is a short operational checklist for working with the repo.
 5. If you changed performance-sensitive code:
    - `make pytest-perf` (or your perf targets)
 
-Related:
-- [The “Check & Refine” workflow](The-Check-&-Refine-workflow)
-- [Development conventions](Development-conventions)
+See also:
+- [Getting started](Getting-started.md)

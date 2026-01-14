@@ -350,3 +350,4 @@ venv-recreate: clean-venv
 
 wiki-verify: install-dev
 	$(UV_RUN_DEV) python -m mathxlab.tools.verify_wiki --wiki-dir "$(WIKI_DIR)"
+
