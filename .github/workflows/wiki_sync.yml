@@ -1,0 +1,43 @@
+name: Wiki Sync
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "wiki/**"
+      - "tools/sync_wiki.py"
+      - ".github/workflows/wiki_sync.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  lint_and_publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Link check (wiki/)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >
+            --verbose
+            --no-progress
+            --accept 200,201,204,206,429
+            --exclude-mail
+            --format detailed
+            wiki/**/*.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish GitHub Wiki
+        env:
+          WIKI_TOKEN: ${{ secrets.WIKI_TOKEN }}
+          WIKI_AUTHOR_NAME: wiki-sync-bot
+          WIKI_AUTHOR_EMAIL: wiki-sync-bot@users.noreply.github.com
+        run: |
+          python -V
+          python tools/sync_wiki.py --repo "${{ github.repository }}"

@@ -1,332 +1,185 @@
 # Cheat sheet
 
 Quick, experiment-oriented reminders of core concepts and common pitfalls.
-Entries are kept **alphabetical by title** so this page stays easy to scan.
+Entries are kept **alphabetical by topic title** so this page stays easy to scan.
+Each topic is intentionally short and points to the relevant background pages and references.
+
+## Chebyshev functions $\theta(x)$ and $\psi(x)$
+
+- $\theta(x)=\sum_{p\le x}\log p$ (primes only).
+- $\psi(x)=\sum_{n\le x}\Lambda(n)=\sum_{p^k\le x}\log p$ (includes prime powers).
+- Weighted counts are often smoother than $\pi(x)$ and connect more directly to analytic theory.
+
+See also: {doc}`von-mangoldt-and-chebyshev`. Refs: {cite:p}`apostol1976introanalyticnumbertheory,montgomeryvaughan2006multiplicativenumbertheoryi`.
 
 ## Congruent integers
 
-Two integers $a$ and $b$ are **congruent modulo** $m$ (with $m\ge 2$) if they leave the **same remainder**
-when divided by $m$.
+- $a\equiv b\pmod m$ means $m\mid(a-b)$.
+- Congruences are statements about residue classes, not about a unique representative.
 
-Equivalent definition:
+See also: {doc}`divisibility-and-modular-arithmetic`. Refs: {cite:p}`hardywright2008introtheorynumbers`.
 
-- $a \equiv b \pmod m$  **iff**  $m$ divides $a-b$ (written $m\mid(a-b)$).
+## Dirichlet character $\chi\bmod q$
 
-Examples:
+- A Dirichlet character $\chi$ modulo $q$ is periodic mod $q$, completely multiplicative, and
+  $\chi(n)=0$ when $\gcd(n,q)>1$.
+- The **principal character** $\chi_0$ satisfies $\chi_0(n)=1$ for $\gcd(n,q)=1$ and $0$ otherwise.
+- Values lie on the unit circle (for units) and encode multiplicative structure of residues mod $q$.
 
-- $17 \equiv 2 \pmod 5$ because $17-2=15$ is divisible by $5$.
-- $12 \equiv 17 \pmod 5$ because $12-17=-5$ is divisible by $5$ (so they are in the same residue class mod $5$).
-- $29 \equiv 1 \pmod 7$ because $29-1=28$ is divisible by $7$.
-- Negative numbers work the same: $-3 \equiv 4 \pmod 7$ because $-3-4=-7$ is divisible by $7$.
+See also: {doc}`dirichlet-characters`. Refs: {cite:p}`davenport2000multiplicativenumbertheory,nivenzuckermanmontgomery1991introductiontheorynumbers`.
 
-Why it matters in this lab:
+## Dirichlet $L$-function $L(s,\chi)$
 
-- “Prime races” / residue class counts use statements like $p \equiv a \pmod q$.
-- Many “obstructions” are modular: e.g. $n^2+1 \not\equiv 0 \pmod 4$ for any integer $n$.
-- Always record the modulus and the representative set you use (e.g. residues $0,1,\dots,q-1$).
+- For $\Re(s)>1$: $L(s,\chi)=\sum_{n\ge1}\chi(n)n^{-s}=\prod_{p\nmid q}(1-\chi(p)p^{-s})^{-1}$.
+- The Euler product highlights the prime connection; the series is often easier numerically.
+- Near $s=1$, naive truncation can converge slowly; smoothing/damping is common in experiments.
 
-See also: {doc}`prime-numbers`.
+See also: {doc}`dirichlet-l-functions`. Refs: {cite:p}`davenport2000multiplicativenumbertheory,montgomeryvaughan2006multiplicativenumbertheoryi`.
 
+## Dirichlet’s theorem and PNT(AP) (experiment baseline form)
+
+- If $\gcd(a,q)=1$, then there are infinitely many primes $p\equiv a\pmod q$ (Dirichlet).
+- For fixed $q$ and $\gcd(a,q)=1$: $\pi(x;q,a)\sim \mathrm{li}(x)/\varphi(q)$ (PNT in AP).
+- Error term used in Phase 2 plots: $E(x;q,a)=\pi(x;q,a)-\mathrm{li}(x)/\varphi(q)$.
+
+See also: {doc}`primes-in-arithmetic-progressions`. Refs: {cite:p}`dirichlet1837primesinprogressions,iwanieckowalski2004analyticnumbertheory`.
+
+## Euler’s totient $\varphi(q)$
+
+- $\varphi(q)$ counts invertible residue classes: $\varphi(q)=\#(\mathbb{Z}/q\mathbb{Z})^\times$.
+- If $q=\prod p_i^{k_i}$ then $\varphi(q)=q\prod_i(1-1/p_i)$.
+- In Phase 2, $1/\varphi(q)$ is the “fair share” factor for residues in PNT(AP) baselines.
+
+See also: {doc}`euler-totient-function`, {doc}`divisibility-and-modular-arithmetic`. Refs: {cite:p}`hardywright2008introtheorynumbers`.
 
 ## Extended Euclidean algorithm (egcd)
 
-The **extended Euclidean algorithm** computes integers $(g, x, y)$ such that
+- Computes integers $(x,y)$ with $ax+by=\gcd(a,b)$.
+- Key for modular inverses: if $\gcd(a,m)=1$ then $ax\equiv1\pmod m$.
 
-$$g = \gcd(a,b) \quad\text{and}\quad ax + by = g.$$
-
-Key use:
-
-- If $\gcd(a,m)=1$, then $ax + my = 1$, so $ax \equiv 1 \pmod m$ and **$x$ is the modular inverse of $a$ mod $m$**.
-
-Practical notes:
-
-- The coefficient $x$ is not unique, but $x \bmod m$ is the unique inverse in $\{0,\dots,m-1\}$.
-- Always reduce: `inv = x % m`.
-
-See also: {doc}`primality-testing`, {doc}`factorization-pipelines` (many algorithms rely on gcd/egcd steps).
-
+See also: {doc}`divisibility-and-modular-arithmetic`. Refs: {cite:p}`nivenzuckermanmontgomery1991introductiontheorynumbers`.
 
 ## Failure cases (common pitfalls)
 
-Typical situations where modular routines or number-theory experiments fail or produce misleading results.
+- Forgetting to restrict to $\gcd(a,q)=1$ when discussing PNT(AP) or prime races.
+- Mixing sampling grids (linear vs log) across related race experiments.
+- Comparing truncated Euler products with different prime cutoffs (not comparable).
+- Treating “bias” on a finite range as a theorem; it is an observed phenomenon at that scale.
 
-**Inverse does not exist:**
+See also: {doc}`prime-number-races`, {doc}`primes-in-arithmetic-progressions`.
 
-- $a^{-1} \pmod m$ exists **iff** $\gcd(a,m)=1$.
-- If $\gcd(a,m)\ne 1$, there is **no** multiplicative inverse.
-- In Python, `pow(a, -1, m)` raises `ValueError` when the inverse does not exist.
+## Gauss sum $\tau(\chi)$
 
-**Bad modulus:**
+- Basic Gauss sum: $\tau(\chi)=\sum_{a=0}^{q-1}\chi(a)\exp(2\pi i a/q)$.
+- For primitive $\chi$, the magnitude satisfies $|\tau(\chi)|=\sqrt{q}$ (key Phase 2 pattern).
+- Often interpreted as a finite Fourier transform of the character.
 
-- Most modular arithmetic assumes $m\ge 2$.
-- In Python, `pow(a, e, m)` requires `m != 0` and (in practice) `m > 0`; otherwise you get an exception.
-
-**Exponent sign mistakes:**
-
-- Modular exponentiation uses $e\ge 0$.
-- `pow(a, e, m)` with a **negative** `e` is not allowed, except for the special case `pow(a, -1, m)` (inverse).
-
-**Residue class counting pitfalls:**
-
-- Always fix your representative set (usually $0,1,\dots,m-1$).
-- When counting primes mod $q$, decide whether you count:
-  - all residues (including $0$), or
-  - only the **reduced residue system** (residues $a$ with $\gcd(a,q)=1$).
-- Remember: primes dividing $q$ land in residue $0 \pmod q$ (and can distort “prime race” plots if not handled explicitly).
-
-**Silent “visual” failures:**
-
-- Many claims “look true” at small $N$ but change at larger $N$.
-- Always record finite cutoffs and use caution language (“finite-range behavior”).
-
-See also: {doc}`exploratory-visualizations`.
-
+See also: {doc}`gauss-sums`. Refs: {cite:p}`berndtevanswilliams1998gaussjacobisums,davenport2000multiplicativenumbertheory`.
 
 ## Greatest common divisor (gcd)
 
-The **greatest common divisor** $\gcd(a,b)$ is the largest positive integer dividing both $a$ and $b$.
+- $\gcd(a,b)$ is the largest integer dividing both.
+- $\gcd(a,q)=1$ is the “invertible mod $q$” condition used throughout Phase 2.
 
-Core facts:
+See also: {doc}`divisibility-and-modular-arithmetic`. Refs: {cite:p}`hardywright2008introtheorynumbers`.
 
-- $\gcd(a,b)=\gcd(b, a\bmod b)$ (Euclid’s algorithm).
-- $\gcd(a,0)=|a|$.
-- $\gcd(a,m)=1$ is exactly the condition “$a$ is invertible modulo $m$”.
+## Modular exponentiation (`pow`, square-and-multiply)
 
-Why it matters in this lab:
-
-- Modular inverses, CRT steps, and many “failure modes” are just $\gcd\ne 1$.
-- Factorization pipelines often discover non-trivial factors via gcd computations.
-
-Practical tip:
-
-- Compute gcd early and explicitly when you rely on inverses or division mod $m$.
-
-See also: {doc}`factorization-pipelines`.
-
-
-## Modular exponentiation (pow, square-and-multiply)
-
-Goal: compute
-
-$$a^e \bmod m$$
-
-efficiently, without ever forming the huge integer $a^e$.
-
-**Best practice in Python:**
-
-- Use the built-in: `pow(a, e, m)`
-- Complexity is $O(\log e)$ modular multiplications (fast exponentiation under the hood).
-
-**Square-and-multiply idea (binary exponentiation):**
-
-Write $e$ in binary. Repeatedly square, and multiply in when the current bit is 1.
-
-Sketch:
-
-- Initialize `result = 1`, `base = a % m`, `exp = e`
-- While `exp > 0`:
-  - If `exp` is odd: `result = (result * base) % m`
-  - `base = (base * base) % m`
-  - `exp //= 2`
-
-Why it matters in this lab:
-
-- Primality tests (e.g. Fermat/Miller–Rabin) are dominated by modular exponentiation.
-- Efficient modular exponentiation makes “large N” experiments feasible.
+- Compute $a^e\bmod m$ efficiently in $O(\log e)$ multiplications.
+- In Python: `pow(a, e, m)` (requires $e\ge0$, and $m>0$ in practice).
 
 See also: {doc}`primality-testing`.
 
+## Modular inverse
 
-## Modular inverse (gcd/egcd → inverse)
+- The inverse of $a\bmod m$ exists iff $\gcd(a,m)=1$.
+- In Python 3.8+: `pow(a, -1, m)` returns the inverse (raises if none exists).
 
-The **modular inverse** of $a$ modulo $m$ is an integer $a^{-1}$ such that
-
-$$a\cdot a^{-1} \equiv 1 \pmod m.$$
-
-Existence and uniqueness:
-
-- An inverse exists **iff** $\gcd(a,m)=1$.
-- If it exists, it is unique modulo $m$.
-
-How to compute:
-
-1) **Extended Euclid (theory-first):**  
-   If egcd gives $ax + my = 1$, then $x \bmod m$ is the inverse.
-
-2) **Python shortcut (recommended):**  
-   `pow(a, -1, m)` returns the inverse if it exists (and raises `ValueError` otherwise).
-
-Sanity check:
-
-- After computing `inv`, verify `(a * inv) % m == 1`.
-
-Common mistakes:
-
-- Forgetting to reduce the result to a standard representative: use `inv % m`.
-- Attempting inversion when $\gcd(a,m)\ne 1$ (no inverse).
-
-See also: {doc}`prime-numbers` (units mod $m$), {doc}`factorization-pipelines`.
-
+See also: {doc}`divisibility-and-modular-arithmetic`.
 
 ## Modulo
 
-Working **modulo** $m$ means we consider integers only up to their remainder upon division by $m$ (with $m\ge 2$).
+- “$n\bmod m$” is a representative of the residue class of $n$ modulo $m$.
+- Be consistent about representatives (usually $0,1,\dots,m-1$) when indexing arrays/plots.
 
-Two closely related notations:
+See also: {doc}`divisibility-and-modular-arithmetic`.
 
-- **Remainder value:** $a \bmod m$ is the remainder when dividing $a$ by $m$ (often taken in $\{0,1,\dots,m-1\}$).
-- **Congruence relation:** $a \equiv b \pmod m$ means $a$ and $b$ have the same remainder mod $m$, equivalently $m\mid(a-b)$.
+## Orthogonality (Dirichlet characters)
 
-Examples:
+- Over the reduced residues, characters satisfy discrete orthogonality relations.
+- Practical interpretation: averaging over characters can isolate a specific residue-class signal.
+- Used as a correctness check (character tables and indicator reconstructions).
 
-- $17 \bmod 5 = 2$
-- $12 \equiv 17 \pmod 5$
+See also: {doc}`dirichlet-characters`. Refs: {cite:p}`davenport2000multiplicativenumbertheory,montgomeryvaughan2006multiplicativenumbertheoryi`.
 
-Why it matters in this lab:
+## Prime counting approximations ($x/\log x$, $\mathrm{li}(x)$)
 
-- Most “residue class” plots and counts are statements about values modulo $m$.
-- Always record the modulus $m$ and the chosen representative set (e.g. residues $0,1,\dots,m-1$).
+- $x/\log x$ is a rough first-order approximation to $\pi(x)$.
+- $\mathrm{li}(x)$ is the standard smooth baseline used in the experiments (and in PNT(AP) baselines).
 
-See also: {doc}`prime-numbers`.
+See also: {doc}`prime-counting-approximations`. Refs: {cite:p}`apostol1976introanalyticnumbertheory`.
 
+## Prime counting function $\pi(x)$
 
-## Plot caveats (finite N)
+- $\pi(x)=\#\{p\le x: p\ \text{prime}\}$.
+- For progressions: $\pi(x;q,a)$ counts primes $\le x$ with $p\equiv a\pmod q$.
 
-Most plots in this lab visualize **finite** data (a finite cut-off $N$) even when the underlying theory is asymptotic.
+See also: {doc}`prime-numbers`, {doc}`primes-in-arithmetic-progressions`.
 
-Common pitfalls:
+## Prime counting in residue classes $\pi(x;q,a)$
 
-- **Finite-range artifacts:** patterns can appear “structured” at small/moderate $N$ and fade (or change) at larger $N$.
-- **Boundary effects:** plots on a window (e.g. a spiral of size `size`) can exaggerate edge structure.
-- **Binning and smoothing:** histogram bin width, kernel smoothing, and interpolation can create or hide apparent trends.
-- **Marker and rasterization choices:** marker size, transparency, and image resolution can bias what is visually salient.
-- **Axis scaling:** linear vs log scaling changes what “looks flat” or “looks curved”.
+- Definition: $\pi(x;q,a)=\#\{p\le x: p\equiv a\pmod q\}$.
+- Only reduced residues ($\gcd(a,q)=1$) participate in equidistribution statements.
+- Error term used in plots: $E(x;q,a)=\pi(x;q,a)-\mathrm{li}(x)/\varphi(q)$.
 
-What to report (minimum):
-
-- the effective cut-off $N$ (or $\text{size}^2$ when the window size determines $N$),
-- any binning/smoothing parameters,
-- axis scales (linear/log),
-- a one-paragraph caveat: “finite-range behavior; do not overinterpret as asymptotic truth”.
-
-See also: {doc}`prime-counting-approximations`, {doc}`prime-counting-bounds`, {doc}`exploratory-visualizations`.
-
-
-## Prime counting approximations (x/log(x), li(x))
-
-A common first approximation to $\pi(x)$ is
-$$\frac{x}{\log(x)}$$
-(where $\log$ is the **natural logarithm**).
-
-A more accurate classic approximation is the **logarithmic integral** $\operatorname{li}(x)$.
-
-Plot/report checklist:
-
-- Say explicitly what you plot: $\pi(x)$ vs $x/\log(x)$ (or vs $\operatorname{li}(x)$).
-- Clarify whether the “error” is **absolute** ($\pi(x)-x/\log(x)$) or **relative**.
-- For finite ranges, label statements as “finite-range behavior”.
-
-See also: {doc}`prime-counting-approximations`.
-
-
-## Prime counting function π(x)
-
-The **prime counting function** $\pi(x)$ counts how many primes are $\le x$.
-
-- If $x$ is an integer: $\pi(x)=\#\{p\ \text{prime} : p\le x\}$.
-- In experiments with an upper bound $\text{n}_{\max}$, the endpoint value is $\pi(\text{n}_{\max})$.
-
-Why it matters in this lab:
-
-- Many plots compare $\pi(x)$ to analytic approximations.
-- Always state the finite range (e.g. $2\le x\le \text{n}_{\max}$) to avoid “asymptotic overclaiming”.
-
-See also: {doc}`prime-counting-approximations`, {doc}`prime-counting-bounds`.
-
+See also: {doc}`primes-in-arithmetic-progressions`.
 
 ## Prime definition
 
-A **prime number** is an integer $p>1$ whose only positive divisors are $1$ and $p$.
-
-Key reminders:
-
-- $1$ is **not** prime.
-- Every integer $n>1$ has a unique factorization into primes (up to ordering): the **Fundamental Theorem of Arithmetic**.
-- In computational experiments, “prime” typically means “prime in $\mathbb{Z}$”.
+- A prime is an integer $p\ge2$ with exactly two positive divisors: $1$ and $p$.
+- In experiments, always specify whether you include $p=2$ separately when using odd-only sieves/tests.
 
 See also: {doc}`prime-numbers`.
-
 
 ## Prime mask / sieve idea
 
-A **prime mask** is a boolean array `is_prime[0..N]` where `is_prime[n]` indicates whether $n$ is prime.
+- A sieve produces a boolean mask `is_prime[n]` for $0\le n\le N$.
+- Masks support fast bulk computations: prime lists, residue-class counts, race differences.
 
-The standard construction is the **Sieve of Eratosthenes**:
+See also: {doc}`primality-testing`, {doc}`prime-numbers`.
 
-1. Start with `is_prime[n]=True` for $n=2,\dots,N$.
-2. For each prime $p\le \sqrt{N}$, mark multiples $2p,3p,\dots$ as composite.
+## Prime race difference $\Delta(x;q,a,b)$
 
-Why it matters:
+- Define $\Delta(x;q,a,b)=\pi(x;q,a)-\pi(x;q,b)$.
+- Because baselines cancel, races compare error terms implicitly: $\Delta=E(x;q,a)-E(x;q,b)$.
+- “Leader fraction” depends on sampling: a log grid weights decades more evenly than a linear grid.
 
-- **Deterministic** for all $n\le N$.
-- Time complexity is about $O(N\log\log N)$ with $O(N)$ memory.
-- Enables fast “prime/non-prime” overlays in plots (spirals, heatmaps, density curves).
+See also: {doc}`prime-number-races`, {doc}`primes-in-arithmetic-progressions`. Refs: {cite:p}`granvillemartin2006primenumberraces,rubinsteinsarnak1994chebyshevsbias`.
 
-Common refinements (when $N$ grows):
+## Reduced residue system (units mod $q$)
 
-- **Odd-only sieve:** store only odd indices to halve memory.
-- **Segmented sieve:** sieve in blocks when $N$ is too large to hold a full mask in memory.
+- $(\mathbb{Z}/q\mathbb{Z})^\times$ is the set of residues $a\bmod q$ with $\gcd(a,q)=1$.
+- It has size $\varphi(q)$ and is the domain on which characters behave multiplicatively.
 
-See also: {doc}`primality-testing`, {doc}`factorization-pipelines`, {doc}`prime-numbers`.
-
+See also: {doc}`divisibility-and-modular-arithmetic`, {doc}`dirichlet-characters`.
 
 ## Residue class
 
-A **residue class** (also called a **congruence class**) modulo $m$ is the set of all integers that are congruent to a given integer $a$.
+- A residue class modulo $m$ is the set $\{n: n\equiv a\pmod m\}$ for some $a$.
+- In code, we store a representative (often $a\in\{0,\dots,m-1\}$) but the math object is the class.
 
-Definition:
-
-- $$[a]_m = \{\,a + km \mid k\in\mathbb{Z}\,\}.$$
-
-Key facts:
-
-- There are exactly $m$ residue classes modulo $m$: $[0]_m,[1]_m,\dots,[m-1]_m$.
-- $$a \equiv b \pmod m \iff a\in[b]_m \iff b\in[a]_m.$$
-
-Example (mod $5$):
-
-- $$[2]_5 = \{\dots,-8,-3,2,7,12,17,22,\dots\}$$
-- So $2$, $12$, and $17$ are all in the same residue class modulo $5$.
-
-Why it matters in this lab:
-
-- Counting primes in arithmetic progressions is counting primes in residue classes, e.g. $p \equiv a \pmod q$.
-- “Modular obstructions” are statements that a polynomial cannot hit certain residue classes.
-
-See also: {doc}`prime-numbers`.
-
+See also: {doc}`divisibility-and-modular-arithmetic`.
 
 ## Sampling choices (linear vs log)
 
-When you sweep a parameter (e.g. $x$ in $\pi(x)$, or a grid over $(a,b)$), the **sampling strategy** affects what you see.
+- Linear-in-$x$ sampling overweights large $x$ values in “time-in-lead” style statistics.
+- Log-in-$x$ sampling gives each decade similar weight and is usually more stable for race distributions.
 
-**Linear sampling** (equal steps):
+See also: {doc}`prime-number-races`, {doc}`exploratory-visualizations`.
 
-- best for “local structure” (short-range variation),
-- simple to interpret,
-- can waste points at large scales if you need many orders of magnitude.
+## von Mangoldt function $\Lambda(n)$
 
-**Log sampling** (points spaced geometrically):
+- $\Lambda(n)=\log p$ if $n=p^k$ for some prime $p$ and $k\ge1$, else $0$.
+- Summing $\Lambda(n)$ up to $x$ yields $\psi(x)$ (Chebyshev’s second function).
 
-- best for “scale behavior” across orders of magnitude,
-- often reveals stabilization toward asymptotic trends,
-- can hide local oscillations because spacing grows with $x$.
-
-What to record in `params.json` / `report.md`:
-
-- range (min/max),
-- number of sample points,
-- spacing rule (linear/log),
-- any randomness / seeding used for subsampling.
-
-See also: {doc}`exploratory-visualizations`.
+See also: {doc}`von-mangoldt-and-chebyshev`. Refs: {cite:p}`apostol1976introanalyticnumbertheory`.
