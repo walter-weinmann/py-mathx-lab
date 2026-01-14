@@ -5,7 +5,15 @@ $$
 \pi(x;4,3)\ \text{vs.}\ \pi(x;4,1).
 $$
 
-Although $\pi(x;q,a)\sim \mathrm{Li}(x)/\varphi(q)$ suggests “no long-term winner,” finite ranges often show persistent preferences (biases).
+Although $\pi(x;q,a)\sim \mathrm{Li}(x)/\varphi(q)$ suggests “no winner,” finite ranges often show persistent preferences (biases).
+
+**How this repository measures a race (Phase 2 convention).** For each reduced residue class $a$ (with $\gcd(a,q)=1$) we compare
+$\pi(x;q,a)$ to the baseline $\mathrm{li}(x)/\varphi(q)$ and define the error term
+$$
+E(x;q,a) := \pi(x;q,a) - \frac{\mathrm{li}(x)}{\varphi(q)}.
+$$
+Race curves are typically differences such as $\Delta(x)=\pi(x;q,a)-\pi(x;q,b)$; the baseline cancels, so $\Delta(x)=E(x;q,a)-E(x;q,b)$.
+For the exact definitions and the baseline/error plots used throughout Phase 2, see {doc}`primes-in-arithmetic-progressions`.
 
 ## The classic example: Chebyshev’s bias mod 4
 
@@ -15,15 +23,9 @@ $$
 $$
 even though both are asymptotically equal.
 
-Rubinstein–Sarnak analyze this phenomenon via the distribution of zeros of relevant $L$-functions (under standard hypotheses).
+Rubinstein–Sarnak analyze this phenomenon through the lens of $L$-function zeros and propose models for the distribution of race leaders.
 
-## What experiments usually visualize or measure
-
-- The difference curve $D(x)=\pi(x;q,a)-\pi(x;q,b)$ and its sign changes.
-- The “race leaderboard” among several classes (e.g., mod 8 or mod 12).
-- Histogram / empirical distribution of a normalized statistic sampled on a log-grid of $x$ (choose a normalization and stick to it).
-
-## Practical numerical caveats
+## Practical notes for experiments
 
 - Bias claims depend on *how you sample* $x$ (linear vs log-grid); be explicit.
 - With small cutoffs (say $x\le 10^7$), you’ll see “apparent stability” that may later flip; that’s expected.
@@ -37,4 +39,4 @@ See {doc}`../references`.
 
 ## Experiments in this repository
 
-- **E112** — Prime race curves π(x;q,a) − π(x;q,b): sign changes and time-in-lead.
+- **E112** — Prime race curves $\pi(x;q,a) - \pi(x;q,b)$: sign changes and time-in-lead.
