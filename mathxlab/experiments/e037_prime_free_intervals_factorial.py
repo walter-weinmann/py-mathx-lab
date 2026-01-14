@@ -1,4 +1,4 @@
-"""E037 — Prime-free intervals via factorial construction.
+"""E037: Prime-free intervals via factorial construction.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.prime_suite`.

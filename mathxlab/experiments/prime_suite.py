@@ -116,7 +116,7 @@ class ParamsE014:
 def run_e014(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E014 — Primorial ± 1: "Euclid numbers are prime" fails quickly."""
+    """E014: Primorial ± 1: "Euclid numbers are prime" fails quickly."""
     params = ParamsE014(k_max=30)
     primes = primes_up_to(200)
     prim = 1
@@ -207,7 +207,7 @@ def _wilson_factorial_mod(n: int) -> int:
 def run_e015(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E015 — Wilson's theorem is true, but the naive 'test' is unusable at scale."""
+    """E015: Wilson's theorem is true, but the naive 'test' is unusable at scale."""
     params = ParamsE015(n_values=[200, 400, 800, 1200, 1600, 2000, 2400])
 
     t_ms: list[float] = []
@@ -279,7 +279,7 @@ def _trial_division_is_prime(n: int, primes: np.ndarray) -> bool:
 def run_e016(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E016 — Trial division collapses with size; MR stays fast (counterexample to 'simple is fine')."""
+    """E016: Trial division collapses with size; MR stays fast (counterexample to 'simple is fine')."""
     rng = np.random.default_rng(seed)
     params = ParamsE016(bit_sizes=[20, 24, 28, 32, 36], samples_per_size=200)
 
@@ -348,7 +348,7 @@ class ParamsE017:
 def run_e017(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E017 — Full sieve memory vs segmented sieve (counterexample to 'O(N) is fine')."""
+    """E017: Full sieve memory vs segmented sieve (counterexample to 'O(N) is fine')."""
     params = ParamsE017(
         n_values=[10**6, 5 * 10**6, 10**7, 5 * 10**7, 10**8], segment_size=2_000_000
     )
@@ -404,7 +404,7 @@ class ParamsE018:
 def run_e018(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E018 — Strong pseudoprimes: too few MR bases yields false positives (counterexample)."""
+    """E018: Strong pseudoprimes: too few MR bases yields false positives (counterexample)."""
     params = ParamsE018(n_max=500_000)
 
     is_prime = prime_mask_up_to(params.n_max)
@@ -463,10 +463,16 @@ class ParamsE019:
 
 
 def run_e019(
-    *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
+    *,
+    out_dir: Path,
+    seed: int,
+    figures_dir: Path,
+    report_path: Path,
+    params_path: Path,
+    n_max: int = 2_000_000,
 ) -> None:
-    """E019 — Prime density: pi(x) vs x/log x and error curve."""
-    params = ParamsE019(n_max=2_000_000)
+    """E019: Prime density: pi(x) vs x/log x and error curve."""
+    params = ParamsE019(n_max=n_max)
 
     is_prime = prime_mask_up_to(params.n_max)
     pi = pi_array_from_mask(is_prime)
@@ -474,6 +480,10 @@ def run_e019(
     x = np.arange(2, params.n_max + 1, dtype=np.int64)
     approx = x / np.log(x.astype(np.float64))
     err = pi[x].astype(np.float64) - approx
+
+    # A relative view: if the two curves nearly overlap on a linear scale,
+    # this ratio makes the deviation visible.
+    ratio = pi[x].astype(np.float64) / approx
 
     fig1 = _plot_series(
         x=x,
@@ -486,6 +496,7 @@ def run_e019(
         ylab="value",
     )
     save_figure(out_dir=figures_dir, name="fig_01_pi_vs_x_logx", fig=fig1)
+    save_figure(out_dir=figures_dir, name="e019_hero_" + str(n_max), fig=fig1)
 
     fig2 = _plot_series(
         x=x,
@@ -495,6 +506,17 @@ def run_e019(
         ylab="error",
     )
     save_figure(out_dir=figures_dir, name="fig_02_pi_minus_x_logx", fig=fig2)
+    save_figure(out_dir=figures_dir, name="e019_hero_2_" + str(n_max), fig=fig2)
+
+    fig3 = _plot_series(
+        x=x,
+        ys=[(r"$\pi(x) / (x/\log(x))$", ratio)],
+        title=r"Ratio: $\pi(x) / (x/\log(x))$",
+        xlab=r"$x$",
+        ylab="ratio",
+    )
+    save_figure(out_dir=figures_dir, name="fig_03_pi_over_x_logx_ratio", fig=fig3)
+    save_figure(out_dir=figures_dir, name="e019_hero_3_" + str(n_max), fig=fig3)
 
     lines = _basic_report_header("E019", "Prime density and PNT visualization", "e019")
     lines += [
@@ -504,6 +526,7 @@ def run_e019(
         "### Notes",
         r"- The Prime Number Theorem suggests $\pi(x) ~ x/\log(x)$.",
         "- The error curve shows the approximation improves overall but wiggles persist.",
+        r"- Ratio view: $\pi(x) / (x/\log(x))$ highlights relative deviation.",
         "",
     ]
     _write_lines(report_path, lines)
@@ -535,10 +558,16 @@ def _li_approx(n_max: int, step: int) -> tuple[np.ndarray, np.ndarray]:
 
 
 def run_e020(
-    *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
+    *,
+    out_dir: Path,
+    seed: int,
+    figures_dir: Path,
+    report_path: Path,
+    params_path: Path,
+    n_max: int = 3_000_000,
 ) -> None:
-    """E020 — li(x) is often a better approximation than x/log x (visual counterexample)."""
-    params = ParamsE020(n_max=3_000_000, step=2000)
+    """E020: li(x) is often a better approximation than x/log x (visual counterexample)."""
+    params = ParamsE020(n_max=n_max, step=2000)
 
     is_prime = prime_mask_up_to(params.n_max)
     pi = pi_array_from_mask(is_prime)
@@ -600,10 +629,16 @@ class ParamsE021:
 
 
 def run_e021(
-    *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
+    *,
+    out_dir: Path,
+    seed: int,
+    figures_dir: Path,
+    report_path: Path,
+    params_path: Path,
+    n_max: int = 2_000_000,
 ) -> None:
-    """E021 — Explicit inequality sanity checks (conditions matter)."""
-    params = ParamsE021(n_max=2_000_000)
+    """E021: Explicit inequality sanity checks (conditions matter)."""
+    params = ParamsE021(n_max=n_max)
 
     is_prime = prime_mask_up_to(params.n_max)
     pi = pi_array_from_mask(is_prime)
@@ -655,7 +690,7 @@ class ParamsE022:
 def run_e022(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E022 — Prime race: pi(x;4,1) vs pi(x;4,3)."""
+    """E022: Prime race: pi(x;4,1) vs pi(x;4,3)."""
     params = ParamsE022(n_max=5_000_000)
     primes = primes_up_to(params.n_max)
     p = primes[primes >= 3]
@@ -703,7 +738,7 @@ class ParamsE023:
 def run_e023(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E023 — Distribution of primes across residue classes mod q (finite-range bias)."""
+    """E023: Distribution of primes across residue classes mod q (finite-range bias)."""
     params = ParamsE023(n_max=3_000_000, q=10)
     primes = primes_up_to(params.n_max)
     p = primes[primes >= 3]
@@ -757,7 +792,7 @@ def run_e024(
     params_path: Path,
     size: int = 301,
 ) -> None:
-    """E024 — Ulam spiral: primes in a spiral show diagonal structure."""
+    """E024: Ulam spiral: primes in a spiral show diagonal structure."""
     params = ParamsE024(size=size)
     if params.size % 2 == 0:
         raise ValueError("size must be odd")
@@ -784,13 +819,27 @@ def run_e024(
         step += 2
 
     prime_img = is_prime[grid]
+
+    # Plot using centered Cartesian coordinates:
+    # - x,y are integer coordinates with (0,0) at the grid center
+    # - y increases upward (Cartesian convention)
+    half = params.size // 2
+    extent = (-half - 0.5, half + 0.5, -half - 0.5, half + 0.5)
+
     fig_obj, ax = plt.subplots()
-    ax.imshow(prime_img, interpolation="nearest")
-    ax.set_title("Ulam spiral (primes = True)")
+    ax.imshow(
+        prime_img,
+        origin="lower",
+        extent=extent,
+        interpolation="nearest",
+    )
+    ax.set_aspect("equal")
+    ax.set_title(f"Ulam spiral (primes = True, size={params.size})")
     ax.set_xlabel("x")
     ax.set_ylabel("y")
     finalize_figure(fig_obj)
     save_figure(out_dir=figures_dir, name="fig_01_ulam_spiral", fig=fig_obj)
+    save_figure(out_dir=figures_dir, name="e024_hero_" + str(size), fig=fig_obj)
 
     lines = _basic_report_header("E024", "Ulam spiral structure", "e024")
     lines += [
@@ -820,7 +869,7 @@ class ParamsE025:
 def run_e025(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E025 — Prime gaps are not monotone (counterexample to naive 'gaps always grow')."""
+    """E025: Prime gaps are not monotone (counterexample to naive 'gaps always grow')."""
     params = ParamsE025(n_max=2_000_000)
     primes = primes_up_to(params.n_max)
     gaps = primes[1:] - primes[:-1]
@@ -865,7 +914,7 @@ class ParamsE026:
 def run_e026(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E026 — Gap normalization: g/log p helps compare scales."""
+    """E026: Gap normalization: g/log p helps compare scales."""
     params = ParamsE026(n_max=5_000_000, bins=60)
     primes = primes_up_to(params.n_max)
     gaps = primes[1:] - primes[:-1]
@@ -908,7 +957,7 @@ class ParamsE027:
 def run_e027(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E027 — Record prime gaps vs log^2 heuristic (Cramér-style scaling)."""
+    """E027: Record prime gaps vs log^2 heuristic (Cramér-style scaling)."""
     params = ParamsE027(n_max=20_000_000)
     primes = primes_up_to(params.n_max)
     gaps = primes[1:] - primes[:-1]
@@ -968,7 +1017,7 @@ class ParamsE028:
 def run_e028(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E028 — Jumping champions: most frequent gap in sliding windows."""
+    """E028: Jumping champions: most frequent gap in sliding windows."""
     params = ParamsE028(n_max=10_000_000, window=200_000, step=100_000)
     primes = primes_up_to(params.n_max)
     gaps = (primes[1:] - primes[:-1]).astype(np.int64)
@@ -1026,7 +1075,7 @@ class ParamsE029:
 def run_e029(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E029 — Twin prime counts vs simple Hardy–Littlewood-style heuristic."""
+    """E029: Twin prime counts vs simple Hardy–Littlewood-style heuristic."""
     params = ParamsE029(n_max=10_000_000)
     primes = primes_up_to(params.n_max)
     # prime_set = {int(p) for p in primes.tolist()}
@@ -1086,7 +1135,7 @@ class ParamsE030:
 def run_e030(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E030 — Cousin and sexy primes: compare counts of prime pairs."""
+    """E030: Cousin and sexy primes: compare counts of prime pairs."""
     params = ParamsE030(n_max=10_000_000, d_values=[4, 6])
     primes = primes_up_to(params.n_max)
     ps = primes.astype(np.int64)
@@ -1148,7 +1197,7 @@ def _is_admissible(offsets: list[int], primes_small: list[int]) -> bool:
 def run_e031(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E031 — Prime k-tuple admissibility: mod obstructions are real counterexamples."""
+    """E031: Prime k-tuple admissibility: mod obstructions are real counterexamples."""
     params = ParamsE031(max_mod=29)
     primes_small = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 
@@ -1208,7 +1257,7 @@ class ParamsE032:
 def run_e032(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E032 — Count small prime constellations (triplets/quadruplets) up to N."""
+    """E032: Count small prime constellations (triplets/quadruplets) up to N."""
     params = ParamsE032(n_max=10_000_000)
     primes = primes_up_to(params.n_max)
     p = primes.astype(np.int64)
@@ -1277,7 +1326,7 @@ class ParamsE033:
 def run_e033(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E033 — Small gaps exist often, but that doesn't make them twins (data-only counterexample)."""
+    """E033: Small gaps exist often, but that doesn't make them twins (data-only counterexample)."""
     params = ParamsE033(n_max=10_000_000, threshold=100)
     primes = primes_up_to(params.n_max)
     gaps = (primes[1:] - primes[:-1]).astype(np.int64)
@@ -1331,7 +1380,7 @@ class ParamsE034:
 def run_e034(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E034 — Twin prime counts vary strongly across windows (variance counterexample)."""
+    """E034: Twin prime counts vary strongly across windows (variance counterexample)."""
     params = ParamsE034(n_max=10_000_000, window=500_000, step=200_000)
     primes = primes_up_to(params.n_max).astype(np.int64)
     # prime_set = {int(p) for p in primes.tolist()}
@@ -1386,7 +1435,7 @@ class ParamsE035:
 def run_e035(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E035 — Primes in arithmetic progressions: empirical counts in reduced residues."""
+    """E035: Primes in arithmetic progressions: empirical counts in reduced residues."""
     params = ParamsE035(n_max=10_000_000, q=12)
     primes = primes_up_to(params.n_max).astype(np.int64)
     p = primes[primes >= 5]
@@ -1444,7 +1493,7 @@ class ParamsE036:
 def run_e036(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E036 — Small arithmetic progressions of primes (3-term and 4-term) in ranges."""
+    """E036: Small arithmetic progressions of primes (3-term and 4-term) in ranges."""
     params = ParamsE036(n_max=2_000_000, max_d=5_000)
     primes = primes_up_to(params.n_max).astype(np.int64)
     prime_set = {int(p) for p in primes.tolist()}
@@ -1519,7 +1568,7 @@ class ParamsE037:
 def run_e037(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E037 — Prime-free intervals exist: n!+2,...,n!+n are all composite."""
+    """E037: Prime-free intervals exist: n!+2,...,n!+n are all composite."""
     params = ParamsE037(n_values=[10, 20, 30, 40, 50, 60, 80])
 
     lengths: list[int] = []
@@ -1571,7 +1620,7 @@ class ParamsE038:
 def run_e038(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E038 — Bertrand's postulate: for n>1 there is a prime in (n, 2n)."""
+    """E038: Bertrand's postulate: for n>1 there is a prime in (n, 2n)."""
     params = ParamsE038(n_max=500_000)
     is_prime = prime_mask_up_to(2 * params.n_max + 10)
     pi = pi_array_from_mask(is_prime)
@@ -1618,7 +1667,7 @@ class ParamsE039:
 def run_e039(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E039 — Sophie Germain primes and safe primes (counts in range)."""
+    """E039: Sophie Germain primes and safe primes (counts in range)."""
     params = ParamsE039(n_max=5_000_000)
     primes = primes_up_to(params.n_max).astype(np.int64)
     prime_set = {int(p) for p in primes.tolist()}
@@ -1691,7 +1740,7 @@ def _make_palindrome(x: int, even: bool) -> int:
 def run_e040(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E040 — Palindromic primes: even-length palindromes are divisible by 11 (counterexample)."""
+    """E040: Palindromic primes: even-length palindromes are divisible by 11 (counterexample)."""
     params = ParamsE040(digits_max=10, limit=50_000)
 
     even_len_pal: list[int] = []
@@ -1756,7 +1805,7 @@ class ParamsE041:
 def run_e041(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E041 — Fermat numbers: not all are prime (counterexample at F5)."""
+    """E041: Fermat numbers: not all are prime (counterexample at F5)."""
     params = ParamsE041(m_max=6)
 
     ms: list[int] = []
@@ -1830,7 +1879,7 @@ def _repunit(k: int) -> int:
 def run_e042(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E042 — Repunit primes: many k are forced composite (counterexamples)."""
+    """E042: Repunit primes: many k are forced composite (counterexamples)."""
     params = ParamsE042(k_max=30)
 
     ks = np.arange(1, params.k_max + 1, dtype=np.int64)
@@ -1879,7 +1928,7 @@ class ParamsE043:
 def run_e043(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E043 — Pollard rho runtime varies wildly (counterexample to 'same size => same effort')."""
+    """E043: Pollard rho runtime varies wildly (counterexample to 'same size => same effort')."""
     rng = np.random.default_rng(seed)
     params = ParamsE043(samples=80, bits=28)
 
@@ -1943,7 +1992,7 @@ class ParamsE044:
 def run_e044(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E044 — Solovay–Strassen vs Miller–Rabin (liar rates on random composites)."""
+    """E044: Solovay–Strassen vs Miller–Rabin (liar rates on random composites)."""
     rng = np.random.default_rng(seed)
     params = ParamsE044(samples=4000, bits=32, bases=[2, 3, 5, 7, 11])
 
@@ -2007,7 +2056,7 @@ class ParamsE045:
 def run_e045(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E045 — Deterministic 64-bit MR: 12 bases vs small subsets (counterexample)."""
+    """E045: Deterministic 64-bit MR: 12 bases vs small subsets (counterexample)."""
     rng = np.random.default_rng(seed)
     params = ParamsE045(samples=20000, bits=64)
 
@@ -2074,7 +2123,7 @@ class ParamsE046:
 def run_e046(
     *, out_dir: Path, seed: int, figures_dir: Path, report_path: Path, params_path: Path
 ) -> None:
-    """E046 — A practical prime-testing pipeline (and how it can fail if tuned badly)."""
+    """E046: A practical prime-testing pipeline (and how it can fail if tuned badly)."""
     params = ParamsE046(n_max=2_000_000, mr_bases=[2, 3, 5])
 
     is_prime = prime_mask_up_to(params.n_max)
@@ -2164,7 +2213,7 @@ def run_e124(
     params_path: Path,
     size: int = 301,
 ) -> None:
-    """E124 — Klauber triangle: prime patterns on a triangular array.
+    """E124: Klauber triangle: prime patterns on a triangular array.
 
     Notes:
         The Klauber triangle (1932) places row n as the consecutive integers
@@ -2206,18 +2255,27 @@ def run_e124(
     img = np.ma.masked_where(~valid, img)  # type: ignore[no-untyped-call]
 
     fig_obj, ax = plt.subplots()
-    k = (params.size - 1) // 2
+
+    # Coordinate conventions:
+    # - x is the integer column offset from the center column (0 at center)
+    # - y is the row index n with n=1 at the top
+    half_x = cols // 2
+    extent = (-half_x - 0.5, half_x + 0.5, rows + 0.5, 0.5)
+
     ax.imshow(
         img,
         origin="upper",
-        extent=(-k - 0.5, k + 0.5, rows - 0.5, -0.5),
+        extent=extent,
         interpolation="nearest",
     )
+
+    ax.set_aspect("equal")
     ax.set_title("Klauber triangle (primes = 1)")
     ax.set_xlabel(r"$x$ (column offset from center)")
     ax.set_ylabel(r"row $n$ (top = 1)")
     finalize_figure(fig_obj)
     save_figure(out_dir=figures_dir, name="fig_01_klauber_triangle", fig=fig_obj)
+    save_figure(out_dir=figures_dir, name="e124_hero_" + str(size), fig=fig_obj)
 
     lines = _basic_report_header("E124", "Klauber triangle structure", "e124")
     lines += [
@@ -2254,7 +2312,7 @@ def run_e125(
     params_path: Path,
     size: int = 301,
 ) -> None:
-    """E125 — Sacks spiral: primes on an Archimedean spiral (one square per turn).
+    """E125: Sacks spiral: primes on an Archimedean spiral (one square per turn).
 
     Notes:
         In the Sacks spiral, integer n is placed at polar coordinates:
@@ -2284,12 +2342,13 @@ def run_e125(
 
     fig_obj, ax = plt.subplots()
     ax.scatter(x, y, s=2)
-    ax.set_title("Sacks spiral (primes)")
-    ax.set_xlabel(r"$x$")
-    ax.set_ylabel(r"$y$")
+    ax.set_title(f"Sacks spiral (primes, n≤{n_max:,}, size={params.size})")
+    ax.set_xlabel(r"$x=\sqrt{n}\cos(2\pi\sqrt{n})$")
+    ax.set_ylabel(r"$y=\sqrt{n}\sin(2\pi\sqrt{n})$")
     ax.set_aspect("equal")
     finalize_figure(fig_obj)
     save_figure(out_dir=figures_dir, name="fig_01_sacks_spiral", fig=fig_obj)
+    save_figure(out_dir=figures_dir, name="e125_hero_" + str(size), fig=fig_obj)
 
     lines = _basic_report_header("E125", "Sacks spiral structure", "e125")
     lines += [
@@ -2381,7 +2440,7 @@ def run_e126(
     params_path: Path,
     size: int = 301,
 ) -> None:
-    """E126 — Hexagonal number spiral: primes on a hexagonal lattice spiral.
+    """E126: Hexagonal number spiral: primes on a hexagonal lattice spiral.
 
     Notes:
         This is a hex-grid analogue of the Ulam spiral: integers are placed in a
@@ -2413,12 +2472,13 @@ def run_e126(
 
     fig_obj, ax = plt.subplots()
     ax.scatter(x, y, s=2)
-    ax.set_title("Hexagonal number spiral (primes)")
-    ax.set_xlabel(r"$x$")
-    ax.set_ylabel(r"$y$")
+    ax.set_title(f"Hexagonal number spiral (primes, n≤{n_max:,}, size={params.size})")
+    ax.set_xlabel(r"$x = q + \frac{1}{2}r$")
+    ax.set_ylabel(r"$y = \frac{\sqrt{3}}{2}r$")
     ax.set_aspect("equal")
     finalize_figure(fig_obj)
     save_figure(out_dir=figures_dir, name="fig_01_hex_spiral", fig=fig_obj)
+    save_figure(out_dir=figures_dir, name="e126_hero_" + str(size), fig=fig_obj)
 
     lines = _basic_report_header("E126", "Hexagonal number spiral structure", "e126")
     lines += [

@@ -1,4 +1,4 @@
-"""E006 — Near misses to perfection.
+"""E006: Near misses to perfection.
 
 This experiment searches for integers n ≤ N where the perfect condition σ(n) = 2n is
 almost satisfied, but not exactly.
@@ -80,7 +80,7 @@ def _write_report(
         top: List of tuples (n, sigma, abs_dev, rel_dev).
     """
     lines = [
-        "# E006 — Near misses to perfection",
+        "# E006: Near misses to perfection",
         "",
         "**Reproduce:**",
         "",

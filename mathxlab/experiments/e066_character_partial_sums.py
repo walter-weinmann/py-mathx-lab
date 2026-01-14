@@ -1,4 +1,4 @@
-"""E066 — Character partial sums: cancellation profiles.
+"""E066: Character partial sums: cancellation profiles.
 
 This experiment visualizes partial sums
 
@@ -132,7 +132,7 @@ def main() -> int:
     top_k = min(params.top_k, len(chars))
     top_idx = np.argsort(max_abs)[::-1][:top_k]
     lines: list[str] = [
-        "# E066 — Character partial sums: cancellation profiles",
+        "# E066: Character partial sums: cancellation profiles",
         "",
         "### Parameters",
         f"- q: {params.q}",

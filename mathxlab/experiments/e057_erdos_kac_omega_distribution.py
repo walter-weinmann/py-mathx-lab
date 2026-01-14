@@ -1,4 +1,4 @@
-"""E057 — Erdős–Kac in practice: Ω(n) looks Gaussian after normalization.
+"""E057: Erdős–Kac in practice: Ω(n) looks Gaussian after normalization.
 
 The Erdős–Kac theorem states that the number of prime factors (with multiplicity)
 of a random integer behaves like a normal random variable after suitable
@@ -118,7 +118,7 @@ def main() -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_erdos_kac_hist", fig=fig1)
 
     lines = [
-        "# E057 — Erdős–Kac histogram",
+        "# E057: Erdős–Kac histogram",
         "",
         f"- n_max: {params.n_max}",
         f"- bins: {params.bins}",

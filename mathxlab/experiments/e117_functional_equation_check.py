@@ -1,4 +1,4 @@
-"""E117 — χ-factor checks for functional equation.
+"""E117: χ-factor checks for functional equation.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

@@ -1,4 +1,4 @@
-"""E047 — Fermat numbers: Pépin test and factor witnesses.
+"""E047: Fermat numbers: Pépin test and factor witnesses.
 
 Fermat numbers are:
 
@@ -172,7 +172,7 @@ def _write_report(
         rows: (n, F_n, pepin_prime, smallest_factor).
     """
     lines: list[str] = []
-    lines.append("# E047 — Fermat numbers: Pépin test and factor witnesses")
+    lines.append("# E047: Fermat numbers: Pépin test and factor witnesses")
     lines.append("")
     lines.append("### Parameters")
     lines.append("")

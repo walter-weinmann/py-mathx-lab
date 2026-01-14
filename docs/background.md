@@ -5,19 +5,23 @@ This section provides mathematical foundations for the experiments.
 ```{toctree}
  :maxdepth: 1
 
+background/cheat-sheet
+
 background/arithmetic-functions
 background/average-orders-and-erdos-kac
-background/carmichael-lambda-function
 background/carmichael-numbers
+background/carmichael-lambda-function
 background/dirichlet-characters
 background/dirichlet-convolution
 background/dirichlet-eta-function
 background/dirichlet-l-functions
+background/divisibility-and-modular-arithmetic
 background/divisor-functions
-background/euler-totient-function
 background/eulers-prime-generating-polynomial
+background/euler-totient-function
 background/explicit-formula-and-chebyshev
 background/exploratory-visualizations
+background/factorization-pipelines
 background/fermat-numbers
 background/gauss-sums
 background/gram-points-and-zero-counting
@@ -28,11 +32,13 @@ background/landaus-problems
 background/liouville-function
 background/mersenne-primes
 background/mobius-and-mertens
-background/omega-functions
 background/partition-function
 background/perfect-numbers
 background/pretentious-number-theory
+background/primality-testing
 background/prime-counting-approximations
+background/prime-counting-bounds
+background/omega-functions
 background/prime-number-races
 background/prime-numbers
 background/primes-in-arithmetic-progressions

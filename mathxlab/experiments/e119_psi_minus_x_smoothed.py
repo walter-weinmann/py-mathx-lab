@@ -1,4 +1,4 @@
-"""E119 — ψ(x)−x oscillations (smoothed view).
+"""E119: ψ(x)−x oscillations (smoothed view).
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

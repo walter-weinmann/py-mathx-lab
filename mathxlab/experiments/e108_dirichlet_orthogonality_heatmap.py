@@ -1,4 +1,4 @@
-"""E108 — Character orthogonality heatmap.
+"""E108: Character orthogonality heatmap.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

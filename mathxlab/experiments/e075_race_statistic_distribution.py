@@ -1,4 +1,4 @@
-"""E075 — Prime race statistic: distribution on a log-grid.
+"""E075: Prime race statistic: distribution on a log-grid.
 
 For a prime race difference D(x), a common heuristic normalization is:
 
@@ -90,7 +90,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_statistic_hist", fig=fig1)
 
     lines = [
-        "# E075 — Prime race statistic distribution",
+        "# E075: Prime race statistic distribution",
         "",
         f"- x_max: {params.x_max}",
         f"- n_points: {params.n_points}",

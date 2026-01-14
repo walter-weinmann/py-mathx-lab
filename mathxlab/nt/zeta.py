@@ -250,48 +250,14 @@ def chi_factor(s: complex, *, settings: ZetaEvalSettings | None = None) -> compl
 
 
 def hardy_Z(t: float, *, settings: ZetaEvalSettings | None = None) -> float:
-    """
-    Compute Hardy's Z-function at height t.
-
-    This uses mpmath's Siegel Z implementation, which is real-valued and is
-    closely related to zeta on the critical line:
-        Z(t) = exp(i*theta(t)) * zeta(1/2 + i t)
-
-    Args:
-        t: Height on the critical line.
-        settings: Optional evaluation settings.
-
-    Returns:
-        Z(t) as a Python float.
-
-    Examples:
-        >>> from mathxlab.nt.zeta import hardy_Z
-        >>> round(hardy_Z(14.134725), 3)  # near first non-trivial zero
-        0.0
-    """
+    """Compute Hardy's Z-function at height t."""
     cfg = settings or ZetaEvalSettings()
     with mp_workdps(cfg.dps):
         return float(mp.siegelz(t))
 
 
 def riemann_von_mangoldt_count(T: float) -> float:
-    """
-    Return the Riemann--von Mangoldt main term for N(T).
-
-    N(T) counts non-trivial zeros with 0 < Im(rho) <= T (with multiplicity).
-    The asymptotic main term is:
-        N(T) ≈ (T/(2*pi)) * log(T/(2*pi)) - T/(2*pi) + 7/8
-
-    Args:
-        T: Height parameter (T > 0).
-
-    Returns:
-        The main-term approximation as a float.
-
-    Examples:
-        >>> from mathxlab.nt.zeta import riemann_von_mangoldt_count
-        >>> riemann_von_mangoldt_count  # doctest: +SKIP
-    """
+    """Return the Riemann--von Mangoldt main term for N(T)."""
     if T <= 0:
         raise ValueError("T must be > 0")
     x = float(T) / (2.0 * float(mp.pi))

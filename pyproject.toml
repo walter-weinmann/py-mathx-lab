@@ -6,7 +6,7 @@ dependencies = [
   "sympy>=1.12",
 ]
 description = "A gallery of numerical experiments: conjectures, counterexamples, and code."
-version = "2.0.0"
+version = "2.1.0"
 name = "mathxlab"
 readme = "README.md"
 requires-python = ">=3.14"
@@ -120,7 +120,39 @@ select = [
 ]
 # Ruff's formatter handles code layout; ignore line-length violations (especially in docstrings/comments).
 ignore = ["E501"]
-allowed-confusables = ["α", "σ", "ℕ", "ℤ", "ℚ", "ℝ", "ℂ", "ℙ", "×", "−", "π", "ψ", "χ", "ζ", "≤", "≥", "λ", "φ", "–"]
+allowed-confusables = [
+  "v",
+  " ",
+  "×",
+  "Υ",
+  "α",
+  "γ",
+  "ζ",
+  "ι",
+  "λ",
+  "ν",
+  "ο",
+  "π",
+  "ρ",
+  "σ",
+  "υ",
+  "φ",
+  "χ",
+  "ψ",
+  " ",
+  "–",
+  " ",
+  "′",
+  "ℂ",
+  "ℕ",
+  "ℙ",
+  "ℚ",
+  "ℝ",
+  "ℤ",
+  "−",
+  "≤",
+  "≥",
+]
 
 [tool.ruff.lint.isort]
 known-first-party = ["mathxlab", "experiments"]

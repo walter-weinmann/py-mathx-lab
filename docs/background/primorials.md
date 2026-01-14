@@ -2,9 +2,9 @@
 
 The primorial of a prime $p_k$ is
 
-\[
+$$
 p_k\# = \prod_{i=1}^{k} p_i
-\]
+$$
 
 (the product of the first $k$ primes). Primorials are a natural “smoothing knob” in experimental number theory: they amplify small prime structure and appear in constructions like Euclid numbers $p_k\# \pm 1$. {cite:p}`PrimePagesGlossary2025Primorial,OEISFoundationInc2025A002110Primorial`
 

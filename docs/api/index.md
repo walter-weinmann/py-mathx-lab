@@ -13,7 +13,8 @@ These pages aim to document only the public surface.
 If you want strict control, add `__all__ = [...]` to each public module.
 :::
 
-::::{grid} 2
+::::{only} html
+:::{grid} 2
 :gutter: 2
 
 :::{grid-item-card} Experiment framework
@@ -64,7 +65,30 @@ If you want strict control, add `__all__ = [...]` to each public module.
 
 `mathxlab.viz` — visualization backend wrappers (Matplotlib).
 :::
+:::
+::::
 
+::::{only} latex
+- **Experiment framework** (`mathxlab.exp`)
+  CLI helpers, seeding, logging, and report writing.
+
+- **Experiment registry** (`mathxlab.experiments`)
+  Stable registry for enumerating experiments.
+
+- **Number theory** (`mathxlab.nt`)
+  Arithmetic, Dirichlet machinery, and zeta/L-related utilities.
+
+- **Numerics** (`mathxlab.num`)
+  Numerical series helpers.
+
+- **Plotting** (`mathxlab.plots`)
+  Plotting helpers used across experiments and reports.
+
+- **Utilities** (`mathxlab.utils`)
+  Shared utilities.
+
+- **Visualization backends** (`mathxlab.viz`)
+  Visualization backend wrappers (Matplotlib).
 ::::
 
 :::{toctree}

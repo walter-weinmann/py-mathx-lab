@@ -1,4 +1,4 @@
-"""E002 — Even perfect numbers: generator and growth.
+"""E002: Even perfect numbers: generator and growth.
 
 This experiment generates even perfect numbers from a curated list of known Mersenne
 prime exponents and visualizes how fast they grow.
@@ -93,7 +93,7 @@ def _write_report(*, report_path: Path, params: Params, seed: int) -> None:
     """
     exp_str = ", ".join(str(p) for p in params.exponents)
     report_md = f"""\
-# E002 — Even perfect numbers: generator and growth
+# E002: Even perfect numbers: generator and growth
 
 **Reproduce:**
 

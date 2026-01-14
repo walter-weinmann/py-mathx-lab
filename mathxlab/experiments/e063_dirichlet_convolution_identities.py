@@ -1,4 +1,4 @@
-"""E063 — Dirichlet convolution identities (computational checks).
+"""E063: Dirichlet convolution identities (computational checks).
 
 Dirichlet convolution is defined by:
     (f*g)(n) = ∑_{d|n} f(d) g(n/d)
@@ -134,7 +134,7 @@ def main() -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_abs_error", fig=fig1)
 
     lines: list[str] = []
-    lines.append("# E063 — Dirichlet convolution identities")
+    lines.append("# E063: Dirichlet convolution identities")
     lines.append("")
     lines.append(f"- n_max: {params.n_max}")
     lines.append("")

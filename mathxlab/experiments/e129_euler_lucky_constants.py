@@ -1,4 +1,4 @@
-"""E129 — Euler's "lucky" quadratic constants in f(n)=n^2 + n + b.
+"""E129: Euler's "lucky" quadratic constants in f(n)=n^2 + n + b.
 
 Euler's famous polynomial
 
@@ -202,7 +202,7 @@ def _write_report(
     b_sorted = list(params.b_values)
 
     lines: list[str] = [
-        "# E129 — Euler's prime-generating polynomial: lucky constants\n",
+        "# E129: Euler's prime-generating polynomial: lucky constants\n",
         "**Reproduce:**\n",
         "```bash\n",
         "make run EXP=e129\n",

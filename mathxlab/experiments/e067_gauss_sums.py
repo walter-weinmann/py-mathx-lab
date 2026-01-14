@@ -1,4 +1,4 @@
-"""E067 — Gauss sums: magnitude vs sqrt(q).
+"""E067: Gauss sums: magnitude vs sqrt(q).
 
 For a Dirichlet character χ modulo q, define the Gauss sum
 
@@ -98,7 +98,7 @@ def main(argv: list[str] | None = None) -> int:
     # A quick summary excluding the principal character (index 0 by construction).
     nontrivial = mags[1:] if mags.size > 1 else mags
     lines = [
-        "# E067 — Gauss sums",
+        "# E067: Gauss sums",
         "",
         f"- q: {params.q}",
         f"- phi(q): {euler_phi(params.q)}",

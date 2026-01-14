@@ -13,35 +13,35 @@ $\chi : \mathbb{Z} \to \mathbb{C}$ such that:
 4. For $\gcd(n,q)=1$, we have $|\chi(n)|=1$ (so values are roots of unity).
 
 The **principal character** $\chi_0$ modulo $q$ is:
-\[
+$$
 \chi_0(n) =
 \begin{cases}
 1, & \gcd(n,q)=1,\\
 0, & \gcd(n,q)>1.
 \end{cases}
-\]
+$$
 
 A character is **primitive** if it does not “factor through” a smaller modulus (its conductor equals $q$).
 
 ### Orthogonality (the workhorse identity)
 
 Let $\chi,\psi$ be Dirichlet characters modulo $q$. Then (over a reduced residue system):
-\[
+$$
 \sum_{\substack{a \bmod q\\ \gcd(a,q)=1}} \chi(a)\overline{\psi(a)} =
 \begin{cases}
 \varphi(q), & \chi=\psi,\\
 0, & \chi\ne \psi.
 \end{cases}
-\]
+$$
 
 A dual identity (summing over characters) is:
-\[
+$$
 \sum_{\chi \bmod q} \chi(a)\overline{\chi(b)} =
 \begin{cases}
 \varphi(q), & a \equiv b \pmod q,\ \gcd(a,q)=1,\\
 0, & \text{otherwise.}
 \end{cases}
-\]
+$$
 
 These are the algebraic “Fourier rules” that make Dirichlet’s argument work.
 
@@ -51,14 +51,14 @@ There are two characters modulo $4$:
 
 - $\chi_0$ (principal).
 - The nontrivial character $\chi_4$:
-  \[
+  $$
   \chi_4(n)=
   \begin{cases}
   0,& 2 \mid n,\\
   1,& n \equiv 1 \pmod 4,\\
   -1,& n \equiv 3 \pmod 4.
   \end{cases}
-  \]
+  $$
 
 This single character already explains the classic race between primes $1 \bmod 4$ and $3 \bmod 4$.
 

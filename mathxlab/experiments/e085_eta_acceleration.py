@@ -79,7 +79,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_eta_acceleration", fig=fig)
     write_json(paths.params_path, data=asdict(params))
 
-    report = """# E085 — Eta acceleration
+    report = """# E085: Eta acceleration
 
 We compare:
 

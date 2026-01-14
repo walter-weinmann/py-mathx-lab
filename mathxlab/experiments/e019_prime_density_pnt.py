@@ -1,4 +1,4 @@
-"""E019 — Prime density and PNT visualization.
+"""E019: Prime density and PNT visualization.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.prime_suite`.
@@ -16,7 +16,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from mathxlab.exp.cli import parse_experiment_args
+from mathxlab.exp.cli import parse_experiment_args_with_n_max
 from mathxlab.exp.io import prepare_out_dir
 from mathxlab.exp.logging import LoggingConfig, get_logger, setup_logging
 from mathxlab.exp.random import set_global_seed
@@ -34,11 +34,12 @@ def main() -> int:
     Returns:
         Process exit code (0 for success).
     """
-    args = parse_experiment_args(
+    args = parse_experiment_args_with_n_max(
         experiment_id="e019",
         description="Prime density and PNT visualization",
+        n_max_default=2_000_000,
+        n_max_help="Inclusive upper bound N for computations (>= 2).",
     )
-
     run_log = infer_run_log_file(out_dir=args.out_dir, experiment_slug="e019")
     setup_logging(config=LoggingConfig(verbose=args.verbose, log_file=run_log.log_file))
     set_global_seed(args.seed)
@@ -52,6 +53,7 @@ def main() -> int:
         figures_dir=out_paths.figures_dir,
         report_path=out_paths.report_path,
         params_path=out_paths.params_path,
+        n_max=args.n_max,
     )
     logger.info("Experiment E019 completed successfully. Artifacts saved to: %s", args.out_dir)
     return 0

@@ -1,4 +1,4 @@
-"""E074 — Prime race mod 8: leaderboard among 1,3,5,7.
+"""E074: Prime race mod 8: leaderboard among 1,3,5,7.
 
 This experiment tracks four residue classes modulo 8:
 
@@ -111,7 +111,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_02_counts_minus_mean", fig=fig2)
 
     lines = [
-        "# E074 — Prime race mod 8: leaderboard",
+        "# E074: Prime race mod 8: leaderboard",
         "",
         f"- x_max: {params.x_max}",
         f"- residues: {list(params.residues)}",

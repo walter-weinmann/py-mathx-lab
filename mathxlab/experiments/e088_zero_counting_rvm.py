@@ -68,7 +68,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_zero_count_error", fig=fig)
     write_json(paths.params_path, data=asdict(params))
 
-    report = """# E088 — Zero counting
+    report = """# E088: Zero counting
 
 We compare the index n of the nth non-trivial zero with the Riemann--von Mangoldt main-term approximation.
 The difference should remain relatively small compared to n and reflects the lower-order terms and fluctuations.

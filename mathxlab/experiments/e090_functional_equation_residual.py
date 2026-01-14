@@ -90,7 +90,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_functional_residual_heatmap", fig=fig)
     write_json(paths.params_path, data=asdict(params))
 
-    report = """# E090 — Functional equation residual
+    report = """# E090: Functional equation residual
 
 We visualize log10|zeta(s) - chi(s) zeta(1-s)| on a coarse grid. Away from the pole at s=1, the residual should be close to numerical precision.
 """

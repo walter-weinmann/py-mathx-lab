@@ -1,4 +1,4 @@
-"""E098 — Extremals of σ(n)/n^α across α.
+"""E098: Extremals of σ(n)/n^α across α.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

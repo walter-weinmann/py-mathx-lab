@@ -1,4 +1,4 @@
-"""E051 — Semiprimes: balanced vs unbalanced factorization timing.
+"""E051: Semiprimes: balanced vs unbalanced factorization timing.
 
 A semiprime is n = p*q with p and q prime. RSA-style semiprimes tend to be
 "balanced" (p and q have similar size), which typically makes factorization
@@ -240,7 +240,7 @@ def _write_report(
         items_unbal: (n,p,q,time).
     """
     lines: list[str] = []
-    lines.append("# E051 — Semiprimes: balanced vs unbalanced factorization timing")
+    lines.append("# E051: Semiprimes: balanced vs unbalanced factorization timing")
     lines.append("")
     lines.append("### Parameters")
     lines.append("")

@@ -68,11 +68,17 @@ exclude_patterns = [
     "_build",
     "background/background_page_template.md",
     "experiments/experiment_page_template.md",
-    # Snapshots are included into experiment pages; they must not be treated as
+    "experiments/report_section_template.md",
+    # Snapshots are included in experiment pages; they must not be treated as
     # standalone documents (otherwise Sphinx emits toc.not_included warnings).
     "reports/**",
     "params/**",
 ]
+
+# When building for HTML, exclude index_latex.md to avoid duplicate citations
+# with references.md (bibtex-contrib scans all source files).
+if "html" in sys.argv:
+    exclude_patterns.append("index_latex.md")
 
 # Prefer Markdown as the primary source format.
 source_suffix = {
@@ -84,7 +90,8 @@ source_suffix = {
 autosummary_generate = True
 
 # Autodoc settings (API docs)
-autodoc_typehints = "signature"
+# "none" allows Napoleon to handle types in the docstring without interference.
+autodoc_typehints = "none"
 autodoc_member_order = "bysource"
 autodoc_default_options = {
     "members": True,
@@ -97,7 +104,7 @@ bibtex_bibfiles = ["refs.bib"]
 # Make bibliography labels non-cryptic (numeric) and make inline cites readable (author-year)
 bibtex_default_style = "plain"          # numeric labels like [1], [2], ...
 bibtex_reference_style = "author_year"  # inline cites like "Titchmarsh (1986)"
-bibtex_tooltips = True                 # hover shows a short preview
+bibtex_tooltips = True                  # hover shows a short preview
 bibtex_tooltips_style = "plain"
 
 # Suppress known sphinx-design warnings that don't affect rendering
@@ -143,11 +150,11 @@ html_theme_options = {
 
 latex_documents = [
     (
-        "index",  # start doc
-        "py-mathx-lab.tex",  # target .tex name
+        "index_latex",          # start doc (your LaTeX root)
+        "py-mathx-lab.tex",     # target filename (MUST end with .tex)
         "py-mathx-lab Documentation",
-        author,
-        "manual",
+        "Walter Weinmann",      # author (4th!)
+        "manual",               # documentclass (5th!) -> must be 'manual' or 'howto'
     ),
 ]
 
@@ -156,6 +163,7 @@ latex_engine = "xelatex"
 
 # Keep the PDF readable and avoid excessive wide tables.
 latex_elements = {
+    "classoptions": ",oneside,openany",
     "papersize": "a4paper",
     "pointsize": "10pt",
     "preamble": r"""
@@ -239,6 +247,11 @@ myst_heading_anchors = 3
 napoleon_google_docstring = True
 napoleon_numpy_docstring = False
 
-# Keep Google-style docstrings readable (avoid deep field-list indentation).
+# Stable defaults: definition lists are more robust than field lists
 napoleon_use_param = False
 napoleon_use_rtype = False
+napoleon_use_ivar = False
+napoleon_attr_annotations = False
+napoleon_use_admonition_for_examples = True
+napoleon_use_admonition_for_notes = True
+napoleon_use_admonition_for_references = True

@@ -15,3 +15,44 @@ dl.py > dd { margin-top: 0.35rem; }
 
 /* Make doc tables more compact */
 table.docutils td, table.docutils th { padding: 0.35rem 0.6rem; }
+
+/* --- Clean API documentation styling --- */
+
+/* Style rubric elements (Examples, Notes, etc.) */
+p.rubric {
+  font-weight: 600;
+  font-size: 1.05em;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-foreground-primary);
+}
+
+/* Function/method signatures */
+dl.py dt.sig {
+  background: var(--color-background-secondary);
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+/* Reduce vertical spacing in nested lists */
+dl.py dd > dl {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
+dl.py dd > dl > dt {
+  margin-top: 0.4rem;
+}
+
+dl.py dd > dl > dd {
+  margin-left: 1.5rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.3rem;
+}
+
+/* Code blocks: less margin */
+dl.py dd pre {
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
+}

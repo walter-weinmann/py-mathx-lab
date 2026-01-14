@@ -1,4 +1,4 @@
-"""E079 — Primitive vs imprimitive characters: conductors.
+"""E079: Primitive vs imprimitive characters: conductors.
 
 A character modulo q may factor through a smaller modulus f | q. The smallest
 such modulus is the **conductor** of the character.
@@ -82,7 +82,7 @@ def main(argv: list[str] | None = None) -> int:
 
     n_primitive = sum(1 for c in conds if c == params.q)
     lines = [
-        "# E079 — Conductors of Dirichlet characters",
+        "# E079: Conductors of Dirichlet characters",
         "",
         f"- q: {params.q}",
         f"- phi(q): {euler_phi(params.q)}",

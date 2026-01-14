@@ -9,10 +9,10 @@ or a Dirichlet character). It is especially effective for **comparative** experi
 
 Let $f,g$ be multiplicative functions bounded by 1 in magnitude on primes.
 The **pretentious distance** up to $x$ is
-\[
+$$
 \mathbb{D}(f,g;x)^2
 =\sum_{p\le x}\frac{1-\Re\big(f(p)\overline{g(p)}\big)}{p}.
-\]
+$$
 
 Interpretation:
 

@@ -35,6 +35,7 @@
 	snapshots \
 	status \
 	tags-check \
+	wiki-verify \
 	uv-check \
 	venv \
 	venv-recreate
@@ -64,6 +65,8 @@ UV_RUN        = $(UV) run
 UV_RUN_DEV    = $(UV) run --extra dev
 UV_RUN_DOCS   = $(UV) run --extra docs
 UV_VENV_CLEAR = 1
+
+WIKI_DIR     ?= wiki
 
 PYTEST             = $(UV_RUN_DEV) pytest -o "cache_dir=temp_pytest_cache" --basetemp=temp_pytest
 PYTEST_XDIST_FAST ?=
@@ -162,9 +165,9 @@ docs-pdf: docs-deps
 	@echo "Building PDF docs (optional; requires LaTeX toolchain + latexmk)..."
 	@$(UV_RUN_DOCS) python -m mathxlab.tools.docs_pdf --quiet
 
-final: format lint-fix mypy pytest docs
+final: format lint-fix mypy pytest docs wiki-verify
 
-final-slow: format-check lint mypy pytest-slow docs
+final-slow: format-check lint mypy pytest-slow docs wiki-verify
 
 fmt: install-dev
 	$(UV_RUN_DEV) ruff check --fix .
@@ -213,6 +216,7 @@ help:
 	@echo "  make uv-check         - verify uv is available"
 	@echo "  make venv             - create .venv (if missing)"
 	@echo "  make venv-recreate    - recreate .venv from scratch"
+	@echo "  make wiki-verify      - verify wiki markdown + internal links (wiki/)"
 
 install: venv
 	$(UV) pip install -e .
@@ -343,3 +347,6 @@ endif
 
 venv-recreate: clean-venv
 	$(UV) venv --python $(PYTHON_MIN) --clear
+
+wiki-verify: install-dev
+	$(UV_RUN_DEV) python -m mathxlab.tools.verify_wiki --wiki-dir "$(WIKI_DIR)"

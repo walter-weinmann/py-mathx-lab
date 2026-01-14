@@ -1,4 +1,4 @@
-r"""E001 — Taylor error landscapes for sin(x).
+r"""E001: Taylor error landscapes for sin(x).
 
 This module runs an experiment that visualizes how Taylor polynomial approximations of
 :math:`\sin(x)` behave across a fixed domain when varying:
@@ -85,7 +85,7 @@ def _write_report(*, report_path: Path, params: Params, seed: int) -> None:
     degrees_str = ", ".join(str(d) for d in params.degrees)
     centers_str = ", ".join(f"{c:g}" for c in params.centers)
 
-    report_md = f"""    # E001 — Taylor error landscapes for sin(x)
+    report_md = f"""    # E001: Taylor error landscapes for sin(x)
 
 **Reproduce:**
 

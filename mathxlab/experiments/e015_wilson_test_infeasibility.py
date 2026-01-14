@@ -1,4 +1,4 @@
-"""E015 — Wilson test infeasibility.
+"""E015: Wilson test infeasibility.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.prime_suite`.

@@ -1,4 +1,4 @@
-"""E054 — Möbius μ(n) and squarefree density via μ(n)^2.
+"""E054: Möbius μ(n) and squarefree density via μ(n)^2.
 
 The Möbius function μ(n) is:
 - 0 if n is divisible by a square prime factor,
@@ -112,7 +112,7 @@ def main() -> int:
     target = 6.0 / (math.pi * math.pi)
 
     lines = [
-        "# E054 — Möbius and squarefree density",
+        "# E054: Möbius and squarefree density",
         "",
         f"- n_max: {params.n_max}",
         f"- observed squarefree proportion: {approx:.6f}",

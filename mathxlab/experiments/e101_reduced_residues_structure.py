@@ -1,4 +1,4 @@
-"""E101 — Reduced residues: (ℤ/qℤ)× structure.
+"""E101: Reduced residues: (ℤ/qℤ)× structure.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

@@ -1,9 +1,9 @@
 # Hardy's Z-function and the critical line
 
 For real \(t\), the **Hardy Z-function** is defined (up to standard conventions) by
-\[
+$$
 Z(t)=e^{i\theta(t)}\,\zeta\!\left(\tfrac12+it\right),
-\]
+$$
 where \(\theta(t)\) is the Riemann--Siegel theta function. The key feature is that **Z(t) is real-valued for real t**, so zeros of \(Z(t)\) correspond to zeros of ζ(s) on the critical line.
 
 ## Key ideas

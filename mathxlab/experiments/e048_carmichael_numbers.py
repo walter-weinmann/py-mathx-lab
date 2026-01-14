@@ -1,4 +1,4 @@
-"""E048 — Carmichael numbers: Korselt scan + Fermat counterexamples.
+"""E048: Carmichael numbers: Korselt scan + Fermat counterexamples.
 
 Carmichael numbers are composite n such that for all a coprime to n:
 
@@ -204,7 +204,7 @@ def _write_report(
         base_pass: Mapping n -> number of bases passed.
     """
     lines: list[str] = []
-    lines.append("# E048 — Carmichael numbers: Korselt scan + Fermat counterexamples")
+    lines.append("# E048: Carmichael numbers: Korselt scan + Fermat counterexamples")
     lines.append("")
     lines.append("### Parameters")
     lines.append("")

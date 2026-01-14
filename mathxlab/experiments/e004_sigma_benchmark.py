@@ -1,4 +1,4 @@
-"""E004 — Benchmark σ(n) computation: sieve vs factorization.
+"""E004: Benchmark σ(n) computation: sieve vs factorization.
 
 This experiment benchmarks two equivalent strategies to compute the sum-of-divisors function σ(n):
 
@@ -183,7 +183,7 @@ def _write_report(
 ) -> None:
     """Write a short Markdown report."""
     lines = [
-        "# E004 — Benchmark σ(n) computation: sieve vs factorization",
+        "# E004: Benchmark σ(n) computation: sieve vs factorization",
         "",
         "**Reproduce:**",
         "",

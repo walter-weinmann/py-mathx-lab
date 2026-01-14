@@ -1,13 +1,13 @@
 # Dirichlet eta function η(s)
 
 The **Dirichlet eta function** is the alternating Dirichlet series
-\[
+$$
 \eta(s)=\sum_{n\ge 1} \frac{(-1)^{n-1}}{n^s},
-\]
+$$
 which converges for \(\Re(s)>0\) (by alternating-series arguments). It is related to the Riemann zeta function by
-\[
+$$
 \eta(s) = \left(1-2^{1-s}\right)\zeta(s).
-\]
+$$
 
 ## Key ideas
 

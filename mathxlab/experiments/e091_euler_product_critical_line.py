@@ -78,7 +78,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_euler_product_critical_line", fig=fig)
     write_json(paths.params_path, data=asdict(params))
 
-    report = f"""# E091 — Euler products on the critical line
+    report = f"""# E091: Euler products on the critical line
 
 We compare zeta(1/2 + i t) (t={params.t}) to partial Euler products truncated at primes <= p_max.
 

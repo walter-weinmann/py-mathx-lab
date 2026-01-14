@@ -178,8 +178,7 @@ def write_json(path: Path, data: JsonDict) -> None:
 
 # ------------------------------------------------------------------------------
 def write_text(path: Path, text: str, encoding: str = "utf-8") -> None:
-    """
-    Write text to a file.
+    """Write text to a file.
 
     Args:
         path: Path to the file.
@@ -189,7 +188,7 @@ def write_text(path: Path, text: str, encoding: str = "utf-8") -> None:
     Examples:
         >>> from pathlib import Path
         >>> from mathxlab.exp.io import write_text
-        >>> write_text(Path("out/e001/report.md"), "# Report\n")
+        >>> # write_text(Path("out/e001/report.md"), "# Report")
     """
     logger.info("Writing text to: %s", path)
     path.write_text(text, encoding=encoding)

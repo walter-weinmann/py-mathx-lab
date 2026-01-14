@@ -1,4 +1,4 @@
-"""E059 — Abundancy index: σ(n)/n and the perfect-number threshold.
+"""E059: Abundancy index: σ(n)/n and the perfect-number threshold.
 
 The abundancy index is σ(n)/n where σ(n) is the sum-of-divisors function.
 Perfect numbers satisfy σ(n)/n = 2.
@@ -102,7 +102,7 @@ def main() -> int:
     top_k = top[: params.top_k]
 
     lines: list[str] = []
-    lines.append("# E059 — Abundancy index σ(n)/n")
+    lines.append("# E059: Abundancy index σ(n)/n")
     lines.append("")
     lines.append(f"- n_max: {params.n_max}")
     lines.append("")

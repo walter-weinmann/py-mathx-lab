@@ -1,4 +1,4 @@
-"""E123 — Correlation matrix of arithmetic functions.
+"""E123: Correlation matrix of arithmetic functions.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

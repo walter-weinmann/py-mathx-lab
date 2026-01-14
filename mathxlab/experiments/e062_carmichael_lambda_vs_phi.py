@@ -1,4 +1,4 @@
-"""E062 — Carmichael's λ(n) vs Euler's φ(n): exponent vs group size.
+"""E062: Carmichael's λ(n) vs Euler's φ(n): exponent vs group size.
 
 Carmichael's lambda function λ(n) is the exponent of the multiplicative group
 (Z/nZ)^* . It satisfies λ(n) | φ(n), and can be much smaller than φ(n).
@@ -132,7 +132,7 @@ def main() -> int:
     max_ratio = max(ratios[2:])
 
     lines = [
-        "# E062 — Carmichael λ(n) vs φ(n)",
+        "# E062: Carmichael λ(n) vs φ(n)",
         "",
         f"- n_max: {params.n_max}",
         f"- min λ/φ: {min_ratio:.6f}",

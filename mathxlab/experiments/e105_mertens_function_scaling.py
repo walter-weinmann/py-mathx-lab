@@ -1,4 +1,4 @@
-"""E105 — Mertens function M(x) scaling views.
+"""E105: Mertens function M(x) scaling views.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

@@ -1,4 +1,4 @@
-"""E113 — First prime in each residue class.
+"""E113: First prime in each residue class.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

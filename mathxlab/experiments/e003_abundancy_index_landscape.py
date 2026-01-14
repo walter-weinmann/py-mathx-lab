@@ -1,4 +1,4 @@
-"""E003 — Abundancy index landscape.
+"""E003: Abundancy index landscape.
 
 This experiment computes the sum-of-divisors function σ(n) for all 1 ≤ n ≤ N using a
 divisor-sum sieve, then visualizes the abundancy index:
@@ -86,7 +86,7 @@ def _write_report(*, report_path: Path, params: Params, count_perfect: int) -> N
         count_perfect: Number of perfect numbers found ≤ N.
     """
     report_md = f"""\
-# E003 — Abundancy index landscape
+# E003: Abundancy index landscape
 
 **Reproduce:**
 

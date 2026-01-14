@@ -96,7 +96,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_series_vs_product", fig=fig)
     write_json(paths.params_path, data=asdict(params))
 
-    report = """# E083 — Series vs Euler product
+    report = """# E083: Series vs Euler product
 
 We compare partial approximations to zeta(s) coming from the series and the Euler product.
 

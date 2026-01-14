@@ -1,4 +1,4 @@
-"""E068 — Dirichlet L(s,χ): series vs Euler product (partial approximations).
+"""E068: Dirichlet L(s,χ): series vs Euler product (partial approximations).
 
 For Re(s) > 1, Dirichlet L-functions admit both:
 
@@ -174,7 +174,7 @@ def main(argv: list[str] | None = None) -> int:
 
     diff_last = abs(series_vals[-1] - euler_vals[-1])
     lines = [
-        "# E068 — Dirichlet L(s,χ): series vs Euler product",
+        "# E068: Dirichlet L(s,χ): series vs Euler product",
         "",
         f"- q: {params.q}",
         f"- s: {s}",

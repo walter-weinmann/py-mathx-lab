@@ -1,4 +1,4 @@
-"""E052 — Totient ratio landscape: φ(n) / n and primorial structure.
+"""E052: Totient ratio landscape: φ(n) / n and primorial structure.
 
 Euler's totient function φ(n) counts integers 1<=k<=n that are coprime to n.
 The ratio φ(n)/n equals:
@@ -135,7 +135,7 @@ def main() -> int:
     min_n = 2 + ratios.index(min_ratio)
 
     lines: list[str] = []
-    lines.append("# E052 — Totient ratio landscape")
+    lines.append("# E052: Totient ratio landscape")
     lines.append("")
     lines.append(f"- n_max: {params.n_max}")
     lines.append(f"- min φ(n)/n in range: {min_ratio:.6f} at n={min_n}")

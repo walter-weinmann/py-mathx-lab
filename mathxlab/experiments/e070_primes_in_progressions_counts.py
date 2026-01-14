@@ -1,4 +1,4 @@
-"""E070 — Primes in residue classes: pi(x; q, a).
+"""E070: Primes in residue classes: pi(x; q, a).
 
 This experiment counts primes in selected reduced residue classes modulo q:
 
@@ -101,7 +101,7 @@ def main(argv: list[str] | None = None) -> int:
 
     phi_q = euler_phi(params.q)
     lines = [
-        "# E070 — Primes in residue classes",
+        "# E070: Primes in residue classes",
         "",
         f"- q: {params.q}",
         f"- phi(q): {phi_q}",

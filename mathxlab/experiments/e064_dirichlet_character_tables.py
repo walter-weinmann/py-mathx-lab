@@ -1,4 +1,4 @@
-"""E064 — Dirichlet character tables (phase view).
+"""E064: Dirichlet character tables (phase view).
 
 This experiment enumerates all Dirichlet characters modulo a small modulus q and
 visualizes the values χ(a) for residues a=0..q-1.
@@ -116,7 +116,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_character_phases", fig=fig1)
 
     lines = [
-        "# E064 — Dirichlet character tables",
+        "# E064: Dirichlet character tables",
         "",
         f"- q: {params.q}",
         f"- phi(q): {euler_phi(params.q)}",

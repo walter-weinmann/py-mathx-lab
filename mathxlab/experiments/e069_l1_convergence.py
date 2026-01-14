@@ -1,4 +1,4 @@
-"""E069 — L(1,χ): slow convergence and smoothing.
+"""E069: L(1,χ): slow convergence and smoothing.
 
 At s=1, the Dirichlet series for L(1,χ) converges very slowly. For the
 nontrivial character modulo 4:
@@ -140,7 +140,7 @@ def main(argv: list[str] | None = None) -> int:
 
     err_last = abs(S[-1].real - (np.pi / 4.0))
     lines = [
-        "# E069 — L(1,χ): slow convergence and smoothing",
+        "# E069: L(1,χ): slow convergence and smoothing",
         "",
         f"- q: {params.q}",
         f"- n_max: {params.n_max}",

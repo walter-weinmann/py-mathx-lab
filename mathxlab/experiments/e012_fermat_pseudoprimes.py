@@ -1,4 +1,4 @@
-"""E012 — Fermat pseudoprimes and Carmichael numbers (counterexamples).
+"""E012: Fermat pseudoprimes and Carmichael numbers (counterexamples).
 
 The Fermat primality test is based on:
 
@@ -249,7 +249,7 @@ def _write_report(
         carmichaels: Carmichael numbers.
     """
     lines: list[str] = [
-        "# E012 — Fermat pseudoprimes and Carmichael numbers",
+        "# E012: Fermat pseudoprimes and Carmichael numbers",
         "",
         "**Reproduce:**",
         "",

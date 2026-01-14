@@ -1,4 +1,4 @@
-"""E100 — Carmichael λ(n) vs φ(n).
+"""E100: Carmichael λ(n) vs φ(n).
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

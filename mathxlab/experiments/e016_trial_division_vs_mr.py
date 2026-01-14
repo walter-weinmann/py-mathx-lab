@@ -1,4 +1,4 @@
-"""E016 — Trial division vs Miller–Rabin scaling.
+"""E016: Trial division vs Miller–Rabin scaling.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.prime_suite`.

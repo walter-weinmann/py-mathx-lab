@@ -1,4 +1,4 @@
-"""E094 — ω(n) vs Ω(n): Erdős–Kac side-by-side.
+"""E094: ω(n) vs Ω(n): Erdős–Kac side-by-side.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

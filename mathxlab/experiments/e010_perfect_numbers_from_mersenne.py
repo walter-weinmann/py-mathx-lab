@@ -1,4 +1,4 @@
-"""E010 — Even perfect numbers from Mersenne primes.
+"""E010: Even perfect numbers from Mersenne primes.
 
 Euclid–Euler theorem:
     If M_p = 2^p - 1 is prime, then
@@ -155,7 +155,7 @@ def _write_report(
         runtimes_ms: LLT runtimes in milliseconds for each tested p.
     """
     lines = [
-        "# E010 — Even perfect numbers from Mersenne primes",
+        "# E010: Even perfect numbers from Mersenne primes",
         "",
         "**Reproduce:**",
         "",

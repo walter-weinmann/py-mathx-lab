@@ -1,4 +1,4 @@
-"""E071 — PNT(AP) numerics: pi(x;q,a) - Li(x)/phi(q).
+"""E071: PNT(AP) numerics: pi(x;q,a) - Li(x)/phi(q).
 
 The prime number theorem in arithmetic progressions suggests:
 
@@ -101,7 +101,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_error_terms", fig=fig1)
 
     lines = [
-        "# E071 — PNT(AP) error terms",
+        "# E071: PNT(AP) error terms",
         "",
         f"- q: {params.q}",
         f"- residues: {list(params.residues)}",

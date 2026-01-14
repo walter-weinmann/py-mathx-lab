@@ -1,4 +1,4 @@
-"""E118 — Partial Euler product for ζ(s): where it breaks.
+"""E118: Partial Euler product for ζ(s): where it breaks.
 
 This is a thin wrapper that follows the standard experiment template and delegates
 the actual computation to :mod:`mathxlab.experiments.number_theory_suite`.

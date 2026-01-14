@@ -81,7 +81,7 @@ def main(argv: list[str] | None = None) -> int:
     save_figure(out_dir=paths.figures_dir, name="fig_01_series_convergence", fig=fig)
     write_json(paths.params_path, data=asdict(params))
 
-    report = """# E082 — Zeta(s) series convergence
+    report = """# E082: Zeta(s) series convergence
 
 We approximate zeta(s) by partial sums of the Dirichlet series for two real s values.
 
