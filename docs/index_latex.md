@@ -29,10 +29,15 @@ experiment_status
 :maxdepth: 2
 
 background
-references
 ```
 
-## API Reference
+## API Reference and Bibliography 
+
+```{eval-rst}
+.. bibliography:: refs.bib
+   :all:
+   :style: plain
+```
 
 The full API reference with auto-generated documentation is available in the **HTML version** of this documentation.
 
@@ -45,9 +50,3 @@ For the PDF, we provide a brief overview of the main modules:
 - **mathxlab.plots** — Plotting helpers used across experiments and reports.
 - **mathxlab.utils** — Shared utilities.
 - **mathxlab.viz** — Visualization backend wrappers (Matplotlib).
-
-```{toctree}
-:caption: Downloads
-:maxdepth: 2
-
-pdf
