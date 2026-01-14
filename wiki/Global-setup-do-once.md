@@ -22,4 +22,4 @@ This is the one-time setup checklist for a new machine.
 If all three succeed, your setup is complete.
 
 See also:
-- [Getting started](Getting-started)
+- [Getting started](Getting-started.md)

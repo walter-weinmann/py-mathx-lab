@@ -23,5 +23,5 @@ Use this checklist when an experiment is ready to move from “draft” to “va
    - Rebuild docs and verify the gallery entry renders correctly.
 
 See also:
-- [Output quality rubric](Output-quality-rubric)
-- [Experiments gallery](Experiments-gallery)
+- [Output quality rubric](Output-quality-rubric.md)
+- [Experiments gallery](Experiments-gallery.md)
