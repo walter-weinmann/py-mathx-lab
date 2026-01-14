@@ -39,4 +39,4 @@ jobs:
           WIKI_AUTHOR_EMAIL: wiki-sync-bot@users.noreply.github.com
         run: |
           python -V
-          python tools/sync_wiki.py --repo "${{ github.repository }}"
+          python mathxlab/tools/sync_wiki.py --repo "${{ github.repository }}"
