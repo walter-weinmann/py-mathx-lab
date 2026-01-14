@@ -33,10 +33,9 @@ background
 
 ## API Reference and Bibliography 
 
-```{eval-rst}
-.. bibliography:: refs.bib
-   :all:
-   :style: plain
+```{bibliography} refs.bib
+:all:
+:style: plain
 ```
 
 The full API reference with auto-generated documentation is available in the **HTML version** of this documentation.

@@ -75,6 +75,11 @@ exclude_patterns = [
     "params/**",
 ]
 
+# When building for HTML, exclude index_latex.md to avoid duplicate citations
+# with references.md (bibtex-contrib scans all source files).
+if "html" in sys.argv:
+    exclude_patterns.append("index_latex.md")
+
 # Prefer Markdown as the primary source format.
 source_suffix = {
     ".md": "markdown",
