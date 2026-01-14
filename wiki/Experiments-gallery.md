@@ -14,8 +14,8 @@ Typical commands:
 - Update gallery assets (if applicable): follow the repo’s “gallery sync” tool scripts in `tools/`
 
 Related:
-- [Getting started](Getting-started)
-- [The “Check & Refine” workflow](The-Check-&-Refine-workflow)
+- [Getting started](Getting-started.md)
+- [The “Check & Refine” workflow](The-Check-&-Refine-workflow.md)
 
 See also:
 - [Output quality rubric](Output-quality-rubric.md)
