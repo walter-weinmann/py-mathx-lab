@@ -11,5 +11,5 @@ Use this pipeline when finalizing a wave of experiments.
 7. Promote experiments to validated.
 
 See also:
-- [The “Check & Refine” workflow](The-Check-&-Refine-workflow.md)
-- [Promote experiments to “validated”](Promote-experiments-to-validated.md)
+- [The “Check & Refine” workflow](The-Check-&-Refine-workflow)
+- [Promote experiments to “validated”](Promote-experiments-to-validated)

@@ -28,6 +28,7 @@ jobs:
             --no-progress
             --accept 200,201,204,206,429
             --format detailed
+            --base wiki/
             wiki/**/*.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

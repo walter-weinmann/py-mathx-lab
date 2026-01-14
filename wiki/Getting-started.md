@@ -21,5 +21,5 @@ This page is a short operational checklist for working with the repo.
    - `make pytest-perf` (or your perf targets)
 
 Related:
-- [The “Check & Refine” workflow](The-Check-&-Refine-workflow.md)
-- [Development conventions](Development-conventions.md)
+- [The “Check & Refine” workflow](The-Check-&-Refine-workflow)
+- [Development conventions](Development-conventions)

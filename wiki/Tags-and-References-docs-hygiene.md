@@ -19,4 +19,4 @@ This repo relies on consistent tags and citations.
 - When renaming pages, update links in `wiki/` and `docs/`.
 
 See also:
-- [Development conventions](Development-conventions.md)
+- [Development conventions](Development-conventions)
