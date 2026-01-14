@@ -32,4 +32,4 @@ An experiment is “good enough” to be considered validated when it meets the 
 - If you touched core utilities used by many experiments, perf tests stay within bounds.
 
 See also:
-- [The “Check & Refine” workflow](The-Check-&-Refine-workflow)
+- [The “Check & Refine” workflow](The-Check-&-Refine-workflow.md)

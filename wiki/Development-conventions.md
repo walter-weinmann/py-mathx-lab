@@ -21,4 +21,4 @@ Operational conventions used throughout the repo.
 - Keep background pages short and link out to references.
 
 See also:
-- [Tags / References (docs hygiene)](Tags-and-References-docs-hygiene)
+- [Tags / References (docs hygiene)](Tags-and-References-docs-hygiene.md)
