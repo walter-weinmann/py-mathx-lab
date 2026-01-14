@@ -296,13 +296,23 @@ def verify_wiki(wiki_dir: Path) -> list[LinkIssue]:
                 continue
 
             if _looks_like_wiki_page(norm):
-                if not _wiki_page_exists(wiki_dir, page, norm):
+                exists, has_md = _wiki_page_exists(wiki_dir, page, norm)
+                if not exists:
                     issues.append(
                         LinkIssue(
                             severity="ERROR",
                             page=page,
                             target=raw,
                             message="Broken wiki page link.",
+                        )
+                    )
+                elif not has_md:
+                    issues.append(
+                        LinkIssue(
+                            severity="ERROR",
+                            page=page,
+                            target=raw,
+                            message="Wiki link missing '.md' suffix (required for CI/lychee).",
                         )
                     )
                 continue
@@ -348,21 +358,25 @@ def _path_exists(wiki_dir: Path, page_path: Path, target_path: str) -> bool:
     return any(cand.exists() for cand in _candidate_paths(wiki_dir, page_path, target_path))
 
 
-def _wiki_page_exists(wiki_dir: Path, page_path: Path, target_path: str) -> bool:
-    """Return True if a wiki page exists for the given target.
+def _wiki_page_exists(wiki_dir: Path, page_path: Path, target_path: str) -> tuple[bool, bool]:
+    """Return (exists, has_md_suffix) for the given wiki page target.
 
     Accepts links written as '(Page-Name)' or '(Page-Name.md)'.
+
+    Returns:
+        Tuple of (page_exists, link_has_md_suffix).
     """
     p = Path(target_path)
+    has_md = p.suffix.lower() == ".md"
+
     candidates: list[str] = []
-    if p.suffix.lower() == ".md":
+    if has_md:
         candidates.append(target_path)
     else:
         candidates.append(target_path + ".md")
 
-    # Some people use spaces; others use dashes. We do not rewrite: we check
-    # exactly as written, plus the '.md' normalization above.
-    return any(_path_exists(wiki_dir, page_path, cand_rel) for cand_rel in candidates)
+    exists = any(_path_exists(wiki_dir, page_path, cand_rel) for cand_rel in candidates)
+    return exists, has_md
 
 
 def _format_issues(issues: Iterable[LinkIssue]) -> str:

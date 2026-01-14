@@ -29,9 +29,5 @@ This is the repo’s default loop for turning an experiment from “it runs” i
    - When the output meets the rubric, mark the experiment as validated and sync gallery assets.
 
 See also:
-- [Output quality rubric](Output-quality-rubric)
-- [Promote experiments to “validated”](Promote-experiments-to-validated)
-
-See also:
-- [The "Check & Refine" workflow](The-Check-&-Refine-workflow.md)
-- [Promote experiments to "validated"](Promote-experiments-to-validated.md)
+- [Output quality rubric](Output-quality-rubric.md)
+- [Promote experiments to “validated”](Promote-experiments-to-validated.md)
