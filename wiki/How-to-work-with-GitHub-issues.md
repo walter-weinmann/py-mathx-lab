@@ -17,4 +17,4 @@ Use GitHub issues to track experiment work in a way that makes progress visible 
 - The issue is done when the experiment(s) pass the output rubric and the docs build is clean.
 
 See also:
-- [The “Check & Refine” workflow](The-Check-&-Refine-workflow.md)
+- [The “Check & Refine” workflow](The-Check-&-Refine-workflow)
